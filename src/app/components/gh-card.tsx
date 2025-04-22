@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { cva } from "class-variance-authority";
 
 export default function GHCard(props: { name: string; description: string }) {
   const [editMode, setEditMode] = useState(false);
