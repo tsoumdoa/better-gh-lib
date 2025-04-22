@@ -1,0 +1,82 @@
+[
+	{
+		"Name": "Voronoi Panel Generator",
+		"Description": "Creates a Voronoi pattern on a surface.Creates a Voronoi pattern on a surface."
+	},
+	{
+		"Name": "Parametric Tower Designer",
+		"Description": "Generates a parametric tower based on user-defined curves."
+	},
+	{
+		"Name": "Weave Surface Creator",
+		"Description": "Creates a woven surface from two sets of curves."
+	},
+	{
+		"Name": "Contour Generator",
+		"Description": "Generates contours from a mesh or surface at specified intervals."
+	},
+	{
+		"Name": "Surface Subdivision Tool",
+		"Description": "Subdivides a surface into smaller panels using various methods."
+	},
+	{
+		"Name": "Attractor Point Modifier",
+		"Description": "Modifies geometry based on distance to attractor points."
+	},
+	{
+		"Name": "Curve Network Generator",
+		"Description": "Creates a network of curves based on proximity."
+	},
+	{
+		"Name": "Paneling Tool with Rotation",
+		"Description": "Creates a paneling system with rotational variation."
+	},
+	{
+		"Name": "Grid Morph",
+		"Description": "Morphs a grid onto a target surface."
+	},
+	{
+		"Name": "Star Pattern Creator",
+		"Description": "Generates star-shaped patterns."
+	},
+	{
+		"Name": "Random Box Generator",
+		"Description": "Generates boxes with random sizes and rotations."
+	},
+	{
+		"Name": "Sphere Packing Algorithm",
+		"Description": "Packs spheres within a defined volume."
+	},
+	{
+		"Name": "Minimal Surface Finder",
+		"Description": "Approximates a minimal surface between boundary curves."
+	},
+	{
+		"Name": "Branching Structure Generator",
+		"Description": "Creates branching structures from a seed curve."
+	},
+	{
+		"Name": "Dome Generator",
+		"Description": "Generates geodesic domes of varying frequency."
+	},
+	{
+		"Name": "Tensegrity Structure Creator",
+		"Description": "Generates tensegrity structures."
+	},
+	{
+		"Name": "Cellular Automata Surface",
+		"Description": "Applies cellular automata rules to a surface."
+	},
+	{
+		"Name": "Loft by Section Curves",
+		"Description": "Creates a lofted surface from a series of section curves."
+	},
+	{
+		"Name": "Twisted Box Morph",
+		"Description": "Morphs boxes onto a twisted surface."
+	},
+	{
+		"Name": "Fractal Tree Generator",
+		"Description": "Generates fractal tree structures."
+	}
+]
