@@ -22,7 +22,7 @@ export const postRouter = createTRPCRouter({
     const redo: Posts[] = [];
     let retry = 0;
 
-    var dataToInsert = mockData.map((item, index) => ({
+    let dataToInsert = mockData.map((item, index) => ({
       name: uniqueName[index].replaceAll(" ", ""),
       description: item.Description,
     }));
