@@ -3,7 +3,7 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { Posts, posts } from "@/server/db/schema";
 import mockData from "../../../../public/card-mock-data.json";
-import { ensureUniqueName } from "../utilities/ensureUniqueName";
+import { ensureUniqueName } from "./utilities/ensureUniqueName";
 
 export const postRouter = createTRPCRouter({
   hello: publicProcedure

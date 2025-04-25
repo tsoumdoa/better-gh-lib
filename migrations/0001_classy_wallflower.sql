@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX `posts_name_unique` ON `posts` (`name`);

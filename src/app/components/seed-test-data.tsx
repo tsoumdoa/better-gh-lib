@@ -1,0 +1,28 @@
+"use client";
+
+import { api } from "@/trpc/react";
+
+export default function SeedTestData() {
+  const seedData = api.post.seed.useMutation({
+    onSuccess: async (data) => {
+      console.log(data);
+    },
+    onError: async (err) => {
+      console.log(err);
+    },
+  });
+
+  const handleSeedClick = () => {
+    seedData.mutate();
+    console.log("hello");
+  };
+
+  return (
+    <button
+      className="rounded-md bg-pink-500 px-3 py-1 text-sm font-bold ring-2 ring-neutral-300 transition-all hover:translate-x-0.5 hover:translate-y-0.5"
+      onClick={handleSeedClick}
+    >
+      SEED
+    </button>
+  );
+}
