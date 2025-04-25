@@ -3,7 +3,7 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { Posts, posts } from "@/server/db/schema";
 import mockData from "../../../../public/card-mock-data.json";
-import { ensureUniqueName } from "./utilities/ensureUniqueName";
+import { ensureUniqueName, addNanoId } from "./utilities/ensureUniqueName";
 
 export const postRouter = createTRPCRouter({
   hello: publicProcedure
@@ -21,32 +21,39 @@ export const postRouter = createTRPCRouter({
     const maxRetry = 3;
     const redo: Posts[] = [];
     let retry = 0;
-    while (retry < maxRetry && redo.length > 0) {
-      mockData.forEach(
-        async (item: { Name: string; Description: string }, i: number) => {
-          /* const res = */ await ctx.db
-            .insert(posts)
-            .values({
-              name: uniqueName[i],
-              description: item.Description,
-            })
-            .catch((err) => {
-              if (
-                err.message ===
-                "SQLITE_CONSTRAINT: SQLite error: UNIQUE constraint failed: posts.name"
-              ) {
-                console.log("not unique");
-                redo.push({
-                  name: uniqueName[i],
-                  description: item.Description,
-                });
-              }
-            });
-        }
-      );
+
+    var dataToInsert = mockData.map((item, index) => ({
+      name: uniqueName[index].replaceAll(" ", ""),
+      description: item.Description,
+    }));
+
+    while (retry < maxRetry && dataToInsert.length >= 0) {
+      for (const item of dataToInsert) {
+        await ctx.db
+          .insert(posts)
+          .values({
+            name: item.name,
+            description: item.description,
+          })
+          .catch((err) => {
+            if (
+              err.message ===
+              "SQLITE_CONSTRAINT: SQLite error: UNIQUE constraint failed: posts.name"
+            ) {
+              redo.push({
+                name: addNanoId(item.name),
+                description: item.description,
+              });
+            }
+          });
+      }
+      dataToInsert = redo.map((item) => ({
+        name: item.name!,
+        description: item.description!,
+      }));
       retry++;
     }
-    return redo;
+    redo.length = 0;
   }),
 
   create: publicProcedure
@@ -58,7 +65,7 @@ export const postRouter = createTRPCRouter({
     }),
 
   getAll: publicProcedure.query(async ({ ctx }) => {
-    const posts = await ctx.db.query.posts.findMany({ limit: 10 });
+    const posts = await ctx.db.query.posts.findMany({ limit: 100 });
     return posts;
   }),
 });
