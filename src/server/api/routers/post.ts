@@ -3,7 +3,8 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { Posts, posts } from "@/server/db/schema";
 import mockData from "../../../../public/card-mock-data.json";
-import { ensureUniqueName, addNanoId } from "./utilities/ensureUniqueName";
+import { ensureUniqueName, addNanoId } from "./util/ensureUniqueName";
+import { eq } from "drizzle-orm";
 
 export const postRouter = createTRPCRouter({
   hello: publicProcedure
@@ -62,6 +63,26 @@ export const postRouter = createTRPCRouter({
       await ctx.db.insert(posts).values({
         name: input.name,
       });
+    }),
+
+  edit: publicProcedure
+    .input(
+      z.object({
+        id: z.number(),
+        name: z.string().min(1),
+        description: z.string().max(150),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      try {
+        await ctx.db
+          .update(posts)
+          .set({ name: input.name, description: input.description })
+          .where(eq(posts.id, input.id));
+      } catch {
+        //todo add posthug...
+        throw new Error("failed to update DB");
+      }
     }),
 
   getAll: publicProcedure.query(async ({ ctx }) => {

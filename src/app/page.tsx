@@ -12,6 +12,7 @@ async function MainCard() {
       {ghCards.map((item, i: number) => (
         <GHCard
           key={i}
+          id={item.id}
           name={item.name!.replaceAll(" ", "")}
           description={item.description!}
         />
@@ -24,7 +25,7 @@ function MainCardSkeleton() {
   return (
     <div className="h-ful mb-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
       {Array.from({ length: 15 }).map((_, i) => (
-        <GHCard key={i} name={"Loading..."} description={"Loading..."} />
+        <GHCard key={i} id={0} name={"Loading..."} description={"Loading..."} />
       ))}
     </div>
   );
