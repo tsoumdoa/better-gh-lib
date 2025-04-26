@@ -4,6 +4,7 @@ import { api } from "@/trpc/react";
 import { GhCardSchema } from "@/types";
 import { InvalidValueDialog } from "./gh-card-dialog";
 import { EditButtons, NameAndDescription, NormalButtons } from "./gh-card-body";
+import { addNanoId } from "@/server/api/routers/util/ensureUniqueName";
 
 export default function GHCard(props: {
   id: number;
@@ -28,6 +29,10 @@ export default function GHCard(props: {
     },
     onError: async () => {
       setGhInfo({ name: props.name, description: props.description });
+      const newName = addNanoId(ghInfo.name);
+      setGhInfo({ ...ghInfo, name: newName });
+      setUpdating(false);
+      setEditMode(true);
     },
   });
 

@@ -4,6 +4,7 @@ import GHCard from "./components/gh-card";
 import SeedTestData from "./components/seed-test-data";
 import { api, HydrateClient } from "@/trpc/server";
 import { Suspense } from "react";
+import AddGHCard from "./components/add-gh-card";
 
 async function MainCard() {
   const ghCards = await api.post.getAll();
@@ -47,9 +48,7 @@ export default async function Home() {
               <span>sort by</span>
               <ChevronDown className="h-4 w-4" />
             </div>
-            <button className="rounded-md bg-black px-3 py-1 text-sm font-bold ring-2 ring-neutral-300 transition-all hover:translate-x-0.5 hover:translate-y-0.5">
-              ADD
-            </button>
+            <AddGHCard />
             <SeedTestData />
           </div>
         </div>

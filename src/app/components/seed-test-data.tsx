@@ -1,11 +1,15 @@
 "use client";
 
 import { api } from "@/trpc/react";
+import { useRouter } from "next/navigation";
 
 export default function SeedTestData() {
+  const router = useRouter();
   const seedData = api.post.seed.useMutation({
     onSuccess: async (data) => {
       console.log(data);
+      router.refresh();
+      //reload page
     },
     onError: async (err) => {
       console.log(err);

@@ -5,6 +5,7 @@ import { Posts, posts } from "@/server/db/schema";
 import mockData from "../../../../public/card-mock-data.json";
 import { ensureUniqueName, addNanoId } from "./util/ensureUniqueName";
 import { eq } from "drizzle-orm";
+import { GhCardSchema } from "@/types";
 
 export const postRouter = createTRPCRouter({
   hello: publicProcedure
@@ -57,6 +58,37 @@ export const postRouter = createTRPCRouter({
     redo.length = 0;
   }),
 
+  add: publicProcedure.input(GhCardSchema).mutation(async ({ ctx, input }) => {
+    const toInsert = {
+      name: input.name,
+      description: input.description,
+    };
+    const maxRetry = 3;
+    let retry = 0;
+    let success = false;
+    while (retry < maxRetry && !success) {
+      await ctx.db
+        .insert(posts)
+        .values({
+          name: toInsert.name,
+          description: toInsert.description,
+        })
+        .then(() => {
+          success = true;
+        })
+        .catch((err) => {
+          if (
+            err.message ===
+            "SQLITE_CONSTRAINT: SQLite error: UNIQUE constraint failed: posts.name"
+          ) {
+            const newName = addNanoId(toInsert.name);
+            toInsert.name = newName;
+          }
+        });
+      retry++;
+    }
+  }),
+
   create: publicProcedure
     .input(z.object({ name: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {
@@ -74,14 +106,17 @@ export const postRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
+      const data = {
+        name: input.name,
+        description: input.description,
+      };
       try {
         await ctx.db
           .update(posts)
-          .set({ name: input.name, description: input.description })
+          .set({ name: data.name, description: data.description })
           .where(eq(posts.id, input.id));
-      } catch {
-        //todo add posthug...
-        throw new Error("failed to update DB");
+      } catch (err) {
+        throw err;
       }
     }),
 

@@ -12,11 +12,11 @@ export function NameAndDescription(props: {
 }) {
   return (
     <div>
-      <p
+      <div
         className={` ${props.editMode ? "text-neutral-900" : "text-neutral-500"} `}
       >
         Name
-      </p>
+      </div>
       <div
         className={`pb-1 text-lg ${props.editMode ? "" : "font-semibold"} transition-all`}
       >
@@ -39,11 +39,11 @@ export function NameAndDescription(props: {
           props.ghInfo.name
         )}
       </div>
-      <p
+      <div
         className={` ${props.editMode ? "text-neutral-900" : "text-neutral-500"} `}
       >
         Description
-      </p>
+      </div>
       <div className="h-auto text-neutral-100">
         {props.editMode ? (
           <div className="space-y-1">

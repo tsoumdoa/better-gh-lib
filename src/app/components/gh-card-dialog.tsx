@@ -8,6 +8,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export function InvalidValueDialog(props: {
   open: boolean;
@@ -52,12 +54,23 @@ export function CopiedDialog(props: { open: boolean; setOpen: () => void }) {
 }
 
 export function ShareDialog(props: { open: boolean; setOpen: () => void }) {
+  const shareLink = "https://github.com/tomohirosugeta/better-gh-lib";
+  const handleCopyClick = () => {
+    navigator.clipboard.writeText(shareLink);
+    alert("Link copied to clipboard!");
+  };
   return (
     <AlertDialog open={props.open} onOpenChange={props.setOpen}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Share</AlertDialogTitle>
           <AlertDialogDescription>
+            <div className="flex items-center space-x-2">
+              <Input value={shareLink} readOnly />
+              <Button variant="outline" size="sm" onClick={handleCopyClick}>
+                Copy
+              </Button>
+            </div>
             Copy the link to this card and share it with your friends!
           </AlertDialogDescription>
         </AlertDialogHeader>
