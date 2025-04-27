@@ -5,8 +5,14 @@ import { Suspense } from "react";
 import GHCard from "../components/gh-card";
 import Header from "../components/header";
 import AddGHCard from "../components/add-gh-card";
+import { auth } from "@clerk/nextjs/server";
 
 async function MainCard() {
+  "use server";
+  const { userId, redirectToSignIn } = await auth();
+  //todo this is where I left of
+  if (!userId) return redirectToSignIn();
+  console.log("userId", userId);
   const ghCards = await api.post.getAll();
   return (
     <div className="mb-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
