@@ -1,4 +1,4 @@
-import { Search, Circle } from "lucide-react";
+import { Search } from "lucide-react";
 import Link from "next/link";
 import {
   SignInButton,
