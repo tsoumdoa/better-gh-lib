@@ -1,9 +1,13 @@
 import { Search, Circle } from "lucide-react";
+import Link from "next/link";
 
 export default function Header() {
   return (
     <header className="mb-8 flex items-center justify-between">
-      <h1 className="text-2xl font-bold md:text-4xl">Better GH Library</h1>
+      <Link className="text-2xl font-bold md:text-4xl" href="/">
+        Better GH Library
+      </Link>
+
       <div className="flex items-center gap-3">
         <div className="relative flex w-56 items-center overflow-hidden rounded-md bg-neutral-500 ring-1 ring-neutral-500">
           <Search className="absolute left-3 h-4 w-4 text-white" />
