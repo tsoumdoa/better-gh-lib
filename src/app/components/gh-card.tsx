@@ -1,57 +1,134 @@
 "use client";
 import { useState } from "react";
+import { api } from "@/trpc/react";
+import { GhCardSchema } from "@/types";
+import { InvalidValueDialog } from "./gh-card-dialog";
+import { EditButtons, NameAndDescription, NormalButtons } from "./gh-card-body";
+import { addNanoId } from "@/server/api/routers/util/ensureUniqueName";
 
-export default function GHCard(props: { name: string; description: string }) {
+export default function GHCard(props: {
+  id: number;
+  name: string;
+  description: string;
+}) {
   const [editMode, setEditMode] = useState(false);
+  const [invalidInput, setInvalidInput] = useState(false);
+  const [updating, setUpdating] = useState(false);
+  const [deleted, setDeleted] = useState(false);
+  const [ghInfo, setGhInfo] = useState({
+    name: props.name,
+    description: props.description,
+  });
+
+  const updateData = api.post.edit.useMutation({
+    onSuccess: async () => {
+      setUpdating(false);
+    },
+    onMutate: async () => {
+      setUpdating(true);
+    },
+    onError: async () => {
+      setGhInfo({ name: props.name, description: props.description });
+      const newName = addNanoId(ghInfo.name);
+      setGhInfo({ ...ghInfo, name: newName });
+      setUpdating(false);
+      setEditMode(true);
+    },
+  });
+
+  const deleteData = api.post.delete.useMutation({
+    onSuccess: async () => {
+      setUpdating(false);
+      setDeleted(true);
+    },
+    onMutate: async () => {
+      setUpdating(true);
+    },
+    onError: async () => {
+      setGhInfo({ name: props.name, description: props.description });
+    },
+  });
+
+  const deletePost = () => {
+    deleteData.mutate({
+      id: props.id,
+    });
+    setEditMode(false);
+  };
 
   const handleEditMode = () => {
+    if (editMode) {
+      try {
+        GhCardSchema.parse(ghInfo);
+      } catch (err) {
+        console.log(err);
+        setInvalidInput(true);
+        return;
+      }
+
+      if (
+        ghInfo.name === props.name &&
+        ghInfo.description === props.description
+      ) {
+        setEditMode(false);
+        return;
+      }
+
+      updateData.mutate({
+        id: props.id,
+        name: ghInfo.name,
+        description: ghInfo.description,
+      });
+    }
     setEditMode(!editMode);
   };
 
+  if (deleted) {
+    return (
+      <div className="relative flex h-full w-full rounded-md bg-neutral-800 p-3 ring-1 ring-neutral-500">
+        <NameAndDescription
+          editMode={editMode}
+          setEditMode={() => setEditMode(!editMode)}
+          setGhInfo={setGhInfo}
+          ghInfo={{ name: "deleted", description: "deleted" }}
+        />
+      </div>
+    );
+  }
+
   return (
     <div
-      className={`flex flex-col justify-between rounded-md p-3 ring-1 ring-neutral-500 ${editMode ? "bg-neutral-500" : "bg-neutral-900"}`}
+      className={`flex flex-col justify-between rounded-md p-3 ring-1 ring-neutral-500 ${editMode || updating ? "bg-neutral-500" : "bg-neutral-900"}`}
     >
+      <InvalidValueDialog
+        open={invalidInput}
+        setOpen={() => setInvalidInput(false)}
+      />
+      <NameAndDescription
+        editMode={editMode}
+        setEditMode={() => setEditMode(!editMode)}
+        setGhInfo={setGhInfo}
+        ghInfo={ghInfo}
+      />
       <div>
-        <p
-          className={` ${editMode ? "text-neutral-900" : "text-neutral-500"} `}
-        >
-          Name
-        </p>
-        <p
-          className={`pb-1 text-lg ${editMode ? "" : "font-semibold"} transition-all`}
-        >
-          {props.name}
-        </p>
-        <p
-          className={` ${editMode ? "text-neutral-900" : "text-neutral-500"} `}
-        >
-          Description
-        </p>
-        <p className="h-auto text-neutral-100">{props.description}</p>
-      </div>
-      <div className="flex items-center justify-end text-neutral-400 transition-all">
-        <button
-          className={`px-2 font-bold hover:text-neutral-50 ${!editMode ? "" : "hidden"}`}
-        >
-          copy
-        </button>
-        <button
-          className={`px-2 font-bold hover:text-neutral-50 ${!editMode ? "" : "hidden"}`}
-        >
-          share
-        </button>
-        <button
-          className={`px-2 font-bold hover:text-neutral-50 ${editMode ? "" : "hidden"}`}
-        >
-          cancel
-        </button>
-        <button
-          className={`px-2 font-bold hover:text-neutral-50 ${editMode ? "" : ""}`}
-          onClick={() => handleEditMode()}
-        >
-          {editMode ? "done" : "edit"}
-        </button>
+        {editMode ? (
+          <EditButtons
+            editMode={editMode}
+            setEditMode={setEditMode}
+            setGhInfo={setGhInfo}
+            deletePost={() => deletePost()}
+            handleEditMode={handleEditMode}
+            ghInfo={ghInfo}
+            name={props.name}
+            description={props.description}
+          />
+        ) : (
+          <NormalButtons
+            editMode={editMode}
+            setEditMode={() => setEditMode(!editMode)}
+            handleEditMode={handleEditMode}
+          />
+        )}
       </div>
     </div>
   );
