@@ -4,19 +4,16 @@ import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { Posts, posts } from "@/server/db/schema";
 import mockData from "../../../../public/card-mock-data.json";
 import { ensureUniqueName, addNanoId } from "./util/ensureUniqueName";
-import { eq } from "drizzle-orm";
+import { and, eq, desc, sql } from "drizzle-orm";
 import { GhCardSchema } from "@/types";
 
 export const postRouter = createTRPCRouter({
-  hello: publicProcedure
-    .input(z.object({ text: z.string() }))
-    .query(({ input }) => {
-      return {
-        greeting: `Hello ${input.text}`,
-      };
-    }),
-
   seed: publicProcedure.mutation(async ({ ctx }) => {
+    const { userId } = ctx.auth;
+    if (!userId) {
+      throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+    }
+
     const mockName = mockData.map((item) => item.Name);
     const uniqueName = ensureUniqueName(mockName);
 
@@ -36,6 +33,8 @@ export const postRouter = createTRPCRouter({
           .values({
             name: item.name,
             description: item.description,
+            bucketUrl: "todo",
+            clerkUserId: userId,
           })
           .catch((err) => {
             if (
@@ -45,6 +44,8 @@ export const postRouter = createTRPCRouter({
               redo.push({
                 name: addNanoId(item.name),
                 description: item.description,
+                bucketUrl: "todo",
+                clerkUserId: userId,
               });
             }
           });
@@ -59,6 +60,10 @@ export const postRouter = createTRPCRouter({
   }),
 
   add: publicProcedure.input(GhCardSchema).mutation(async ({ ctx, input }) => {
+    const { userId } = ctx.auth;
+    if (!userId) {
+      throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+    }
     const toInsert = {
       name: input.name,
       description: input.description,
@@ -72,6 +77,8 @@ export const postRouter = createTRPCRouter({
         .values({
           name: toInsert.name,
           description: toInsert.description,
+          bucketUrl: "todo",
+          clerkUserId: userId,
         })
         .then(() => {
           success = true;
@@ -92,8 +99,14 @@ export const postRouter = createTRPCRouter({
   create: publicProcedure
     .input(z.object({ name: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {
+      const { userId } = ctx.auth;
+      if (!userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
       await ctx.db.insert(posts).values({
         name: input.name,
+        bucketUrl: "todo",
+        clerkUserId: userId,
       });
     }),
 
@@ -106,28 +119,78 @@ export const postRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
+      const { userId } = ctx.auth;
+      if (!userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
       const data = {
         name: input.name,
         description: input.description,
       };
       try {
-        await ctx.db
+        const res = await ctx.db
           .update(posts)
-          .set({ name: data.name, description: data.description })
-          .where(eq(posts.id, input.id));
+          .set({
+            name: data.name,
+            description: data.description,
+            dateUpdated: sql`CURRENT_TIMESTAMP`,
+          })
+          .where(and(eq(posts.clerkUserId, userId), eq(posts.id, input.id)));
+        if (res.rowsAffected === 0) {
+          console.log("no aff");
+          throw new Error("AUTH_FAILED", {
+            cause: new Error("AUTH_FAILED"),
+          });
+        }
       } catch (err) {
-        throw err;
+        if (err instanceof Error) {
+          if (err.message.includes("UNIQUE constraint failed")) {
+            throw new Error("DUPLICATED_NAME", {
+              cause: new Error("DUPLICATED_NAME"),
+            });
+          }
+
+          if (err.message === "AUTH_FAILED") {
+            throw new Error("AUTH_FAILED", {
+              cause: new Error("AUTH_FAILED"),
+            });
+          }
+        }
+        throw new Error("FAILED_TO_UPDATE", {
+          cause: new Error("FAILED_TO_UPDATE"),
+        });
       }
     }),
 
   delete: publicProcedure
     .input(z.object({ id: z.number() }))
     .mutation(async ({ ctx, input }) => {
-      await ctx.db.delete(posts).where(eq(posts.id, input.id));
+      const { userId } = ctx.auth;
+      if (!userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
+      const res = await ctx.db
+        .delete(posts)
+        .where(and(eq(posts.clerkUserId, userId), eq(posts.id, input.id)));
+      if (res.rowsAffected === 0) {
+        throw new Error("FAILED_TO_DELETE", {
+          cause: new Error("FAILED_TO_DELETE"),
+        });
+      }
     }),
 
   getAll: publicProcedure.query(async ({ ctx }) => {
-    const posts = await ctx.db.query.posts.findMany({ limit: 100 });
-    return posts;
+    const { userId } = ctx.auth;
+    if (!userId) {
+      throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+    }
+
+    const res = await ctx.db.query.posts.findMany({
+      where: eq(posts.clerkUserId, userId),
+      limit: 100,
+      offset: 0,
+      orderBy: [desc(posts.dateUpdated)],
+    });
+    return res;
   }),
 });

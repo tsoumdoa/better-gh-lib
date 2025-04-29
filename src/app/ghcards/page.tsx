@@ -6,26 +6,34 @@ import GHCard from "../components/gh-card";
 import Header from "../components/header";
 import AddGHCard from "../components/add-gh-card";
 import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 async function MainCard() {
+  // load user data from server with auth
   "use server";
   const { userId, redirectToSignIn } = await auth();
-  //todo this is where I left of
   if (!userId) return redirectToSignIn();
-  console.log("userId", userId);
-  const ghCards = await api.post.getAll();
-  return (
-    <div className="mb-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-      {ghCards.map((item, i: number) => (
-        <GHCard
-          key={i}
-          id={item.id}
-          name={item.name!.replaceAll(" ", "")}
-          description={item.description!}
-        />
-      ))}
-    </div>
-  );
+  try {
+    const ghCards = await api.post.getAll();
+    return (
+      <div className="mb-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {ghCards.map((item) => (
+          <GHCard
+            key={item.id}
+            id={item.id}
+            name={item.name!.replaceAll(" ", "")}
+            description={item.description!}
+          />
+        ))}
+      </div>
+    );
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      if (err.message === "UNAUTHORIZED") {
+        redirect("/");
+      }
+    }
+  }
 }
 
 function MainCardSkeleton() {

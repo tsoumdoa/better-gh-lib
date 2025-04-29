@@ -35,8 +35,9 @@ function AddGhDialog(props: {
     },
 
     onSuccess: async () => {
-      props.setAdding(false);
+      // this doesn't refersh cuz the content (DOM) is still the same..
       router.refresh();
+      props.setAdding(false);
     },
     onError: async (err) => {
       //todo improve this, probably toast...?
@@ -72,7 +73,7 @@ function AddGhDialog(props: {
             Add a new card
           </AlertDialogTitle>
           <AlertDialogDescription>
-            <div className="flex flex-col space-y-3">
+            <a className="flex flex-col space-y-3">
               <Input
                 placeholder="NameOfGhCardInPascalCase"
                 className="font-semibold"
@@ -84,7 +85,7 @@ function AddGhDialog(props: {
                 maxLength={150}
                 onChange={(e) => setDescription(e.target.value)}
               />
-            </div>
+            </a>
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
