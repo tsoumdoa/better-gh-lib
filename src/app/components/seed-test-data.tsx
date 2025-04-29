@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 export default function SeedTestData() {
   const router = useRouter();
   const seedData = api.post.seed.useMutation({
-    onSuccess: async (data) => {
+    onSuccess: async () => {
       router.refresh();
     },
     onError: async (err) => {
