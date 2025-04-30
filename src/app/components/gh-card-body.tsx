@@ -36,7 +36,7 @@ export function NameAndDescription(props: {
             </p>
           </div>
         ) : (
-          props.ghInfo.name
+          <p className="overflow-hidden text-ellipsis">{props.ghInfo.name}</p>
         )}
       </div>
       <div

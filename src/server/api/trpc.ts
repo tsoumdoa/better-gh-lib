@@ -12,6 +12,7 @@ import { ZodError } from "zod";
 
 import { db } from "@/server/db";
 import { auth } from "@clerk/nextjs/server";
+import { radis } from "@/server/db";
 
 /**
  * 1. CONTEXT
@@ -28,6 +29,7 @@ import { auth } from "@clerk/nextjs/server";
 export const createTRPCContext = async (opts: { headers: Headers }) => {
   return {
     db,
+    radis,
     auth: await auth(),
     ...opts,
   };

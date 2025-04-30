@@ -5,7 +5,7 @@ export const posts = sqliteTable(
   "posts",
   {
     id: integer().primaryKey().unique(),
-    name: text().unique(),
+    name: text(),
     description: text(),
     dateCreated: text("date_created")
       .notNull()

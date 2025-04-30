@@ -65,6 +65,7 @@ export default function GHCard(props: {
   const deletePost = () => {
     deleteData.mutate({
       id: props.id,
+      name: props.name,
     });
   };
 
@@ -86,6 +87,7 @@ export default function GHCard(props: {
         return;
       }
     }
+    //todo add error boundary...
     updateData.mutate({
       id: props.id,
       name: ghInfo.name,
