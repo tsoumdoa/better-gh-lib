@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import { Posts, posts } from "@/server/db/schema";
+import { posts } from "@/server/db/schema";
 import mockData from "../../../../public/card-mock-data.json";
 import { ensureUniqueName, addNanoId } from "./util/ensureUniqueName";
 import { and, eq, desc, sql } from "drizzle-orm";
@@ -18,7 +18,7 @@ export const postRouter = createTRPCRouter({
     const mockName = mockData.map((item) => item.Name);
     const uniqueName = ensureUniqueName(mockName);
 
-    let dataToInsert = mockData.map((item, index) => ({
+    const dataToInsert = mockData.map((item, index) => ({
       name: uniqueName[index].replaceAll(" ", ""),
       description: item.Description,
     }));
