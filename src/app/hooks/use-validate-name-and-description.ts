@@ -1,10 +1,9 @@
 import { GhCardSchema } from "@/types";
 import { useEffect, useState } from "react";
 
-export const useValidateNameAndDescription = (
-  name: string,
-  description: string
-) => {
+export const useValidateNameAndDescription = () => {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
@@ -17,5 +16,5 @@ export const useValidateNameAndDescription = (
     }
   }, [name, description]);
 
-  return isValid;
+  return { name, setName, description, setDescription, isValid };
 };

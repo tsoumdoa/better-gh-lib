@@ -11,6 +11,7 @@ export default function GHCard(props: {
   id: number;
   name: string;
   description: string;
+  bucketId: string;
 }) {
   const [editMode, setEditMode] = useState(false);
   const [invalidInput, setInvalidInput] = useState(false);
@@ -138,6 +139,7 @@ export default function GHCard(props: {
         ) : (
           <NormalButtons
             editMode={editMode}
+            bucketId={props.bucketId}
             setEditMode={() => setEditMode(!editMode)}
             handleEditMode={handleEditMode}
           />

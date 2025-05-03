@@ -23,6 +23,7 @@ async function MainCard() {
             id={item.id}
             name={item.name!.replaceAll(" ", "")}
             description={item.description!}
+            bucketId={item.bucketUrl}
           />
         ))}
       </div>

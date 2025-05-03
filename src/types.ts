@@ -5,4 +5,8 @@ export const GhCardSchema = z.object({
   description: z.string().max(150),
 });
 
+export const GhXmlGhCardSchema = GhCardSchema.extend({
+  xml: z.string(),
+});
+
 export type GhCard = z.infer<typeof GhCardSchema>;

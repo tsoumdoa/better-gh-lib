@@ -1,5 +1,5 @@
 import { compress, decompress } from "./gzip";
-import { expect, test, bench } from "vitest";
+import { expect, test } from "vitest";
 import fs from "node:fs";
 
 test("test compression and decompression", () => {

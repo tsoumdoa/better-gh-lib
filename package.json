@@ -33,6 +33,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.42.0",
+    "effect": "^3.14.18",
     "lucide-react": "^0.503.0",
     "nanoid": "^5.1.5",
     "next": "15.3.1",

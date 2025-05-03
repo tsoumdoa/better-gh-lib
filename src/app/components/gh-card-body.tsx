@@ -1,8 +1,10 @@
 import { Textarea } from "@/components/ui/textarea";
 import { GhCard } from "@/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CopiedDialog, ShareDialog } from "./gh-card-dialog";
 import { Input } from "@/components/ui/input";
+import { api } from "@/trpc/react";
+import { enable } from "effect/RuntimeFlagsPatch";
 
 export function NameAndDescription(props: {
   editMode: boolean;
@@ -71,32 +73,50 @@ export function NameAndDescription(props: {
 
 export function NormalButtons(props: {
   editMode: boolean;
+  bucketId: string;
   setEditMode: () => void;
   handleEditMode: () => void;
 }) {
-  const [copied, setCopied] = useState(false);
-  const [shared, setShared] = useState(false);
-  const handleCopy = async () => {
-    //todo replace this with actual data
+  const [openCopyDialog, setOpenCopyDialog] = useState(false);
+  const [openSharedDialog, setOpenSharedDialog] = useState(false);
 
-    //todo remove this
-    //fake delay for now
-    const timeout = new Promise((resolve) => setTimeout(resolve, 500));
-    await timeout;
-    navigator.clipboard.writeText("HEY HYE");
-    setCopied(true);
+  const { refetch, data, isSuccess, isError } =
+    api.post.getPresignedUrl.useQuery(
+      { bucketId: props.bucketId },
+      {
+        enabled: false,
+      }
+    );
+
+  useEffect(() => {
+    if (isSuccess) {
+      //todo put url clipboard for now, need to fetch data and errr shit in the
+      //future...
+      navigator.clipboard.writeText(data);
+    }
+  }, [isSuccess, isError]);
+
+  const handleCopy = async () => {
+    refetch();
+    setOpenCopyDialog(true);
   };
 
   const handleShare = async () => {
     //todo replace this with actual data
     navigator.clipboard.writeText("HEY HYE");
-    setShared(true);
+    setOpenSharedDialog(true);
   };
 
   return (
     <div className="flex items-center justify-end text-neutral-400 transition-all">
-      <CopiedDialog open={copied} setOpen={() => setCopied(!copied)} />
-      <ShareDialog open={shared} setOpen={() => setShared(!shared)} />
+      <CopiedDialog
+        open={openCopyDialog}
+        setOpen={() => setOpenCopyDialog(!openCopyDialog)}
+      />
+      <ShareDialog
+        open={openSharedDialog}
+        setOpen={() => setOpenSharedDialog(!openSharedDialog)}
+      />
       <button
         className={`px-2 font-bold hover:text-neutral-50`}
         onClick={handleCopy}

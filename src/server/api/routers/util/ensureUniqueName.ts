@@ -1,6 +1,6 @@
 import { customAlphabet } from "nanoid";
 
-const nanoid = customAlphabet(
+export const nanoid = customAlphabet(
   "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
   8
 );

@@ -65,12 +65,12 @@ export function ShareDialog(props: { open: boolean; setOpen: () => void }) {
         <AlertDialogHeader>
           <AlertDialogTitle>Share</AlertDialogTitle>
           <AlertDialogDescription>
-            <div className="flex items-center space-x-2">
+            <a className="flex items-center space-x-2">
               <Input value={shareLink} readOnly />
               <Button variant="outline" size="sm" onClick={handleCopyClick}>
                 Copy
               </Button>
-            </div>
+            </a>
             Copy the link to this card and share it with your friends!
           </AlertDialogDescription>
         </AlertDialogHeader>

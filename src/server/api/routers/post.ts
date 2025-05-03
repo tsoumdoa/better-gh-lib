@@ -5,8 +5,11 @@ import mockData from "../../../../public/card-mock-data.json";
 import { ensureUniqueName, addNanoId } from "./util/ensureUniqueName";
 import { and, eq, desc, sql } from "drizzle-orm";
 import { GhCardSchema } from "@/types";
+import { env } from "@/env";
 
 const ghCardKey = (userId: string, name: string) => `ghcard_${userId}_${name}`;
+const presignedUrl = (userId: string, nanoid: string) =>
+  `${env.R2_URL}/${userId}/${nanoid}?X-Amz-Expires=6`;
 
 export const postRouter = createTRPCRouter({
   seed: publicProcedure.mutation(async ({ ctx }) => {
@@ -30,7 +33,7 @@ export const postRouter = createTRPCRouter({
         await ctx.db.insert(posts).values({
           name: item.name,
           description: item.description,
-          bucketUrl: "todo",
+          bucketUrl: item.name,
           clerkUserId: userId,
         });
         ctx.radis.set(key, "");
@@ -40,56 +43,57 @@ export const postRouter = createTRPCRouter({
         await ctx.db.insert(posts).values({
           name: newName,
           description: item.description,
-          bucketUrl: "todo",
+          bucketUrl: item.name,
           clerkUserId: userId,
         });
       }
     }
   }),
 
-  add: publicProcedure.input(GhCardSchema).mutation(async ({ ctx, input }) => {
-    const { userId } = ctx.auth;
-    if (!userId) {
-      throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
-    }
-
-    const key = ghCardKey(userId, input.name);
-    const hasKey = await ctx.radis.exists(key);
-    try {
-      if (hasKey === 0) {
-        //todo change it to transaction and throw error if there is duplicated name...
-        await ctx.db.insert(posts).values({
-          name: input.name,
-          description: input.description,
-          bucketUrl: "todo",
-          clerkUserId: userId,
-        });
-        ctx.radis.set(key, "");
-      } else if (hasKey === 1) {
-        const newName = addNanoId(input.name);
-        ctx.radis.set(ghCardKey(userId, newName), "");
-        await ctx.db.insert(posts).values({
-          name: newName,
-          description: input.description,
-          bucketUrl: "todo",
-          clerkUserId: userId,
-        });
+  add: publicProcedure
+    .input(GhCardSchema.extend({ nanoid: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const { userId } = ctx.auth;
+      if (!userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
       }
-    } catch (err) {
-      if (err instanceof Error) {
-        if (err.message.includes("UNIQUE constraint failed")) {
+
+      const key = ghCardKey(userId, input.name);
+      const hasKey = await ctx.radis.exists(key);
+      try {
+        if (hasKey === 0) {
+          await ctx.db.insert(posts).values({
+            name: input.name,
+            description: input.description,
+            bucketUrl: input.nanoid,
+            clerkUserId: userId,
+          });
+          ctx.radis.set(key, "");
+        } else if (hasKey === 1) {
           const newName = addNanoId(input.name);
           ctx.radis.set(ghCardKey(userId, newName), "");
           await ctx.db.insert(posts).values({
             name: newName,
             description: input.description,
-            bucketUrl: "todo",
+            bucketUrl: input.nanoid,
             clerkUserId: userId,
           });
         }
+      } catch (err) {
+        if (err instanceof Error) {
+          if (err.message.includes("UNIQUE constraint failed")) {
+            const newName = addNanoId(input.name);
+            ctx.radis.set(ghCardKey(userId, newName), "");
+            await ctx.db.insert(posts).values({
+              name: newName,
+              description: input.description,
+              bucketUrl: input.nanoid,
+              clerkUserId: userId,
+            });
+          }
+        }
       }
-    }
-  }),
+    }),
 
   edit: publicProcedure
     .input(
@@ -153,6 +157,42 @@ export const postRouter = createTRPCRouter({
           cause: new Error("FAILED_TO_DELETE"),
         });
       }
+    }),
+
+  getPutPresignedUrl: publicProcedure
+    .input(z.object({ nanoId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const { userId } = ctx.auth;
+      if (!userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
+      const presigned = await ctx.r2Client.sign(
+        new Request(presignedUrl(userId, input.nanoId), {
+          method: "PUT",
+        }),
+        {
+          aws: { signQuery: true },
+        }
+      );
+      return presigned.url;
+    }),
+
+  getPresignedUrl: publicProcedure
+    .input(z.object({ bucketId: z.string() }))
+    .query(async ({ input, ctx }) => {
+      const { userId } = ctx.auth;
+      if (!userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
+      const presigned = await ctx.r2Client.sign(
+        new Request(presignedUrl(userId, input.bucketId), {
+          method: "GET",
+        }),
+        {
+          aws: { signQuery: true },
+        }
+      );
+      return presigned.url;
     }),
 
   getAll: publicProcedure.query(async ({ ctx }) => {
