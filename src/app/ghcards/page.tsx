@@ -9,7 +9,6 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 async function MainCard() {
-  // load user data from server with auth
   "use server";
   const { userId, redirectToSignIn } = await auth();
   if (!userId) return redirectToSignIn();
@@ -41,7 +40,13 @@ function MainCardSkeleton() {
   return (
     <div className="h-ful mb-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
       {Array.from({ length: 15 }).map((_, i) => (
-        <GHCard key={i} id={0} name={"Loading..."} description={"Loading..."} />
+        <GHCard
+          key={i}
+          id={0}
+          name={"Loading..."}
+          description={"Loading..."}
+          bucketId=""
+        />
       ))}
     </div>
   );

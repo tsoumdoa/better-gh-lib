@@ -9,7 +9,7 @@ import { env } from "@/env";
 
 const ghCardKey = (userId: string, name: string) => `ghcard_${userId}_${name}`;
 const presignedUrl = (userId: string, nanoid: string) =>
-  `${env.R2_URL}/${userId}/${nanoid}?X-Amz-Expires=6`;
+  `${env.R2_URL}/${userId}/${nanoid}?X-Amz-Expires=30`;
 
 export const postRouter = createTRPCRouter({
   seed: publicProcedure.mutation(async ({ ctx }) => {
