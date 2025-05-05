@@ -26,27 +26,38 @@ export function AddGhDialog(props: {
 }) {
   const id = useRef(nanoid());
   const [addError, setAddError] = useState("");
+  const [posted, setPosted] = useState(false);
   const { name, setName, description, setDescription, isValid } =
     useValidateNameAndDescription();
   const { refetch, uploading, uploadSuccess } = useUploadToR2(id.current);
-  const postData = usePostAdd(setAddError, props.setAdding, props.setOpen);
+  const postData = usePostAdd(
+    setAddError,
+    props.setAdding,
+    props.setOpen,
+    setPosted
+  );
 
+  //probably convoluted way to do this, but it works...
   useEffect(() => {
-    if (uploadSuccess) {
-      postData.mutate({
-        name: name,
-        description: description,
-        nanoid: id.current,
-      });
-    } else if (!uploading) {
-      setAddError("Failed to upload to R2");
-      props.setAdding(false);
+    if (props.adding && !posted) {
+      if (uploadSuccess) {
+        postData.mutate({
+          name: name,
+          description: description,
+          nanoid: id.current,
+        });
+        setPosted(true);
+      } else if (!uploading) {
+        setAddError("Failed to upload to R2");
+        props.setAdding(false);
+      }
     }
-  }, [uploading]);
+  }, [uploadSuccess, name, description, postData, props, posted, uploading]);
 
   const handleSubmit = async () => {
     setAddError("");
     props.setAdding(true);
+    //this trigers useUpladToR2 to run
     refetch();
   };
 

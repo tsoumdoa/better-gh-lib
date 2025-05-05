@@ -1,6 +1,6 @@
 import { api } from "@/trpc/react";
 import { uploadToR2 } from "../utils/upload-to-r2";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export function useUploadToR2(nanoId: string) {
   const [uploading, setUploading] = useState(true);

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { CopiedDialog, ShareDialog } from "./gh-card-dialog";
 import { Input } from "@/components/ui/input";
 import { api } from "@/trpc/react";
-import { enable } from "effect/RuntimeFlagsPatch";
 
 export function NameAndDescription(props: {
   editMode: boolean;
@@ -94,7 +93,7 @@ export function NormalButtons(props: {
       //future...
       navigator.clipboard.writeText(data);
     }
-  }, [isSuccess, isError]);
+  }, [isSuccess, isError, data]);
 
   const handleCopy = async () => {
     refetch();
