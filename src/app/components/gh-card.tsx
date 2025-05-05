@@ -5,11 +5,13 @@ import { GhCardSchema } from "@/types";
 import { InvalidValueDialog } from "./gh-card-dialog";
 import { EditButtons, NameAndDescription, NormalButtons } from "./gh-card-body";
 import { addNanoId } from "@/server/api/routers/util/ensureUniqueName";
+import { useRouter } from "next/navigation";
 
 export default function GHCard(props: {
   id: number;
   name: string;
   description: string;
+  bucketId: string;
 }) {
   const [editMode, setEditMode] = useState(false);
   const [invalidInput, setInvalidInput] = useState(false);
@@ -19,6 +21,7 @@ export default function GHCard(props: {
     name: props.name,
     description: props.description,
   });
+  const router = useRouter();
 
   const updateData = api.post.edit.useMutation({
     onSuccess: async () => {
@@ -27,10 +30,16 @@ export default function GHCard(props: {
     onMutate: async () => {
       setUpdating(true);
     },
-    onError: async () => {
+    onError: async (err) => {
+      console.log("hey", err.message);
+      if (err.message === "AUTH_FAILED") {
+        router.push("/");
+      }
       setGhInfo({ name: props.name, description: props.description });
-      const newName = addNanoId(ghInfo.name);
-      setGhInfo({ ...ghInfo, name: newName });
+      if (err.message === "DUPLICATED_NAME") {
+        const newName = addNanoId(ghInfo.name);
+        setGhInfo({ ...ghInfo, name: newName });
+      }
       setUpdating(false);
       setEditMode(true);
     },
@@ -40,20 +49,25 @@ export default function GHCard(props: {
     onSuccess: async () => {
       setUpdating(false);
       setDeleted(true);
+      setEditMode(false);
+      setUpdating(false);
     },
     onMutate: async () => {
       setUpdating(true);
     },
     onError: async () => {
+      //todo let user know the delete failed better...
       setGhInfo({ name: props.name, description: props.description });
+      setEditMode(false);
+      setUpdating(false);
     },
   });
 
   const deletePost = () => {
     deleteData.mutate({
       id: props.id,
+      name: props.name,
     });
-    setEditMode(false);
   };
 
   const handleEditMode = () => {
@@ -73,13 +87,13 @@ export default function GHCard(props: {
         setEditMode(false);
         return;
       }
-
-      updateData.mutate({
-        id: props.id,
-        name: ghInfo.name,
-        description: ghInfo.description,
-      });
     }
+    //todo add error boundary...
+    updateData.mutate({
+      id: props.id,
+      name: ghInfo.name,
+      description: ghInfo.description,
+    });
     setEditMode(!editMode);
   };
 
@@ -125,6 +139,7 @@ export default function GHCard(props: {
         ) : (
           <NormalButtons
             editMode={editMode}
+            bucketId={props.bucketId}
             setEditMode={() => setEditMode(!editMode)}
             handleEditMode={handleEditMode}
           />

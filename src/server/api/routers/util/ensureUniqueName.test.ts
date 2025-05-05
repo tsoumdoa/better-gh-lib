@@ -15,11 +15,9 @@ test("ensureUniqueName", () => {
   const names = ["RunPar", "RunPar", "RunPar_2", "RunPar_3"];
   const duplicated = findDuplicates(names);
   const uniqueNames = ensureUniqueName(names);
-  console.log(duplicated);
 
   names.map((name, index) => {
     if (duplicated.includes(name)) {
-      console.log(uniqueNames[index]);
       const expectedNanoId = uniqueNames[index].split("_");
       const nanoId = expectedNanoId.at(-1);
       expect(nanoId).toHaveLength(8);

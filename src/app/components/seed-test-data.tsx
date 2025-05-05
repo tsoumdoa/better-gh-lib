@@ -6,19 +6,17 @@ import { useRouter } from "next/navigation";
 export default function SeedTestData() {
   const router = useRouter();
   const seedData = api.post.seed.useMutation({
-    onSuccess: async (data) => {
-      console.log(data);
+    onSuccess: async () => {
       router.refresh();
-      //reload page
     },
     onError: async (err) => {
+      router.replace("/");
       console.log(err);
     },
   });
 
   const handleSeedClick = () => {
     seedData.mutate();
-    console.log("hello");
   };
 
   return (
