@@ -1,8 +1,9 @@
 import { api } from "@/trpc/react";
 import { uploadToR2 } from "../utils/upload-to-r2";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function useUploadToR2(nanoId: string) {
+  const xmlRef = useRef<null | string>(null);
   const [uploading, setUploading] = useState(true);
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const { isSuccess, data, refetch, isError } =
@@ -21,7 +22,7 @@ export function useUploadToR2(nanoId: string) {
     }
     if (isSuccess && data) {
       setUploading(true);
-      uploadToR2(data).then((res) => {
+      uploadToR2(data, xmlRef.current!).then((res) => {
         if (res === true) {
           setUploadSuccess(true);
         }
@@ -30,5 +31,5 @@ export function useUploadToR2(nanoId: string) {
     }
   }, [isSuccess, data, isError]);
 
-  return { refetch, uploading, uploadSuccess };
+  return { refetch, uploading, uploadSuccess, xmlRef };
 }
