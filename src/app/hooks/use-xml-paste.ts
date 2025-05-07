@@ -1,32 +1,32 @@
 import { useCallback, useState } from "react";
-import { validateGhXml } from "../utils/validate-gh-xml";
+import { validateGhXml } from "../utils/gh-xml";
 
 export function useXmlPaste(
   setAddError: React.Dispatch<React.SetStateAction<string>>
 ) {
-  const [xmlData, setXmlData] = useState("");
+  const [xmlData, setXmlData] = useState<string>();
   const [isValidXml, setIsValidXml] = useState(false);
   const handlePasteFromClipboard = useCallback(async () => {
     setAddError("");
+    setXmlData(undefined);
     try {
       const text = await navigator.clipboard.readText();
       if (text.length === 0) {
-        setXmlData("");
         setAddError("Clipboard is empty");
         return;
       }
 
-      const isValid = validateGhXml(text);
+      //this returns validated json as data for further processing...
+      const { isValid } = validateGhXml(text);
+
       if (isValid) {
         setIsValidXml(true);
         setXmlData(text);
       } else {
         setIsValidXml(false);
-        setXmlData("");
         setAddError("XML is not valid");
       }
     } catch (err) {
-      setXmlData("");
       setAddError("Failed to read clipboard contents" + err);
     }
   }, [setXmlData, setAddError]);

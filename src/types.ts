@@ -1,4 +1,12 @@
 import { z } from "zod";
+import {
+  DefinitionObjectsSchema,
+  DefinitionPropertiesSchema,
+  DocumentHeaderSchema,
+  GhaLibrariesSchema,
+  RcpLayoutSchema,
+  VersionSchema,
+} from "./gh-xml-schema";
 
 export const GhCardSchema = z.object({
   name: z.string().min(3).max(30),
@@ -10,3 +18,36 @@ export const GhXmlGhCardSchema = GhCardSchema.extend({
 });
 
 export type GhCard = z.infer<typeof GhCardSchema>;
+
+export type GhXml = z.infer<typeof GhXml>;
+export const GhXml = z.object({
+  Archive: z.object({
+    comments: z
+      .array(z.union([z.literal("Grasshopper archive"), z.string()]))
+      .length(3),
+
+    items: z.object({
+      "@_count": z.literal(1),
+      item: VersionSchema,
+    }),
+    chunks: z.object({
+      "@_count": z.literal(1),
+      chunk: z.object({
+        "@_name": z.literal("Clipboard"),
+        chunks: z.object({
+          "@_count": z.literal(5),
+          chunk: z.array(
+            z.union([
+              DocumentHeaderSchema,
+              DefinitionPropertiesSchema,
+              RcpLayoutSchema,
+              GhaLibrariesSchema,
+              DefinitionObjectsSchema,
+            ])
+          ),
+        }),
+      }),
+    }),
+    "@_name": z.string(),
+  }),
+});

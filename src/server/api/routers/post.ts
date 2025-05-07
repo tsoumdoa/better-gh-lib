@@ -100,6 +100,7 @@ export const postRouter = createTRPCRouter({
       z.object({
         id: z.number(),
         name: z.string().min(1),
+        prevName: z.string(),
         description: z.string().max(150),
       })
     )
@@ -108,10 +109,22 @@ export const postRouter = createTRPCRouter({
       if (!userId) {
         throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
       }
+
+      if (input.prevName !== input.name) {
+        ctx.radis.del(ghCardKey(userId, input.prevName));
+      }
+
       const data = {
         name: input.name,
         description: input.description,
       };
+      const hasKey = await ctx.radis.exists(ghCardKey(userId, input.name));
+      if (hasKey > 0 && input.prevName !== input.name) {
+        const newName = addNanoId(input.name);
+        data.name = newName;
+      }
+      ctx.radis.set(ghCardKey(userId, data.name), "");
+
       try {
         const res = await ctx.db
           .update(posts)
@@ -138,6 +151,7 @@ export const postRouter = createTRPCRouter({
           cause: new Error("FAILED_TO_UPDATE"),
         });
       }
+      return data;
     }),
 
   delete: publicProcedure

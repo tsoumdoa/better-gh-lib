@@ -29,6 +29,5 @@ export async function uploadToR2(url: string, xml: string) {
       return false;
     }
   }
-
   return false;
 }

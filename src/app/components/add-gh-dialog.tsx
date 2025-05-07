@@ -61,19 +61,20 @@ export function AddGhDialog(props: {
   }, [uploadSuccess, name, description, postData, props, posted, uploading]);
 
   const handleSubmit = async () => {
-    if (isValidXml && isValid) {
+    if (isValidXml && isValid && xmlData) {
       setAddError("");
       props.setAdding(true);
-      xmlRef.current = "tesString";
+      xmlRef.current = xmlData;
       //this trigers useUpladToR2 to run
       refetch();
+      setXmlData(undefined);
     }
   };
 
   const handleCancel = () => {
     setName("");
     setDescription("");
-    setXmlData("");
+    setXmlData(undefined);
     props.setOpen(false);
   };
 
@@ -112,7 +113,7 @@ export function AddGhDialog(props: {
               <AddXml
                 setAddError={setAddError}
                 isValidXml={isValidXml}
-                xmlData={xmlData}
+                xmlData={xmlData!}
                 setXmlData={setXmlData}
                 handlePasteFromClipboard={handlePasteFromClipboard}
               />
@@ -129,7 +130,7 @@ export function AddGhDialog(props: {
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={() => handleSubmit()}
-            disabled={!isValid || props.adding || xmlData.length === 0}
+            disabled={!isValid || props.adding || xmlData === undefined}
             hidden={props.adding}
           >
             Add
