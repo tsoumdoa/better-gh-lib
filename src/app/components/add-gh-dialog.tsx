@@ -17,6 +17,8 @@ import { useValidateNameAndDescription } from "../hooks/use-validate-name-and-de
 import { nanoid } from "nanoid";
 import { useUploadToR2 } from "../hooks/use-upload-to-r2";
 import { usePostAdd } from "../hooks/use-post-add";
+import { useXmlPaste } from "../hooks/use-xml-paste";
+import AddXml from "./add-xml";
 
 export function AddGhDialog(props: {
   open: boolean;
@@ -29,13 +31,17 @@ export function AddGhDialog(props: {
   const [posted, setPosted] = useState(false);
   const { name, setName, description, setDescription, isValid } =
     useValidateNameAndDescription();
-  const { refetch, uploading, uploadSuccess } = useUploadToR2(id.current);
+  const { refetch, uploading, uploadSuccess, xmlRef } = useUploadToR2(
+    id.current
+  );
   const postData = usePostAdd(
     setAddError,
     props.setAdding,
     props.setOpen,
     setPosted
   );
+  const { xmlData, setXmlData, isValidXml, handlePasteFromClipboard } =
+    useXmlPaste(setAddError);
 
   //probably convoluted way to do this, but it works...
   useEffect(() => {
@@ -55,15 +61,20 @@ export function AddGhDialog(props: {
   }, [uploadSuccess, name, description, postData, props, posted, uploading]);
 
   const handleSubmit = async () => {
-    setAddError("");
-    props.setAdding(true);
-    //this trigers useUpladToR2 to run
-    refetch();
+    if (isValidXml && isValid && xmlData) {
+      setAddError("");
+      props.setAdding(true);
+      xmlRef.current = xmlData;
+      //this trigers useUpladToR2 to run
+      refetch();
+      setXmlData(undefined);
+    }
   };
 
   const handleCancel = () => {
     setName("");
     setDescription("");
+    setXmlData(undefined);
     props.setOpen(false);
   };
 
@@ -75,14 +86,17 @@ export function AddGhDialog(props: {
             {props.adding && addError.length === 0
               ? "Adding..."
               : "Add a new card"}
-            {addError.length > 0 && (
-              <div className="text-red-500">
-                Failed to add, try again. Cause: {addError}
-              </div>
-            )}
           </AlertDialogTitle>
           <AlertDialogDescription>
-            <a className="flex flex-col space-y-3">
+            {addError.length > 0 && (
+              <strong className="text-red-500">
+                Failed to add, try again. Cause: {addError}
+              </strong>
+            )}
+          </AlertDialogDescription>
+
+          <AlertDialog>
+            <div className="flex flex-col space-y-3">
               <Input
                 placeholder="NameOfGhCardInPascalCase"
                 className="font-semibold"
@@ -96,8 +110,15 @@ export function AddGhDialog(props: {
                 onChange={(e) => setDescription(e.target.value)}
                 disabled={props.adding}
               />
-            </a>
-          </AlertDialogDescription>
+              <AddXml
+                setAddError={setAddError}
+                isValidXml={isValidXml}
+                xmlData={xmlData!}
+                setXmlData={setXmlData}
+                handlePasteFromClipboard={handlePasteFromClipboard}
+              />
+            </div>
+          </AlertDialog>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel
@@ -109,7 +130,7 @@ export function AddGhDialog(props: {
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={() => handleSubmit()}
-            disabled={!isValid || props.adding}
+            disabled={!isValid || props.adding || xmlData === undefined}
             hidden={props.adding}
           >
             Add

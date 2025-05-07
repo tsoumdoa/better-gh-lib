@@ -74,7 +74,7 @@ export function NormalButtons(props: {
   editMode: boolean;
   bucketId: string;
   setEditMode: () => void;
-  handleEditMode: () => void;
+  handleEdit: (b: boolean) => void;
 }) {
   const [openCopyDialog, setOpenCopyDialog] = useState(false);
   const [openSharedDialog, setOpenSharedDialog] = useState(false);
@@ -130,7 +130,7 @@ export function NormalButtons(props: {
       </button>
       <button
         className={`px-2 font-bold hover:text-neutral-50`}
-        onClick={() => props.handleEditMode()}
+        onClick={() => props.handleEdit(false)}
       >
         edit
       </button>
@@ -142,7 +142,7 @@ export function EditButtons(props: {
   editMode: boolean;
   setEditMode: (b: boolean) => void;
   setGhInfo: (ghInfo: GhCard) => void;
-  handleEditMode: () => void;
+  handleEdit: (b: boolean) => void;
   deletePost: () => void;
   ghInfo: GhCard;
   name: string;
@@ -172,7 +172,7 @@ export function EditButtons(props: {
       </button>
       <button
         className={`px-2 font-bold hover:text-neutral-50`}
-        onClick={() => props.handleEditMode()}
+        onClick={() => props.handleEdit(true)}
       >
         done
       </button>

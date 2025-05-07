@@ -24,8 +24,10 @@ export default function GHCard(props: {
   const router = useRouter();
 
   const updateData = api.post.edit.useMutation({
-    onSuccess: async () => {
+    onSuccess: async (ctx) => {
+      router.refresh();
       setUpdating(false);
+      setGhInfo(ctx);
     },
     onMutate: async () => {
       setUpdating(true);
@@ -70,7 +72,7 @@ export default function GHCard(props: {
     });
   };
 
-  const handleEditMode = () => {
+  const handleEdit = (submit: boolean) => {
     if (editMode) {
       try {
         GhCardSchema.parse(ghInfo);
@@ -88,12 +90,15 @@ export default function GHCard(props: {
         return;
       }
     }
-    //todo add error boundary...
-    updateData.mutate({
-      id: props.id,
-      name: ghInfo.name,
-      description: ghInfo.description,
-    });
+    if (submit) {
+      //todo add error boundary...
+      updateData.mutate({
+        id: props.id,
+        name: ghInfo.name,
+        prevName: props.name,
+        description: ghInfo.description,
+      });
+    }
     setEditMode(!editMode);
   };
 
@@ -131,7 +136,7 @@ export default function GHCard(props: {
             setEditMode={setEditMode}
             setGhInfo={setGhInfo}
             deletePost={() => deletePost()}
-            handleEditMode={handleEditMode}
+            handleEdit={(b) => handleEdit(b)}
             ghInfo={ghInfo}
             name={props.name}
             description={props.description}
@@ -141,7 +146,7 @@ export default function GHCard(props: {
             editMode={editMode}
             bucketId={props.bucketId}
             setEditMode={() => setEditMode(!editMode)}
-            handleEditMode={handleEditMode}
+            handleEdit={(b) => handleEdit(b)}
           />
         )}
       </div>
