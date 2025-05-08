@@ -10,6 +10,9 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { decompress } from "@/server/api/routers/util/gzip";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 export function InvalidValueDialog(props: {
   open: boolean;
@@ -34,19 +37,63 @@ export function InvalidValueDialog(props: {
   );
 }
 
-export function CopiedDialog(props: { open: boolean; setOpen: () => void }) {
+export function CopiedDialog(props: {
+  open: boolean;
+  setOpen: () => void;
+  presignedUrl: string;
+}) {
+  //todo
+  //after it fails to load,
+  //it should either show a dialog or a toast
+  //to let user to decide whether
+  //try again or
+  //delete the card or
+  //update the card...?
+  const { refetch, isLoading, isSuccess } = useQuery({
+    queryKey: [props.presignedUrl],
+    queryFn: async () => {
+      const res = await fetch(props.presignedUrl, { cache: "no-store" });
+      const arrayBuffer = await res.arrayBuffer();
+      const xml = decompress(arrayBuffer);
+      const decoded = new TextDecoder().decode(xml);
+      navigator.clipboard
+        .writeText(decoded)
+        .then(() => {
+          return true;
+        })
+        .catch(() => {
+          return false;
+        });
+      return res;
+    },
+    enabled: false,
+  });
+
+  useEffect(() => {
+    refetch();
+  }, [props.presignedUrl]);
+
   return (
     <AlertDialog open={props.open} onOpenChange={props.setOpen}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Copied!</AlertDialogTitle>
+          <AlertDialogTitle>
+            {isLoading
+              ? "Loading..."
+              : isSuccess
+                ? "Copied!"
+                : "Failed to copy"}
+          </AlertDialogTitle>
           <AlertDialogDescription>
-            ... to your clipboard!
+            {isLoading
+              ? ""
+              : isSuccess
+                ? "copied to your clipboard!"
+                : "Something went wrong..."}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          <AlertDialogCancel>Close</AlertDialogCancel>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

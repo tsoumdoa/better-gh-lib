@@ -1,9 +1,9 @@
 import { Textarea } from "@/components/ui/textarea";
 import { GhCard } from "@/types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CopiedDialog, ShareDialog } from "./gh-card-dialog";
 import { Input } from "@/components/ui/input";
-import { api } from "@/trpc/react";
+import { useDownloadPresignedUrl } from "../hooks/use-download-presigned-url";
 
 export function NameAndDescription(props: {
   editMode: boolean;
@@ -78,26 +78,13 @@ export function NormalButtons(props: {
 }) {
   const [openCopyDialog, setOpenCopyDialog] = useState(false);
   const [openSharedDialog, setOpenSharedDialog] = useState(false);
-
-  const { refetch, data, isSuccess, isError } =
-    api.post.getPresignedUrl.useQuery(
-      { bucketId: props.bucketId },
-      {
-        enabled: false,
-      }
-    );
-
-  useEffect(() => {
-    if (isSuccess) {
-      //todo put url clipboard for now, need to fetch data and errr shit in the
-      //future...
-      navigator.clipboard.writeText(data);
-    }
-  }, [isSuccess, isError, data]);
+  const { presignedUrl, refetch, isSuccess } = useDownloadPresignedUrl(
+    props.bucketId
+  );
 
   const handleCopy = async () => {
-    refetch();
     setOpenCopyDialog(true);
+    refetch();
   };
 
   const handleShare = async () => {
@@ -108,10 +95,13 @@ export function NormalButtons(props: {
 
   return (
     <div className="flex items-center justify-end text-neutral-400 transition-all">
-      <CopiedDialog
-        open={openCopyDialog}
-        setOpen={() => setOpenCopyDialog(!openCopyDialog)}
-      />
+      {isSuccess && (
+        <CopiedDialog
+          open={openCopyDialog}
+          setOpen={() => setOpenCopyDialog(!openCopyDialog)}
+          presignedUrl={presignedUrl}
+        />
+      )}
       <ShareDialog
         open={openSharedDialog}
         setOpen={() => setOpenSharedDialog(!openSharedDialog)}
