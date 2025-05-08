@@ -8,8 +8,8 @@ import { GhCardSchema } from "@/types";
 import { env } from "@/env";
 
 const ghCardKey = (userId: string, name: string) => `ghcard_${userId}_${name}`;
-const presignedUrl = (userId: string, nanoid: string) =>
-  `${env.R2_URL}/${userId}/${nanoid}?X-Amz-Expires=30`;
+const presignedUrl = (userId: string, nanoid: string, sec: number) =>
+  `${env.R2_URL}/${userId}/${nanoid}?X-Amz-Expires=${sec}`;
 
 export const postRouter = createTRPCRouter({
   seed: publicProcedure.mutation(async ({ ctx }) => {
@@ -181,7 +181,7 @@ export const postRouter = createTRPCRouter({
         throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
       }
       const presigned = await ctx.r2Client.sign(
-        new Request(presignedUrl(userId, input.nanoId), {
+        new Request(presignedUrl(userId, input.nanoId, 30), {
           method: "PUT",
         }),
         {
@@ -199,7 +199,7 @@ export const postRouter = createTRPCRouter({
         throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
       }
       const presigned = await ctx.r2Client.sign(
-        new Request(presignedUrl(userId, input.bucketId), {
+        new Request(presignedUrl(userId, input.bucketId, 60 * 3), {
           method: "GET",
         }),
         {
