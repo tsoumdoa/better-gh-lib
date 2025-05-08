@@ -1,8 +1,7 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { posts } from "@/server/db/schema";
-import mockData from "../../../../public/card-mock-data.json";
-import { ensureUniqueName, addNanoId } from "./util/ensureUniqueName";
+import { addNanoId } from "./util/ensureUniqueName";
 import { and, eq, desc, sql } from "drizzle-orm";
 import { GhCardSchema } from "@/types";
 import { env } from "@/env";
@@ -12,44 +11,6 @@ const presignedUrl = (userId: string, nanoid: string, sec: number) =>
   `${env.R2_URL}/${userId}/${nanoid}?X-Amz-Expires=${sec}`;
 
 export const postRouter = createTRPCRouter({
-  seed: publicProcedure.mutation(async ({ ctx }) => {
-    const { userId } = ctx.auth;
-    if (!userId) {
-      throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
-    }
-
-    const mockName = mockData.map((item) => item.Name);
-    const uniqueName = ensureUniqueName(mockName);
-
-    const dataToInsert = mockData.map((item, index) => ({
-      name: uniqueName[index].replaceAll(" ", ""),
-      description: item.Description,
-    }));
-
-    for (const item of dataToInsert) {
-      const key = ghCardKey(userId, item.name);
-      const hasKey = await ctx.radis.exists(key);
-      if (hasKey === 0) {
-        await ctx.db.insert(posts).values({
-          name: item.name,
-          description: item.description,
-          bucketUrl: item.name,
-          clerkUserId: userId,
-        });
-        ctx.radis.set(key, "");
-      } else if (hasKey === 1) {
-        const newName = addNanoId(item.name);
-        ctx.radis.set(ghCardKey(userId, newName), newName);
-        await ctx.db.insert(posts).values({
-          name: newName,
-          description: item.description,
-          bucketUrl: item.name,
-          clerkUserId: userId,
-        });
-      }
-    }
-  }),
-
   add: publicProcedure
     .input(GhCardSchema.extend({ nanoid: z.string() }))
     .mutation(async ({ ctx, input }) => {

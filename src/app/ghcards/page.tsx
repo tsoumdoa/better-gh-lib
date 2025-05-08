@@ -1,5 +1,4 @@
 import { ChevronDown } from "lucide-react";
-import SeedTestData from "../components/seed-test-data";
 import { api, HydrateClient } from "@/trpc/server";
 import { Suspense } from "react";
 import GHCard from "../components/gh-card";
@@ -69,7 +68,6 @@ export default async function Home() {
               <ChevronDown className="h-4 w-4" />
             </div>
             <AddGHCard />
-            <SeedTestData />
           </div>
         </div>
         <Suspense fallback={<MainCardSkeleton />}>
