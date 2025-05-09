@@ -42,7 +42,7 @@ export default async function Home() {
             />
             <FeatureCard
               title="GhViewer"
-              description="Analyze and visualize your GitHub scripts with powerful analytics tools."
+              description="Validate and analyze your GitHub scripts with powerful analytics tools."
               href="/ghviewer"
             />
             <FeatureCard
