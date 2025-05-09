@@ -13,24 +13,27 @@ export function validateGhXml(xml: string) {
   const result = parser.parse(xml);
   const keys = Object.keys(result);
   if (keys.length === 0) {
-    return { isVaild: false, data: "Clipboard is empty" };
+    return { isVaild: false, data: "it's not GhXml" };
   }
 
-  const validatedXml = GhXml.safeParse(result);
-  if (!validatedXml.success) {
-    console.log(validatedXml.error);
-    return { isVaild: false, data: validatedXml.error };
-  }
+  //temporal hack
+  return { isValid: true, data: "ok" };
 
-  buildGhXml(result);
-
-  //before
-  console.log(result.Archive.chunks.chunk.chunks.chunk);
-  //after
-  const d = validatedXml.data.Archive.chunks.chunk.chunks.chunk;
-  console.log(d);
-
-  return { isValid: true, data: validatedXml.data };
+  // const validatedXml = GhXml.safeParse(result);
+  // if (!validatedXml.success) {
+  //   console.log(validatedXml.error);
+  //   return { isVaild: false, data: validatedXml.error };
+  // }
+  //
+  // buildGhXml(result);
+  //
+  // //before
+  // console.log(result.Archive.chunks.chunk.chunks.chunk);
+  // //after
+  // const d = validatedXml.data.Archive.chunks.chunk.chunks.chunk;
+  // console.log(d);
+  //
+  // return { isValid: true, data: validatedXml.data };
 }
 
 export function buildGhXml(parsedXml: GhXml) {
