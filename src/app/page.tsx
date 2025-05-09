@@ -6,6 +6,7 @@ import Link from "next/link";
 function FeatureCard(props: {
   title: string;
   description: string;
+  go: string;
   href: string;
 }) {
   return (
@@ -18,7 +19,7 @@ function FeatureCard(props: {
         <p className="text-neutral-400">{props.description}</p>
       </div>
       <div className="mt-4 flex items-center text-sm text-neutral-400">
-        <span>Learn more</span>
+        <span>Get started - {props.go}</span>
         <ChevronDown className="ml-1 h-4 w-4 rotate-[-90deg]" />
       </div>
     </Link>
@@ -39,16 +40,19 @@ export default async function Home() {
               title="GhCard"
               description="Explore and manage your script library with an intuitive card-based interface."
               href="/ghcards"
+              go="MVP, use it at your own risk"
             />
             <FeatureCard
-              title="GhViewer"
-              description="Validate and analyze your GitHub scripts with powerful analytics tools."
+              title="GhJsonViewer"
+              description="Validate GhXml data and see how they get parsed and validated to JSON."
               href="/ghviewer"
+              go="Works locally, no sign in required"
             />
             <FeatureCard
               title="GhStudio"
               description="Run linting, formatting, and custom rules to maintain code quality."
               href="/ghstudio"
+              go="Nothing to see here yet"
             />
           </div>
         </div>
