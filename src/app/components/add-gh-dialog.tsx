@@ -12,9 +12,8 @@ import {
   AlertDialogDescription,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useValidateNameAndDescription } from "../hooks/use-validate-name-and-description";
-import { nanoid } from "nanoid";
 import { useUploadToR2 } from "../hooks/use-upload-to-r2";
 import { usePostAdd } from "../hooks/use-post-add";
 import { useXmlPaste } from "../hooks/use-xml-paste";
@@ -26,14 +25,11 @@ export function AddGhDialog(props: {
   adding: boolean;
   setAdding: (b: boolean) => void;
 }) {
-  const id = useRef(nanoid());
   const [addError, setAddError] = useState("");
   const [posted, setPosted] = useState(false);
   const { name, setName, description, setDescription, isValid } =
     useValidateNameAndDescription();
-  const { refetch, uploading, uploadSuccess, xmlRef } = useUploadToR2(
-    id.current
-  );
+  const { runUpload, uploading, uploadSuccess, data, xmlRef } = useUploadToR2();
   const postData = usePostAdd(
     setAddError,
     props.setAdding,
@@ -43,14 +39,15 @@ export function AddGhDialog(props: {
   const { xmlData, setXmlData, isValidXml, handlePasteFromClipboard } =
     useXmlPaste(setAddError);
 
-  //probably convoluted way to do this, but it works...
   useEffect(() => {
-    if (props.adding && !posted) {
+    if (props.adding && !posted && data && !uploading) {
+      //this somehow helps to prevent the stale data error
+      const id = data.id;
       if (uploadSuccess) {
         postData.mutate({
           name: name,
           description: description,
-          nanoid: id.current,
+          nanoid: id,
         });
         setPosted(true);
       } else if (!uploading) {
@@ -58,7 +55,16 @@ export function AddGhDialog(props: {
         props.setAdding(false);
       }
     }
-  }, [uploadSuccess, name, description, postData, props, posted, uploading]);
+  }, [
+    uploadSuccess,
+    name,
+    description,
+    postData,
+    props,
+    posted,
+    uploading,
+    data,
+  ]);
 
   const handleSubmit = async () => {
     if (isValidXml && isValid && xmlData) {
@@ -66,7 +72,7 @@ export function AddGhDialog(props: {
       props.setAdding(true);
       xmlRef.current = xmlData;
       //this trigers useUpladToR2 to run
-      refetch();
+      runUpload();
       setXmlData(undefined);
     }
   };

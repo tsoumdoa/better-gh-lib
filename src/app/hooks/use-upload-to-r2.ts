@@ -2,19 +2,18 @@ import { api } from "@/trpc/react";
 import { uploadToR2 } from "../utils/upload-to-r2";
 import { useEffect, useRef, useState } from "react";
 
-export function useUploadToR2(nanoId: string) {
+export function useUploadToR2() {
   const xmlRef = useRef<null | string>(null);
   const [uploading, setUploading] = useState(true);
   const [uploadSuccess, setUploadSuccess] = useState(false);
-  const { isSuccess, data, refetch, isError } =
-    api.post.getPutPresignedUrl.useQuery(
-      {
-        nanoId: nanoId,
-      },
-      {
-        enabled: false,
-      }
-    );
+  const {
+    isSuccess,
+    data,
+    refetch: runUpload,
+    isError,
+  } = api.post.getPutPresignedUrl.useQuery(undefined, {
+    enabled: false,
+  });
 
   useEffect(() => {
     if (isError) {
@@ -22,7 +21,7 @@ export function useUploadToR2(nanoId: string) {
     }
     if (isSuccess && data) {
       setUploading(true);
-      uploadToR2(data, xmlRef.current!).then((res) => {
+      uploadToR2(data.presignedUrl, xmlRef.current!).then((res) => {
         if (res === true) {
           setUploadSuccess(true);
         }
@@ -31,5 +30,5 @@ export function useUploadToR2(nanoId: string) {
     }
   }, [isSuccess, data, isError]);
 
-  return { refetch, uploading, uploadSuccess, xmlRef };
+  return { runUpload, uploading, uploadSuccess, data, xmlRef };
 }

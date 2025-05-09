@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { posts } from "@/server/db/schema";
+import { nanoid } from "nanoid";
 import { addNanoId } from "./util/ensureUniqueName";
 import { and, eq, desc, sql } from "drizzle-orm";
 import { GhCardSchema } from "@/types";
@@ -134,23 +135,22 @@ export const postRouter = createTRPCRouter({
       }
     }),
 
-  getPutPresignedUrl: publicProcedure
-    .input(z.object({ nanoId: z.string() }))
-    .query(async ({ ctx, input }) => {
-      const { userId } = ctx.auth;
-      if (!userId) {
-        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+  getPutPresignedUrl: publicProcedure.query(async ({ ctx }) => {
+    const { userId } = ctx.auth;
+    if (!userId) {
+      throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+    }
+    const nanoId = nanoid();
+    const presigned = await ctx.r2Client.sign(
+      new Request(presignedUrl(userId, nanoId, 30), {
+        method: "PUT",
+      }),
+      {
+        aws: { signQuery: true },
       }
-      const presigned = await ctx.r2Client.sign(
-        new Request(presignedUrl(userId, input.nanoId, 30), {
-          method: "PUT",
-        }),
-        {
-          aws: { signQuery: true },
-        }
-      );
-      return presigned.url;
-    }),
+    );
+    return { presignedUrl: presigned.url, id: nanoId };
+  }),
 
   getPresignedUrl: publicProcedure
     .input(z.object({ bucketId: z.string() }))
