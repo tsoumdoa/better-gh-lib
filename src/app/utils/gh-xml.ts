@@ -16,24 +16,21 @@ export function validateGhXml(xml: string) {
     return { isVaild: false, data: "it's not GhXml" };
   }
 
-  //temporal hack
-  return { isValid: true, data: "ok" };
+  const validatedXml = GhXml.safeParse(result);
+  if (!validatedXml.success) {
+    console.log(validatedXml.error);
+    return { isVaild: false, data: validatedXml.error };
+  }
 
-  // const validatedXml = GhXml.safeParse(result);
-  // if (!validatedXml.success) {
-  //   console.log(validatedXml.error);
-  //   return { isVaild: false, data: validatedXml.error };
-  // }
-  //
-  // buildGhXml(result);
-  //
-  // //before
-  // console.log(result.Archive.chunks.chunk.chunks.chunk);
-  // //after
-  // const d = validatedXml.data.Archive.chunks.chunk.chunks.chunk;
-  // console.log(d);
-  //
-  // return { isValid: true, data: validatedXml.data };
+  buildGhXml(result);
+
+  //before
+  console.log(result.Archive.chunks.chunk.chunks.chunk);
+  //after
+  const d = validatedXml.data.Archive.chunks.chunk.chunks.chunk;
+  console.log(d);
+
+  return { isValid: true, data: validatedXml.data };
 }
 
 export function buildGhXml(parsedXml: GhXml) {
