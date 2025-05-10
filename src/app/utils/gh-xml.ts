@@ -1,4 +1,4 @@
-import { GhXml } from "@/types";
+import { GhXml, GhXmlType } from "../../types/types";
 import { XMLParser, XMLBuilder } from "fast-xml-parser";
 
 export function validateGhXml(xml: string) {
@@ -10,33 +10,32 @@ export function validateGhXml(xml: string) {
     commentPropName: "comments",
     trimValues: true,
   });
-  const result = parser.parse(xml);
-  const keys = Object.keys(result);
+  const parsedFromXml = parser.parse(xml);
+  const keys = Object.keys(parsedFromXml);
   if (keys.length === 0) {
-    return { isVaild: false, data: "it's not GhXml" };
+    return { isVaild: false, errorMsg: "it's not GhXml" };
   }
 
-  //temporal hack
-  return { isValid: true, data: "ok" };
+  const validatedXml = GhXml.safeParse(parsedFromXml);
+  delete parsedFromXml["?xml"];
+  if (!validatedXml.success) {
+    return {
+      isVaild: false,
+      errorMsg: JSON.stringify(validatedXml.error, null, 2),
+      parsedJson: parsedFromXml,
+    };
+  }
 
-  // const validatedXml = GhXml.safeParse(result);
-  // if (!validatedXml.success) {
-  //   console.log(validatedXml.error);
-  //   return { isVaild: false, data: validatedXml.error };
-  // }
-  //
-  // buildGhXml(result);
-  //
-  // //before
-  // console.log(result.Archive.chunks.chunk.chunks.chunk);
-  // //after
-  // const d = validatedXml.data.Archive.chunks.chunk.chunks.chunk;
-  // console.log(d);
-  //
-  // return { isValid: true, data: validatedXml.data };
+  // buildGhXml(parsedFromXml);
+
+  return {
+    isValid: true,
+    validatedJson: validatedXml.data,
+    parsedJson: parsedFromXml,
+  };
 }
 
-export function buildGhXml(parsedXml: GhXml) {
+export function buildGhXml(parsedXml: GhXmlType) {
   const builder = new XMLBuilder({
     attributeNamePrefix: "@_",
     ignoreAttributes: false,
@@ -57,5 +56,5 @@ export function buildGhXml(parsedXml: GhXml) {
   };
 
   const xmlOutput = builder.build(deepCopy);
-  console.log(xmlOutput);
+  return xmlOutput;
 }

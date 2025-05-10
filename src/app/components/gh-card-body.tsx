@@ -1,5 +1,5 @@
 import { Textarea } from "@/components/ui/textarea";
-import { GhCard } from "@/types";
+import { GhCard } from "@/types/types";
 import { useState } from "react";
 import { CopiedDialog, ShareDialog } from "./gh-card-dialog";
 import { Input } from "@/components/ui/input";

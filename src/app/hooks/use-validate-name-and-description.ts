@@ -1,4 +1,4 @@
-import { GhCardSchema } from "@/types";
+import { GhCardSchema } from "@/types/types";
 import { useEffect, useState } from "react";
 
 export const useValidateNameAndDescription = () => {

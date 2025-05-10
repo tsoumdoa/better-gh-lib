@@ -4,7 +4,7 @@ import { posts } from "@/server/db/schema";
 import { nanoid } from "nanoid";
 import { addNanoId } from "./util/ensureUniqueName";
 import { and, eq, desc, sql } from "drizzle-orm";
-import { GhCardSchema } from "@/types";
+import { GhCardSchema } from "@/types/types";
 import { env } from "@/env";
 
 const ghCardKey = (userId: string, name: string) => `ghcard_${userId}_${name}`;

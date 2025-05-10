@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { api } from "@/trpc/react";
-import { GhCardSchema } from "@/types";
+import { GhCardSchema } from "@/types/types";
 import { InvalidValueDialog } from "./gh-card-dialog";
 import { EditButtons, NameAndDescription, NormalButtons } from "./gh-card-body";
 import { addNanoId } from "@/server/api/routers/util/ensureUniqueName";

@@ -4,7 +4,9 @@ import {
   DefinitionPropertiesSchema,
   DocumentHeaderSchema,
   GhaLibrariesSchema,
+  PreviewBoundarySchema,
   RcpLayoutSchema,
+  ValueTableSchema,
   VersionSchema,
 } from "./gh-xml-schema";
 
@@ -19,7 +21,7 @@ export const GhXmlGhCardSchema = GhCardSchema.extend({
 
 export type GhCard = z.infer<typeof GhCardSchema>;
 
-export type GhXml = z.infer<typeof GhXml>;
+export type GhXmlType = z.infer<typeof GhXml>;
 export const GhXml = z.object({
   Archive: z.object({
     comments: z
@@ -35,7 +37,7 @@ export const GhXml = z.object({
       chunk: z.object({
         "@_name": z.literal("Clipboard"),
         chunks: z.object({
-          "@_count": z.literal(5),
+          "@_count": z.union([z.literal(5), z.literal(6), z.literal(7)]),
           chunk: z.array(
             z.union([
               DocumentHeaderSchema,
@@ -43,6 +45,8 @@ export const GhXml = z.object({
               RcpLayoutSchema,
               GhaLibrariesSchema,
               DefinitionObjectsSchema,
+              ValueTableSchema,
+              PreviewBoundarySchema,
             ])
           ),
         }),
