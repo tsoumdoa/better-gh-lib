@@ -4,7 +4,7 @@ import { XMLParser } from "fast-xml-parser";
 import { GhXml } from "../../types/types";
 
 test("test zod ghxml validation", () => {
-  const xmlFolder = "./public/xml/";
+  const xmlFolder = "./test/xml/";
   //make sure this option is same as in the zod schema...
   //todo improve this shit...
   const parser = new XMLParser({

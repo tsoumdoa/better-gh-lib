@@ -11,7 +11,7 @@ test("test compression and decompression", () => {
 });
 
 test("text compress and decompress xml", () => {
-  const xml = fs.readFileSync("./public/xml/test.xml", "utf8");
+  const xml = fs.readFileSync("./test/xml/test.xml", "utf8");
   const compressed = compress(xml);
   const decompressed = decompress(compressed);
   const stringFromBuffer = new TextDecoder().decode(decompressed);
