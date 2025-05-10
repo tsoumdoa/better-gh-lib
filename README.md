@@ -1,7 +1,6 @@
 ## TODO
 
-[] make a cron job to keep r2 up to date
-[] make a cron job to keep radis and sqlite in sync
-[] add datahug
-[] improve validator
-[] add validator test
+[ ] Implment an api (CF worker...) to clean raddis and r2 when user signs in... (probably use
+radis to keep the record say 3 days or 2weeks..)
+[ ] add datahug
+[ ] improve validator
