@@ -39,6 +39,7 @@ function GhXmlValidatorButtons(props: {
 function ValidatedResult(props: {
   isValidXml: boolean;
   validatedJson: GhXmlType | undefined;
+  schemaCoverage: number;
 }) {
   return (
     <div className="rounded-md bg-neutral-800 p-2 text-sm font-semibold">
@@ -46,7 +47,7 @@ function ValidatedResult(props: {
         {props.isValidXml ? (
           <div className="flex items-center text-green-500">
             <CheckCircle className="h-5 w-5 pr-1" />
-            Valid GhXml
+            Valid GhXml - Schema Coverage {props.schemaCoverage}%
           </div>
         ) : (
           <div className="flex items-center text-red-500">
@@ -62,6 +63,7 @@ function ValidatedResult(props: {
 export default function GhXmlValidator() {
   const [error, setError] = useState("");
   const [displayString, setDisplayString] = useState("");
+  const [schemaCoverage, setSchemaCoverage] = useState(0);
   const {
     isValidXml,
     handlePasteFromClipboard,
@@ -74,7 +76,14 @@ export default function GhXmlValidator() {
 
   useEffect(() => {
     if (validatedJson) {
-      setDisplayString(JSON.stringify(validatedJson, null, 2));
+      const validatedJsonString = JSON.stringify(validatedJson, null, 2);
+      const parsedJsonString = JSON.stringify(parsedJson, null, 2);
+      setDisplayString(validatedJsonString);
+      setSchemaCoverage(
+        Math.round(
+          (validatedJsonString.length / parsedJsonString.length) * 1000
+        ) / 10
+      );
     } else {
       setDisplayString(error);
     }
@@ -136,6 +145,7 @@ export default function GhXmlValidator() {
               <ValidatedResult
                 isValidXml={isValidXml}
                 validatedJson={validatedJson}
+                schemaCoverage={schemaCoverage}
               />
             )}
           </div>
