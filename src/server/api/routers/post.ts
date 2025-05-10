@@ -10,6 +10,8 @@ import { env } from "@/env";
 const ghCardKey = (userId: string, name: string) => `ghcard_${userId}_${name}`;
 const presignedUrl = (userId: string, nanoid: string, sec: number) =>
   `${env.R2_URL}/${userId}/${nanoid}?X-Amz-Expires=${sec}`;
+const deleteUrl = (userId: string, bucketKey: string) =>
+  `${env.R2_URL}/${userId}/${bucketKey}`;
 
 export const postRouter = createTRPCRouter({
   add: publicProcedure
@@ -117,12 +119,21 @@ export const postRouter = createTRPCRouter({
     }),
 
   delete: publicProcedure
-    .input(z.object({ id: z.number(), name: z.string() }))
+    .input(z.object({ id: z.number(), name: z.string(), bucketId: z.string() }))
     .mutation(async ({ ctx, input }) => {
       const { userId } = ctx.auth;
       if (!userId) {
         throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
       }
+
+      //delete from r2
+      const presigned = await ctx.r2Client.sign(
+        deleteUrl(ctx.auth.userId, input.bucketId),
+        {
+          method: "DELETE",
+        }
+      );
+      fetch(presigned);
 
       ctx.radis.del(ghCardKey(userId, input.name));
       const res = await ctx.db

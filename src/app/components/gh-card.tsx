@@ -69,6 +69,7 @@ export default function GHCard(props: {
     deleteData.mutate({
       id: props.id,
       name: props.name,
+      bucketId: props.bucketId,
     });
   };
 
