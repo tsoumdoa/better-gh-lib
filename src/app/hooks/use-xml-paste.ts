@@ -1,6 +1,6 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import { validateGhXml } from "../utils/gh-xml";
-import { GhXml } from "@/types";
+import { GhXml } from "@/types/types";
 
 export function useXmlPaste(
   setAddError: React.Dispatch<React.SetStateAction<string>>

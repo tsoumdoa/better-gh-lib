@@ -1,4 +1,4 @@
-import { GhXml } from "@/types";
+import { GhXml, GhXmlType } from "../../types/types";
 import { XMLParser, XMLBuilder } from "fast-xml-parser";
 
 export function validateGhXml(xml: string) {
@@ -35,7 +35,7 @@ export function validateGhXml(xml: string) {
   };
 }
 
-export function buildGhXml(parsedXml: GhXml) {
+export function buildGhXml(parsedXml: GhXmlType) {
   const builder = new XMLBuilder({
     attributeNamePrefix: "@_",
     ignoreAttributes: false,

@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useXmlPaste } from "../../hooks/use-xml-paste";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, XCircle, Clipboard } from "lucide-react";
-import { GhXml } from "@/types";
+import { GhXml } from "@/types/types";
 import { useSyncedScroll } from "../hooks/use-synced-scroll";
 import { Toggle } from "@/components/ui/toggle";
 
@@ -39,29 +39,19 @@ function GhXmlValidatorButtons(props: {
 function ValidatedResult(props: {
   isValidXml: boolean;
   validatedJson: GhXml | undefined;
-  error: string;
 }) {
-  if (!props.isValidXml) {
-    return (
-      <div className="text-sm text-red-400">
-        <p className="font-semibold">Error:</p>
-        Check the window above for more details.
-      </div>
-    );
-  }
   return (
-    <div className="mt-4 rounded-md bg-neutral-800 p-4 text-white">
+    <div className="rounded-md bg-neutral-800 p-2 text-sm font-semibold">
       <div className="flex items-center gap-2">
-        <span className="font-semibold">Validation Status:</span>
         {props.isValidXml ? (
           <div className="flex items-center text-green-500">
-            <CheckCircle className="mr-1 h-5 w-5" />
-            Valid XML
+            <CheckCircle className="h-5 w-5 pr-1" />
+            Valid GhXml
           </div>
         ) : (
           <div className="flex items-center text-red-500">
             <XCircle className="mr-1 h-5 w-5" />
-            Invalid XML
+            Invalid GhXml
           </div>
         )}
       </div>
@@ -142,9 +132,8 @@ export default function GhXmlValidator() {
             >
               Scroll Sync
             </Toggle>
-            {error && (
+            {displayString && (
               <ValidatedResult
-                error={error}
                 isValidXml={isValidXml}
                 validatedJson={validatedJson}
               />
