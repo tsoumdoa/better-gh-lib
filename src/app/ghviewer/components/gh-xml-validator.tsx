@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useXmlPaste } from "../../hooks/use-xml-paste";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, XCircle, Clipboard } from "lucide-react";
-import { GhXml } from "@/types/types";
+import { GhXmlType } from "@/types/types";
 import { useSyncedScroll } from "../hooks/use-synced-scroll";
 import { Toggle } from "@/components/ui/toggle";
 
@@ -38,7 +38,7 @@ function GhXmlValidatorButtons(props: {
 
 function ValidatedResult(props: {
   isValidXml: boolean;
-  validatedJson: GhXml | undefined;
+  validatedJson: GhXmlType | undefined;
 }) {
   return (
     <div className="rounded-md bg-neutral-800 p-2 text-sm font-semibold">

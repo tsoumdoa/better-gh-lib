@@ -1,13 +1,13 @@
 import { useCallback, useState } from "react";
 import { validateGhXml } from "../utils/gh-xml";
-import { GhXml } from "@/types/types";
+import { GhXmlType } from "@/types/types";
 
 export function useXmlPaste(
   setAddError: React.Dispatch<React.SetStateAction<string>>
 ) {
   const [xmlData, setXmlData] = useState<string>();
-  const [validatedJson, setValidatedJson] = useState<GhXml>();
-  const [parsedJson, setParsedJson] = useState<GhXml>();
+  const [validatedJson, setValidatedJson] = useState<GhXmlType>();
+  const [parsedJson, setParsedJson] = useState<GhXmlType>();
   const [isValidXml, setIsValidXml] = useState(false);
   const handlePasteFromClipboard = useCallback(async () => {
     setAddError("");
