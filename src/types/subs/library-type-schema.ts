@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { TypeNameCodeSchema } from "../typenamecode-schemachema";
+import { TypeNameCodeSchema } from "./typenamecode-schema";
 
 const VanilaLibrarySchema = z.object({
   "@_name": z.literal("Library"),

@@ -39,14 +39,15 @@ export const GhXml = z.object({
         chunks: z.object({
           "@_count": z.union([z.literal(5), z.literal(6), z.literal(7)]),
           chunk: z.array(
+            //the ordering of type affects the order of validation
             z.union([
               DocumentHeaderSchema,
+              PreviewBoundarySchema,
               DefinitionPropertiesSchema,
               RcpLayoutSchema,
               GhaLibrariesSchema,
-              DefinitionObjectsSchema,
               ValueTableSchema,
-              PreviewBoundarySchema,
+              DefinitionObjectsSchema,
             ])
           ),
         }),
