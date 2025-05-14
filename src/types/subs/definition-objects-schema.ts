@@ -1,5 +1,10 @@
 import { z } from "zod";
 import { TypeNameCodeSchema } from "./typenamecode-schema";
+import {
+  AttributeChunk,
+  ParamInputChunk,
+  ParamOutputChunk,
+} from "./param-object-schema";
 
 const TwoPropertyObject = z.object({
   item: z.array(
@@ -39,20 +44,40 @@ const ThreePropertyObject = z.object({
 
 const PropertyItemObject = z.union([TwoPropertyObject, ThreePropertyObject]);
 
-//todo
-const ChunkObject = z.object({
-  // items: z.object({}),
-  items: z.union([z.object({}), z.array(z.object({}))]),
-  chunks: z.object({}),
-  "@_name": z.string(),
-  "@_index": z.number(),
+const ItemObjectChunk = z.object({
+  item: z.array(
+    TypeNameCodeSchema.extend({
+      "#text": z.union([z.string(), z.number(), z.boolean()]).optional(),
+    })
+  ),
+  "@_count": z.number(),
 });
 
-export const DefinitionObjectMainChunk = z.object({
+const DefinitionObjectChunkChunk = z.union([
+  AttributeChunk,
+  ParamInputChunk,
+  ParamOutputChunk,
+  z.object({}),
+]);
+
+const DefinitionObjectChunk = z.object({
+  chunk: z.union([
+    DefinitionObjectChunkChunk,
+    z.array(DefinitionObjectChunkChunk),
+  ]),
+  "@_count": z.number(),
+});
+
+const ChunkObject = z.object({
+  items: z.union([ItemObjectChunk, z.array(ItemObjectChunk)]),
+  chunks: z.union([DefinitionObjectChunk, z.array(DefinitionObjectChunk)]),
+  "@_name": z.literal("Container"),
+});
+
+export const DefinitionObjectsMainChunk = z.object({
   items: PropertyItemObject,
   chunks: z.object({
-    // chunk: z.union([ChunkObject, z.array(ChunkObject)]),
-    chunk: z.union([z.object({}), z.array(z.object({}))]),
+    chunk: z.union([ChunkObject, z.array(ChunkObject)]),
     "@_count": z.number(),
   }),
   "@_name": z.string(),

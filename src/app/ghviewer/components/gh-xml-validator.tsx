@@ -87,7 +87,7 @@ export default function GhXmlValidator() {
     } else {
       setDisplayString(error);
     }
-  }, [validatedJson, error]);
+  }, [validatedJson, error, parsedJson]);
 
   return (
     <div className="max-f-full w-full max-w-6xl">

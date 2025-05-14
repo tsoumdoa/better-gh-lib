@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { LibrarySchema } from "./subs/library-type-schema";
 import { TypeNameCodeSchema } from "./subs/typenamecode-schema";
-import { DefinitionObjectMainChunk } from "./subs/definition-objects-schema";
+import { DefinitionObjectsMainChunk } from "./subs/definition-objects-schema";
 
 export const GenericItemsSchema = z.object({
   "@_count": z.number(),
@@ -148,8 +148,8 @@ export const DefinitionObjectsSchema = z.object({
   }),
   chunks: z.object({
     chunk: z.union([
-      z.array(DefinitionObjectMainChunk),
-      DefinitionObjectMainChunk,
+      z.array(DefinitionObjectsMainChunk),
+      DefinitionObjectsMainChunk,
     ]),
     "@_count": z.number(),
   }),
