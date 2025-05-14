@@ -36,6 +36,17 @@ export const GhXml = z.object({
       "@_count": z.literal(1),
       chunk: z.object({
         "@_name": z.literal("Clipboard"),
+        items: z.object({
+          "@_count": z.literal(1),
+          item: z.object({
+            Major: z.number(),
+            Minor: z.number(),
+            Revision: z.number(),
+            "@_name": z.literal("plugin_version"),
+            "@_type_name": z.literal("gh_version"),
+            "@_type_code": z.literal(80),
+          }),
+        }),
         chunks: z.object({
           "@_count": z.union([z.literal(5), z.literal(6), z.literal(7)]),
           chunk: z.array(

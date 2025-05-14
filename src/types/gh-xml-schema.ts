@@ -63,6 +63,8 @@ export const DefinitionPropertiesSchema = z.object({
         }),
         TypeNameCodeSchema.extend({
           "@_name": z.literal("Name"),
+          //this should be the name of the file
+          "#text": z.string().optional(),
         }),
         z.object({}),
       ])
@@ -73,14 +75,17 @@ export const DefinitionPropertiesSchema = z.object({
     chunk: z.array(
       z.union([
         z.object({
+          "@_name": z.literal("Revisions"),
           items: z.object({
             "@_count": z.literal(1),
             item: TypeNameCodeSchema.extend({
               "@_name": z.literal("RevisionCount"),
+              "#text": z.number(),
             }),
           }),
         }),
         z.object({
+          "@_name": z.literal("Projection"),
           items: z.object({
             "@_count": z.literal(2),
             item: z.array(
@@ -99,10 +104,12 @@ export const DefinitionPropertiesSchema = z.object({
           }),
         }),
         z.object({
+          "@_name": z.literal("Views"),
           items: z.object({
             "@_count": z.literal(1),
             item: TypeNameCodeSchema.extend({
               "@_name": z.literal("ViewCount"),
+              "#text": z.number(),
             }),
           }),
         }),
@@ -114,6 +121,7 @@ export const DefinitionPropertiesSchema = z.object({
 export const RcpLayoutSchema = z.object({
   "@_name": z.literal("RcpLayout"),
   items: z.object({
+    "@_count": z.number(),
     item: z.object({}).catchall(z.union([z.string(), z.number()])),
     //chunks exist only when remote control exists
     // unsupported for now
@@ -127,12 +135,14 @@ export const RcpLayoutSchema = z.object({
 export const GhaLibrariesSchema = z.object({
   "@_name": z.literal("GHALibraries"),
   items: z.object({
+    "@_count": z.number(),
     item: TypeNameCodeSchema.extend({
       "#text": z.number(),
       "@_name": z.literal("Count"),
     }),
   }),
   chunks: z.object({
+    "@_count": z.number(),
     chunk: z.union([z.array(LibrarySchema), LibrarySchema]),
   }),
 });

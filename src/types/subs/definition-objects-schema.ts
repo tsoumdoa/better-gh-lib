@@ -2,6 +2,8 @@ import { z } from "zod";
 import { TypeNameCodeSchema } from "./typenamecode-schema";
 import {
   AttributeChunk,
+  PanelPropertiesChunk,
+  ParameterData,
   ParamInputChunk,
   ParamOutputChunk,
 } from "./param-object-schema";
@@ -55,9 +57,12 @@ const ItemObjectChunk = z.object({
 
 const DefinitionObjectChunkChunk = z.union([
   AttributeChunk,
+  PanelPropertiesChunk,
+  ParameterData,
   ParamInputChunk,
   ParamOutputChunk,
-  z.object({}),
+  //todo should be able to remove this
+  z.any(),
 ]);
 
 const DefinitionObjectChunk = z.object({
