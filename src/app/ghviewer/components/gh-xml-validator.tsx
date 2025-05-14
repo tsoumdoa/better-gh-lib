@@ -8,6 +8,7 @@ import { CheckCircle, XCircle, Clipboard } from "lucide-react";
 import { GhXmlType } from "@/types/types";
 import { useSyncedScroll } from "../hooks/use-synced-scroll";
 import { Toggle } from "@/components/ui/toggle";
+import { buildGhXml } from "@/app/utils/gh-xml";
 
 function GhXmlValidatorButtons(props: {
   handlePasteFromClipboard: () => void;
@@ -64,6 +65,7 @@ export default function GhXmlValidator() {
   const [error, setError] = useState("");
   const [displayString, setDisplayString] = useState("");
   const [schemaCoverage, setSchemaCoverage] = useState(0);
+  const [encodedXml, setEncodedXml] = useState("");
   const {
     isValidXml,
     handlePasteFromClipboard,
@@ -71,11 +73,13 @@ export default function GhXmlValidator() {
     validatedJson,
     parsedJson,
   } = useXmlPaste(setError);
+
   const { textarea1Ref, textarea2Ref, setEnableSync, enableSync } =
     useSyncedScroll();
 
   useEffect(() => {
     if (validatedJson) {
+      console.log("validatedJson");
       const validatedJsonString = JSON.stringify(validatedJson, null, 2);
       const parsedJsonString = JSON.stringify(parsedJson, null, 2);
       setDisplayString(validatedJsonString);
@@ -84,10 +88,13 @@ export default function GhXmlValidator() {
           (validatedJsonString.length / parsedJsonString.length) * 1000
         ) / 10
       );
+
+      const xml = buildGhXml(validatedJson);
+      setEncodedXml(xml);
     } else {
       setDisplayString(error);
     }
-  }, [validatedJson, error]);
+  }, [validatedJson, error, parsedJson]);
 
   return (
     <div className="max-f-full w-full max-w-6xl">
@@ -131,6 +138,19 @@ export default function GhXmlValidator() {
                 disabled={!displayString}
               />
             </div>
+          </div>
+          <div className="flex w-1/2 flex-col gap-1.5">
+            <span className="font-semibold text-neutral-600">
+              Validated JSON
+            </span>
+            <Textarea
+              ref={textarea2Ref}
+              title="Validated XML"
+              placeholder="Use the 'Paste from Clipboard' button to paste your GhXml script."
+              className="max-h-1 min-h-[450px] border-neutral-600 bg-neutral-800 p-2 font-mono text-sm text-white"
+              value={encodedXml}
+              disabled={!displayString}
+            />
           </div>
           <div className="flex w-full flex-row justify-between pt-3">
             <Toggle

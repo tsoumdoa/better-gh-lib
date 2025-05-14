@@ -26,8 +26,6 @@ export function validateGhXml(xml: string) {
     };
   }
 
-  // buildGhXml(parsedFromXml);
-
   return {
     isValid: true,
     validatedJson: validatedXml.data,
@@ -43,18 +41,11 @@ export function buildGhXml(parsedXml: GhXmlType) {
     format: true,
     indentBy: "  ",
     suppressEmptyNode: false,
-    preserveOrder: false,
-    suppressUnpairedNode: false,
   });
 
-  //workaround for type issue for now...
-  const deepCopy = JSON.parse(JSON.stringify(parsedXml));
-  deepCopy["?xml"] = {
-    "@_version": "1.0",
-    "@_encoding": "UTF-8",
-    "@_standalone": "yes",
-  };
+  //manually add the xml header back
+  const xmlHeader = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
 
-  const xmlOutput = builder.build(deepCopy);
-  return xmlOutput;
+  const xmlOutput = builder.build(parsedXml);
+  return xmlHeader + xmlOutput;
 }
