@@ -51,7 +51,7 @@ export const DefinitionPropertiesSchema = z.object({
     item: z.array(
       z.union([
         TypeNameCodeSchema.extend({
-          "#text": z.string(),
+          "#text": z.union([z.string(), z.number()]),
           "@_name": z.literal("Date"),
         }),
         TypeNameCodeSchema.extend({
@@ -66,7 +66,6 @@ export const DefinitionPropertiesSchema = z.object({
           //this should be the name of the file
           "#text": z.string().optional(),
         }),
-        z.object({}),
       ])
     ),
   }),
@@ -169,7 +168,8 @@ export const DefinitionObjectsSchema = z.object({
 // unsupported for now
 export const ValueTableSchema = z.object({
   "@_name": z.literal("ValueTable"),
-  items: z.object({}),
+  items: z.any(),
+  // items: z.object({}),
 });
 
 // exists only when previewBoundary exists

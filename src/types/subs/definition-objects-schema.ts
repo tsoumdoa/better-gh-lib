@@ -1,11 +1,15 @@
 import { z } from "zod";
 import { TypeNameCodeSchema } from "./typenamecode-schema";
 import {
-  AttributeChunk,
-  PanelPropertiesChunk,
-  ParameterData,
-  ParamInputChunk,
-  ParamOutputChunk,
+  AttributeContainer,
+  ScriptContainer,
+  ScriptEditorContainer,
+  PanelPropertiesContainer,
+  ParameterContainer,
+  ParamInputContainer,
+  ParamOutputContainer,
+  PersistentDataContainer,
+  LexerContainer,
 } from "./param-object-schema";
 
 const TwoPropertyObject = z.object({
@@ -50,19 +54,33 @@ const ItemObjectChunk = z.object({
   item: z.array(
     TypeNameCodeSchema.extend({
       "#text": z.union([z.string(), z.number(), z.boolean()]).optional(),
+      "@_index": z.number().optional(),
+      //check when this happen
+      ARGB: z.string().optional(),
+      //check when this happen
+      Major: z.number().optional(),
+      Minor: z.number().optional(),
+      Revision: z.number().optional(),
+      //happen only with itnernalized hops
+      stream: z.any().optional(),
     })
   ),
   "@_count": z.number(),
 });
 
 const DefinitionObjectChunkChunk = z.union([
-  AttributeChunk,
-  PanelPropertiesChunk,
-  ParameterData,
-  ParamInputChunk,
-  ParamOutputChunk,
-  //todo should be able to remove this
-  z.any(),
+  AttributeContainer,
+  PanelPropertiesContainer,
+  ParameterContainer,
+  ParamInputContainer,
+  ParamOutputContainer,
+  ScriptContainer,
+  ScriptEditorContainer,
+  PersistentDataContainer,
+  //this type is only for hops, but it fails to paste back to GH
+  LexerContainer,
+  //use this for debugging, when above type is not exhaustive
+  // z.object({}),
 ]);
 
 const DefinitionObjectChunk = z.object({
@@ -73,18 +91,18 @@ const DefinitionObjectChunk = z.object({
   "@_count": z.number(),
 });
 
-const ChunkObject = z.object({
+const ContainerChunk = z.object({
+  "@_name": z.literal("Container"),
   items: z.union([ItemObjectChunk, z.array(ItemObjectChunk)]),
   chunks: z.union([DefinitionObjectChunk, z.array(DefinitionObjectChunk)]),
-  "@_name": z.literal("Container"),
 });
 
 export const DefinitionObjectsMainChunk = z.object({
   items: PropertyItemObject,
   chunks: z.object({
-    chunk: z.union([ChunkObject, z.array(ChunkObject)]),
+    chunk: z.union([ContainerChunk, z.array(ContainerChunk)]),
     "@_count": z.number(),
   }),
-  "@_name": z.string(),
+  "@_name": z.literal("Object"),
   "@_index": z.number(),
 });

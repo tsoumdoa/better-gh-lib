@@ -1,14 +1,16 @@
 import { z } from "zod";
-export const AttributeChunk = z.object({
-  items: z.object({
-    //todo not type safe yet
-    item: z.array(z.any()),
-    "@_count": z.number(),
-  }),
+export const AttributeContainer = z.object({
+  items: z
+    .object({
+      //todo not type safe yet
+      item: z.array(z.any()),
+      "@_count": z.number(),
+    })
+    .optional(),
   "@_name": z.literal("Attributes"),
 });
 
-export const PanelPropertiesChunk = z.object({
+export const PanelPropertiesContainer = z.object({
   items: z.object({
     //todo not type safe yet
     item: z.array(z.any()),
@@ -17,23 +19,66 @@ export const PanelPropertiesChunk = z.object({
   "@_name": z.literal("PanelProperties"),
 });
 
-export const ParamInputChunk = z.object({
+export const ScriptContainer = z.object({
   items: z.object({
     //todo not type safe yet
     item: z.array(z.any()),
     "@_count": z.number(),
   }),
+  chunks: z.object({
+    //todo not type safe yet
+    chunk: z.any(),
+    //this could be literal 1
+    "@_count": z.number(),
+  }),
+  "@_name": z.literal("Script"),
+});
+
+export const PersistentDataContainer = z.object({
+  // items: z.any(),
+  // chunks: z.any(),
+  items: z.object({
+    //todo not type safe yet
+    item: z.any(),
+    "@_count": z.number(),
+  }),
+  chunks: z.object({
+    //todo not type safe yet
+    chunk: z.any(),
+    //this could be literal 1
+    "@_count": z.number(),
+  }),
+  "@_name": z.literal("PersistentData"),
+});
+
+export const ScriptEditorContainer = z.object({
+  items: z.object({
+    //todo not type safe yet
+    item: z.any(),
+    "@_count": z.number(),
+  }),
+  "@_name": z.literal("ScriptEditor"),
+});
+
+export const ParamInputContainer = z.object({
+  items: z.object({
+    //todo not type safe yet
+    item: z.array(z.any()).optional(),
+    "@_count": z.number(),
+  }),
   chunks: z.any(),
+  "@_index": z.number(),
   "@_name": z.literal("param_input"),
 });
 
-export const ParamOutputChunk = z.object({
+export const ParamOutputContainer = z.object({
   items: z.object({
     //todo not type safe yet
     item: z.array(z.any()),
     "@_count": z.number(),
   }),
   chunks: z.any(),
+  "@_index": z.number(),
   "@_name": z.literal("param_output"),
 });
 
@@ -59,15 +104,31 @@ const OutputParamChunk = z.object({
   "@_index": z.number(),
 });
 
-export const ParameterData = z.object({
+export const ParameterContainer = z.object({
   items: z.object({
     //todo not type safe yet
     item: z.any(),
     "@_count": z.number(),
   }),
-  chunks: z.object({
-    chunk: z.array(z.union([InputParamChunk, OutputParamChunk])),
+  chunks: z
+    .object({
+      chunk: z.union([
+        InputParamChunk,
+        OutputParamChunk,
+        z.array(z.union([InputParamChunk, OutputParamChunk])),
+      ]),
+      "@_count": z.number(),
+    })
+    .optional(),
+  "@_name": z.literal("ParameterData"),
+});
+
+// this happens only for hops
+export const LexerContainer = z.object({
+  items: z.object({
+    //todo not type safe yet
+    item: z.any(),
     "@_count": z.number(),
   }),
-  "@_name": z.literal("ParameterData"),
+  "@_name": z.literal("lexers"),
 });
