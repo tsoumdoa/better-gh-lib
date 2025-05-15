@@ -10,6 +10,7 @@ import {
   ParamOutputContainer,
   PersistentDataContainer,
   LexerContainer,
+  ListItemContainer,
 } from "./param-object-schema";
 
 const TwoPropertyObject = z.object({
@@ -93,6 +94,7 @@ const DefinitionObjectChunkChunk = z.union([
   ScriptContainer,
   ScriptEditorContainer,
   PersistentDataContainer,
+  ListItemContainer,
   //this type is only for hops, but it fails to paste back to GH
   LexerContainer,
   //use this for debugging, when above type is not exhaustive

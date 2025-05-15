@@ -155,6 +155,16 @@ export const ParameterContainer = z.object({
   "@_name": z.literal("ParameterData"),
 });
 
+export const ListItemContainer = z.object({
+  "@_index": z.number(),
+  items: z.object({
+    //todo not type safe yet
+    item: z.any(),
+    "@_count": z.number(),
+  }),
+  "@_name": z.literal("ListItem"),
+});
+
 // this happens only for hops
 export const LexerContainer = z.object({
   items: z.object({
