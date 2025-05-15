@@ -44,6 +44,7 @@ const PluginLibrarySchema = z.object({
           "@_name": z.literal("AssemblyVersion"),
         }),
         TypeNameCodeSchema.extend({
+          "#text": z.string(),
           "@_name": z.literal("Author"),
         }),
         TypeNameCodeSchema.extend({

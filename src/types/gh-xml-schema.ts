@@ -51,7 +51,7 @@ export const DefinitionPropertiesSchema = z.object({
     item: z.array(
       z.union([
         TypeNameCodeSchema.extend({
-          "#text": z.string(),
+          "#text": z.union([z.string(), z.number()]),
           "@_name": z.literal("Date"),
         }),
         TypeNameCodeSchema.extend({
@@ -66,7 +66,6 @@ export const DefinitionPropertiesSchema = z.object({
           //this should be the name of the file
           "#text": z.string().optional(),
         }),
-        z.object({}),
       ])
     ),
   }),
@@ -157,11 +156,11 @@ export const DefinitionObjectsSchema = z.object({
     }),
   }),
   chunks: z.object({
+    "@_count": z.number(),
     chunk: z.union([
       z.array(DefinitionObjectsMainChunk),
       DefinitionObjectsMainChunk,
     ]),
-    "@_count": z.number(),
   }),
 });
 
@@ -169,12 +168,12 @@ export const DefinitionObjectsSchema = z.object({
 // unsupported for now
 export const ValueTableSchema = z.object({
   "@_name": z.literal("ValueTable"),
-  items: z.object({}),
+  items: z.object({}).catchall(z.any()),
 });
 
 // exists only when previewBoundary exists
 // unsupported for now
 export const PreviewBoundarySchema = z.object({
   "@_name": z.literal("PreviewBoundary"),
-  items: z.object({}),
+  items: z.object({}).catchall(z.any()),
 });
