@@ -156,11 +156,11 @@ export const DefinitionObjectsSchema = z.object({
     }),
   }),
   chunks: z.object({
+    "@_count": z.number(),
     chunk: z.union([
       z.array(DefinitionObjectsMainChunk),
       DefinitionObjectsMainChunk,
     ]),
-    "@_count": z.number(),
   }),
 });
 
@@ -168,13 +168,12 @@ export const DefinitionObjectsSchema = z.object({
 // unsupported for now
 export const ValueTableSchema = z.object({
   "@_name": z.literal("ValueTable"),
-  items: z.any(),
-  // items: z.object({}),
+  items: z.object({}).catchall(z.any()),
 });
 
 // exists only when previewBoundary exists
 // unsupported for now
 export const PreviewBoundarySchema = z.object({
   "@_name": z.literal("PreviewBoundary"),
-  items: z.object({}),
+  items: z.object({}).catchall(z.any()),
 });

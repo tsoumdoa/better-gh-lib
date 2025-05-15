@@ -1,9 +1,45 @@
 import { z } from "zod";
+import { TypeNameCodeSchema } from "./typenamecode-schema";
+
+const StringAttribute = TypeNameCodeSchema.extend({
+  "#text": z.string(),
+});
+
+const NumberAttribute = TypeNameCodeSchema.extend({
+  "#text": z.number(),
+});
+
+const BundsAttribute = TypeNameCodeSchema.extend({
+  X: z.number(),
+  Y: z.number(),
+  W: z.number(),
+  H: z.number(),
+  "@_name": z.literal("Bounds"),
+});
+
+const PivotAttribute = TypeNameCodeSchema.extend({
+  X: z.number(),
+  Y: z.number(),
+  "@_name": z.literal("Pivot"),
+});
+
+const SelectedAttribute = TypeNameCodeSchema.extend({
+  "#text": z.boolean(),
+  "@_name": z.literal("Selected"),
+});
+
 export const AttributeContainer = z.object({
   items: z
     .object({
-      //todo not type safe yet
-      item: z.array(z.any()),
+      item: z.array(
+        z.union([
+          StringAttribute,
+          NumberAttribute,
+          BundsAttribute,
+          PivotAttribute,
+          SelectedAttribute,
+        ])
+      ),
       "@_count": z.number(),
     })
     .optional(),
@@ -83,8 +119,6 @@ export const ParamOutputContainer = z.object({
 });
 
 const InputParamChunk = z.object({
-  // items: z.object({}),
-  // chunks: z.object({}),
   //todo not type safe yet
   items: z.any(),
   //todo not type safe yet
@@ -94,8 +128,6 @@ const InputParamChunk = z.object({
 });
 
 const OutputParamChunk = z.object({
-  // items: z.object({}),
-  // chunks: z.object({}),
   //todo not type safe yet
   items: z.any(),
   //todo not type safe yet

@@ -50,11 +50,27 @@ const ThreePropertyObject = z.object({
 
 const PropertyItemObject = z.union([TwoPropertyObject, ThreePropertyObject]);
 
+const ItemObjectNameLiteral = z.union([
+  z.literal("Description"),
+  z.literal("gh_guid"),
+  z.literal("Name"),
+  z.literal("InstanceGuid"),
+  z.literal("NickName"),
+  z.literal("Optional"),
+  z.literal("Source"),
+  z.literal("SourceCount"),
+  z.literal("WireDisplay"),
+  z.literal("UserText"),
+  z.literal("ScrollRatio"),
+  z.string(),
+]);
+
 const ItemObjectChunk = z.object({
   item: z.array(
     TypeNameCodeSchema.extend({
       "#text": z.union([z.string(), z.number(), z.boolean()]).optional(),
       "@_index": z.number().optional(),
+      "@_name": ItemObjectNameLiteral,
       //check when this happen
       ARGB: z.string().optional(),
       //check when this happen
