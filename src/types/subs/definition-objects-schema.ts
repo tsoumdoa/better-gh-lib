@@ -99,6 +99,7 @@ const DefinitionObjectChunkChunk = z.union([
   LexerContainer,
   //use this for debugging, when above type is not exhaustive
   // z.object({}),
+  z.any(),
 ]);
 
 const DefinitionObjectChunk = z.object({
