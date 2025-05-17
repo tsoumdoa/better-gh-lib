@@ -15,10 +15,10 @@ function FeatureCard(props: {
       className="flex flex-col justify-between rounded-md bg-neutral-900 p-6 ring-1 ring-neutral-500 transition-all hover:bg-neutral-800"
     >
       <div>
-        <h2 className="mb-2 text-xl font-bold">{props.title}</h2>
+        <h2 className="pb-2 text-xl font-bold">{props.title}</h2>
         <p className="text-neutral-400">{props.description}</p>
       </div>
-      <div className="mt-4 flex items-center text-sm text-neutral-400">
+      <div className="flex items-center pt-4 text-sm text-neutral-400">
         <span>Get started - {props.go}</span>
         <ChevronDown className="ml-1 h-4 w-4 rotate-[-90deg]" />
       </div>

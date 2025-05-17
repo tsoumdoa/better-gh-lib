@@ -1,5 +1,6 @@
 import Header from "../components/header";
 import { HydrateClient } from "@/trpc/server";
+import GhXmlStudio from "./components/studio-main";
 
 export default async function GhStudio() {
   return (
@@ -8,12 +9,12 @@ export default async function GhStudio() {
         <Header />
         <div className="flex flex-col items-center justify-center gap-y-4">
           <h1 className="text-2xl font-bold">GhStudio</h1>
-          <p className="text-neutral-400">
+          <p className="mb-6 max-w-2xl text-center text-neutral-400">
             Run linting, formatting, and custom rules to maintain code quality.
+            Paste your GhXML script below to analyze it.
           </p>
-          <div className="mt-8 text-center text-neutral-500">
-            Coming soon...
-          </div>
+
+          <GhXmlStudio />
         </div>
       </div>
     </HydrateClient>

@@ -1,70 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useXmlPaste } from "../../hooks/use-xml-paste";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, XCircle, Clipboard } from "lucide-react";
-import { GhXmlType } from "@/types/types";
 import { useSyncedScroll } from "../hooks/use-synced-scroll";
 import { Toggle } from "@/components/ui/toggle";
 import { buildGhXml } from "@/app/utils/gh-xml";
-
-function GhXmlValidatorButtons(props: {
-  handlePasteFromClipboard: () => void;
-  handleClear: () => void;
-}) {
-  return (
-    <div className="flex gap-2">
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={props.handlePasteFromClipboard}
-        className="flex items-center gap-1 transition-all hover:opacity-80"
-      >
-        <Clipboard className="h-4 w-4" />
-        Paste from Clipboard
-      </Button>
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={props.handleClear}
-        className="transition-all hover:opacity-80"
-      >
-        Clear
-      </Button>
-    </div>
-  );
-}
-
-function ValidatedResult(props: {
-  isValidXml: boolean;
-  validatedJson: GhXmlType | undefined;
-  schemaCoverage: number;
-}) {
-  return (
-    <div className="rounded-md bg-neutral-800 p-2 text-sm font-semibold">
-      <div className="flex items-center gap-2">
-        {props.isValidXml ? (
-          <div className="flex items-center text-green-500">
-            <CheckCircle className="h-5 w-5 pr-1" />
-            Valid GhXml - Schema Coverage {props.schemaCoverage}%
-          </div>
-        ) : (
-          <div className="flex items-center text-red-500">
-            <XCircle className="mr-1 h-5 w-5" />
-            Invalid GhXml
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
+import { GhXmlValidatorButtons } from "@/app/components/paste-ghxml";
+import { ValidatedResult } from "@/app/components/valiation-resul";
 
 export default function GhXmlValidator() {
   const [error, setError] = useState("");
   const [displayString, setDisplayString] = useState("");
-  const [schemaCoverage, setSchemaCoverage] = useState(0);
+  // const [schemaCoverage, setSchemaCoverage] = useState(0);
   const [encodedXml, setEncodedXml] = useState("");
   const {
     isValidXml,
@@ -72,6 +20,8 @@ export default function GhXmlValidator() {
     handleClear,
     validatedJson,
     parsedJson,
+    schemaCoverage,
+    run,
   } = useXmlPaste(setError);
 
   const { textarea1Ref, textarea2Ref, setEnableSync, enableSync } =
@@ -81,14 +31,7 @@ export default function GhXmlValidator() {
     if (validatedJson) {
       console.log("validatedJson");
       const validatedJsonString = JSON.stringify(validatedJson, null, 2);
-      const parsedJsonString = JSON.stringify(parsedJson, null, 2);
       setDisplayString(validatedJsonString);
-      setSchemaCoverage(
-        Math.round(
-          (validatedJsonString.length / parsedJsonString.length) * 1000
-        ) / 10
-      );
-
       const xml = buildGhXml(validatedJson);
       setEncodedXml(xml);
     } else {
@@ -104,10 +47,19 @@ export default function GhXmlValidator() {
             <span className="text-3xl font-semibold text-white">
               GhXml Validator
             </span>
-            <GhXmlValidatorButtons
-              handlePasteFromClipboard={handlePasteFromClipboard}
-              handleClear={handleClear}
-            />
+            <div className="flex gap-2 transition-all">
+              {run && (
+                <ValidatedResult
+                  isValidXml={isValidXml}
+                  validatedJson={validatedJson}
+                  schemaCoverage={schemaCoverage}
+                />
+              )}
+              <GhXmlValidatorButtons
+                handlePasteFromClipboard={handlePasteFromClipboard}
+                handleClear={handleClear}
+              />
+            </div>
           </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-y-4">
@@ -161,13 +113,6 @@ export default function GhXmlValidator() {
             >
               Scroll Sync
             </Toggle>
-            {displayString && (
-              <ValidatedResult
-                isValidXml={isValidXml}
-                validatedJson={validatedJson}
-                schemaCoverage={schemaCoverage}
-              />
-            )}
           </div>
         </CardContent>
       </Card>
