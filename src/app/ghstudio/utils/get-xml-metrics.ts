@@ -1,42 +1,27 @@
-import {
-  ArchiveVersion,
-  GhXmlType,
-  SchemaNameLiteral,
-  XmlMetrics,
-} from "@/types/types";
+import { GhXmlType, XmlMetrics } from "@/types/types";
+import { getPluginInfo } from "./get-plugin-info";
+import { getArchieveVersion } from "./helper-functions";
+import { getDefObjects } from "./get-def-objects";
 
 export function getXmlMetrics(
   ghxml: GhXmlType,
   schemaCoverage: number
 ): XmlMetrics {
   const archiveVersion = getArchieveVersion(ghxml);
-  const rcpLayout = getBody(ghxml, "RcpLayout");
+  const plugnInfo = getPluginInfo(ghxml);
+  const defObjs = getDefObjects(ghxml);
 
   return {
     archiveVersion: archiveVersion,
-    componentCount: undefined,
-    plugins: undefined,
-    pluginsCount: undefined,
+    componentCount: defObjs?.componentCount,
+    plugins: plugnInfo?.pluginLibs,
+    pluginsCount: plugnInfo?.libsCount,
     totalNodes: undefined,
     maxDepth: undefined,
     schemaCoverage: schemaCoverage,
   };
 }
 
-function getArchieveVersion(ghxml: GhXmlType): ArchiveVersion {
-  const v = ghxml.Archive.items.item;
-  return {
-    major: v.Major,
-    minor: v.Minor,
-    revision: v.Revision,
-  };
-}
-
-function getBody(ghxml: GhXmlType, schemaName: SchemaNameLiteral) {
-  const chunk = ghxml.Archive.chunks.chunk.chunks.chunk;
-  const f = chunk.find((c) => c["@_name"] === schemaName);
-  return f;
-}
 // "GHALibraries",
 // list out plugins
 //

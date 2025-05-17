@@ -9,6 +9,7 @@ import {
   ValueTableSchema,
   VersionSchema,
 } from "./gh-xml-schema";
+import { PluginLibraryType } from "./subs/library-type-schema";
 
 export const GhCardSchema = z.object({
   name: z.string().min(3).max(30),
@@ -86,7 +87,7 @@ export type ArchiveVersion = {
 export type XmlMetrics = {
   archiveVersion: ArchiveVersion | undefined;
   componentCount: number | undefined;
-  plugins: string[] | undefined;
+  plugins: PluginLibraryType[] | undefined;
   pluginsCount: number | undefined;
   totalNodes: number | undefined;
   maxDepth: number | undefined;

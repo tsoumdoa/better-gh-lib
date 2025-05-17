@@ -29,7 +29,6 @@ export default function GhXmlValidator() {
 
   useEffect(() => {
     if (validatedJson) {
-      console.log("validatedJson");
       const validatedJsonString = JSON.stringify(validatedJson, null, 2);
       setDisplayString(validatedJsonString);
       const xml = buildGhXml(validatedJson);
