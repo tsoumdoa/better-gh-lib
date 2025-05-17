@@ -40,19 +40,19 @@ export default async function Home() {
               title="GhCard"
               description="Explore and manage your script library with an intuitive card-based interface."
               href="/ghcards"
-              go="MVP, use it at your own risk"
+              go="MVP"
             />
             <FeatureCard
               title="GhJsonViewer"
               description="Validate GhXml data and see how they get parsed and validated to JSON."
               href="/ghviewer"
-              go="Works locally, no sign in required"
+              go="works locally"
             />
             <FeatureCard
               title="GhStudio"
               description="Run linting, formatting, and custom rules to maintain code quality."
               href="/ghstudio"
-              go="Nothing to see here yet"
+              go="nothing to see here yet"
             />
           </div>
         </div>

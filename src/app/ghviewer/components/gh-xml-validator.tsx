@@ -110,7 +110,7 @@ export default function GhXmlValidator() {
             />
           </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex flex-col gap-y-4">
           <div className="flex flex-col gap-4 sm:flex-row">
             <div className="flex w-1/2 flex-col gap-1.5">
               <span className="font-semibold text-neutral-600">
@@ -139,9 +139,9 @@ export default function GhXmlValidator() {
               />
             </div>
           </div>
-          <div className="flex w-1/2 flex-col gap-1.5">
+          <div className="flex w-full flex-col gap-1.5">
             <span className="font-semibold text-neutral-600">
-              Validated JSON
+              XML decoded from JSON
             </span>
             <Textarea
               ref={textarea2Ref}

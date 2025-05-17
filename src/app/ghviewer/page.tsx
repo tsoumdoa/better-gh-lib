@@ -9,9 +9,9 @@ export default async function GhViewer() {
         <Header />
         <div className="flex flex-col items-center justify-center gap-y-2">
           <h1 className="text-2xl font-bold">GhJsonViewer</h1>
-          <p className="max-w-4xl pb-3 text-center text-neutral-400">
-            Analyze and visualize your Grasshopper scripts with powerful
-            analytics tools. Paste your XML script below to validate it.
+          <p className="max-w-2xl pb-3 text-center text-neutral-400">
+            Use this tool to check that schema can parse json from xml and then
+            build xml from json. Paste your XML script below to validate it.
           </p>
           <GhXmlValidator />
         </div>
