@@ -125,6 +125,7 @@ export const DefinitionPropertiesSchema = z.object({
     ),
   }),
 });
+export type DefPropType = z.infer<typeof DefinitionPropertiesSchema>;
 
 export const RcpLayoutSchema = z.object({
   "@_name": z.literal(rcp),

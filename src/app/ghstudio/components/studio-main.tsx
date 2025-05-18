@@ -10,6 +10,8 @@ import { PluginsTabContent } from "./plugin-tab-content";
 
 export default function GhXmlStudio() {
   const [error, setError] = useState("");
+  //for now
+  console.log(error);
 
   const {
     run,

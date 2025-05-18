@@ -13,3 +13,22 @@ export function getArchieveVersion(ghxml: GhXmlType): ArchiveVersion {
     revision: v.Revision,
   };
 }
+
+export function getArrayFrom<T>(chunks: T[] | T): T[] {
+  const chunkArray: T[] = [];
+  if (Array.isArray(chunks)) {
+    const casted = chunks as T[];
+    chunkArray.push(...casted);
+  } else {
+    chunkArray.push(chunks as T);
+  }
+  return chunkArray;
+}
+
+export function getArrayFromWithKey<T, U>(
+  chunkArray: T[],
+  mapFn: (item: T) => U
+): U[] {
+  const chunks = chunkArray.map(mapFn);
+  return getArrayFrom(chunks);
+}

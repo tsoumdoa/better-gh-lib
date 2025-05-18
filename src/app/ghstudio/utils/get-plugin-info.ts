@@ -49,10 +49,10 @@ export function getPluginInfo(ghxml: GhXmlType) {
         return;
       }
       vanilaLibs.push({
-        author: author?.["#text"],
-        id: id?.["#text"]!,
-        name: name?.["#text"]!,
-        version: version?.["#text"]!,
+        author: author?.["#text"] ?? "",
+        id: id?.["#text"] ?? "",
+        name: name?.["#text"] ?? "",
+        version: version?.["#text"] ?? "",
       });
     } else {
       const castedItem = lib as PluginLibrarySchemaType;
@@ -72,12 +72,12 @@ export function getPluginInfo(ghxml: GhXmlType) {
       );
 
       pluginLibs.push({
-        assemblyFullName: assemblyFullName?.["#text"]!,
-        assemblyVersion: assemblyVersion?.["#text"]!,
-        author: author?.["#text"],
-        id: id?.["#text"]!,
-        name: name?.["#text"]!,
-        version: version?.["#text"]!,
+        assemblyFullName: assemblyFullName?.["#text"] ?? "",
+        assemblyVersion: assemblyVersion?.["#text"] ?? "",
+        author: author?.["#text"] ?? "",
+        id: id?.["#text"] ?? "",
+        name: name?.["#text"] ?? "",
+        version: version?.["#text"] ?? "",
       });
     }
   });

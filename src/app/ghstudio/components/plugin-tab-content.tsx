@@ -1,9 +1,6 @@
 import { TabsContent } from "@/components/ui/tabs";
 
-export function PluginsTabContent(props: {
-  // metrics: XmlMetrics;
-  // setMetrics: React.Dispatch<React.SetStateAction<XmlMetrics>>;
-}) {
+export function PluginsTabContent() {
   return (
     <div>
       <TabsContent

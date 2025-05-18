@@ -2,12 +2,12 @@ import { GhXmlType } from "@/types/types";
 import { getBody } from "./helper-functions";
 import { DefinitionObjectsSchema } from "@/types/gh-xml-schema";
 import {
-  ContainerChunk,
+  ItemObjChunkType,
   DefObjChunk,
   DefObjMainChunkType,
-  ItemObjChunkType,
   PropertyType,
 } from "@/types/subs/definition-objects-schema";
+import { getArrayFrom, getArrayFromWithKey } from "./helper-functions";
 
 export function getDefObjects(ghxml: GhXmlType) {
   const ghaLibs = getBody(ghxml, "DefinitionObjects");
@@ -15,56 +15,36 @@ export function getDefObjects(ghxml: GhXmlType) {
   if (c.error) return undefined;
   const chunks = c.data.chunks;
 
-  ///////
   const chunk = chunks.chunk;
-  const chunkArray: DefObjMainChunkType[] = [];
-  if (Array.isArray(chunk)) {
-    const casted = chunk as DefObjMainChunkType[];
-    chunkArray.push(...casted);
-  } else {
-    chunkArray.push(chunk as DefObjMainChunkType);
-  }
-
+  const chunkArray = getArrayFrom(chunk);
   const compIdents = getComponentIdentifiers(chunkArray);
 
-  //////
-  const containerChunks = chunkArray.map((c) => c.chunks.chunk);
-  const containerChunksArray: ContainerChunk[] = [];
-  if (Array.isArray(containerChunks)) {
-    const casted = containerChunks as ContainerChunk[];
-    containerChunksArray.push(...casted);
-  } else {
-    containerChunksArray.push(containerChunks as ContainerChunk);
-  }
+  const conChunkArray = getArrayFromWithKey(chunkArray, (c) => c.chunks.chunk);
+  const containerChunksArray = getArrayFromWithKey(
+    conChunkArray,
+    //@ts-ignore
+    (c) => c.chunks
+  );
+  //@ts-ignore
+  const containerItemArray = getArrayFromWithKey(conChunkArray, (c) => c.items);
 
-  ///////
-  const containerChunksChunks = containerChunksArray.map((c) => c.chunks);
-  const containerChunksChunksArray: DefObjChunk[] = [];
-  if (Array.isArray(containerChunksChunks)) {
-    const casted = containerChunksChunks as DefObjChunk[];
-    containerChunksChunksArray.push(...casted);
-  } else {
-    containerChunksChunksArray.push(containerChunksChunks as DefObjChunk);
-  }
+  const containerChunks = getArrayFrom<DefObjChunk>(containerChunksArray);
+  const containerItems = getArrayFrom<ItemObjChunkType>(containerItemArray);
 
-  ///////
-  const containerChunksItems = containerChunksArray.map((c) => c.items);
-  const containerChunksItemsArray: ItemObjChunkType[] = [];
-  if (Array.isArray(containerChunksItems)) {
-    const casted = containerChunksItems as ItemObjChunkType[];
-    containerChunksItemsArray.push(...casted);
-  } else {
-    containerChunksItemsArray.push(containerChunksItems as ItemObjChunkType);
-  }
+  const containerChunksChunk = getArrayFrom(
+    containerChunks.map((c) => c.chunk)
+  );
+  console.log(containerChunksChunk);
 
-  console.log(containerChunksChunksArray);
-  console.log(containerChunksItemsArray);
+  const containerItemsItem = getArrayFrom(containerItems.map((c) => c.item));
+  console.log(containerItemsItem);
 
   //source
   //compoenentLoc
 
   return {
     componentCount: chunks["@_count"],
+    compponentIdent: compIdents,
   };
 }
 
@@ -74,9 +54,9 @@ function getComponentIdentifiers(chunkArray: DefObjMainChunkType[]) {
 
   identiferChunks.map((c) => {
     const obj = {
-      guid: c.item.find((i) => i["@_name"] === "GUID")?.["#text"]!,
-      lib: c.item.find((i) => i["@_name"] === "Lib")?.["#text"] || undefined,
-      name: c.item.find((i) => i["@_name"] === "Name")?.["#text"]!,
+      guid: c.item.find((i) => i["@_name"] === "GUID")?.["#text"] ?? "",
+      lib: c.item.find((i) => i["@_name"] === "Lib")?.["#text"] ?? "",
+      name: c.item.find((i) => i["@_name"] === "Name")?.["#text"] ?? "",
     };
     componentIdentifiers.push(obj);
   });

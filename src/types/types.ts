@@ -21,7 +21,7 @@ export const GhXmlGhCardSchema = GhCardSchema.extend({
 export type GhCard = z.infer<typeof GhCardSchema>;
 export type GhXmlType = z.infer<typeof GhXml>;
 
-const SchemaNames = [
+export const SchemaNames = [
   "DocumentHeader",
   "PreviewBoundary",
   "DefinitionProperties",

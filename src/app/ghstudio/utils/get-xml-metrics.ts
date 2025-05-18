@@ -9,6 +9,8 @@ export function getXmlMetrics(
 ): XmlMetrics {
   const archiveVersion = getArchieveVersion(ghxml);
   const plugnInfo = getPluginInfo(ghxml);
+  // defProp - general info abt the script, not so useful
+  // const defProps = getDefObjProps(ghxml);
   const defObjs = getDefObjects(ghxml);
 
   return {

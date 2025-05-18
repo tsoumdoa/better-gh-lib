@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useXmlPaste } from "../../hooks/use-xml-paste";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -10,6 +10,8 @@ import { PluginsTabContent } from "./plugin-tab-content";
 
 export default function GhXmlAnalyzer() {
   const [error, setError] = useState("");
+  //for now
+  console.log(error);
 
   const {
     run,
