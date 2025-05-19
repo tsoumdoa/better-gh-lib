@@ -28,6 +28,12 @@ export function getDefObjects(ghxml: GhXmlType) {
   const pivotAtt = getPivotAtt(compoentData);
   console.log(compoentData);
 
+  //todo get source from compoentData
+  //
+  // if it's script compoennt, INPUTS, OUTPUTS
+  // otheriwse inputs, outputs_node or sth...
+  // parse and squarsh...?
+
   const singleNodeComponentSource = nodeData.map((c) =>
     getKeyNameObjArray<AttributeContainerType>(
       c as unknown as AttributeContainerType[],
@@ -41,6 +47,9 @@ export function getDefObjects(ghxml: GhXmlType) {
     componentCount: chunks["@_count"],
     compponentIdent: compIdents,
     pivotAtt: pivotAtt,
+    //sourceArrays:
+    // compoentUids:
+    // compoentInputUids:
   };
 }
 
