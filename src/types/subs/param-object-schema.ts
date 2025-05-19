@@ -23,6 +23,8 @@ const PivotAttribute = TypeNameCodeSchema.extend({
   "@_name": z.literal("Pivot"),
 });
 
+export type PivotAttributeType = z.infer<typeof PivotAttribute>;
+
 const SelectedAttribute = TypeNameCodeSchema.extend({
   "#text": z.boolean(),
   "@_name": z.literal("Selected"),
@@ -45,6 +47,7 @@ export const AttributeContainer = z.object({
     .optional(),
   "@_name": z.literal("Attributes"),
 });
+export type AttributeContainerType = z.infer<typeof AttributeContainer>;
 
 export const PanelPropertiesContainer = z.object({
   items: z.object({
