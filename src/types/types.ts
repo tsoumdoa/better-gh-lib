@@ -9,19 +9,29 @@ import {
   ValueTableSchema,
   VersionSchema,
 } from "./gh-xml-schema";
+import { PluginLibraryType } from "./subs/library-type-schema";
 
 export const GhCardSchema = z.object({
   name: z.string().min(3).max(30),
   description: z.string().max(150),
 });
-
 export const GhXmlGhCardSchema = GhCardSchema.extend({
   xml: z.string(),
 });
-
 export type GhCard = z.infer<typeof GhCardSchema>;
-
 export type GhXmlType = z.infer<typeof GhXml>;
+
+export const SchemaNames = [
+  "DocumentHeader",
+  "PreviewBoundary",
+  "DefinitionProperties",
+  "RcpLayout", //Remote Control Procedure Layout
+  "GHALibraries",
+  "ValueTable",
+  "DefinitionObjects",
+] as const;
+export type SchemaNameLiteral = (typeof SchemaNames)[number];
+
 export const GhXml = z.object({
   Archive: z.object({
     comments: z
@@ -67,3 +77,19 @@ export const GhXml = z.object({
     "@_name": z.string(),
   }),
 });
+
+export type ArchiveVersion = {
+  major: number;
+  minor: number;
+  revision: number;
+};
+
+export type XmlMetrics = {
+  archiveVersion: ArchiveVersion | undefined;
+  componentCount: number | undefined;
+  plugins: PluginLibraryType[] | undefined;
+  pluginsCount: number | undefined;
+  totalNodes: number | undefined;
+  maxDepth: number | undefined;
+  schemaCoverage: number | undefined;
+};

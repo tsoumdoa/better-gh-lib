@@ -44,7 +44,7 @@ const PluginLibrarySchema = z.object({
           "@_name": z.literal("AssemblyVersion"),
         }),
         TypeNameCodeSchema.extend({
-          "#text": z.string(),
+          "#text": z.string().optional(),
           "@_name": z.literal("Author"),
         }),
         TypeNameCodeSchema.extend({
@@ -65,7 +65,27 @@ const PluginLibrarySchema = z.object({
   }),
 });
 
+export type VanilaLibrarySchemaType = z.infer<typeof VanilaLibrarySchema>;
+export type PluginLibrarySchemaType = z.infer<typeof PluginLibrarySchema>;
+
+export type VanilaLibraryType = {
+  author: string | undefined;
+  id: string;
+  name: string;
+  version: string;
+};
+export type PluginLibraryType = {
+  assemblyFullName: string;
+  assemblyVersion: string;
+  author: string | undefined;
+  id: string;
+  name: string;
+  version: string;
+};
+
 export const LibrarySchema = z.union([
   VanilaLibrarySchema,
   PluginLibrarySchema,
 ]);
+
+export type LibrarySchemaType = z.infer<typeof LibrarySchema>;

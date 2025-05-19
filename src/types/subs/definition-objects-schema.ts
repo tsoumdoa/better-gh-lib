@@ -51,6 +51,12 @@ const ThreePropertyObject = z.object({
 
 const PropertyItemObject = z.union([TwoPropertyObject, ThreePropertyObject]);
 
+export type PropertyType = {
+  guid: string;
+  lib: string | undefined;
+  name: string;
+};
+
 const ItemObjectNameLiteral = z.union([
   z.literal("Description"),
   z.literal("gh_guid"),
@@ -85,6 +91,8 @@ const ItemObjectChunk = z.object({
   "@_count": z.number(),
 });
 
+export type ItemObjChunkType = z.infer<typeof ItemObjectChunk>;
+
 const DefinitionObjectChunkChunk = z.union([
   AttributeContainer,
   PanelPropertiesContainer,
@@ -110,11 +118,15 @@ const DefinitionObjectChunk = z.object({
   "@_count": z.number(),
 });
 
+export type DefObjChunk = z.infer<typeof DefinitionObjectChunk>;
+
 const ContainerChunk = z.object({
   "@_name": z.literal("Container"),
   items: z.union([ItemObjectChunk, z.array(ItemObjectChunk)]),
   chunks: z.union([DefinitionObjectChunk, z.array(DefinitionObjectChunk)]),
 });
+
+export type ContainerChunk = z.infer<typeof ContainerChunk>;
 
 export const DefinitionObjectsMainChunk = z.object({
   items: PropertyItemObject,
@@ -125,3 +137,5 @@ export const DefinitionObjectsMainChunk = z.object({
   "@_name": z.literal("Object"),
   "@_index": z.number(),
 });
+
+export type DefObjMainChunkType = z.infer<typeof DefinitionObjectsMainChunk>;

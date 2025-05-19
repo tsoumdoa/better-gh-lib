@@ -1,14 +1,19 @@
 import { useCallback, useState } from "react";
 import { validateGhXml } from "../utils/gh-xml";
-import { GhXmlType } from "@/types/types";
+import { GhXmlType, XmlMetrics } from "@/types/types";
+import { getXmlMetrics } from "../ghstudio/utils/get-xml-metrics";
 
 export function useXmlPaste(
   setAddError: React.Dispatch<React.SetStateAction<string>>
 ) {
   const [xmlData, setXmlData] = useState<string>();
+  const [run, setRun] = useState(false);
   const [validatedJson, setValidatedJson] = useState<GhXmlType>();
   const [parsedJson, setParsedJson] = useState<GhXmlType>();
+  const [schemaCoverage, setSchemaCoverage] = useState(0);
   const [isValidXml, setIsValidXml] = useState(false);
+  const [metrics, setMetrics] = useState<XmlMetrics>();
+
   const handlePasteFromClipboard = useCallback(async () => {
     setAddError("");
     setXmlData("");
@@ -28,6 +33,16 @@ export function useXmlPaste(
         setIsValidXml(true);
         setXmlData(text);
         setValidatedJson(validatedJson);
+
+        const validatedJsonString = JSON.stringify(validatedJson, null, 2);
+        const parsedJsonString = JSON.stringify(parsedJson, null, 2);
+        const sc =
+          Math.round(
+            (validatedJsonString.length / parsedJsonString.length) * 1000
+          ) / 10;
+        setSchemaCoverage(sc);
+        const metrics = getXmlMetrics(validatedJson, sc);
+        setMetrics(metrics);
       } else {
         setIsValidXml(false);
         setValidatedJson(undefined);
@@ -36,13 +51,16 @@ export function useXmlPaste(
     } catch (err) {
       setAddError("Failed to read clipboard contents: \n" + err);
     }
+    setRun(true);
   }, [setXmlData, setAddError]);
 
   const handleClear = () => {
     setXmlData("");
     setValidatedJson(undefined);
     setParsedJson(undefined);
+    setMetrics(undefined);
     setAddError("");
+    setRun(false);
   };
 
   return {
@@ -54,5 +72,8 @@ export function useXmlPaste(
     validatedJson,
     setValidatedJson,
     parsedJson,
+    run,
+    schemaCoverage,
+    metrics,
   };
 }
