@@ -2,7 +2,6 @@ import { GhXmlType, XmlMetrics } from "@/types/types";
 import { getPluginInfo } from "./get-plugin-info";
 import { getArchieveVersion } from "./helper-functions";
 import { getDefObjects } from "./get-def-objects";
-import { getDefObjProps } from "./get-def-obj-props";
 
 export function getXmlMetrics(
   ghxml: GhXmlType,
