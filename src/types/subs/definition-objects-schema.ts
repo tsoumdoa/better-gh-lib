@@ -103,9 +103,7 @@ const DefinitionObjectChunkChunk = z.union([
   ScriptEditorContainer,
   PersistentDataContainer,
   ListItemContainer,
-  //this type is only for hops, but it fails to paste back to GH
   LexerContainer,
-  //use this for debugging, when above type is not exhaustive
   // z.object({}),
   z.any(),
 ]);

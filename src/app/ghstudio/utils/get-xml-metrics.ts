@@ -2,6 +2,7 @@ import { GhXmlType, XmlMetrics } from "@/types/types";
 import { getPluginInfo } from "./get-plugin-info";
 import { getArchieveVersion } from "./helper-functions";
 import { getDefObjects } from "./get-def-objects";
+import { getDefObjProps } from "./get-def-obj-props";
 
 export function getXmlMetrics(
   ghxml: GhXmlType,
@@ -9,8 +10,7 @@ export function getXmlMetrics(
 ): XmlMetrics {
   const archiveVersion = getArchieveVersion(ghxml);
   const plugnInfo = getPluginInfo(ghxml);
-  // defProp - general info abt the script, not so useful
-  // const defProps = getDefObjProps(ghxml);
+  // const defProps = getDefObjProps(ghxml);/* general info abt the script, not so useful */
   const defObjs = getDefObjects(ghxml);
 
   return {

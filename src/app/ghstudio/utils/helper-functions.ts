@@ -32,3 +32,15 @@ export function getArrayFromWithKey<T, U>(
   const chunks = chunkArray.map(mapFn);
   return getArrayFrom(chunks);
 }
+
+export function getKeyNameObj<T>(obj: T[], key: keyof T, name: string) {
+  if (obj === undefined) return undefined;
+  const objWithName = obj.find((o) => o[key] === name) as T;
+  return (objWithName as T) ?? undefined;
+}
+
+export function getKeyNameObjArray<T>(obj: T[], key: keyof T, name: string) {
+  if (obj === undefined) return undefined;
+  const objWithName = obj.filter((o) => o[key] === name) as T;
+  return (objWithName as T) ?? undefined;
+}
