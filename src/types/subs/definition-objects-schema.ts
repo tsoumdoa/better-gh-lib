@@ -5,9 +5,8 @@ import {
   ScriptContainer,
   ScriptEditorContainer,
   PanelPropertiesContainer,
-  ParameterContainer,
-  ParamInputContainer,
-  ParamOutputContainer,
+  ScriptParameterContainer,
+  NodeParamContainer,
   PersistentDataContainer,
   LexerContainer,
   ListItemContainer,
@@ -96,15 +95,13 @@ export type ItemObjChunkType = z.infer<typeof ItemObjectChunk>;
 const DefinitionObjectChunkChunk = z.union([
   AttributeContainer,
   PanelPropertiesContainer,
-  ParameterContainer,
-  ParamInputContainer,
-  ParamOutputContainer,
-  ScriptContainer,
+  ScriptParameterContainer, //cluster, userobject
+  NodeParamContainer,
+  ScriptContainer, //csharp & python components
   ScriptEditorContainer,
   PersistentDataContainer,
   ListItemContainer,
   LexerContainer,
-  // z.object({}),
   z.any(),
 ]);
 

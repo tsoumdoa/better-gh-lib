@@ -10,8 +10,12 @@ import {
 import { getArrayFrom, getArrayFromWithKey } from "./helper-functions";
 import {
   AttributeContainerType,
+  NodeParamContainerType,
   PivotAttributeType,
+  ScriptContainerType,
 } from "@/types/subs/param-object-schema";
+import { getScriptParam } from "./get-script-params";
+import { getNodeParam } from "./get-node-param";
 
 export function getDefObjects(ghxml: GhXmlType) {
   const ghaLibs = getBody(ghxml, "DefinitionObjects");
@@ -25,14 +29,21 @@ export function getDefObjects(ghxml: GhXmlType) {
 
   const { compoentData, nodeData } = unwrapContainer(chunkArray);
 
-  const pivotAtt = getPivotAtt(compoentData);
-  console.log(compoentData);
+  //danerously asserting type here, but sort of checking the type in function, so it's ok...
+  const pivotAtt = getPivotAtt(compoentData as AttributeContainerType[][]);
+  const inputParam = getNodeParam(
+    compoentData as NodeParamContainerType[][],
+    "param_input"
+  );
 
-  //todo get source from compoentData
-  //
-  // if it's script compoennt, INPUTS, OUTPUTS
-  // otheriwse inputs, outputs_node or sth...
-  // parse and squarsh...?
+  const outputParam = getNodeParam(
+    compoentData as NodeParamContainerType[][],
+    "param_output"
+  );
+
+  const { scriptParam, totalScriptSourceCount } = getScriptParam(
+    compoentData as ScriptContainerType[][]
+  );
 
   const singleNodeComponentSource = nodeData.map((c) =>
     getKeyNameObjArray<AttributeContainerType>(
@@ -41,12 +52,25 @@ export function getDefObjects(ghxml: GhXmlType) {
       "Source"
     )
   );
-  console.log(singleNodeComponentSource);
+  // console.log(singleNodeComponentSource);
+  //
+  console.log(inputParam);
+  console.log(outputParam);
+  console.log(scriptParam);
 
+  const totalCanvasSourceCount =
+    inputParam.totalSourceCount +
+    outputParam.totalSourceCount +
+    totalScriptSourceCount;
+
+  console.log(totalCanvasSourceCount);
   return {
     componentCount: chunks["@_count"],
     compponentIdent: compIdents,
     pivotAtt: pivotAtt,
+    inputParam: inputParam,
+    outputParam: outputParam,
+    sourceCount: totalCanvasSourceCount,
     //sourceArrays:
     // compoentUids:
     // compoentInputUids:
@@ -96,7 +120,7 @@ function unwrapContainer(chunkArray: DefObjMainChunkType[]) {
 
 function getPivotAtt(compoentData: AttributeContainerType[][]) {
   const attributeContainer = compoentData.map((c) =>
-    getKeyNameObj<AttributeContainerType>(
+    getKeyNameObj(
       c as unknown as AttributeContainerType[],
       "@_name",
       "Attributes"
