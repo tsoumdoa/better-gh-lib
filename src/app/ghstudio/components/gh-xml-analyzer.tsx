@@ -53,7 +53,7 @@ export default function GhXmlAnalyzer() {
                 <TabsTrigger value="plugins">Plugins List</TabsTrigger>
               </TabsList>
               <SummaryTabContent metrics={metrics} />
-              <PluginsTabContent />
+              <PluginsTabContent plugins={metrics?.plugins || undefined} />
             </Tabs>
           </div>
         </CardContent>
