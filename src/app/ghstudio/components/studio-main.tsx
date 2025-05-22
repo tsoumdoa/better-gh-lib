@@ -53,7 +53,7 @@ export default function GhXmlStudio() {
                 <TabsTrigger value="plugins">Plugins List</TabsTrigger>
               </TabsList>
               <SummaryTabContent metrics={metrics} />
-              <PluginsTabContent />
+              <PluginsTabContent plugins={metrics?.pluginInfo} />
             </Tabs>
           </div>
         </CardContent>

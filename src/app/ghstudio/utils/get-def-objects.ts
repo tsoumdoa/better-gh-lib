@@ -1,4 +1,4 @@
-import { GhXmlType } from "@/types/types";
+import { GhXmlType, XY } from "@/types/types";
 import { getBody, getKeyNameObj, getKeyNameObjArray } from "./helper-functions";
 import { DefinitionObjectsSchema } from "@/types/gh-xml-schema";
 import {
@@ -26,25 +26,32 @@ export function getDefObjects(ghxml: GhXmlType) {
   const chunk = chunks.chunk;
   const chunkArray = getArrayFrom(chunk);
   const compIdents = getComponentIdentifiers(chunkArray);
+  const numberOfUniqueComponents = uniqueComponentCount(compIdents);
 
   const { compoentData, nodeData } = unwrapContainer(chunkArray);
 
-  //danerously asserting type here, but sort of checking the type in function, so it's ok...
+  // works excepet for relay component
   const pivotAtt = getPivotAtt(compoentData as AttributeContainerType[][]);
+  const xy = pivotAtt.map((c) => {
+    if (c) {
+      return { x: c.X ?? 0, y: c.Y ?? 0 };
+    } else return { x: 0, y: 0 };
+  });
+  const sizeOfScript = getSizeOfScript(xy);
+
   const inputParam = getNodeParam(
     compoentData as NodeParamContainerType[][],
     "param_input"
   );
-
   const outputParam = getNodeParam(
     compoentData as NodeParamContainerType[][],
     "param_output"
   );
 
-  const { scriptParam, totalScriptSourceCount } = getScriptParam(
-    compoentData as ScriptContainerType[][]
-  );
+  const scriptParam = getScriptParam(compoentData as ScriptContainerType[][]);
 
+  // happen only with param relay	component
+  let sNodeCompSourceCount = 0;
   const singleNodeComponentSource = nodeData.map((c) =>
     getKeyNameObjArray<AttributeContainerType>(
       c as unknown as AttributeContainerType[],
@@ -52,27 +59,23 @@ export function getDefObjects(ghxml: GhXmlType) {
       "Source"
     )
   );
-  console.log(singleNodeComponentSource);
-  console.log(inputParam);
-  console.log(outputParam);
-  console.log(scriptParam);
 
+  singleNodeComponentSource.map((c) => {
+    if (Array.isArray(c)) {
+      sNodeCompSourceCount += c.length;
+    }
+  });
   const totalCanvasSourceCount =
     inputParam.totalSourceCount +
     outputParam.totalSourceCount +
-    totalScriptSourceCount;
+    scriptParam.totalSourceCount +
+    sNodeCompSourceCount;
 
-  console.log(totalCanvasSourceCount);
   return {
     componentCount: chunks["@_count"],
-    compponentIdent: compIdents,
-    pivotAtt: pivotAtt,
-    inputParam: inputParam,
-    outputParam: outputParam,
     sourceCount: totalCanvasSourceCount,
-    //sourceArrays:
-    // compoentUids:
-    // compoentInputUids:
+    sizeOfScript: sizeOfScript,
+    uniqueComponentCount: numberOfUniqueComponents,
   };
 }
 
@@ -132,4 +135,36 @@ function getPivotAtt(compoentData: AttributeContainerType[][]) {
   return attContainerItems.map((c) =>
     getKeyNameObj(c as unknown as PivotAttributeType[], "@_name", "Pivot")
   );
+}
+
+function getSizeOfScript(xy: XY[]): XY {
+  let topLeftX = 0;
+  let topRightY = 0;
+  xy.map((c) => {
+    if (c.x < topLeftX) topLeftX = c.x;
+    if (c.y < topRightY) topRightY = c.y;
+  });
+
+  // find the largest x and y
+  let bottomLeftX = 0;
+  let bottomRightY = 0;
+  xy.map((c) => {
+    if (c.x > bottomLeftX) bottomLeftX = c.x;
+    if (c.y > bottomRightY) bottomRightY = c.y;
+  });
+
+  const x = bottomLeftX - topLeftX;
+  const y = bottomRightY - topRightY;
+
+  return { x: x, y: y };
+}
+
+function uniqueComponentCount(componentIdentifiers: PropertyType[]) {
+  let count = 0;
+  componentIdentifiers.map((c) => {
+    if (componentIdentifiers.filter((e) => e.guid === c.guid).length === 1) {
+      count++;
+    }
+  });
+  return count;
 }

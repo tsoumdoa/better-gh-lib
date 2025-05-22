@@ -10,6 +10,7 @@ import {
   VersionSchema,
 } from "./gh-xml-schema";
 import { PluginLibraryType } from "./subs/library-type-schema";
+import { ParamItemType, PivotAttributeType } from "./subs/param-object-schema";
 
 export const GhCardSchema = z.object({
   name: z.string().min(3).max(30),
@@ -90,6 +91,26 @@ export type XmlMetrics = {
   plugins: PluginLibraryType[] | undefined;
   pluginsCount: number | undefined;
   totalNodes: number | undefined;
-  maxDepth: number | undefined;
-  schemaCoverage: number | undefined;
+  uniqueComponentCount: number | undefined;
+  sizeOfScript: XY | undefined;
+  pluginInfo: PluginLibraryType[] | undefined;
 };
+
+export type NodeParamReturnType = {
+  pivotAtt: PivotAttributeType[][];
+  nodeProperties: ParamItemType[][][];
+  totalSourceCount: number;
+  sources: void[][];
+};
+
+export type ScriptDataType = {
+  language: string;
+  version: string;
+  script: string;
+};
+
+export type ScriptDataObj = {
+  scriptData: (ScriptDataType | undefined)[];
+};
+
+export type XY = { x: number; y: number };
