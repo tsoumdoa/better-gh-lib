@@ -52,8 +52,7 @@ export function getDefObjects(ghxml: GhXmlType) {
       "Source"
     )
   );
-  // console.log(singleNodeComponentSource);
-  //
+  console.log(singleNodeComponentSource);
   console.log(inputParam);
   console.log(outputParam);
   console.log(scriptParam);

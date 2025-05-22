@@ -9,6 +9,9 @@ import { getKeyNameObjArray } from "./helper-functions";
 export function getScriptParam(
   container: ScriptContainerType[][] | ScriptParameterContainerType[][]
 ) {
+  //todo break down script data to extract
+  //language type
+  //script itself
   const scriptData = container.map((c) =>
     getKeyNameObjArray(
       c as unknown as ScriptContainerType[],
@@ -16,6 +19,7 @@ export function getScriptParam(
       "Script"
     )
   ) as unknown as ScriptContainerType[][];
+  console.log(scriptData);
 
   const paramData = container.map((c) =>
     getKeyNameObjArray(
@@ -26,8 +30,10 @@ export function getScriptParam(
   ) as unknown as ScriptParameterContainerType[][];
 
   const params = getScriptParams(paramData);
+  //need to flip to do from array of objects to objects of array
 
   return {
+    //todo script param need to broken down to nodeProperties and pivotAtt
     scriptParam: (params && params.scriptParams) || undefined,
     totalScriptSourceCount: (params && params.totalSourceCount) || 0,
   };
@@ -36,14 +42,15 @@ export function getScriptParam(
 function getScriptParams(container: ScriptParameterContainerType[][]) {
   const paramDataChunkArray = container.map((c) => {
     const d = c[0];
-    if (!d) return undefined;
-    const chunk = d?.chunks?.chunk!;
-    return getInputOutputParams(chunk);
+    if (!d) return 0;
+    const chunk = d?.chunks?.chunk || 0;
+    return chunk ? getInputOutputParams(chunk) : 0;
   });
 
   const totalSourceCount =
-    paramDataChunkArray.map((c) => c?.count ?? 0).reduce((a, b) => a + b, 0) ??
-    undefined;
+    paramDataChunkArray
+      .map((c) => (c ? c?.count : c))
+      .reduce((a, b) => a + b, 0) ?? undefined;
 
   return {
     scriptParams: paramDataChunkArray,
