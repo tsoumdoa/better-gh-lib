@@ -73,6 +73,8 @@ export const ScriptContainer = z.object({
   "@_name": z.literal("Script"),
 });
 
+export type ScriptContainerType = z.infer<typeof ScriptContainer>;
+
 export const PersistentDataContainer = z.object({
   // items: z.any(),
   // chunks: z.any(),
@@ -99,47 +101,49 @@ export const ScriptEditorContainer = z.object({
   "@_name": z.literal("ScriptEditor"),
 });
 
-export const ParamInputContainer = z.object({
+const ParamItem = TypeNameCodeSchema.extend({
+  "#text": z.union([z.string(), z.number(), z.boolean()]),
+  "@_name": z.union([
+    z.literal("Access"),
+    z.literal("Description"),
+    z.literal("InstanceGuid"),
+    z.literal("Name"),
+    z.literal("NickName"),
+    z.literal("Optional"),
+    z.literal("Source"),
+    z.literal("Hidden"), // visibility
+    z.literal("Locked"), // disabled
+    z.literal("SourceCount"),
+  ]),
+});
+
+export type ParamItemType = z.infer<typeof ParamItem>;
+
+export const NodeParamContainer = z.object({
   items: z.object({
     //todo not type safe yet
-    item: z.array(z.any()).optional(),
+    item: z.array(ParamItem).min(6),
     "@_count": z.number(),
   }),
   chunks: z.any(),
   "@_index": z.number(),
-  "@_name": z.literal("param_input"),
+  "@_name": z.union([z.literal("param_input"), z.literal("param_output")]),
 });
 
-export const ParamOutputContainer = z.object({
-  items: z.object({
-    //todo not type safe yet
-    item: z.array(z.any()),
-    "@_count": z.number(),
-  }),
-  chunks: z.any(),
-  "@_index": z.number(),
-  "@_name": z.literal("param_output"),
-});
+export type NodeParamContainerType = z.infer<typeof NodeParamContainer>;
 
-const InputParamChunk = z.object({
+const ParamChunk = z.object({
   //todo not type safe yet
   items: z.any(),
   //todo not type safe yet
   chunks: z.any(),
-  "@_name": z.literal("InputParam"),
+  "@_name": z.union([z.literal("InputParam"), z.literal("OutputParam")]),
   "@_index": z.number(),
 });
+export type ParamChunkType = z.infer<typeof ParamChunk>;
 
-const OutputParamChunk = z.object({
-  //todo not type safe yet
-  items: z.any(),
-  //todo not type safe yet
-  chunks: z.any(),
-  "@_name": z.literal("OutputParam"),
-  "@_index": z.number(),
-});
-
-export const ParameterContainer = z.object({
+//cluster and userobject
+export const ScriptParameterContainer = z.object({
   items: z.object({
     //todo not type safe yet
     item: z.any(),
@@ -147,16 +151,15 @@ export const ParameterContainer = z.object({
   }),
   chunks: z
     .object({
-      chunk: z.union([
-        InputParamChunk,
-        OutputParamChunk,
-        z.array(z.union([InputParamChunk, OutputParamChunk])),
-      ]),
+      chunk: z.union([ParamChunk, z.array(ParamChunk)]),
       "@_count": z.number(),
     })
     .optional(),
   "@_name": z.literal("ParameterData"),
 });
+export type ScriptParameterContainerType = z.infer<
+  typeof ScriptParameterContainer
+>;
 
 export const ListItemContainer = z.object({
   "@_index": z.number(),
