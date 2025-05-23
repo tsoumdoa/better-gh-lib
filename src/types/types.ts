@@ -94,6 +94,7 @@ export type XmlMetrics = {
   uniqueComponentCount: number | undefined;
   sizeOfScript: XY | undefined;
   pluginInfo: PluginLibraryType[] | undefined;
+  scriptDensity: number | undefined;
 };
 
 export type NodeParamReturnType = {

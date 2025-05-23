@@ -10,6 +10,7 @@ import {
 import { getArrayFrom, getArrayFromWithKey } from "./helper-functions";
 import {
   AttributeContainerType,
+  BoundsAttributeType,
   NodeParamContainerType,
   PivotAttributeType,
   ScriptContainerType,
@@ -30,14 +31,9 @@ export function getDefObjects(ghxml: GhXmlType) {
 
   const { compoentData, nodeData } = unwrapContainer(chunkArray);
 
-  // works excepet for relay component
-  const pivotAtt = getPivotAtt(compoentData as AttributeContainerType[][]);
-  const xy = pivotAtt.map((c) => {
-    if (c) {
-      return { x: c.X ?? 0, y: c.Y ?? 0 };
-    } else return { x: 0, y: 0 };
-  });
-  const sizeOfScript = getSizeOfScript(xy);
+  const { sizeOfScript, density } = getSizeAndCordinate(
+    compoentData as AttributeContainerType[][]
+  );
 
   const inputParam = getNodeParam(
     compoentData as NodeParamContainerType[][],
@@ -76,6 +72,7 @@ export function getDefObjects(ghxml: GhXmlType) {
     sourceCount: totalCanvasSourceCount,
     sizeOfScript: sizeOfScript,
     uniqueComponentCount: numberOfUniqueComponents,
+    density: density,
   };
 }
 
@@ -120,7 +117,8 @@ function unwrapContainer(chunkArray: DefObjMainChunkType[]) {
   };
 }
 
-function getPivotAtt(compoentData: AttributeContainerType[][]) {
+function getSizeAndCordinate(compoentData: AttributeContainerType[][]) {
+  // works excepet for relay component
   const attributeContainer = compoentData.map((c) =>
     getKeyNameObj(
       c as unknown as AttributeContainerType[],
@@ -132,39 +130,64 @@ function getPivotAtt(compoentData: AttributeContainerType[][]) {
     attributeContainer,
     (c) => c?.items?.item
   );
-  return attContainerItems.map((c) =>
+  const pivots = attContainerItems.map((c) =>
     getKeyNameObj(c as unknown as PivotAttributeType[], "@_name", "Pivot")
   );
+  const xy = pivots.map((c) => {
+    if (c) {
+      return { x: c.X ?? 0, y: c.Y ?? 0 };
+    } else return { x: 0, y: 0 };
+  });
+  const bounds = attContainerItems.map((c) =>
+    getKeyNameObj(c as unknown as BoundsAttributeType[], "@_name", "Bounds")
+  );
+  const sizeOfScript = getSizeOfScript(xy);
+  const xywh = bounds.map((c) => {
+    if (c) {
+      return { x: c.X ?? 0, y: c.Y ?? 0, w: c.W ?? 0, h: c.H ?? 0 };
+    } else return { x: 0, y: 0, w: 0, h: 0 };
+  });
+
+  const totalArea = xywh.map((c) => c.w * c.h).reduce((a, b) => a + b, 0);
+  //this is ignoring the actaul size of the component thus the number is off...
+  const density =
+    Math.round((totalArea / (sizeOfScript.x * sizeOfScript.y)) * 100) / 100;
+
+  return {
+    xy: xy,
+    xywh: xywh,
+    sizeOfScript: getSizeOfScript(xy),
+    density: density,
+  };
 }
 
 function getSizeOfScript(xy: XY[]): XY {
-  let topLeftX = 0;
-  let topRightY = 0;
+  let topLeftX = Number.MAX_SAFE_INTEGER;
+  let topLeftY = Number.MAX_SAFE_INTEGER;
   xy.map((c) => {
     if (c.x < topLeftX) topLeftX = c.x;
-    if (c.y < topRightY) topRightY = c.y;
+    if (c.y < topLeftY) topLeftY = c.y;
   });
 
-  // find the largest x and y
-  let bottomLeftX = 0;
-  let bottomRightY = 0;
+  let bottomRightX = Number.MIN_SAFE_INTEGER;
+  let bottomRightY = Number.MIN_SAFE_INTEGER;
   xy.map((c) => {
-    if (c.x > bottomLeftX) bottomLeftX = c.x;
+    if (c.x > bottomRightX) bottomRightX = c.x;
     if (c.y > bottomRightY) bottomRightY = c.y;
   });
 
-  const x = bottomLeftX - topLeftX;
-  const y = bottomRightY - topRightY;
+  const x = bottomRightX - topLeftX;
+  const y = bottomRightY - topLeftY;
 
-  return { x: x, y: y };
+  return { x: Math.round(x), y: Math.round(y) };
 }
 
 function uniqueComponentCount(componentIdentifiers: PropertyType[]) {
-  let count = 0;
-  componentIdentifiers.map((c) => {
-    if (componentIdentifiers.filter((e) => e.guid === c.guid).length === 1) {
-      count++;
+  const uniqueGuids = new Set<string>();
+  componentIdentifiers.forEach((c) => {
+    if (!uniqueGuids.has(c.guid)) {
+      uniqueGuids.add(c.guid);
     }
   });
-  return count;
+  return uniqueGuids.size;
 }

@@ -18,6 +18,7 @@ export function getXmlMetrics(ghxml: GhXmlType): XmlMetrics {
     totalNodes: defObjs?.sourceCount,
     uniqueComponentCount: defObjs?.uniqueComponentCount,
     sizeOfScript: defObjs?.sizeOfScript,
+    scriptDensity: defObjs?.density,
     pluginInfo: plugnInfo?.pluginLibs,
   };
 }

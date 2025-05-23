@@ -17,6 +17,8 @@ const BundsAttribute = TypeNameCodeSchema.extend({
   "@_name": z.literal("Bounds"),
 });
 
+export type BoundsAttributeType = z.infer<typeof BundsAttribute>;
+
 const PivotAttribute = TypeNameCodeSchema.extend({
   X: z.number(),
   Y: z.number(),
