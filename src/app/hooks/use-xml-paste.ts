@@ -41,7 +41,7 @@ export function useXmlPaste(
             (validatedJsonString.length / parsedJsonString.length) * 1000
           ) / 10;
         setSchemaCoverage(sc);
-        const metrics = getXmlMetrics(validatedJson, sc);
+        const metrics = getXmlMetrics(validatedJson);
         setMetrics(metrics);
       } else {
         setIsValidXml(false);

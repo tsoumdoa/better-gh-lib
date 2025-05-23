@@ -8,12 +8,13 @@ import {
   getKeyNameObj,
   getKeyNameObjArray,
 } from "./helper-functions";
+import { NodeParamReturnType } from "@/types/types";
 
 export function getNodeParam(
   compoentData: NodeParamContainerType[][],
   //this is not type safe...
   nodeType: "param_input" | "param_output"
-) {
+): NodeParamReturnType {
   const params = compoentData.map((c) =>
     getKeyNameObjArray(
       c as unknown as NodeParamContainerType[],

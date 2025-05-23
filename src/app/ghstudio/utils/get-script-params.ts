@@ -19,7 +19,6 @@ export function getScriptParam(
       "Script"
     )
   ) as unknown as ScriptContainerType[][];
-  console.log(scriptData);
 
   const paramData = container.map((c) =>
     getKeyNameObjArray(
@@ -30,26 +29,44 @@ export function getScriptParam(
   ) as unknown as ScriptParameterContainerType[][];
 
   const params = getScriptParams(paramData);
-  //need to flip to do from array of objects to objects of array
+
+  // get input
+  const inputParamArray = params.scriptParams.map((c) => c && c.inputParam);
+  const inputAttParams = inputParamArray.map(
+    //@ts-ignore
+    (c) => c && c.map((d) => d && d.items.item.map((e) => e))
+  ) as ParamItemType[][][];
+  const inputSource = inputAttParams.map(
+    (c) => c && c.map((d) => d && d.filter((e) => e["@_name"] === "Source"))
+  );
+
+  //get output
+  const outputParamArray = params.scriptParams.map((c) => c && c.outputParam);
+  const outputAttParams = outputParamArray.map(
+    //@ts-ignore
+    (c) => c && c.map((d) => d && d.items.item.map((e) => e))
+  ) as ParamItemType[][][];
 
   return {
-    //todo script param need to broken down to nodeProperties and pivotAtt
-    scriptParam: (params && params.scriptParams) || undefined,
-    totalScriptSourceCount: (params && params.totalSourceCount) || 0,
+    inputNode: inputAttParams,
+    outputNode: outputAttParams,
+    sources: inputSource,
+    totalSourceCount: params.totalSourceCount,
+    scriptData: scriptData, // returning as is for now
   };
 }
 
 function getScriptParams(container: ScriptParameterContainerType[][]) {
   const paramDataChunkArray = container.map((c) => {
     const d = c[0];
-    if (!d) return 0;
+    if (!d) return undefined;
     const chunk = d?.chunks?.chunk || 0;
-    return chunk ? getInputOutputParams(chunk) : 0;
+    return chunk ? getInputOutputParams(chunk) : undefined;
   });
 
   const totalSourceCount =
     paramDataChunkArray
-      .map((c) => (c ? c?.count : c))
+      .map((c) => (c ? c?.count : 0))
       .reduce((a, b) => a + b, 0) ?? undefined;
 
   return {
@@ -61,6 +78,7 @@ function getScriptParams(container: ScriptParameterContainerType[][]) {
 function getInputOutputParams(chunk: ParamChunkType | ParamChunkType[]) {
   let sourceCount = 0;
   const inputParam: ParamChunkType[] = [];
+
   const inputSource: (ParamItemType[] | undefined)[] = [];
   const outputParam: ParamChunkType[] = [];
 

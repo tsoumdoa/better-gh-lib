@@ -19,15 +19,22 @@ export function MetricsView(props: { metrics: XmlMetrics | undefined }) {
         title="Component Count"
         value={props.metrics?.componentCount}
       />
-      <MetricCard title="Total Nodes" value={props.metrics?.totalNodes} />
-      <MetricCard title="Max Depth" value={props.metrics?.maxDepth} />
-      <MetricCard title="Plugins Count" value={props.metrics?.pluginsCount} />
       <MetricCard
-        title="Schema Coverage"
+        title="Unique Component Count"
+        value={props.metrics?.uniqueComponentCount}
+      />
+      <MetricCard
+        title="Total Node Connections"
+        value={props.metrics?.totalNodes}
+      />
+      <MetricCard
+        title="Size of Script"
         value={
-          props.metrics?.schemaCoverage && `${props.metrics?.schemaCoverage}%`
+          props.metrics?.sizeOfScript &&
+          `${props.metrics?.sizeOfScript?.x} x ${props.metrics?.sizeOfScript?.y}`
         }
       />
+      <MetricCard title="Plugins Count" value={props.metrics?.pluginsCount} />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { GhXmlType } from "@/types/types";
+import { GhXmlType, XY } from "@/types/types";
 import { getBody, getKeyNameObj, getKeyNameObjArray } from "./helper-functions";
 import { DefinitionObjectsSchema } from "@/types/gh-xml-schema";
 import {
@@ -10,6 +10,7 @@ import {
 import { getArrayFrom, getArrayFromWithKey } from "./helper-functions";
 import {
   AttributeContainerType,
+  BoundsAttributeType,
   NodeParamContainerType,
   PivotAttributeType,
   ScriptContainerType,
@@ -26,25 +27,27 @@ export function getDefObjects(ghxml: GhXmlType) {
   const chunk = chunks.chunk;
   const chunkArray = getArrayFrom(chunk);
   const compIdents = getComponentIdentifiers(chunkArray);
+  const numberOfUniqueComponents = uniqueComponentCount(compIdents);
 
   const { compoentData, nodeData } = unwrapContainer(chunkArray);
 
-  //danerously asserting type here, but sort of checking the type in function, so it's ok...
-  const pivotAtt = getPivotAtt(compoentData as AttributeContainerType[][]);
+  const { sizeOfScript, density } = getSizeAndCordinate(
+    compoentData as AttributeContainerType[][]
+  );
+
   const inputParam = getNodeParam(
     compoentData as NodeParamContainerType[][],
     "param_input"
   );
-
   const outputParam = getNodeParam(
     compoentData as NodeParamContainerType[][],
     "param_output"
   );
 
-  const { scriptParam, totalScriptSourceCount } = getScriptParam(
-    compoentData as ScriptContainerType[][]
-  );
+  const scriptParam = getScriptParam(compoentData as ScriptContainerType[][]);
 
+  // happen only with param relay	component
+  let sNodeCompSourceCount = 0;
   const singleNodeComponentSource = nodeData.map((c) =>
     getKeyNameObjArray<AttributeContainerType>(
       c as unknown as AttributeContainerType[],
@@ -52,27 +55,24 @@ export function getDefObjects(ghxml: GhXmlType) {
       "Source"
     )
   );
-  console.log(singleNodeComponentSource);
-  console.log(inputParam);
-  console.log(outputParam);
-  console.log(scriptParam);
 
+  singleNodeComponentSource.map((c) => {
+    if (Array.isArray(c)) {
+      sNodeCompSourceCount += c.length;
+    }
+  });
   const totalCanvasSourceCount =
     inputParam.totalSourceCount +
     outputParam.totalSourceCount +
-    totalScriptSourceCount;
+    scriptParam.totalSourceCount +
+    sNodeCompSourceCount;
 
-  console.log(totalCanvasSourceCount);
   return {
     componentCount: chunks["@_count"],
-    compponentIdent: compIdents,
-    pivotAtt: pivotAtt,
-    inputParam: inputParam,
-    outputParam: outputParam,
     sourceCount: totalCanvasSourceCount,
-    //sourceArrays:
-    // compoentUids:
-    // compoentInputUids:
+    sizeOfScript: sizeOfScript,
+    uniqueComponentCount: numberOfUniqueComponents,
+    density: density,
   };
 }
 
@@ -117,7 +117,8 @@ function unwrapContainer(chunkArray: DefObjMainChunkType[]) {
   };
 }
 
-function getPivotAtt(compoentData: AttributeContainerType[][]) {
+function getSizeAndCordinate(compoentData: AttributeContainerType[][]) {
+  // works excepet for relay component
   const attributeContainer = compoentData.map((c) =>
     getKeyNameObj(
       c as unknown as AttributeContainerType[],
@@ -129,7 +130,64 @@ function getPivotAtt(compoentData: AttributeContainerType[][]) {
     attributeContainer,
     (c) => c?.items?.item
   );
-  return attContainerItems.map((c) =>
+  const pivots = attContainerItems.map((c) =>
     getKeyNameObj(c as unknown as PivotAttributeType[], "@_name", "Pivot")
   );
+  const xy = pivots.map((c) => {
+    if (c) {
+      return { x: c.X ?? 0, y: c.Y ?? 0 };
+    } else return { x: 0, y: 0 };
+  });
+  const bounds = attContainerItems.map((c) =>
+    getKeyNameObj(c as unknown as BoundsAttributeType[], "@_name", "Bounds")
+  );
+  const sizeOfScript = getSizeOfScript(xy);
+  const xywh = bounds.map((c) => {
+    if (c) {
+      return { x: c.X ?? 0, y: c.Y ?? 0, w: c.W ?? 0, h: c.H ?? 0 };
+    } else return { x: 0, y: 0, w: 0, h: 0 };
+  });
+
+  const totalArea = xywh.map((c) => c.w * c.h).reduce((a, b) => a + b, 0);
+  //this is ignoring the actaul size of the component thus the number is off...
+  const density =
+    Math.round((totalArea / (sizeOfScript.x * sizeOfScript.y)) * 100) / 100;
+
+  return {
+    xy: xy,
+    xywh: xywh,
+    sizeOfScript: getSizeOfScript(xy),
+    density: density,
+  };
+}
+
+function getSizeOfScript(xy: XY[]): XY {
+  let topLeftX = Number.MAX_SAFE_INTEGER;
+  let topLeftY = Number.MAX_SAFE_INTEGER;
+  xy.map((c) => {
+    if (c.x < topLeftX) topLeftX = c.x;
+    if (c.y < topLeftY) topLeftY = c.y;
+  });
+
+  let bottomRightX = Number.MIN_SAFE_INTEGER;
+  let bottomRightY = Number.MIN_SAFE_INTEGER;
+  xy.map((c) => {
+    if (c.x > bottomRightX) bottomRightX = c.x;
+    if (c.y > bottomRightY) bottomRightY = c.y;
+  });
+
+  const x = bottomRightX - topLeftX;
+  const y = bottomRightY - topLeftY;
+
+  return { x: Math.round(x), y: Math.round(y) };
+}
+
+function uniqueComponentCount(componentIdentifiers: PropertyType[]) {
+  const uniqueGuids = new Set<string>();
+  componentIdentifiers.forEach((c) => {
+    if (!uniqueGuids.has(c.guid)) {
+      uniqueGuids.add(c.guid);
+    }
+  });
+  return uniqueGuids.size;
 }
