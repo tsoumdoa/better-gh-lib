@@ -6,7 +6,6 @@ import { getDefObjects } from "./get-def-objects";
 export function getXmlMetrics(ghxml: GhXmlType): XmlMetrics {
   const archiveVersion = getArchieveVersion(ghxml);
   const plugnInfo = getPluginInfo(ghxml);
-  console.log(plugnInfo);
   // const defProps = getDefObjProps(ghxml);/* general info abt the script, not so useful */
   const defObjs = getDefObjects(ghxml);
 

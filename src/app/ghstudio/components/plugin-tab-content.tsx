@@ -4,7 +4,7 @@ import { PluginLibraryType } from "@/types/subs/library-type-schema";
 export function PluginsTabContent(props: {
   plugins: PluginLibraryType[] | undefined;
 }) {
-  if (props.plugins && props.plugins.length === 0)
+  if (!props.plugins || props.plugins.length === 0)
     return (
       <div>
         <TabsContent

@@ -9,7 +9,7 @@ const NumberAttribute = TypeNameCodeSchema.extend({
   "#text": z.number(),
 });
 
-const BundsAttribute = TypeNameCodeSchema.extend({
+const BoundsAttribute = TypeNameCodeSchema.extend({
   X: z.number(),
   Y: z.number(),
   W: z.number(),
@@ -17,7 +17,7 @@ const BundsAttribute = TypeNameCodeSchema.extend({
   "@_name": z.literal("Bounds"),
 });
 
-export type BoundsAttributeType = z.infer<typeof BundsAttribute>;
+export type BoundsAttributeType = z.infer<typeof BoundsAttribute>;
 
 const PivotAttribute = TypeNameCodeSchema.extend({
   X: z.number(),
@@ -39,7 +39,7 @@ export const AttributeContainer = z.object({
         z.union([
           StringAttribute,
           NumberAttribute,
-          BundsAttribute,
+          BoundsAttribute,
           PivotAttribute,
           SelectedAttribute,
         ])
