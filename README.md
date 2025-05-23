@@ -6,4 +6,4 @@
 - [ ] improve validator
 - [ ] warn ussers that internalized hops elements are not supported - lexers key
       under container should be the way to be able to tell if it's true
-- [ ] scribble compoentn doesn't get parsed correctly
+- [x] scribble compoentn doesn't get parsed correctly
