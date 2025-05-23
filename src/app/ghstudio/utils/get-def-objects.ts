@@ -27,7 +27,7 @@ export function getDefObjects(ghxml: GhXmlType) {
   const chunk = chunks.chunk;
   const chunkArray = getArrayFrom(chunk);
   const compIdents = getComponentIdentifiers(chunkArray);
-  const numberOfUniqueComponents = uniqueComponentCount(compIdents);
+  const numberComps = uniqueComponentCount(compIdents);
 
   const { compoentData, nodeData } = unwrapContainer(chunkArray);
 
@@ -71,7 +71,7 @@ export function getDefObjects(ghxml: GhXmlType) {
     componentCount: chunks["@_count"],
     sourceCount: totalCanvasSourceCount,
     sizeOfScript: sizeOfScript,
-    uniqueComponentCount: numberOfUniqueComponents,
+    uniqueComps: numberComps,
     density: density,
   };
 }
@@ -183,11 +183,26 @@ function getSizeOfScript(xy: XY[]): XY {
 }
 
 function uniqueComponentCount(componentIdentifiers: PropertyType[]) {
-  const uniqueGuids = new Set<string>();
+  const uniqueComp = new Map<
+    string,
+    {
+      property: PropertyType;
+      count: number;
+    }
+  >();
   componentIdentifiers.forEach((c) => {
-    if (!uniqueGuids.has(c.guid)) {
-      uniqueGuids.add(c.guid);
+    if (!uniqueComp.has(c.guid)) {
+      uniqueComp.set(c.guid, {
+        property: c,
+        count: 1,
+      });
+    } else {
+      const obj = uniqueComp.get(c.guid)!;
+      obj.count++;
     }
   });
-  return uniqueGuids.size;
+  return {
+    uniqueCount: uniqueComp.size,
+    uniqueComps: Array.from(uniqueComp.values()),
+  };
 }
