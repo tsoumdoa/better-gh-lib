@@ -85,6 +85,9 @@ const ItemObjectChunk = z.object({
       Revision: z.number().optional(),
       //happen only with itnernalized hops
       stream: z.any().optional(),
+      //happen only with scribble
+      X: z.number().optional(),
+      Y: z.number().optional(),
     })
   ),
   "@_count": z.number(),
