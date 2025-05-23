@@ -11,6 +11,7 @@ import {
 } from "./gh-xml-schema";
 import { PluginLibraryType } from "./subs/library-type-schema";
 import { ParamItemType, PivotAttributeType } from "./subs/param-object-schema";
+import { PropertyType } from "./subs/definition-objects-schema";
 
 export const GhCardSchema = z.object({
   name: z.string().min(3).max(30),
@@ -92,6 +93,12 @@ export type XmlMetrics = {
   pluginsCount: number | undefined;
   totalNodes: number | undefined;
   uniqueComponentCount: number | undefined;
+  uniqueComponents:
+    | {
+        property: PropertyType;
+        count: number;
+      }[]
+    | undefined;
   sizeOfScript: XY | undefined;
   pluginInfo: PluginLibraryType[] | undefined;
   scriptDensity: number | undefined;

@@ -5,7 +5,7 @@ import { MetricsView } from "./metrics-view";
 
 export function SummaryTabContent(props: { metrics: XmlMetrics | undefined }) {
   return (
-    <TabsContent value="summary" className="mt-2 rounded-md bg-neutral-800 p-4">
+    <TabsContent value="summary" className="rounded-md bg-neutral-800 p-4">
       <div className="mb-2 flex items-center gap-2">
         <BarChart2 className="h-5 w-5 text-white" />
         <span className="font-semibold text-white">Script Metrics</span>

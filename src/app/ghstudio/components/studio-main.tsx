@@ -7,6 +7,7 @@ import { GhXmlValidatorButtons } from "@/app/components/paste-ghxml";
 import { ValidatedResult } from "@/app/components/valiation-resul";
 import { SummaryTabContent } from "./summary-tab-content";
 import { PluginsTabContent } from "./plugin-tab-content";
+import { ComponentsTabContent } from "./component-tab-content";
 
 export default function GhXmlStudio() {
   const [error, setError] = useState("");
@@ -48,12 +49,16 @@ export default function GhXmlStudio() {
         <CardContent>
           <div>
             <Tabs defaultValue="summary" className="w-full gap-2">
-              <TabsList className="grid w-full grid-cols-2">
+              <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="summary">Summary</TabsTrigger>
                 <TabsTrigger value="plugins">Plugins List</TabsTrigger>
+                <TabsTrigger value="components">Component Usage</TabsTrigger>
               </TabsList>
               <SummaryTabContent metrics={metrics} />
-              <PluginsTabContent plugins={metrics?.pluginInfo} />
+              <PluginsTabContent plugins={metrics?.plugins || undefined} />
+              <ComponentsTabContent
+                data={metrics?.uniqueComponents || undefined}
+              />
             </Tabs>
           </div>
         </CardContent>

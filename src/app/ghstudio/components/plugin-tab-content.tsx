@@ -7,10 +7,7 @@ export function PluginsTabContent(props: {
   if (!props.plugins || props.plugins.length === 0)
     return (
       <div>
-        <TabsContent
-          value="plugins"
-          className="mt-2 rounded-md bg-neutral-800 p-4"
-        >
+        <TabsContent value="plugins" className="rounded-md bg-neutral-800 p-4">
           <div className="flex flex-col gap-1">
             <div className="pb-1 font-semibold text-white">No plugins used</div>
           </div>
