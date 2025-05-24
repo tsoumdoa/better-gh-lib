@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { TRPCReactProvider } from "@/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
+import { PostHogProvider } from "./providers/PostHogProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +31,9 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <TRPCReactProvider>{children}</TRPCReactProvider>
+          <PostHogProvider>
+            <TRPCReactProvider>{children}</TRPCReactProvider>
+          </PostHogProvider>
         </body>
       </html>
     </ClerkProvider>
