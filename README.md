@@ -54,12 +54,9 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 Before you begin, ensure you have the following installed:
 
-- **Node.js** (LTS version recommended): [https://nodejs.org/](https://nodejs.org/)
-- **pnpm**:
-  ```bash
-  npm install -g pnpm
-  ```
-- **Git**: [https://git-scm.com/](https://git-scm.com/)
+- **Node.js** (LTS version recommended)
+- **pnpm**
+- **Git**
 
 You will also need to provide the necessary API keys and environment variables, as shown in the `.env.example` file. This typically includes credentials for Clerk, Cloudflare R2, Upstash Redis, and Turso LibSQL.
 
@@ -67,7 +64,7 @@ You will also need to provide the necessary API keys and environment variables, 
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/[YourGitHubUsername]/hopperclip.git
+    git clone https://github.com/tsoumdoa/better-gh-lib
     ```
     _(Remember to replace `[YourGitHubUsername]` with your actual GitHub username and adjust `hopperclip.git` if your repo name is different)_
 2.  **Navigate into the project directory:**
