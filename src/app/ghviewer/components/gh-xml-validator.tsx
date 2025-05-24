@@ -22,7 +22,7 @@ export default function GhXmlValidator() {
     parsedJson,
     schemaCoverage,
     run,
-  } = useXmlPaste(setError);
+  } = useXmlPaste(setError, () => {});
 
   const { textarea1Ref, textarea2Ref, setEnableSync, enableSync } =
     useSyncedScroll();
