@@ -59,9 +59,16 @@ export default function GHCard(props: {
     },
     onError: async () => {
       //todo let user know the delete failed better...
-      setGhInfo({ name: props.name, description: props.description });
-      setEditMode(false);
       setUpdating(false);
+      setEditMode(false);
+      setGhInfo({
+        name: "Failed to delete",
+        description:
+          "Failed to delete. Try again, or cancel and try again later",
+      });
+
+      await new Promise((r) => setTimeout(r, 1200));
+      setGhInfo({ name: props.name, description: props.description });
     },
   });
 

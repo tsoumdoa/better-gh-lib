@@ -18,6 +18,7 @@ import { useUploadToR2 } from "../hooks/use-upload-to-r2";
 import { usePostAdd } from "../hooks/use-post-add";
 import { useXmlPaste } from "../hooks/use-xml-paste";
 import AddXml from "./add-xml";
+import { compress } from "@/server/api/routers/util/gzip";
 
 export function AddGhDialog(props: {
   open: boolean;
@@ -29,7 +30,8 @@ export function AddGhDialog(props: {
   const [posted, setPosted] = useState(false);
   const { name, setName, description, setDescription, isValid } =
     useValidateNameAndDescription();
-  const { runUpload, uploading, uploadSuccess, data, xmlRef } = useUploadToR2();
+  const { mutate, uploading, uploadSuccess, data, gzipRef } =
+    useUploadToR2(setAddError);
   const postData = usePostAdd(
     setAddError,
     props.setAdding,
@@ -37,13 +39,13 @@ export function AddGhDialog(props: {
     setPosted
   );
   const { xmlData, setXmlData, isValidXml, handlePasteFromClipboard } =
-    useXmlPaste(setAddError);
+    useXmlPaste(setAddError, props.setAdding);
 
+  //todo it breaks when r2 upload fails
   useEffect(() => {
-    if (props.adding && !posted && data && !uploading) {
-      //this somehow helps to prevent the stale data error
-      const id = data.id;
-      if (uploadSuccess) {
+    if (props.adding && !posted && data && !uploading && data.ok) {
+      const id = data.data?.id || "";
+      if (uploadSuccess && id.length > 0) {
         postData.mutate({
           name: name,
           description: description,
@@ -70,9 +72,12 @@ export function AddGhDialog(props: {
     if (isValidXml && isValid && xmlData) {
       setAddError("");
       props.setAdding(true);
-      xmlRef.current = xmlData;
+
+      const gziped = compress(xmlData);
+      gzipRef.current = gziped;
+      const size = gzipRef.current.length;
       //this trigers useUpladToR2 to run
-      runUpload();
+      mutate({ size });
       setXmlData(undefined);
     }
   };
@@ -80,6 +85,7 @@ export function AddGhDialog(props: {
   const handleCancel = () => {
     setName("");
     setDescription("");
+    setAddError("");
     setXmlData(undefined);
     props.setOpen(false);
   };
@@ -129,7 +135,6 @@ export function AddGhDialog(props: {
         <AlertDialogFooter>
           <AlertDialogCancel
             disabled={props.adding}
-            hidden={props.adding}
             onClick={() => handleCancel()}
           >
             Cancel
@@ -137,7 +142,6 @@ export function AddGhDialog(props: {
           <AlertDialogAction
             onClick={() => handleSubmit()}
             disabled={!isValid || props.adding || xmlData === undefined}
-            hidden={props.adding}
           >
             Add
           </AlertDialogAction>

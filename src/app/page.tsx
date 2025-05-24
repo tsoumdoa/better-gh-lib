@@ -38,21 +38,21 @@ export default async function Home() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             <FeatureCard
               title="GhCard"
-              description="Explore and manage your script library with an intuitive card-based interface."
+              description="Explore and manage your script library by copy & paste your GhScript."
               href="/ghcards"
-              go="MVP"
+              go="Signup required, max 50 cards currently"
             />
             <FeatureCard
               title="GhJsonViewer"
               description="Validate GhXml data and see how they get parsed and validated to JSON."
               href="/ghviewer"
-              go="works locally"
+              go="mostly for dev uses only"
             />
             <FeatureCard
               title="GhStudio"
-              description="Run linting, formatting, and custom rules to maintain code quality."
+              description="Get metrics of your Gh Scripts."
               href="/ghstudio"
-              go="nothing to see here yet"
+              go="more features coming soon"
             />
           </div>
         </div>

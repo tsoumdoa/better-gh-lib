@@ -5,7 +5,8 @@ import { getXmlMetrics } from "../ghstudio/utils/get-xml-metrics";
 import posthog from "posthog-js";
 
 export function useXmlPaste(
-  setAddError: React.Dispatch<React.SetStateAction<string>>
+  setAddError: React.Dispatch<React.SetStateAction<string>>,
+  setAdding: (b: boolean) => void
 ) {
   const [xmlData, setXmlData] = useState<string>();
   const [run, setRun] = useState(false);
@@ -18,6 +19,7 @@ export function useXmlPaste(
   const handlePasteFromClipboard = useCallback(async () => {
     setAddError("");
     setXmlData("");
+    setAdding(false);
     setValidatedJson(undefined);
 
     posthog.capture("user_pasted");
@@ -56,7 +58,7 @@ export function useXmlPaste(
       setAddError("Failed to read clipboard contents: \n" + err);
     }
     setRun(true);
-  }, [setXmlData, setAddError]);
+  }, [setXmlData, setAddError, setAdding]);
 
   const handleClear = () => {
     setXmlData("");

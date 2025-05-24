@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { decompress } from "@/server/api/routers/util/gzip";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
@@ -42,20 +41,22 @@ export function CopiedDialog(props: {
   setOpen: () => void;
   presignedUrl: string;
 }) {
-  //todo
-  //after it fails to load,
-  //it should either show a dialog or a toast
-  //to let user to decide whether
-  //try again or
-  //delete the card or
-  //update the card...?
-  const { refetch, isLoading, isSuccess } = useQuery({
+  const { refetch, isLoading, isSuccess, isError } = useQuery({
     queryKey: [props.presignedUrl],
     queryFn: async () => {
-      const res = await fetch(props.presignedUrl, { cache: "no-store" });
+      const res = await fetch(props.presignedUrl, {
+        cache: "no-store",
+        headers: {
+          "Content-Encoding": "gzip",
+          "Content-Type": "application/gzip",
+        },
+      });
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      //browser will automatically decompress gzipped data
       const arrayBuffer = await res.arrayBuffer();
-      const xml = decompress(arrayBuffer);
-      const decoded = new TextDecoder().decode(xml);
+      const decoded = new TextDecoder().decode(arrayBuffer);
       navigator.clipboard
         .writeText(decoded)
         .then(() => {
@@ -74,12 +75,14 @@ export function CopiedDialog(props: {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.presignedUrl]);
 
+  //todo, this is bad....
+  //improve the loading state display better...
   return (
     <AlertDialog open={props.open} onOpenChange={props.setOpen}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            {isLoading
+            {isLoading && !isError
               ? "Loading..."
               : isSuccess
                 ? "Copied!"
@@ -88,7 +91,7 @@ export function CopiedDialog(props: {
           <AlertDialogDescription>
             {isLoading
               ? ""
-              : isSuccess
+              : isSuccess || !isError
                 ? "copied to your clipboard!"
                 : "Something went wrong..."}
           </AlertDialogDescription>
@@ -102,7 +105,7 @@ export function CopiedDialog(props: {
 }
 
 export function ShareDialog(props: { open: boolean; setOpen: () => void }) {
-  const shareLink = "https://www.hopperclip.com/";
+  const shareLink = "Sorry, not yet implemented";
   const handleCopyClick = () => {
     navigator.clipboard.writeText(shareLink);
     alert("Link copied to clipboard!");

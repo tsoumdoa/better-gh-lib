@@ -22,6 +22,16 @@ export const postRouter = createTRPCRouter({
         throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
       }
 
+      const checkNAllEntries = await ctx.db
+        .select()
+        .from(posts)
+        .where(eq(posts.clerkUserId, userId));
+      if (checkNAllEntries.length > 50) {
+        throw new Error("CARD_LIMIT_50_HIT", {
+          cause: new Error("MAC_CARD_LIMIT_HIT"),
+        });
+      }
+
       const key = ghCardKey(userId, input.name);
       const hasKey = await ctx.radis.exists(key);
       try {
@@ -146,22 +156,35 @@ export const postRouter = createTRPCRouter({
       }
     }),
 
-  getPutPresignedUrl: publicProcedure.query(async ({ ctx }) => {
-    const { userId } = ctx.auth;
-    if (!userId) {
-      throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
-    }
-    const nanoId = nanoid();
-    const presigned = await ctx.r2Client.sign(
-      new Request(presignedUrl(userId, nanoId, 30), {
-        method: "PUT",
-      }),
-      {
-        aws: { signQuery: true },
+  getPutPresignedUrl: publicProcedure
+    .input(z.object({ size: z.number() }))
+    .mutation(async ({ ctx, input }) => {
+      // this is where the size limit logic is
+      if (input.size > 1024 * 1024 * 1.5) {
+        return { ok: false, error: "FILE_SIZE_TOO_BIG" };
       }
-    );
-    return { presignedUrl: presigned.url, id: nanoId };
-  }),
+
+      const { userId } = ctx.auth;
+      const size = input.size;
+      if (!userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
+      const nanoId = nanoid();
+      const presigned = await ctx.r2Client.sign(
+        new Request(presignedUrl(userId, nanoId, 30), {
+          method: "PUT",
+        }),
+        {
+          aws: { signQuery: true },
+          headers: {
+            "Content-Encoding": "gzip",
+            "Content-Length": size.toString(),
+            "Content-Type": "application/gzip",
+          },
+        }
+      );
+      return { ok: true, data: { presignedUrl: presigned.url, id: nanoId } };
+    }),
 
   getPresignedUrl: publicProcedure
     .input(z.object({ bucketId: z.string() }))
@@ -176,6 +199,10 @@ export const postRouter = createTRPCRouter({
         }),
         {
           aws: { signQuery: true },
+          headers: {
+            "Content-Encoding": "gzip",
+            "Content-Type": "application/gzip",
+          },
         }
       );
       return presigned.url;
@@ -189,7 +216,7 @@ export const postRouter = createTRPCRouter({
 
     const res = await ctx.db.query.posts.findMany({
       where: eq(posts.clerkUserId, userId),
-      limit: 100,
+      limit: 50,
       offset: 0,
       orderBy: [desc(posts.dateUpdated)],
     });
