@@ -73,11 +73,11 @@ You will also need to provide the necessary API keys and environment variables, 
     ```
 3.  **Create a `.env` file:**
 
-    - Copy the `.env.example` file to `.env`.
+    - Copy the `env.example` file to `.env`.
     - Fill in all the required environment variables.
 
     ```bash
-    cp .env.example .env
+    cp env.example .env
     # Now, open .env and fill in your keys/credentials
     ```
 
