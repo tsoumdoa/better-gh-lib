@@ -22,7 +22,8 @@ export default function GhXmlStudio() {
     handleClear,
     validatedJson,
     metrics,
-  } = useXmlPaste(setError);
+  } = useXmlPaste(setError, () => {});
+  //temp hack ...
 
   return (
     <div className="w-full max-w-3xl">
