@@ -11,9 +11,9 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
     posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY!, {
       api_host: "/ingest",
       ui_host: "https://us.posthog.com",
-      capture_pageview: true, // We capture pageviews manually
-      capture_pageleave: true, // Enable pageleave capture
-      capture_exceptions: true, // This enables capturing exceptions using Error Tracking
+      capture_pageview: "history_change",
+      capture_pageleave: true,
+      capture_exceptions: true,
       debug: process.env.NODE_ENV === "development",
     });
   }, []);
