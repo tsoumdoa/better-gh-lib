@@ -8,6 +8,7 @@ import { ValidatedResult } from "@/app/components/valiation-resul";
 import { SummaryTabContent } from "./summary-tab-content";
 import { PluginsTabContent } from "./plugin-tab-content";
 import { ComponentsTabContent } from "./component-tab-content";
+import posthog from "posthog-js";
 
 export default function GhXmlStudio() {
   const [error, setError] = useState("");
@@ -50,9 +51,24 @@ export default function GhXmlStudio() {
           <div>
             <Tabs defaultValue="summary" className="w-full gap-2">
               <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="summary">Summary</TabsTrigger>
-                <TabsTrigger value="plugins">Plugins List</TabsTrigger>
-                <TabsTrigger value="components">Component Usage</TabsTrigger>
+                <TabsTrigger
+                  value="summary"
+                  onClick={() => posthog.capture("user_clicked_studio_summary")}
+                >
+                  Summary
+                </TabsTrigger>
+                <TabsTrigger
+                  value="plugins"
+                  onClick={() => posthog.capture("user_clicked_plugin_list")}
+                >
+                  Plugins List
+                </TabsTrigger>
+                <TabsTrigger
+                  value="components"
+                  onClick={() => posthog.capture("user_clicked_component_list")}
+                >
+                  Component Usage
+                </TabsTrigger>
               </TabsList>
               <SummaryTabContent metrics={metrics} />
               <PluginsTabContent plugins={metrics?.plugins || undefined} />

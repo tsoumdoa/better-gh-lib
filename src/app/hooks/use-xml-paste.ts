@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import { validateGhXml } from "../utils/gh-xml";
 import { GhXmlType, XmlMetrics } from "@/types/types";
 import { getXmlMetrics } from "../ghstudio/utils/get-xml-metrics";
+import posthog from "posthog-js";
 
 export function useXmlPaste(
   setAddError: React.Dispatch<React.SetStateAction<string>>
@@ -18,6 +19,9 @@ export function useXmlPaste(
     setAddError("");
     setXmlData("");
     setValidatedJson(undefined);
+
+    posthog.capture("user_pasted");
+
     try {
       const text = await navigator.clipboard.readText();
       if (text.length === 0) {
