@@ -53,13 +53,15 @@ function MainCardSkeleton() {
 
 export default async function Home() {
   const user = await currentUser();
+  const username = user?.username || user?.firstName || "User";
+
   return (
     <HydrateClient>
       <div className="min-h-screen bg-black p-4 font-sans text-white md:p-6">
         <Header />
         <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
           <div className="flex items-center gap-2 text-lg font-medium">
-            <span>{`${user?.username}'s Fav`}</span>
+            <span>{`${username}'s Fav`}</span>
           </div>
           <div className="flex items-center gap-4">
             <div className="flex cursor-pointer items-center gap-1 rounded-md px-3 py-1 text-sm ring-1 ring-neutral-500 transition-all">
