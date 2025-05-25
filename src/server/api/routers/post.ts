@@ -31,33 +31,17 @@ export const postRouter = createTRPCRouter({
           cause: new Error("MAC_CARD_LIMIT_HIT"),
         });
       }
-
-      const key = ghCardKey(userId, input.name);
-      const hasKey = await ctx.radis.exists(key);
       try {
-        if (hasKey === 0) {
-          await ctx.db.insert(posts).values({
-            name: input.name,
-            description: input.description,
-            bucketUrl: input.nanoid,
-            clerkUserId: userId,
-          });
-          ctx.radis.set(key, "");
-        } else if (hasKey === 1) {
-          const newName = addNanoId(input.name);
-          ctx.radis.set(ghCardKey(userId, newName), "");
-          await ctx.db.insert(posts).values({
-            name: newName,
-            description: input.description,
-            bucketUrl: input.nanoid,
-            clerkUserId: userId,
-          });
-        }
+        await ctx.db.insert(posts).values({
+          name: input.name,
+          description: input.description,
+          bucketUrl: input.nanoid,
+          clerkUserId: userId,
+        });
       } catch (err) {
         if (err instanceof Error) {
           if (err.message.includes("UNIQUE constraint failed")) {
             const newName = addNanoId(input.name);
-            ctx.radis.set(ghCardKey(userId, newName), "");
             await ctx.db.insert(posts).values({
               name: newName,
               description: input.description,
@@ -92,12 +76,6 @@ export const postRouter = createTRPCRouter({
         name: input.name,
         description: input.description,
       };
-      const hasKey = await ctx.radis.exists(ghCardKey(userId, input.name));
-      if (hasKey > 0 && input.prevName !== input.name) {
-        const newName = addNanoId(input.name);
-        data.name = newName;
-      }
-      ctx.radis.set(ghCardKey(userId, data.name), "");
 
       try {
         const res = await ctx.db
@@ -136,6 +114,7 @@ export const postRouter = createTRPCRouter({
         throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
       }
 
+      //still don't think this is safe enough...
       //delete from r2
       const presigned = await ctx.r2Client.sign(
         deleteUrl(ctx.auth.userId, input.bucketId),
@@ -145,7 +124,6 @@ export const postRouter = createTRPCRouter({
       );
       fetch(presigned);
 
-      ctx.radis.del(ghCardKey(userId, input.name));
       const res = await ctx.db
         .delete(posts)
         .where(and(eq(posts.clerkUserId, userId), eq(posts.id, input.id)));

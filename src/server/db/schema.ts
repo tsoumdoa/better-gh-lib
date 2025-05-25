@@ -1,5 +1,11 @@
 import { sql } from "drizzle-orm";
-import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import {
+  index,
+  integer,
+  sqliteTable,
+  text,
+  unique,
+} from "drizzle-orm/sqlite-core";
 
 export const posts = sqliteTable(
   "posts",
@@ -16,9 +22,10 @@ export const posts = sqliteTable(
     bucketUrl: text().notNull(),
     clerkUserId: text(),
   },
-  (table) => [
-    index("user_idx").on(table.clerkUserId),
-    index("post_idx").on(table.id),
+  (t) => [
+    index("user_idx").on(t.clerkUserId),
+    index("post_idx").on(t.id),
+    unique("unique_name").on(t.name, t.clerkUserId),
   ]
 );
 
