@@ -6,6 +6,7 @@ import { addNanoId } from "./util/ensureUniqueName";
 import { and, eq, desc, sql } from "drizzle-orm";
 import { GhCardSchema } from "@/types/types";
 import { env } from "@/env";
+import { TRPCError } from "@trpc/server";
 
 const ghCardKey = (userId: string, name: string) => `ghcard_${userId}_${name}`;
 const presignedUrl = (userId: string, nanoid: string, sec: number) =>
@@ -31,33 +32,17 @@ export const postRouter = createTRPCRouter({
           cause: new Error("MAC_CARD_LIMIT_HIT"),
         });
       }
-
-      const key = ghCardKey(userId, input.name);
-      const hasKey = await ctx.radis.exists(key);
       try {
-        if (hasKey === 0) {
-          await ctx.db.insert(posts).values({
-            name: input.name,
-            description: input.description,
-            bucketUrl: input.nanoid,
-            clerkUserId: userId,
-          });
-          ctx.radis.set(key, "");
-        } else if (hasKey === 1) {
-          const newName = addNanoId(input.name);
-          ctx.radis.set(ghCardKey(userId, newName), "");
-          await ctx.db.insert(posts).values({
-            name: newName,
-            description: input.description,
-            bucketUrl: input.nanoid,
-            clerkUserId: userId,
-          });
-        }
+        await ctx.db.insert(posts).values({
+          name: input.name,
+          description: input.description,
+          bucketUrl: input.nanoid,
+          clerkUserId: userId,
+        });
       } catch (err) {
         if (err instanceof Error) {
           if (err.message.includes("UNIQUE constraint failed")) {
             const newName = addNanoId(input.name);
-            ctx.radis.set(ghCardKey(userId, newName), "");
             await ctx.db.insert(posts).values({
               name: newName,
               description: input.description,
@@ -92,12 +77,6 @@ export const postRouter = createTRPCRouter({
         name: input.name,
         description: input.description,
       };
-      const hasKey = await ctx.radis.exists(ghCardKey(userId, input.name));
-      if (hasKey > 0 && input.prevName !== input.name) {
-        const newName = addNanoId(input.name);
-        data.name = newName;
-      }
-      ctx.radis.set(ghCardKey(userId, data.name), "");
 
       try {
         const res = await ctx.db
@@ -136,22 +115,28 @@ export const postRouter = createTRPCRouter({
         throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
       }
 
-      //delete from r2
       const presigned = await ctx.r2Client.sign(
         deleteUrl(ctx.auth.userId, input.bucketId),
         {
           method: "DELETE",
         }
       );
-      fetch(presigned);
 
-      ctx.radis.del(ghCardKey(userId, input.name));
       const res = await ctx.db
         .delete(posts)
         .where(and(eq(posts.clerkUserId, userId), eq(posts.id, input.id)));
       if (res.rowsAffected === 0) {
-        throw new Error("FAILED_TO_DELETE", {
-          cause: new Error("FAILED_TO_DELETE"),
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Failed to delete media from DB",
+        });
+      }
+
+      const r2Res = await fetch(presigned);
+      if (!r2Res.ok) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Failed to delete media from R2",
         });
       }
     }),
