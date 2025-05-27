@@ -14,6 +14,11 @@ async function listFiles(r2Client: AwsClient, userId: string) {
       method: "GET",
     })
   );
+  if (!res.ok) {
+    throw new Error(
+      `Failed to list R2 objects for user "${userId}": ${res.status} ${res.statusText}`
+    );
+  }
   const resTextXml = await res.text();
 
   const parser = new XMLParser({
@@ -37,8 +42,14 @@ async function listFiles(r2Client: AwsClient, userId: string) {
   }
 
   const body = validatedXml.data;
-  const contentKeys =
-    body.ListBucketResult.Contents?.map((content) => content.Key) ?? undefined;
+  const contents = body.ListBucketResult.Contents;
+  // normalizing to array
+  // fastxml praser return an object when there is only one item
+  const contentKeys = contents
+    ? (Array.isArray(contents) ? contents : [contents]).map(
+        (content) => content.Key
+      )
+    : undefined;
 
   if (contentKeys === undefined) {
     return {
@@ -55,6 +66,8 @@ async function listFiles(r2Client: AwsClient, userId: string) {
 }
 
 async function deleteFiles(r2Client: AwsClient, keys: string[]) {
+  //this thorows error if the request contains more than 1000 keys
+  //think of chunking or sth in the future
   let xmlBody = '<?xml version="1.0" encoding="UTF-8"?>';
   xmlBody += '<Delete xmlns="http://s3.amazonaws.com/doc/2006-03-01/">';
   for (const key of keys) {
@@ -118,9 +131,11 @@ export default async function cleanUpBucket(
   const splitR2Keys = contentKeys.bucketKeys.map((key) => key.split("/")[1]);
 
   const queryStatement = queryStatementResult.value;
-  const dbBucketKeys = queryStatement.map((item) => item.bucketUrl);
+  const dbBucketKeysSet = new Set(
+    queryStatement.map((item) => item.bucketUrl.replace(`${userId}/`, ""))
+  );
 
-  const diff = splitR2Keys.filter((key) => !dbBucketKeys.includes(key));
+  const diff = splitR2Keys.filter((key) => !dbBucketKeysSet.has(key));
 
   if (diff.length === 0) {
     return;
