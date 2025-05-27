@@ -10,7 +10,6 @@ import { TRPCError } from "@trpc/server";
 import cleanUpBucket from "./util/list-users-files";
 import { waitUntil } from "@vercel/functions";
 
-const ghCardKey = (userId: string, name: string) => `ghcard_${userId}_${name}`;
 const presignedUrl = (userId: string, nanoid: string, sec: number) =>
   `${env.R2_URL}/${userId}/${nanoid}?X-Amz-Expires=${sec}`;
 const deleteUrl = (userId: string, bucketKey: string) =>
