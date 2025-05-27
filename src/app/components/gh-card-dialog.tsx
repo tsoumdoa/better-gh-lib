@@ -40,10 +40,12 @@ export function CopiedDialog(props: {
   open: boolean;
   setOpen: () => void;
   presignedUrl: string;
+  bucketId: string;
 }) {
   const { refetch, isLoading, isSuccess, isError } = useQuery({
-    queryKey: [props.presignedUrl],
+    queryKey: [props.bucketId],
     queryFn: async () => {
+      console.log(props.presignedUrl);
       const res = await fetch(props.presignedUrl, {
         cache: "no-store",
         headers: {
@@ -57,6 +59,7 @@ export function CopiedDialog(props: {
       //browser will automatically decompress gzipped data
       const arrayBuffer = await res.arrayBuffer();
       const decoded = new TextDecoder().decode(arrayBuffer);
+      console.log(decoded);
       navigator.clipboard
         .writeText(decoded)
         .then(() => {
@@ -71,7 +74,10 @@ export function CopiedDialog(props: {
   });
 
   useEffect(() => {
-    refetch();
+    if (props.presignedUrl.length) {
+      refetch();
+    }
+    // I think i know what i'm doing here...
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.presignedUrl]);
 

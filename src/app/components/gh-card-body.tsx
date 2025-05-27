@@ -82,14 +82,13 @@ export function NormalButtons(props: {
     props.bucketId
   );
 
-  const handleCopy = async () => {
-    setOpenCopyDialog(true);
+  const handleCopy = () => {
     refetch();
+    setOpenCopyDialog(true);
   };
 
-  const handleShare = async () => {
+  const handleShare = () => {
     //todo replace this with actual data
-    navigator.clipboard.writeText("HEY HYE");
     setOpenSharedDialog(true);
   };
 
@@ -100,6 +99,7 @@ export function NormalButtons(props: {
           open={openCopyDialog}
           setOpen={() => setOpenCopyDialog(!openCopyDialog)}
           presignedUrl={presignedUrl}
+          bucketId={props.bucketId}
         />
       )}
       <ShareDialog
