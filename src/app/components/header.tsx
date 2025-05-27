@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <header className="mb-8 flex items-center justify-between">
       <Link className="text-2xl font-bold md:text-4xl" href="/">
-        Hopepr Clip
+        Hopper Clip
       </Link>
 
       <div className="flex items-center gap-3">
