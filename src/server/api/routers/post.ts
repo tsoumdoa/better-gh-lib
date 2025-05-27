@@ -7,6 +7,8 @@ import { and, eq, desc, sql } from "drizzle-orm";
 import { GhCardSchema } from "@/types/types";
 import { env } from "@/env";
 import { TRPCError } from "@trpc/server";
+import cleanUpBucket from "./util/list-users-files";
+import { LibSQLDatabase } from "drizzle-orm/libsql";
 
 const ghCardKey = (userId: string, name: string) => `ghcard_${userId}_${name}`;
 const presignedUrl = (userId: string, nanoid: string, sec: number) =>
@@ -52,6 +54,8 @@ export const postRouter = createTRPCRouter({
           }
         }
       }
+
+      const cleanUpRes = await cleanUpBucket(ctx.r2Client, ctx.db, userId);
     }),
 
   edit: publicProcedure
