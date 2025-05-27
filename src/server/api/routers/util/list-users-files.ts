@@ -4,7 +4,8 @@ import { posts } from "@/server/db/schema";
 import { S3BucketListSchema } from "@/types/types";
 import { AwsClient } from "aws4fetch";
 import { XMLParser } from "fast-xml-parser";
-import { inArray, and, eq } from "drizzle-orm";
+import { eq } from "drizzle-orm";
+import { Redis } from "@upstash/redis";
 
 async function listFiles(r2Client: AwsClient, userId: string) {
   const url = `${env.R2_URL}/?prefix=${userId}/`;
@@ -36,7 +37,6 @@ async function listFiles(r2Client: AwsClient, userId: string) {
   }
 
   const body = validatedXml.data;
-  body.ListBucketResult.Contents?.map((content) => console.log(content));
   const contentKeys =
     body.ListBucketResult.Contents?.map((content) => content.Key) ?? undefined;
 
@@ -60,15 +60,15 @@ async function deleteFiles(r2Client: AwsClient, keys: string[]) {
   for (const key of keys) {
     xmlBody += "<Object>";
     xmlBody += `<Key>${key}</Key>`;
+    xmlBody += "<VersionId></VersionId>";
     xmlBody += "</Object>";
   }
-  xmlBody += "<Quiet>False</Quiet>";
+  xmlBody += "<Quiet>false</Quiet>";
   xmlBody += "</Delete>";
 
-  console.log(xmlBody);
   const res = await r2Client.fetch(
     new Request(`${env.R2_URL}/?delete`, {
-      method: "DELETE",
+      method: "POST",
       body: xmlBody,
       headers: {
         "Content-Type": "application/xml",
@@ -77,38 +77,62 @@ async function deleteFiles(r2Client: AwsClient, keys: string[]) {
   );
   console.log(res);
 }
+const setCleanupRun = async (redis: Redis, userId: string) => {
+  await redis.set(`cleanupRun:${userId}`, "true", {
+    ex: 60 * 60 * 24 * 7, // 1 week
+  });
+};
 
 export default async function cleanUpBucket(
   r2Client: AwsClient,
+  redis: Redis,
   db: DbType,
   userId: string
 ) {
-  const contentKeys = await listFiles(r2Client, userId);
+  const hasRun = await redis.get(`cleanupRun:${userId}`);
+  if (hasRun) {
+    console.log("Already ran");
+    return;
+  }
+  setCleanupRun(redis, userId);
+
+  const [contentKeysResult, queryStatementResult] = await Promise.allSettled([
+    listFiles(r2Client, userId),
+    db.select().from(posts).where(eq(posts.clerkUserId, userId)),
+  ]);
+
+  if (
+    contentKeysResult.status !== "fulfilled" ||
+    queryStatementResult.status !== "fulfilled"
+  ) {
+    setCleanupRun(redis, userId);
+    return;
+  }
+
+  const contentKeys = contentKeysResult.value;
   if (contentKeys.isValid === false || contentKeys.bucketKeys === undefined) {
-    //add to retry
+    setCleanupRun(redis, userId);
     return;
   }
 
   const splitR2Keys = contentKeys.bucketKeys.map((key) => key.split("/")[1]);
 
-  const queryStatement = await db
-    .select()
-    .from(posts)
-    .where(
-      and(eq(posts.clerkUserId, userId), inArray(posts.bucketUrl, splitR2Keys))
-    );
-
+  const queryStatement = queryStatementResult.value;
   const dbBucketKeys = queryStatement.map((item) => item.bucketUrl);
 
   const diff = splitR2Keys.filter((key) => !dbBucketKeys.includes(key));
+
+  if (diff.length === 0) {
+    return;
+  }
 
   const bucketItemCount = contentKeys.bucketKeys.length;
   const dbRecordCount = queryStatement.length;
 
   const prefixKeys = diff.map((key) => `${userId}/${key}`);
-  await deleteFiles(r2Client, prefixKeys);
-
   console.log(
-    `Found ${bucketItemCount} bucket items in r2, but only ${dbRecordCount} in db. Deleted ${diff.length} from r2`
+    `Found ${bucketItemCount} bucket items in r2, but only ${dbRecordCount} in db. Deleting ${diff.length} from r2`
   );
+
+  await deleteFiles(r2Client, prefixKeys);
 }

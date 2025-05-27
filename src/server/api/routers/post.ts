@@ -8,7 +8,7 @@ import { GhCardSchema } from "@/types/types";
 import { env } from "@/env";
 import { TRPCError } from "@trpc/server";
 import cleanUpBucket from "./util/list-users-files";
-import { LibSQLDatabase } from "drizzle-orm/libsql";
+import { waitUntil } from "@vercel/functions";
 
 const ghCardKey = (userId: string, name: string) => `ghcard_${userId}_${name}`;
 const presignedUrl = (userId: string, nanoid: string, sec: number) =>
@@ -55,7 +55,7 @@ export const postRouter = createTRPCRouter({
         }
       }
 
-      const cleanUpRes = await cleanUpBucket(ctx.r2Client, ctx.db, userId);
+      waitUntil(cleanUpBucket(ctx.r2Client, ctx.redis, ctx.db, userId));
     }),
 
   edit: publicProcedure
@@ -71,10 +71,6 @@ export const postRouter = createTRPCRouter({
       const { userId } = ctx.auth;
       if (!userId) {
         throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
-      }
-
-      if (input.prevName !== input.name) {
-        ctx.radis.del(ghCardKey(userId, input.prevName));
       }
 
       const data = {
@@ -119,13 +115,6 @@ export const postRouter = createTRPCRouter({
         throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
       }
 
-      const presigned = await ctx.r2Client.sign(
-        deleteUrl(ctx.auth.userId, input.bucketId),
-        {
-          method: "DELETE",
-        }
-      );
-
       const res = await ctx.db
         .delete(posts)
         .where(and(eq(posts.clerkUserId, userId), eq(posts.id, input.id)));
@@ -136,7 +125,11 @@ export const postRouter = createTRPCRouter({
         });
       }
 
-      const r2Res = await fetch(presigned);
+      const r2Res = await ctx.r2Client.fetch(
+        new Request(deleteUrl(ctx.auth.userId, input.bucketId), {
+          method: "DELETE",
+        })
+      );
       if (!r2Res.ok) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
