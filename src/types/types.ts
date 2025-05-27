@@ -12,6 +12,7 @@ import {
 import { PluginLibraryType } from "./subs/library-type-schema";
 import { ParamItemType, PivotAttributeType } from "./subs/param-object-schema";
 import { PropertyType } from "./subs/definition-objects-schema";
+import { ListBucketResultSchema, XmlSchema } from "./s3-bucket-list-schema";
 
 export const GhCardSchema = z.object({
   name: z.string().min(3).max(30),
@@ -122,3 +123,10 @@ export type ScriptDataObj = {
 };
 
 export type XY = { x: number; y: number };
+
+export const S3BucketListSchema = z.object({
+  "?xml": XmlSchema.optional(), // The `?xml` key might not always be present
+  ListBucketResult: ListBucketResultSchema,
+});
+
+export type S3BucketListType = z.infer<typeof S3BucketListSchema>;

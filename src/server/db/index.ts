@@ -21,7 +21,7 @@ const client =
     authToken: env.DATABASE_AUTH_TOKEN,
   });
 
-export const radis =
+export const redis =
   globalForDb.upstashRedis ??
   new Redis({
     url: env.UPSTASH_REDIS_REST_URL,
@@ -30,7 +30,9 @@ export const radis =
 
 if (env.NODE_ENV !== "production") {
   globalForDb.client = client;
-  globalForDb.upstashRedis = radis;
+  globalForDb.upstashRedis = redis;
 }
 
 export const db = drizzle(client, { schema });
+
+export type DbType = typeof db;

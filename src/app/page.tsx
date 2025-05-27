@@ -38,9 +38,9 @@ export default async function Home() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             <FeatureCard
               title="GhCard"
-              description="Explore and manage your script library by copy & paste your GhScript."
+              description="Explore and manage your script library by copy & paste your GhScript. Currently open beta and max 50 cards, use it with caution."
               href="/ghcards"
-              go="Signup required, max 50 cards currently"
+              go="signup required"
             />
             <FeatureCard
               title="GhJsonViewer"
