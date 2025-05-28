@@ -7,8 +7,8 @@ import { and, eq, desc, sql } from "drizzle-orm";
 import { GhCardSchema } from "@/types/types";
 import { env } from "@/env";
 import { TRPCError } from "@trpc/server";
-import cleanUpBucket from "./util/list-users-files";
 import { waitUntil } from "@vercel/functions";
+import cleanUpBucket from "./util/run-bucket-cleanup";
 
 const presignedUrl = (userId: string, nanoid: string, sec: number) =>
   `${env.R2_URL}/${userId}/${nanoid}?X-Amz-Expires=${sec}`;
