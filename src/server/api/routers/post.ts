@@ -4,14 +4,17 @@ import { posts } from "@/server/db/schema";
 import { nanoid } from "nanoid";
 import { addNanoId } from "./util/ensureUniqueName";
 import { and, eq, desc, sql } from "drizzle-orm";
-import { GhCardSchema } from "@/types/types";
+import { GhCardSchema, ShareLinkUidSchema } from "@/types/types";
 import { env } from "@/env";
 import { TRPCError } from "@trpc/server";
-import cleanUpBucket from "./util/list-users-files";
 import { waitUntil } from "@vercel/functions";
+import cleanUpBucket from "./util/run-bucket-cleanup";
+import { generateSharableLinkUid } from "./util/generate-sharable-link-uid";
+import { Duration } from "effect";
 
 const presignedUrl = (userId: string, nanoid: string, sec: number) =>
   `${env.R2_URL}/${userId}/${nanoid}?X-Amz-Expires=${sec}`;
+
 const deleteUrl = (userId: string, bucketKey: string) =>
   `${env.R2_URL}/${userId}/${bucketKey}`;
 
@@ -203,4 +206,147 @@ export const postRouter = createTRPCRouter({
     });
     return res;
   }),
+
+  generateSharablePublicLink: publicProcedure
+    .input(z.object({ bucketId: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      const { userId } = ctx.auth;
+      if (!userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
+
+      const existingEntry: {
+        publicId: string;
+        userId: string;
+      } | null = await ctx.redis.get(`sharedLinkBucket:${input.bucketId}`);
+      if (existingEntry && existingEntry.userId === userId) {
+        return existingEntry.publicId;
+      }
+
+      const item = await ctx.db
+        .select()
+        .from(posts)
+        .where(
+          and(
+            eq(posts.bucketUrl, input.bucketId),
+            eq(posts.clerkUserId, userId)
+          )
+        );
+      if (item.length === 0 || item[0].clerkUserId !== userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
+
+      console.log("valid! uplading to redis");
+
+      const publicId = generateSharableLinkUid();
+
+      await ctx.redis.set(
+        `sharedLinkBucket:${input.bucketId}`,
+        {
+          publicId: publicId,
+          userId: userId,
+        },
+        {
+          ex: 60 * 60 * 24 * 14, // 14 days
+        }
+      );
+
+      await ctx.redis.set(
+        `sharedLink:${publicId}`,
+        {
+          bucketId: input.bucketId,
+          userId: userId,
+        },
+        {
+          ex: 60 * 60 * 24 * 14, // 14 days
+        }
+      );
+
+      return publicId;
+    }),
+
+  revokeSharablePublicLink: publicProcedure
+    .input(z.object({ bucketId: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      const { userId } = ctx.auth;
+      if (!userId) {
+        return { success: false, error: "UNAUTHORIZED" };
+      }
+
+      const existingEntry: {
+        publicId: string;
+        userId: string;
+      } | null = await ctx.redis.get(`sharedLinkBucket:${input.bucketId}`);
+
+      if (!existingEntry || existingEntry.userId !== userId) {
+        return { success: false, error: "UNAUTHORIZED" };
+      }
+
+      await ctx.redis.del(`sharedLink:${existingEntry.publicId}`);
+      return { success: true, error: "" };
+    }),
+
+  getSharedPresignedUrlPublic: publicProcedure
+    .input(z.object({ publicId: ShareLinkUidSchema }))
+    .query(async ({ input, ctx }) => {
+      const bucketId: {
+        bucketId: string;
+        userId: string;
+      } | null = await ctx.redis.get(`sharedLink:${input.publicId}`);
+      if (!bucketId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
+
+      //get expiry time
+      const expiryTime = await ctx.redis.ttl(`sharedLink:${input.publicId}`);
+
+      const postData = ctx.db
+        .select()
+        .from(posts)
+        .where(
+          and(
+            eq(posts.bucketUrl, bucketId.bucketId),
+            eq(posts.clerkUserId, bucketId.userId)
+          )
+        );
+
+      const presigned = ctx.r2Client.sign(
+        new Request(presignedUrl(bucketId.userId, bucketId.bucketId, 60 * 3), {
+          method: "GET",
+        }),
+        {
+          aws: { signQuery: true },
+          headers: {
+            "Content-Encoding": "gzip",
+            "Content-Type": "application/gzip",
+          },
+        }
+      );
+      const [presignedRes, postDataRes] = await Promise.allSettled([
+        presigned,
+        postData,
+      ]);
+      if (
+        postDataRes.status === "rejected" ||
+        presignedRes.status === "rejected"
+      ) {
+        throw new Error("Failed to get post data");
+      }
+
+      if (postDataRes.value.length === 0) {
+        throw new Error("No post data");
+      }
+      if (postDataRes.value.length > 1) {
+        throw new Error("Post should be unique but found multiple");
+      }
+      const duration = Duration.seconds(expiryTime);
+      const expirationHours = Duration.toHours(duration);
+
+      return {
+        presignedUrl: presignedRes.value.url,
+        name: postDataRes.value[0].name,
+        description: postDataRes.value[0].description,
+        expirationHours: expirationHours,
+      };
+    }),
 });

@@ -130,3 +130,10 @@ export const S3BucketListSchema = z.object({
 });
 
 export type S3BucketListType = z.infer<typeof S3BucketListSchema>;
+
+const ShareLinkUidRegex = /^[a-z0-9]{10}$/;
+export const ShareLinkUidSchema = z.string().regex(ShareLinkUidRegex, {
+  message: "Invalid Nano ID format. Must be 10 characters using 0-9 and a-z.",
+});
+
+export type ShareLinkUid = z.infer<typeof ShareLinkUidSchema>;

@@ -105,6 +105,7 @@ export function NormalButtons(props: {
       <ShareDialog
         open={openSharedDialog}
         setOpen={() => setOpenSharedDialog(!openSharedDialog)}
+        bucketId={props.bucketId}
       />
       <button
         className={`px-2 font-bold hover:text-neutral-50`}
