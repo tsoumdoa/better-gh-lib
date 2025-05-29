@@ -10,8 +10,10 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { api } from "@/trpc/react";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { env } from "@/env";
+import { useEffect, useRef, useState } from "react";
 
 export function InvalidValueDialog(props: {
   open: boolean;
@@ -45,7 +47,6 @@ export function CopiedDialog(props: {
   const { refetch, isLoading, isSuccess, isError } = useQuery({
     queryKey: [props.bucketId],
     queryFn: async () => {
-      console.log(props.presignedUrl);
       const res = await fetch(props.presignedUrl, {
         cache: "no-store",
         headers: {
@@ -110,30 +111,109 @@ export function CopiedDialog(props: {
   );
 }
 
-export function ShareDialog(props: { open: boolean; setOpen: () => void }) {
-  const shareLink = "Sorry, not yet implemented";
+export function ShareDialog(props: {
+  open: boolean;
+  setOpen: () => void;
+  bucketId: string;
+}) {
+  const format = (id: string) => {
+    if (process.env.NODE_ENV === "development") {
+      return `http:localhost:3000/share?uid=${id}`;
+    }
+    return `${env.NEXT_PUBLIC_HOSTING_DOMAIN}/share?uid=${id}`;
+  };
+
+  const { mutate: generateLink, isSuccess: isGenerated } =
+    api.post.generateSharablePublicLink.useMutation({
+      onSuccess: (data) => {
+        const url = format(data);
+        shareLinkRef.current = url;
+        setShareLink(url);
+      },
+    });
+
+  const {
+    mutate: revokeLink,
+    isSuccess: revoked,
+    reset,
+  } = api.post.revokeSharablePublicLink.useMutation({
+    onSuccess: (data) => {
+      if (data.success) {
+        shareLinkRef.current = "";
+        setShareLink("Revoked successfully!");
+      } else {
+        setShareLink("failed to revoke - " + shareLinkRef.current);
+        setRevoking(false);
+      }
+    },
+    onSettled: () => {
+      setRevoking(false);
+    },
+    onError: () => {
+      setRevoking(false);
+      setShareLink("failed to revoke for unknown reason, close and try again");
+    },
+  });
+
+  const [shareLink, setShareLink] = useState("generating...");
+  const shareLinkRef = useRef(shareLink);
+  const [copied, setCopied] = useState(false);
+  const [revoking, setRevoking] = useState(false);
+
   const handleCopyClick = () => {
-    navigator.clipboard.writeText(shareLink);
+    navigator.clipboard.writeText(shareLinkRef.current);
+    setCopied(true);
     alert("Link copied to clipboard!");
   };
+
+  const handleRevokeClick = () => {
+    setShareLink("revoking...");
+    revokeLink({ bucketId: props.bucketId });
+  };
+
+  useEffect(() => {
+    if (props.open) {
+      reset(); //reset the sate from the previous run
+      setRevoking(false);
+      generateLink({ bucketId: props.bucketId });
+    }
+  }, [props.open, generateLink, props.bucketId, reset]);
+
   return (
     <AlertDialog open={props.open} onOpenChange={props.setOpen}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Share</AlertDialogTitle>
-          <AlertDialogDescription>
-            <a className="flex items-center space-x-2">
-              <Input value={shareLink} readOnly />
-              <Button variant="outline" size="sm" onClick={handleCopyClick}>
-                Copy
-              </Button>
-            </a>
-            Copy the link to this card and share it with your friends!
-          </AlertDialogDescription>
         </AlertDialogHeader>
+        <AlertDialogDescription>
+          <a className="flex items-center space-x-2 pb-2">
+            <Input className="truncate" value={shareLink} readOnly />
+            {!revoked && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleCopyClick}
+                disabled={revoking}
+              >
+                {copied ? "Copied!" : "Copy"}
+              </Button>
+            )}
+          </a>
+          {revoked
+            ? "You can now close the popup"
+            : "Copy the link to this card and share it with your friends!"}
+        </AlertDialogDescription>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          {isGenerated && !revoked && (
+            <Button
+              className="bg-pink-500 hover:bg-pink-600"
+              onClick={handleRevokeClick}
+              disabled={revoking}
+            >
+              Revoke
+            </Button>
+          )}
+          <AlertDialogAction disabled={revoking}>Close</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

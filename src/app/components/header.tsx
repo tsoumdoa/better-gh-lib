@@ -9,7 +9,7 @@ import {
 
 export default function Header() {
   return (
-    <header className="mb-8 flex items-center justify-between">
+    <header className="flex items-center justify-between pb-8">
       <Link className="text-2xl font-bold md:text-4xl" href="/">
         Hopper Clip
       </Link>
