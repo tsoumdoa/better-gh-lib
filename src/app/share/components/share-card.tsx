@@ -1,3 +1,4 @@
+import { CopiedDialog } from "@/app/components/gh-card-dialog";
 import { AlertDialogFooter } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,7 +9,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { api } from "@/trpc/react";
-import { CopiedDialog } from "./copy-dialog";
 import { useState } from "react";
 export default function GhShareCard(props: { uid: string }) {
   const { data, isLoading } = api.post.getSharedPresignedUrlPublic.useQuery({
@@ -24,7 +24,7 @@ export default function GhShareCard(props: { uid: string }) {
           open={openCopyDialog}
           setOpen={() => setOpenCopyDialog(false)}
           presignedUrl={data.presignedUrl}
-          uid={props.uid}
+          queryKey={props.uid}
         />
       )}
       <Card className="w-full gap-2 border-neutral-800 bg-neutral-900 p-4">

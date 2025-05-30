@@ -99,7 +99,7 @@ export function NormalButtons(props: {
           open={openCopyDialog}
           setOpen={() => setOpenCopyDialog(!openCopyDialog)}
           presignedUrl={presignedUrl}
-          bucketId={props.bucketId}
+          queryKey={props.bucketId}
         />
       )}
       <ShareDialog

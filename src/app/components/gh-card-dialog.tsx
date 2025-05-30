@@ -42,10 +42,10 @@ export function CopiedDialog(props: {
   open: boolean;
   setOpen: () => void;
   presignedUrl: string;
-  bucketId: string;
+  queryKey: string;
 }) {
   const { refetch, isLoading, isSuccess, isError } = useQuery({
-    queryKey: [props.bucketId],
+    queryKey: [props.queryKey],
     queryFn: async () => {
       const res = await fetch(props.presignedUrl, {
         cache: "no-store",
@@ -78,9 +78,7 @@ export function CopiedDialog(props: {
     if (props.presignedUrl.length) {
       refetch();
     }
-    // I think i know what i'm doing here...
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.presignedUrl]);
+  }, [props.presignedUrl, refetch]);
 
   //todo, this is bad....
   //improve the loading state display better...
