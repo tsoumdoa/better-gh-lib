@@ -98,11 +98,9 @@ The application should now be accessible in your web browser at \(http://localho
 
 ## TODO
 
-- [ ] Implment an api (CF worker...) to clean raddis and r2 when user signs in... (probably use
-      redis to keep the record say 3 days or 2weeks..)
-- [ ] implement share button
-- [ ] limit file size to 1mb
-- [ ] limit to 20 scripts per user
+- [x] implement share button
+- [x] limit file size to 1.5mb
+- [x] limit to 50 scripts per user
 - [x] add datahog
 - [ ] improve validator
 - [x] scribble compoentn doesn't get parsed correctly
