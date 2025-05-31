@@ -33,7 +33,15 @@ export default async function Home() {
         <Header />
         <div className="flex flex-col gap-y-3">
           <h1 className="text-center text-2xl font-bold">
-            GitHub Gist-like platform for your Grasshopper Scripts
+            GitHub Gist-like platform for your Grasshopper Scripts - Check out
+            demo{" "}
+            <Link
+              href="https://landing.hopperclip.com/"
+              prefetch={true}
+              className="text-orange-500 underline"
+            >
+              here
+            </Link>
           </h1>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             <FeatureCard
