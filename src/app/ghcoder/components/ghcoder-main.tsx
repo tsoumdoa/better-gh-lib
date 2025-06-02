@@ -85,7 +85,7 @@ export default function GhXmlStudio() {
   }
 
   return (
-    <div className="w-full max-w-3xl">
+    <div className="w-full max-w-5xl">
       <Card className="gap-2 border-neutral-800 bg-neutral-900">
         <CardHeader>
           <CardTitle className="flex items-center justify-between">

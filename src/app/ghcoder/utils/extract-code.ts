@@ -58,7 +58,12 @@ export async function extractCode(parsedJson: GhXmlType) {
   const indicesArray = Array.from(uniqueHtmlStringIndices.values());
   return resArray.filter((_, index) => indicesArray.includes(index));
 
-  return resArray;
+  //imrpove code above and add compoennt count too
+  //todo add input & export nodes
+  //add copy and paste on code
+  //add option for paste back formated code (have link to the recomended site..)
+  //and then add option for copy back to clipboard
+  //
 }
 
 const verionInfo = (version: string) => {
