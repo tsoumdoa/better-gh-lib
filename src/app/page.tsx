@@ -62,6 +62,12 @@ export default async function Home() {
               href="/ghstudio"
               go="more features coming soon"
             />
+            <FeatureCard
+              title="GhCoder"
+              description="Extract code from from c# or Python component."
+              href="/ghcoder"
+              go="more features coming soon"
+            />
           </div>
         </div>
       </div>

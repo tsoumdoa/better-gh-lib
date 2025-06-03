@@ -23,9 +23,9 @@ export function getDefObjects(ghxml: GhXmlType) {
   const c = DefinitionObjectsSchema.safeParse(ghaLibs);
   if (c.error) return undefined;
   const chunks = c.data.chunks;
-
   const chunk = chunks.chunk;
   const chunkArray = getArrayFrom(chunk);
+
   const compIdents = getComponentIdentifiers(chunkArray);
   const numberComps = uniqueComponentCount(compIdents);
 

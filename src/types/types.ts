@@ -137,3 +137,23 @@ export const ShareLinkUidSchema = z.string().regex(ShareLinkUidRegex, {
 });
 
 export type ShareLinkUid = z.infer<typeof ShareLinkUidSchema>;
+export type ExtractedCode = {
+  htmlString: string;
+  originalString: string;
+  language: {
+    language: string;
+    version: string;
+  };
+  count: number;
+  ioParams: ExtractedParamInfo;
+};
+
+export type ParamNameAndDescription = {
+  name: string;
+  description: string;
+};
+
+export type ExtractedParamInfo = {
+  input: ParamNameAndDescription[];
+  output: ParamNameAndDescription[];
+};

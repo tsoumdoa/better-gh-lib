@@ -36,6 +36,7 @@
 		"babel-plugin-react-compiler": "19.1.0-rc.1",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
+		"dompurify": "^3.2.6",
 		"drizzle-orm": "^0.42.0",
 		"effect": "^3.16.2",
 		"fast-xml-parser": "^5.2.3",
@@ -64,8 +65,8 @@
 		"drizzle-kit": "^0.31.1",
 		"eslint": "^9.27.0",
 		"eslint-config-next": "15.3.1",
-		"prettier": "^3.5.3",
 		"prettier-plugin-tailwindcss": "^0.6.11",
+		"shiki": "^3.4.2",
 		"tailwindcss": "^4.1.8",
 		"typescript": "^5.8.3",
 		"vitest": "^3.1.4"
