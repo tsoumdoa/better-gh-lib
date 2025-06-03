@@ -138,7 +138,8 @@ export default function GhXmlStudio() {
       const parsedRes = await extractCode(parsedJson as GhXmlType);
       if (Array.isArray(parsedRes)) {
         data.current = parsedRes;
-        setCurrentCode(parsedRes[selector]);
+        setSelector(0);
+        setCurrentCode(parsedRes[0]);
       }
     };
     if (validatedJson) {
@@ -148,7 +149,7 @@ export default function GhXmlStudio() {
       data.current = [];
       setCurrentCode(undefined);
     }
-  }, [validatedJson, parsedJson, selector]);
+  }, [validatedJson, parsedJson]);
 
   function handleSelectorClick(i: number) {
     setSelector(i);
