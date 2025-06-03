@@ -1,8 +1,5 @@
-//these interface are only for these function, so let's leave therem here for
-
 import { ExtractedParamInfo, ParamNameAndDescription } from "@/types/types";
 
-//now
 interface Item {
   "#text"?: string | boolean | number;
   "@_name": string;
