@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import { posts } from "@/server/db/schema";
+import { Posts, posts } from "@/server/db/schema";
 import { nanoid } from "nanoid";
 import { addNanoId } from "./util/ensureUniqueName";
 import { and, eq, desc, sql } from "drizzle-orm";
@@ -204,7 +204,7 @@ export const postRouter = createTRPCRouter({
       offset: 0,
       orderBy: [desc(posts.dateUpdated)],
     });
-    return res;
+    return res as Posts[];
   }),
 
   generateSharablePublicLink: publicProcedure

@@ -6,20 +6,16 @@ import { InvalidValueDialog } from "./gh-card-dialog";
 import { EditButtons, NameAndDescription, NormalButtons } from "./gh-card-body";
 import { addNanoId } from "@/server/api/routers/util/ensureUniqueName";
 import { useRouter } from "next/navigation";
+import { Posts } from "@/server/db/schema";
 
-export default function GHCard(props: {
-  id: number;
-  name: string;
-  description: string;
-  bucketId: string;
-}) {
+export default function GHCard(props: { id: number; cardInfo: Posts }) {
   const [editMode, setEditMode] = useState(false);
   const [invalidInput, setInvalidInput] = useState(false);
   const [updating, setUpdating] = useState(false);
   const [deleted, setDeleted] = useState(false);
   const [ghInfo, setGhInfo] = useState({
-    name: props.name,
-    description: props.description,
+    name: props.cardInfo.name,
+    description: props.cardInfo.description,
   });
   const router = useRouter();
 
@@ -37,9 +33,12 @@ export default function GHCard(props: {
       if (err.message === "AUTH_FAILED") {
         router.push("/");
       }
-      setGhInfo({ name: props.name, description: props.description });
+      setGhInfo({
+        name: props.cardInfo.name,
+        description: props.cardInfo.description,
+      });
       if (err.message === "DUPLICATED_NAME") {
-        const newName = addNanoId(ghInfo.name);
+        const newName = addNanoId(ghInfo.name ?? "");
         setGhInfo({ ...ghInfo, name: newName });
       }
       setUpdating(false);
@@ -68,15 +67,18 @@ export default function GHCard(props: {
       });
 
       await new Promise((r) => setTimeout(r, 1200));
-      setGhInfo({ name: props.name, description: props.description });
+      setGhInfo({
+        name: props.cardInfo.name,
+        description: props.cardInfo.description,
+      });
     },
   });
 
   const deletePost = () => {
     deleteData.mutate({
       id: props.id,
-      name: props.name,
-      bucketId: props.bucketId,
+      name: props.cardInfo.name!,
+      bucketId: props.cardInfo.bucketUrl!,
     });
   };
 
@@ -91,8 +93,8 @@ export default function GHCard(props: {
       }
 
       if (
-        ghInfo.name === props.name &&
-        ghInfo.description === props.description
+        ghInfo.name === props.cardInfo.name &&
+        ghInfo.description === props.cardInfo.description
       ) {
         setEditMode(false);
         return;
@@ -102,9 +104,9 @@ export default function GHCard(props: {
       //todo add error boundary...
       updateData.mutate({
         id: props.id,
-        name: ghInfo.name,
-        prevName: props.name,
-        description: ghInfo.description,
+        name: ghInfo.name!,
+        prevName: props.cardInfo.name!,
+        description: ghInfo.description!,
       });
     }
     setEditMode(!editMode);
@@ -118,6 +120,7 @@ export default function GHCard(props: {
           setEditMode={() => setEditMode(!editMode)}
           setGhInfo={setGhInfo}
           ghInfo={{ name: "deleted", description: "deleted" }}
+          isShared={false}
         />
       </div>
     );
@@ -135,7 +138,12 @@ export default function GHCard(props: {
         editMode={editMode}
         setEditMode={() => setEditMode(!editMode)}
         setGhInfo={setGhInfo}
-        ghInfo={ghInfo}
+        ghInfo={{
+          name: props.cardInfo.name!,
+          description: props.cardInfo.description!,
+        }}
+        isShared={props.cardInfo.isPublicShared ?? false}
+        expiryDate={props.cardInfo.publicShareExpiryDate ?? ""}
       />
       <div>
         {editMode ? (
@@ -145,14 +153,17 @@ export default function GHCard(props: {
             setGhInfo={setGhInfo}
             deletePost={() => deletePost()}
             handleEdit={(b) => handleEdit(b)}
-            ghInfo={ghInfo}
-            name={props.name}
-            description={props.description}
+            ghInfo={{
+              name: props.cardInfo.name!,
+              description: props.cardInfo.description!,
+            }}
+            name={props.cardInfo.name!}
+            description={props.cardInfo.description!}
           />
         ) : (
           <NormalButtons
             editMode={editMode}
-            bucketId={props.bucketId}
+            bucketId={props.cardInfo.bucketUrl}
             setEditMode={() => setEditMode(!editMode)}
             handleEdit={(b) => handleEdit(b)}
           />
