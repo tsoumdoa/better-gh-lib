@@ -14,6 +14,7 @@ import { api } from "@/trpc/react";
 import { useQuery } from "@tanstack/react-query";
 import { env } from "@/env";
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export function InvalidValueDialog(props: {
   open: boolean;
@@ -127,9 +128,11 @@ export function ShareDialog(props: {
         const url = format(data);
         shareLinkRef.current = url;
         setShareLink(url);
+        router.refresh();
       },
     });
 
+  const router = useRouter();
   const {
     mutate: revokeLink,
     isSuccess: revoked,
@@ -143,6 +146,7 @@ export function ShareDialog(props: {
         setShareLink("failed to revoke - " + shareLinkRef.current);
         setRevoking(false);
       }
+      router.refresh();
     },
     onSettled: () => {
       setRevoking(false);

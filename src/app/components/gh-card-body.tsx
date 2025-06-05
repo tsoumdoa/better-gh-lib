@@ -49,7 +49,7 @@ export function NameAndDescription(props: {
         </div>
         {props.isShared && (
           <p
-            className={`h-fit w-fit rounded-md bg-neutral-200 px-2 text-sm font-bold text-neutral-800`}
+            className={`h-fit w-fit rounded-md bg-green-300 px-2 text-sm font-bold text-neutral-800`}
           >
             Shared
           </p>

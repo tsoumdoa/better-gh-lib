@@ -121,6 +121,7 @@ export default function GHCard(props: { id: number; cardInfo: Posts }) {
           setGhInfo={setGhInfo}
           ghInfo={{ name: "deleted", description: "deleted" }}
           isShared={false}
+          expiryDate={""}
         />
       </div>
     );

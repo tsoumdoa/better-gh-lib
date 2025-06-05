@@ -240,7 +240,20 @@ export const postRouter = createTRPCRouter({
 
       const publicId = generateSharableLinkUid();
 
-      await ctx.redis.set(
+      const uploadDb = ctx.db
+        .update(posts)
+        .set({
+          publicShareExpiryDate: sql`STRFTIME('%Y-%m-%d %H:%M:%S', CURRENT_TIMESTAMP, '+14 days')`,
+          isPublicShared: true,
+        })
+        .where(
+          and(
+            eq(posts.clerkUserId, userId),
+            eq(posts.bucketUrl, input.bucketId)
+          )
+        );
+
+      const uploadRedis1 = ctx.redis.set(
         `sharedLinkBucket:${input.bucketId}`,
         {
           publicId: publicId,
@@ -251,7 +264,7 @@ export const postRouter = createTRPCRouter({
         }
       );
 
-      await ctx.redis.set(
+      const uplaod2 = await ctx.redis.set(
         `sharedLink:${publicId}`,
         {
           bucketId: input.bucketId,
@@ -261,6 +274,24 @@ export const postRouter = createTRPCRouter({
           ex: 60 * 60 * 24 * 14, // 14 days
         }
       );
+      const res = await Promise.allSettled([uploadDb, uploadRedis1, uplaod2]);
+
+      let allSucceeded = true;
+      const reasons: string[] = [];
+
+      res.forEach((result, index) => {
+        if (result.status === "fulfilled") {
+          console.log(`Promise ${index + 1} succeeded:`, result.value);
+        } else {
+          allSucceeded = false;
+          console.error(`Promise ${index + 1} failed:`, result.reason);
+          reasons.push(result.reason);
+        }
+      });
+
+      if (!allSucceeded) {
+        throw new Error("Some operations failed.");
+      }
 
       return publicId;
     }),
