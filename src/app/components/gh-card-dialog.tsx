@@ -202,7 +202,7 @@ export function ShareDialog(props: {
             )}
           </a>
           {revoked
-            ? "You can now close the popup"
+            ? "You can now close"
             : "Copy the link to this card and share it with your friends!"}
         </AlertDialogDescription>
         <AlertDialogFooter>
