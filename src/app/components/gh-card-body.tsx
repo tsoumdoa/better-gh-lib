@@ -5,7 +5,6 @@ import { CopiedDialog, ShareDialog } from "./gh-card-dialog";
 import { Input } from "@/components/ui/input";
 import { useDownloadPresignedUrl } from "../hooks/use-download-presigned-url";
 import { api } from "@/trpc/react";
-import { useRouter } from "next/navigation";
 
 export function NameAndDescription(props: {
   editMode: boolean;
