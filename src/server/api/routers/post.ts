@@ -132,12 +132,22 @@ export const postRouter = createTRPCRouter({
           method: "DELETE",
         })
       );
+
       if (!r2Res.ok) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
           message: "Failed to delete media from R2",
         });
       }
+
+      //todo: good enough for now, but improve later...
+      const existingEntry: {
+        publicId: string;
+        userId: string;
+      } | null = await ctx.redis.get(`sharedLinkBucket:${input.bucketId}`);
+
+      await ctx.redis.del(`sharedLink:${existingEntry?.publicId}`);
+      await ctx.redis.del(`sharedLink:${input.bucketId}`);
     }),
 
   getPutPresignedUrl: publicProcedure
@@ -313,9 +323,11 @@ export const postRouter = createTRPCRouter({
         return { success: false, error: "UNAUTHORIZED" };
       }
 
-      const updatedRedis = ctx.redis.del(
+      const delSharedLink = ctx.redis.del(
         `sharedLink:${existingEntry.publicId}`
       );
+
+      const delSharedLinkBucket = ctx.redis.del(`sharedLink:${input.bucketId}`);
 
       const updateDb = ctx.db
         .update(posts)
@@ -329,14 +341,17 @@ export const postRouter = createTRPCRouter({
           )
         );
 
-      const [updateDbRes, updateRedisRes] = await Promise.allSettled([
-        updateDb,
-        updatedRedis,
-      ]);
+      const [delSharedLinkRes, delSharedLinkBucketRes, updateDbRes] =
+        await Promise.allSettled([
+          delSharedLink,
+          delSharedLinkBucket,
+          updateDb,
+        ]);
 
       if (
-        updateDbRes.status === "rejected" ||
-        updateRedisRes.status === "rejected"
+        delSharedLinkRes.status === "rejected" ||
+        delSharedLinkBucketRes.status === "rejected" ||
+        updateDbRes.status === "rejected"
       ) {
         throw new Error("Failed to update db or redis");
       }

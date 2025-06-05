@@ -17,14 +17,12 @@ export function NameAndDescription(props: {
   bucketId: string;
 }) {
   const [shareExpired, setShareExpired] = useState(false);
-  const router = useRouter();
 
   const { mutate: revokeLink } = api.post.revokeSharablePublicLink.useMutation({
     onSuccess: (data) => {
       if (data.success) {
         setShareExpired(false);
       }
-      router.refresh();
     },
   });
 
