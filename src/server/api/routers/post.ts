@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import { posts } from "@/server/db/schema";
+import { Posts, posts } from "@/server/db/schema";
 import { nanoid } from "nanoid";
 import { addNanoId } from "./util/ensureUniqueName";
 import { and, eq, desc, sql } from "drizzle-orm";
@@ -132,12 +132,22 @@ export const postRouter = createTRPCRouter({
           method: "DELETE",
         })
       );
+
       if (!r2Res.ok) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
           message: "Failed to delete media from R2",
         });
       }
+
+      //todo: good enough for now, but improve later...
+      const existingEntry: {
+        publicId: string;
+        userId: string;
+      } | null = await ctx.redis.get(`sharedLinkBucket:${input.bucketId}`);
+
+      await ctx.redis.del(`sharedLink:${existingEntry?.publicId}`);
+      await ctx.redis.del(`sharedLink:${input.bucketId}`);
     }),
 
   getPutPresignedUrl: publicProcedure
@@ -204,7 +214,7 @@ export const postRouter = createTRPCRouter({
       offset: 0,
       orderBy: [desc(posts.dateUpdated)],
     });
-    return res;
+    return res as Posts[];
   }),
 
   generateSharablePublicLink: publicProcedure
@@ -240,7 +250,20 @@ export const postRouter = createTRPCRouter({
 
       const publicId = generateSharableLinkUid();
 
-      await ctx.redis.set(
+      const uploadDb = ctx.db
+        .update(posts)
+        .set({
+          publicShareExpiryDate: sql`STRFTIME('%Y-%m-%d %H:%M:%S', CURRENT_TIMESTAMP, '+14 days')`,
+          isPublicShared: true,
+        })
+        .where(
+          and(
+            eq(posts.clerkUserId, userId),
+            eq(posts.bucketUrl, input.bucketId)
+          )
+        );
+
+      const uploadRedis1 = ctx.redis.set(
         `sharedLinkBucket:${input.bucketId}`,
         {
           publicId: publicId,
@@ -251,7 +274,7 @@ export const postRouter = createTRPCRouter({
         }
       );
 
-      await ctx.redis.set(
+      const uplaod2 = await ctx.redis.set(
         `sharedLink:${publicId}`,
         {
           bucketId: input.bucketId,
@@ -261,6 +284,24 @@ export const postRouter = createTRPCRouter({
           ex: 60 * 60 * 24 * 14, // 14 days
         }
       );
+      const res = await Promise.allSettled([uploadDb, uploadRedis1, uplaod2]);
+
+      let allSucceeded = true;
+      const reasons: string[] = [];
+
+      res.forEach((result, index) => {
+        if (result.status === "fulfilled") {
+          console.log(`Promise ${index + 1} succeeded:`, result.value);
+        } else {
+          allSucceeded = false;
+          console.error(`Promise ${index + 1} failed:`, result.reason);
+          reasons.push(result.reason);
+        }
+      });
+
+      if (!allSucceeded) {
+        throw new Error("Some operations failed.");
+      }
 
       return publicId;
     }),
@@ -282,7 +323,39 @@ export const postRouter = createTRPCRouter({
         return { success: false, error: "UNAUTHORIZED" };
       }
 
-      await ctx.redis.del(`sharedLink:${existingEntry.publicId}`);
+      const delSharedLink = ctx.redis.del(
+        `sharedLink:${existingEntry.publicId}`
+      );
+
+      const delSharedLinkBucket = ctx.redis.del(`sharedLink:${input.bucketId}`);
+
+      const updateDb = ctx.db
+        .update(posts)
+        .set({
+          isPublicShared: false,
+        })
+        .where(
+          and(
+            eq(posts.clerkUserId, userId),
+            eq(posts.bucketUrl, input.bucketId)
+          )
+        );
+
+      const [delSharedLinkRes, delSharedLinkBucketRes, updateDbRes] =
+        await Promise.allSettled([
+          delSharedLink,
+          delSharedLinkBucket,
+          updateDb,
+        ]);
+
+      if (
+        delSharedLinkRes.status === "rejected" ||
+        delSharedLinkBucketRes.status === "rejected" ||
+        updateDbRes.status === "rejected"
+      ) {
+        throw new Error("Failed to update db or redis");
+      }
+
       return { success: true, error: "" };
     }),
 

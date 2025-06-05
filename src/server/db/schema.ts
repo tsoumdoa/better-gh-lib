@@ -21,6 +21,8 @@ export const posts = sqliteTable(
       .default(sql`(current_timestamp)`),
     bucketUrl: text().notNull(),
     clerkUserId: text(),
+    isPublicShared: integer({ mode: "boolean" }).default(false),
+    publicShareExpiryDate: text(),
   },
   (t) => [
     index("user_idx").on(t.clerkUserId),

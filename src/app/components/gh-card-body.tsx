@@ -1,50 +1,88 @@
 import { Textarea } from "@/components/ui/textarea";
 import { GhCard } from "@/types/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CopiedDialog, ShareDialog } from "./gh-card-dialog";
 import { Input } from "@/components/ui/input";
 import { useDownloadPresignedUrl } from "../hooks/use-download-presigned-url";
+import { api } from "@/trpc/react";
 
 export function NameAndDescription(props: {
   editMode: boolean;
   setEditMode: () => void;
   setGhInfo: (ghInfo: GhCard) => void;
   ghInfo: GhCard;
+  isShared: boolean;
+  expiryDate: string;
+  bucketId: string;
 }) {
+  const [shareExpired, setShareExpired] = useState(false);
+
+  const { mutate: revokeLink } = api.post.revokeSharablePublicLink.useMutation({
+    onSuccess: (data) => {
+      if (data.success) {
+        setShareExpired(false);
+      }
+    },
+  });
+
+  useEffect(() => {
+    const expiryDate = new Date(props.expiryDate);
+    if (props.isShared && new Date() < expiryDate) {
+      setShareExpired(true);
+    } else {
+      if (props.bucketId !== "" && props.isShared) {
+        revokeLink({ bucketId: props.bucketId });
+      }
+    }
+  }, [props.expiryDate, props.isShared, props.bucketId, revokeLink]);
+
   return (
     <div>
-      <div
-        className={` ${props.editMode ? "text-neutral-900" : "text-neutral-500"} `}
-      >
-        Name
-      </div>
-      <div
-        className={`pb-1 text-lg ${props.editMode ? "" : "font-semibold"} transition-all`}
-      >
-        {props.editMode ? (
-          <div>
-            <Input
-              type="name"
-              placeholder="NameOfGhCardInPascalCase"
-              className="font-semibold"
-              defaultValue={props.ghInfo.name}
-              onChange={(e) =>
-                props.setGhInfo({ ...props.ghInfo, name: e.target.value })
-              }
-            />
-            <p className="text-right text-xs text-neutral-100">
-              {props.ghInfo.name.length || 0} / 30 characters
-            </p>
+      <div className="items-top flex flex-row justify-between">
+        <div>
+          <p
+            className={` ${props.editMode ? "text-neutral-900" : "text-neutral-500"} `}
+          >
+            Name
+          </p>
+          <div
+            className={`pb-1 text-lg ${props.editMode ? "" : "font-semibold"} transition-all`}
+          >
+            {props.editMode ? (
+              <div>
+                <Input
+                  type="name"
+                  placeholder="NameOfGhCardInPascalCase"
+                  className="font-semibold"
+                  defaultValue={props.ghInfo.name}
+                  onChange={(e) =>
+                    props.setGhInfo({ ...props.ghInfo, name: e.target.value })
+                  }
+                />
+                <p className="text-right text-xs text-neutral-100">
+                  {props.ghInfo.name.length || 0} / 30 characters
+                </p>
+              </div>
+            ) : (
+              <p className="overflow-hidden text-ellipsis">
+                {props.ghInfo.name}
+              </p>
+            )}
           </div>
-        ) : (
-          <p className="overflow-hidden text-ellipsis">{props.ghInfo.name}</p>
+        </div>
+        {shareExpired && (
+          <p
+            className={`h-fit w-fit rounded-md bg-green-300 px-2 text-sm font-bold text-neutral-800`}
+          >
+            Shared
+          </p>
         )}
       </div>
-      <div
+      <p
         className={` ${props.editMode ? "text-neutral-900" : "text-neutral-500"} `}
       >
         Description
-      </div>
+      </p>
       <div className="h-auto text-neutral-100">
         {props.editMode ? (
           <div className="space-y-1">

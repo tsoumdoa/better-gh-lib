@@ -16,13 +16,7 @@ async function MainCard() {
     return (
       <div className="mb-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {ghCards.map((item) => (
-          <GHCard
-            key={item.id}
-            id={item.id}
-            name={item.name!.replaceAll(" ", "")}
-            description={item.description!}
-            bucketId={item.bucketUrl}
-          />
+          <GHCard key={item.id} id={item.id!} cardInfo={item} />
         ))}
       </div>
     );
@@ -42,9 +36,14 @@ function MainCardSkeleton() {
         <GHCard
           key={i}
           id={0}
-          name={"Loading..."}
-          description={"Loading..."}
-          bucketId=""
+          cardInfo={{
+            name: "Loading...",
+            description: "Loading...",
+            bucketUrl: "",
+            clerkUserId: "",
+            isPublicShared: false,
+            publicShareExpiryDate: "",
+          }}
         />
       ))}
     </div>
