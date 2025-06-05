@@ -147,7 +147,7 @@ export const postRouter = createTRPCRouter({
       } | null = await ctx.redis.get(`sharedLinkBucket:${input.bucketId}`);
 
       await ctx.redis.del(`sharedLink:${existingEntry?.publicId}`);
-      await ctx.redis.del(`sharedLink:${input.bucketId}`);
+      await ctx.redis.del(`sharedLinkBucket:${input.bucketId}`);
     }),
 
   getPutPresignedUrl: publicProcedure
@@ -327,7 +327,9 @@ export const postRouter = createTRPCRouter({
         `sharedLink:${existingEntry.publicId}`
       );
 
-      const delSharedLinkBucket = ctx.redis.del(`sharedLink:${input.bucketId}`);
+      const delSharedLinkBucket = ctx.redis.del(
+        `sharedLinkBucket:${input.bucketId}`
+      );
 
       const updateDb = ctx.db
         .update(posts)
