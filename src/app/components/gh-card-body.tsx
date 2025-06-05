@@ -1,9 +1,11 @@
 import { Textarea } from "@/components/ui/textarea";
 import { GhCard } from "@/types/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CopiedDialog, ShareDialog } from "./gh-card-dialog";
 import { Input } from "@/components/ui/input";
 import { useDownloadPresignedUrl } from "../hooks/use-download-presigned-url";
+import { api } from "@/trpc/react";
+import { useRouter } from "next/navigation";
 
 export function NameAndDescription(props: {
   editMode: boolean;
@@ -12,7 +14,31 @@ export function NameAndDescription(props: {
   ghInfo: GhCard;
   isShared: boolean;
   expiryDate: string;
+  bucketId: string;
 }) {
+  const [shareExpired, setShareExpired] = useState(false);
+  const router = useRouter();
+
+  const { mutate: revokeLink } = api.post.revokeSharablePublicLink.useMutation({
+    onSuccess: (data) => {
+      if (data.success) {
+        setShareExpired(false);
+      }
+      router.refresh();
+    },
+  });
+
+  useEffect(() => {
+    const expiryDate = new Date(props.expiryDate);
+    if (props.isShared && new Date() < expiryDate) {
+      setShareExpired(true);
+    } else {
+      if (props.bucketId !== "" && props.isShared) {
+        revokeLink({ bucketId: props.bucketId });
+      }
+    }
+  }, [props.expiryDate, props.isShared, props.bucketId, revokeLink]);
+
   return (
     <div>
       <div className="items-top flex flex-row justify-between">
@@ -47,7 +73,7 @@ export function NameAndDescription(props: {
             )}
           </div>
         </div>
-        {props.isShared && (
+        {shareExpired && (
           <p
             className={`h-fit w-fit rounded-md bg-green-300 px-2 text-sm font-bold text-neutral-800`}
           >

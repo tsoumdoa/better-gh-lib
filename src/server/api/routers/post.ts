@@ -313,7 +313,34 @@ export const postRouter = createTRPCRouter({
         return { success: false, error: "UNAUTHORIZED" };
       }
 
-      await ctx.redis.del(`sharedLink:${existingEntry.publicId}`);
+      const updatedRedis = ctx.redis.del(
+        `sharedLink:${existingEntry.publicId}`
+      );
+
+      const updateDb = ctx.db
+        .update(posts)
+        .set({
+          isPublicShared: false,
+        })
+        .where(
+          and(
+            eq(posts.clerkUserId, userId),
+            eq(posts.bucketUrl, input.bucketId)
+          )
+        );
+
+      const [updateDbRes, updateRedisRes] = await Promise.allSettled([
+        updateDb,
+        updatedRedis,
+      ]);
+
+      if (
+        updateDbRes.status === "rejected" ||
+        updateRedisRes.status === "rejected"
+      ) {
+        throw new Error("Failed to update db or redis");
+      }
+
       return { success: true, error: "" };
     }),
 

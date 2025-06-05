@@ -122,6 +122,7 @@ export default function GHCard(props: { id: number; cardInfo: Posts }) {
           ghInfo={{ name: "deleted", description: "deleted" }}
           isShared={false}
           expiryDate={""}
+          bucketId={""}
         />
       </div>
     );
@@ -145,6 +146,7 @@ export default function GHCard(props: { id: number; cardInfo: Posts }) {
         }}
         isShared={props.cardInfo.isPublicShared ?? false}
         expiryDate={props.cardInfo.publicShareExpiryDate ?? ""}
+        bucketId={props.cardInfo.bucketUrl ?? ""}
       />
       <div>
         {editMode ? (
