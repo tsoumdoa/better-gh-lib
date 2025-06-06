@@ -61,19 +61,21 @@ export function CopiedDialog(props: {
       //browser will automatically decompress gzipped data
       const arrayBuffer = await res.arrayBuffer();
       const decoded = new TextDecoder().decode(arrayBuffer);
-      console.log(decoded);
-      navigator.clipboard
-        .writeText(decoded)
-        .then(() => {
-          return true;
-        })
-        .catch(() => {
-          return false;
+      try {
+        const clipboardItem = new ClipboardItem({
+          "text/plain": new Blob([decoded], { type: "text/plain" }),
         });
-      return res;
+        await navigator.clipboard.write([clipboardItem]);
+        return true;
+      } catch (e) {
+        console.log(e);
+        console.error("Failed to copy to clipboard");
+        return false;
+      }
     },
     enabled: false,
   });
+  //todo... this is not wokring out chrome...
 
   useEffect(() => {
     if (props.presignedUrl.length) {
