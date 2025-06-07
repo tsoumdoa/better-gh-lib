@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useDownloadPresignedUrl } from "../hooks/use-download-presigned-url";
 import { api } from "@/trpc/react";
 import { useRouter } from "next/navigation";
+import { useFetchGhXml } from "../hooks/use-fetch-gh-xml";
 
 export function NameAndDescription(props: {
   editMode: boolean;
@@ -120,30 +121,42 @@ export function NormalButtons(props: {
 }) {
   const [openCopyDialog, setOpenCopyDialog] = useState(false);
   const [openSharedDialog, setOpenSharedDialog] = useState(false);
-  const { presignedUrl, refetch, isSuccess } = useDownloadPresignedUrl(
-    props.bucketId
-  );
+  const [isLoading, setIsLoading] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+  const { refetch: getPresignedUrl } = useDownloadPresignedUrl(props.bucketId);
+  const { downloadData, decoded } = useFetchGhXml();
 
-  const handleCopy = () => {
-    refetch();
-    setOpenCopyDialog(true);
+  const handleCopy = async () => {
+    setIsLoading(true);
+    const res = await getPresignedUrl();
+    if (res.isSuccess) {
+      const decoded = await downloadData(res.data);
+      try {
+        await navigator.clipboard.writeText(decoded);
+        setOpenCopyDialog(true);
+        setIsLoading(false);
+        setIsCopied(true);
+      } catch {
+        setOpenCopyDialog(true);
+        setIsLoading(false);
+        setIsCopied(false);
+      }
+    }
   };
 
   const handleShare = () => {
-    //todo replace this with actual data
     setOpenSharedDialog(true);
   };
 
   return (
     <div className="flex items-center justify-end text-neutral-400 transition-all">
-      {isSuccess && (
-        <CopiedDialog
-          open={openCopyDialog}
-          setOpen={() => setOpenCopyDialog(!openCopyDialog)}
-          presignedUrl={presignedUrl}
-          queryKey={props.bucketId}
-        />
-      )}
+      <CopiedDialog
+        open={openCopyDialog}
+        setOpen={() => setOpenCopyDialog(!openCopyDialog)}
+        setIsCopied={(b) => setIsCopied(b)}
+        isCopied={isCopied}
+        decoded={decoded}
+      />
       <ShareDialog
         open={openSharedDialog}
         setOpen={() => setOpenSharedDialog(!openSharedDialog)}
@@ -152,8 +165,9 @@ export function NormalButtons(props: {
       <button
         className={`px-2 font-bold hover:text-neutral-50`}
         onClick={handleCopy}
+        disabled={isLoading}
       >
-        copy
+        {isLoading ? "Loading..." : "copy"}
       </button>
       <button
         className={`px-2 font-bold hover:text-neutral-50`}
