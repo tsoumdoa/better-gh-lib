@@ -41,10 +41,6 @@ export default function GhShareCard(props: { uid: string }) {
     }
   };
 
-  if (!queryRes[0]) {
-    return <div>Error...</div>;
-  }
-
   return (
     <div className="flex max-h-3/5 w-full max-w-xl">
       <CopiedDialog
