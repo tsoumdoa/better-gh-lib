@@ -11,7 +11,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { api } from "@/trpc/react";
-import { useQuery } from "@tanstack/react-query";
 import { env } from "@/env";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -42,69 +41,38 @@ export function InvalidValueDialog(props: {
 export function CopiedDialog(props: {
   open: boolean;
   setOpen: () => void;
-  presignedUrl: string;
-  queryKey: string;
+  setIsCopied: (b: boolean) => void;
+  isCopied: boolean;
+  decoded: string | undefined;
 }) {
-  const { refetch, isLoading, isSuccess, isError } = useQuery({
-    queryKey: [props.queryKey],
-    queryFn: async () => {
-      const res = await fetch(props.presignedUrl, {
-        cache: "no-store",
-        headers: {
-          "Content-Encoding": "gzip",
-          "Content-Type": "application/gzip",
-        },
-      });
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-      //browser will automatically decompress gzipped data
-      const arrayBuffer = await res.arrayBuffer();
-      const decoded = new TextDecoder().decode(arrayBuffer);
-      try {
-        const clipboardItem = new ClipboardItem({
-          "text/plain": new Blob([decoded], { type: "text/plain" }),
-        });
-        await navigator.clipboard.write([clipboardItem]);
-        return true;
-      } catch (e) {
-        console.log(e);
-        console.error("Failed to copy to clipboard");
-        return false;
-      }
-    },
-    enabled: false,
-  });
-  //todo... this is not wokring out chrome...
+  function handleCopyClick() {
+    navigator.clipboard.writeText(props.decoded!);
+    props.setIsCopied(true);
+    alert("GhXml copied to clipboard!");
+  }
 
-  useEffect(() => {
-    if (props.presignedUrl.length) {
-      refetch();
-    }
-  }, [props.presignedUrl, refetch]);
-
-  //todo, this is bad....
-  //improve the loading state display better...
   return (
     <AlertDialog open={props.open} onOpenChange={props.setOpen}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            {isLoading && !isError
-              ? "Loading..."
-              : isSuccess
-                ? "Copied!"
-                : "Failed to copy"}
+            {props.isCopied ? "Copied!" : "Failed to copy"}
           </AlertDialogTitle>
           <AlertDialogDescription>
-            {isLoading
-              ? ""
-              : isSuccess || !isError
-                ? "copied to your clipboard!"
-                : "Something went wrong..."}
+            {props.isCopied
+              ? "copied to your clipboard!"
+              : "Something went wrong, try copy button below"}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
+          {!props.isCopied && (
+            <Button
+              className="bg-neutral-800 hover:bg-neutral-700"
+              onClick={handleCopyClick}
+            >
+              Copy
+            </Button>
+          )}
           <AlertDialogCancel>Close</AlertDialogCancel>
         </AlertDialogFooter>
       </AlertDialogContent>
