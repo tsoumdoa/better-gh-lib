@@ -212,7 +212,6 @@ export const postRouter = createTRPCRouter({
       where: eq(posts.clerkUserId, userId),
       limit: 50,
       offset: 0,
-      orderBy: [desc(posts.dateUpdated)],
     });
     return res as Posts[];
   }),

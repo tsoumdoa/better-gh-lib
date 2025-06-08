@@ -6,6 +6,8 @@ import Header from "../components/header";
 import AddGHCard from "../components/add-gh-card";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import GhCardDisplay from "./components/gh-card-display";
+import SortDropDown from "./components/sort-drop-down";
 
 async function MainCard() {
   "use server";
@@ -13,13 +15,7 @@ async function MainCard() {
   if (!userId) return redirectToSignIn();
   try {
     const ghCards = await api.post.getAll();
-    return (
-      <div className="mb-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {ghCards.map((item) => (
-          <GHCard key={item.id} id={item.id!} cardInfo={item} />
-        ))}
-      </div>
-    );
+    return <GhCardDisplay ghCards={ghCards} />;
   } catch (err: unknown) {
     if (err instanceof Error) {
       if (err.message === "UNAUTHORIZED") {
@@ -63,10 +59,7 @@ export default async function Home() {
             <span>{`${username}'s Fav`}</span>
           </div>
           <div className="flex items-center gap-4">
-            <div className="flex cursor-pointer items-center gap-1 rounded-md px-3 py-1 text-sm ring-1 ring-neutral-500 transition-all">
-              <span>sort by</span>
-              <ChevronDown className="h-4 w-4" />
-            </div>
+            <SortDropDown />
             <AddGHCard />
           </div>
         </div>
