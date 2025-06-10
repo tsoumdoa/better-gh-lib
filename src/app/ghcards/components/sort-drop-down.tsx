@@ -28,7 +28,10 @@ export default function SortDropDown() {
   useEffect(() => {
     const sortOrder = params.get("sort");
     if (sortOrder) {
-      setSortBy(sortOrder as SortOrderValue);
+      const sortName = SORT_ORDERS.find(
+        (item) => item.value === sortOrder
+      )?.label;
+      setSortBy(sortName);
     }
   }, [params]);
 
