@@ -16,6 +16,8 @@ export function NameAndDescription(props: {
   isShared: boolean;
   expiryDate: string;
   bucketId: string;
+  lastEdited: string | undefined;
+  created: string | undefined;
 }) {
   const [shareExpired, setShareExpired] = useState(false);
   const router = useRouter();
@@ -40,6 +42,22 @@ export function NameAndDescription(props: {
       }
     }
   }, [props.expiryDate, props.isShared, props.bucketId, revokeLink]);
+
+  const createdDate = props.created
+    ? new Date(props.created).toLocaleString("en-US", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      })
+    : "-";
+
+  const lastModDate = props.lastEdited
+    ? new Date(props.lastEdited).toLocaleString("en-US", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      })
+    : "-";
 
   return (
     <div>
@@ -106,7 +124,17 @@ export function NameAndDescription(props: {
             </p>
           </div>
         ) : (
-          props.ghInfo.description
+          props.ghInfo.description || "-"
+        )}
+      </div>
+      <div className="text-sm text-neutral-500">
+        {lastModDate === createdDate ? (
+          `Created: ${createdDate}`
+        ) : (
+          <div>
+            <p>Last mod: {lastModDate}</p>
+            <p>Created: {createdDate}</p>
+          </div>
         )}
       </div>
     </div>

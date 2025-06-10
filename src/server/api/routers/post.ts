@@ -3,20 +3,18 @@ import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { Posts, posts } from "@/server/db/schema";
 import { nanoid } from "nanoid";
 import { addNanoId } from "./util/ensureUniqueName";
-import { and, eq, desc, sql } from "drizzle-orm";
-import { GhCardSchema, ShareLinkUidSchema } from "@/types/types";
-import { env } from "@/env";
+import { and, eq, sql } from "drizzle-orm";
+import {
+  GhCardSchema,
+  ShareLinkUidSchema,
+  SortOrderZenum,
+} from "@/types/types";
 import { TRPCError } from "@trpc/server";
 import { waitUntil } from "@vercel/functions";
 import cleanUpBucket from "./util/run-bucket-cleanup";
 import { generateSharableLinkUid } from "./util/generate-sharable-link-uid";
 import { Duration } from "effect";
-
-const presignedUrl = (userId: string, nanoid: string, sec: number) =>
-  `${env.R2_URL}/${userId}/${nanoid}?X-Amz-Expires=${sec}`;
-
-const deleteUrl = (userId: string, bucketKey: string) =>
-  `${env.R2_URL}/${userId}/${bucketKey}`;
+import { deleteUrl, orderBy, presignedUrl } from "./util/helper-functions";
 
 export const postRouter = createTRPCRouter({
   add: publicProcedure
@@ -202,20 +200,22 @@ export const postRouter = createTRPCRouter({
       return presigned.url;
     }),
 
-  getAll: publicProcedure.query(async ({ ctx }) => {
-    const { userId } = ctx.auth;
-    if (!userId) {
-      throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
-    }
+  getAll: publicProcedure
+    .input(z.object({ sortOrder: SortOrderZenum }))
+    .mutation(async ({ input, ctx }) => {
+      const { userId } = ctx.auth;
+      if (!userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
 
-    const res = await ctx.db.query.posts.findMany({
-      where: eq(posts.clerkUserId, userId),
-      limit: 50,
-      offset: 0,
-      orderBy: [desc(posts.dateUpdated)],
-    });
-    return res as Posts[];
-  }),
+      const res = await ctx.db.query.posts.findMany({
+        where: eq(posts.clerkUserId, userId),
+        limit: 50,
+        offset: 0,
+        orderBy: orderBy(input.sortOrder),
+      });
+      return res as Posts[];
+    }),
 
   generateSharablePublicLink: publicProcedure
     .input(z.object({ bucketId: z.string() }))
