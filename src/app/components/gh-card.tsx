@@ -5,7 +5,7 @@ import { GhCardSchema } from "@/types/types";
 import { InvalidValueDialog } from "./gh-card-dialog";
 import { EditButtons, NameAndDescription, NormalButtons } from "./gh-card-body";
 import { addNanoId } from "@/server/api/routers/util/ensureUniqueName";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Posts } from "@/server/db/schema";
 
 export default function GHCard(props: { id: number; cardInfo: Posts }) {
@@ -17,13 +17,16 @@ export default function GHCard(props: { id: number; cardInfo: Posts }) {
     name: props.cardInfo.name,
     description: props.cardInfo.description,
   });
+
+  const pathname = usePathname();
   const router = useRouter();
+  const { replace } = useRouter();
 
   const updateData = api.post.edit.useMutation({
     onSuccess: async (ctx) => {
-      router.refresh();
       setUpdating(false);
       setGhInfo(ctx);
+      replace(pathname);
     },
     onMutate: async () => {
       setUpdating(true);
@@ -123,6 +126,8 @@ export default function GHCard(props: { id: number; cardInfo: Posts }) {
           isShared={false}
           expiryDate={""}
           bucketId={""}
+          lastEdited={""}
+          created={""}
         />
       </div>
     );
@@ -147,6 +152,8 @@ export default function GHCard(props: { id: number; cardInfo: Posts }) {
         isShared={props.cardInfo.isPublicShared ?? false}
         expiryDate={props.cardInfo.publicShareExpiryDate ?? ""}
         bucketId={props.cardInfo.bucketUrl ?? ""}
+        lastEdited={props.cardInfo.dateUpdated!}
+        created={props.cardInfo.dateCreated!}
       />
       <div>
         {editMode ? (

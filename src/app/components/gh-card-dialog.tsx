@@ -116,6 +116,7 @@ export function ShareDialog(props: {
         setShareLink("failed to revoke - " + shareLinkRef.current);
         setRevoking(false);
       }
+      props.setOpen();
       router.refresh();
     },
     onSettled: () => {

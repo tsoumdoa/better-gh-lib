@@ -10,12 +10,27 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { SORT_ORDERS, SortOrder, SortOrderValue } from "@/types/types";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 export default function SortDropDown() {
-  const [position, setPosition] = useState<SortOrder>("ascCreated");
+  const [position, setPosition] = useState<SortOrder>("ascLastEdited");
   const [sortBy, setSortBy] = useState<SortOrderValue>();
+  const searchParams = useSearchParams();
+  const params = useMemo(
+    () => new URLSearchParams(searchParams),
+    [searchParams]
+  );
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+  useEffect(() => {
+    const sortOrder = params.get("sort");
+    if (sortOrder) {
+      setSortBy(sortOrder as SortOrderValue);
+    }
+  }, [params]);
 
   return (
     <DropdownMenu>
@@ -34,6 +49,8 @@ export default function SortDropDown() {
             setPosition(v as SortOrder);
             const sortBy = SORT_ORDERS.find((item) => item.value === v)?.label;
             setSortBy(sortBy!);
+            params.set("sort", v);
+            replace(`${pathname}?${params.toString()}`);
           }}
         >
           {SORT_ORDERS.map((item) => (

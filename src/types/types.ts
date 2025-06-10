@@ -158,6 +158,7 @@ export type ExtractedParamInfo = {
   output: ParamNameAndDescription[];
 };
 
+//this is not good idea...duplicating typing with zod
 export const SORT_ORDERS = [
   { value: "ascAZ", label: "A-Z" },
   { value: "descZA", label: "Z-A" },
@@ -167,5 +168,13 @@ export const SORT_ORDERS = [
   { value: "descCreated", label: "Creation Date (Oldest)" },
 ] as const;
 
+export const SortOrderZenum = z.enum([
+  "ascAZ",
+  "descZA",
+  "ascLastEdited",
+  "descLastEdited",
+  "ascCreated",
+  "descCreated",
+]);
 export type SortOrder = (typeof SORT_ORDERS)[number]["value"];
 export type SortOrderValue = (typeof SORT_ORDERS)[number]["label"];

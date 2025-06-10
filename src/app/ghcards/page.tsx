@@ -1,4 +1,3 @@
-import { ChevronDown } from "lucide-react";
 import { api, HydrateClient } from "@/trpc/server";
 import { Suspense } from "react";
 import GHCard from "../components/gh-card";
@@ -8,13 +7,12 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import GhCardDisplay from "./components/gh-card-display";
 import SortDropDown from "./components/sort-drop-down";
+import { SortOrder, SORT_ORDERS } from "@/types/types";
 
-async function MainCard() {
-  "use server";
-  const { userId, redirectToSignIn } = await auth();
-  if (!userId) return redirectToSignIn();
+async function MainCard(props: { sortKey: SortOrder }) {
+  //if failed to get data, redirect to home
   try {
-    const ghCards = await api.post.getAll();
+    const ghCards = await api.post.getAll({ sortOrder: props.sortKey });
     return <GhCardDisplay ghCards={ghCards} />;
   } catch (err: unknown) {
     if (err instanceof Error) {
@@ -46,7 +44,28 @@ function MainCardSkeleton() {
   );
 }
 
-export default async function Home() {
+export default async function Home(props: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  //check it is a user
+  const { userId, redirectToSignIn } = await auth();
+  if (!userId) return redirectToSignIn();
+
+  //validate sort order search param
+  const searchParams = await props.searchParams;
+  const sortParam = searchParams.sort ?? "ascLastEdited";
+  let sortKey: SortOrder = "ascLastEdited";
+  if (Array.isArray(sortParam)) {
+    redirect(`/ghcards`);
+  } else sortKey = sortParam as SortOrder;
+  const isValidSortKey = SORT_ORDERS.map((item) => item.value).includes(
+    sortKey
+  );
+  if (!isValidSortKey) {
+    redirect("/ghcards");
+  }
+
+  //get user info
   const user = await currentUser();
   const username = user?.username || user?.firstName || "User";
 
@@ -64,7 +83,7 @@ export default async function Home() {
           </div>
         </div>
         <Suspense fallback={<MainCardSkeleton />}>
-          <MainCard />
+          <MainCard sortKey={sortKey} />
         </Suspense>
       </div>
     </HydrateClient>
