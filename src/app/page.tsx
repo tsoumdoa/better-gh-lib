@@ -30,44 +30,46 @@ export default async function Home() {
   return (
     <HydrateClient>
       <div className="min-h-screen bg-black p-4 font-sans text-white md:p-6">
-        <Header />
-        <div className="flex flex-col gap-y-3">
-          <h1 className="text-center text-2xl font-bold">
-            GitHub Gist-like platform for your Grasshopper Scripts - Check out
-            demo{" "}
-            <Link
-              href="https://landing.hopperclip.com/"
-              prefetch={true}
-              className="text-orange-500 underline"
-            >
-              here
-            </Link>
-          </h1>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <FeatureCard
-              title="GhCard"
-              description="Explore and manage your script library by copy & paste your GhScript. Currently open beta and max 50 cards, use it with caution."
-              href="/ghcards"
-              go="signup required"
-            />
-            <FeatureCard
-              title="GhJsonViewer"
-              description="Validate GhXml data and see how they get parsed and validated to JSON."
-              href="/ghviewer"
-              go="mostly for dev uses only"
-            />
-            <FeatureCard
-              title="GhStudio"
-              description="Get metrics of your Gh Scripts."
-              href="/ghstudio"
-              go="more features coming soon"
-            />
-            <FeatureCard
-              title="GhCoder"
-              description="Extract code from from c# or Python component."
-              href="/ghcoder"
-              go="more features coming soon"
-            />
+        <div className="mx-auto max-w-7xl">
+          <Header />
+          <div className="flex flex-col gap-y-3">
+            <h1 className="text-center text-2xl font-bold">
+              GitHub Gist-like platform for your Grasshopper Scripts - Check out
+              demo{" "}
+              <Link
+                href="https://landing.hopperclip.com/"
+                prefetch={true}
+                className="text-orange-500 underline"
+              >
+                here
+              </Link>
+            </h1>
+            <div className="mx-auto grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <FeatureCard
+                title="GhCard"
+                description="Explore and manage your script library by copy & paste your GhScript. Currently open beta and max 50 cards, use it with caution."
+                href="/ghcards"
+                go="signup required"
+              />
+              <FeatureCard
+                title="GhJsonViewer"
+                description="Validate GhXml data and see how they get parsed and validated to JSON."
+                href="/ghviewer"
+                go="mostly for dev uses only"
+              />
+              <FeatureCard
+                title="GhStudio"
+                description="Get metrics of your Gh Scripts."
+                href="/ghstudio"
+                go="more features coming soon"
+              />
+              <FeatureCard
+                title="GhCoder"
+                description="Extract code from from c# or Python component."
+                href="/ghcoder"
+                go="more features coming soon"
+              />
+            </div>
           </div>
         </div>
       </div>

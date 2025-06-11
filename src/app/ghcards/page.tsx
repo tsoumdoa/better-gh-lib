@@ -25,8 +25,8 @@ async function MainCard(props: { sortKey: SortOrder }) {
 
 function MainCardSkeleton() {
   return (
-    <div className="h-ful mb-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-      {Array.from({ length: 15 }).map((_, i) => (
+    <div className="h-ful mb-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {Array.from({ length: 12 }).map((_, i) => (
         <GHCard
           key={i}
           id={0}
@@ -72,19 +72,21 @@ export default async function Home(props: {
   return (
     <HydrateClient>
       <div className="min-h-screen bg-black p-4 font-sans text-white md:p-6">
-        <Header />
-        <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
-          <div className="flex items-center gap-2 text-lg font-medium">
-            <span>{`${username}'s Fav`}</span>
+        <div className="mx-auto max-w-7xl">
+          <Header />
+          <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+            <div className="flex items-center gap-2 text-lg font-medium">
+              <span>{`${username}'s Fav`}</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <SortDropDown />
+              <AddGHCard />
+            </div>
           </div>
-          <div className="flex items-center gap-4">
-            <SortDropDown />
-            <AddGHCard />
-          </div>
+          <Suspense fallback={<MainCardSkeleton />}>
+            <MainCard sortKey={sortKey} />
+          </Suspense>
         </div>
-        <Suspense fallback={<MainCardSkeleton />}>
-          <MainCard sortKey={sortKey} />
-        </Suspense>
       </div>
     </HydrateClient>
   );
