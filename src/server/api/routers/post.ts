@@ -414,14 +414,26 @@ export const postRouter = createTRPCRouter({
       if (postDataRes.value.length > 1) {
         throw new Error("Post should be unique but found multiple");
       }
+
+      let formattedExpiryTime = "";
+
       const duration = Duration.seconds(expiryTime);
-      const expirationHours = Duration.toHours(duration);
+      const minutes = Duration.toMinutes(duration);
+      if (minutes < 60) {
+        formattedExpiryTime = `${minutes.toFixed(0)} ${minutes.toFixed(0) === "1" ? "minute" : "minutes"}`;
+      } else if (minutes < 1440) {
+        const hour = Duration.toHours(duration);
+        formattedExpiryTime = `${hour.toFixed(1)} ${hour <= 1.0 ? "hour" : "hours"}`;
+      } else {
+        const days = Duration.toDays(duration);
+        formattedExpiryTime = `${days.toFixed(0)} ${days.toFixed(0) === "1" ? "day" : "days"}`;
+      }
 
       return {
         presignedUrl: presignedRes.value.url,
         name: postDataRes.value[0].name,
         description: postDataRes.value[0].description,
-        expirationHours: expirationHours,
+        expirationHours: formattedExpiryTime,
       };
     }),
 });
