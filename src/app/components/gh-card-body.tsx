@@ -1,12 +1,10 @@
 import { Textarea } from "@/components/ui/textarea";
 import { GhCard } from "@/types/types";
 import { useEffect, useState } from "react";
-import { CopiedDialog, ShareDialog } from "./gh-card-dialog";
 import { Input } from "@/components/ui/input";
-import { useDownloadPresignedUrl } from "../hooks/use-download-presigned-url";
 import { api } from "@/trpc/react";
 import { useRouter } from "next/navigation";
-import { useFetchGhXml } from "../hooks/use-fetch-gh-xml";
+import { DateDisplay } from "./gh-card-date-display";
 
 export function NameAndDescription(props: {
   editMode: boolean;
@@ -42,22 +40,6 @@ export function NameAndDescription(props: {
       }
     }
   }, [props.expiryDate, props.isShared, props.bucketId, revokeLink]);
-
-  const createdDate = props.created
-    ? new Date(props.created).toLocaleString("en-US", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      })
-    : "-";
-
-  const lastModDate = props.lastEdited
-    ? new Date(props.lastEdited).toLocaleString("en-US", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      })
-    : "-";
 
   return (
     <div>
@@ -106,7 +88,7 @@ export function NameAndDescription(props: {
       >
         Description
       </p>
-      <div className="h-auto text-neutral-100">
+      <div className="h-auto pb-2 text-neutral-100">
         {props.editMode ? (
           <div className="space-y-1">
             <Textarea
@@ -127,130 +109,7 @@ export function NameAndDescription(props: {
           props.ghInfo.description || "-"
         )}
       </div>
-      <div className="text-sm text-neutral-500">
-        {lastModDate === createdDate ? (
-          `Created: ${createdDate}`
-        ) : (
-          <div>
-            <p>Last mod: {lastModDate}</p>
-            <p>Created: {createdDate}</p>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-export function NormalButtons(props: {
-  editMode: boolean;
-  bucketId: string;
-  setEditMode: () => void;
-  handleEdit: (b: boolean) => void;
-}) {
-  const [openCopyDialog, setOpenCopyDialog] = useState(false);
-  const [openSharedDialog, setOpenSharedDialog] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isCopied, setIsCopied] = useState(false);
-  const { refetch: getPresignedUrl } = useDownloadPresignedUrl(props.bucketId);
-  const { downloadData, decoded } = useFetchGhXml();
-
-  const handleCopy = async () => {
-    setIsLoading(true);
-    const res = await getPresignedUrl();
-    if (res.isSuccess) {
-      const decoded = await downloadData(res.data);
-      try {
-        await navigator.clipboard.writeText(decoded);
-        setOpenCopyDialog(true);
-        setIsLoading(false);
-        setIsCopied(true);
-      } catch {
-        setOpenCopyDialog(true);
-        setIsLoading(false);
-        setIsCopied(false);
-      }
-    }
-  };
-
-  const handleShare = () => {
-    setOpenSharedDialog(true);
-  };
-
-  return (
-    <div className="flex items-center justify-end text-neutral-400 transition-all">
-      <CopiedDialog
-        open={openCopyDialog}
-        setOpen={() => setOpenCopyDialog(!openCopyDialog)}
-        setIsCopied={(b) => setIsCopied(b)}
-        isCopied={isCopied}
-        decoded={decoded}
-      />
-      <ShareDialog
-        open={openSharedDialog}
-        setOpen={() => setOpenSharedDialog(!openSharedDialog)}
-        bucketId={props.bucketId}
-      />
-      <button
-        className={`px-2 font-bold hover:text-neutral-50`}
-        onClick={handleCopy}
-        disabled={isLoading}
-      >
-        {isLoading ? "Loading..." : "copy"}
-      </button>
-      <button
-        className={`px-2 font-bold hover:text-neutral-50`}
-        onClick={handleShare}
-      >
-        share
-      </button>
-      <button
-        className={`px-2 font-bold hover:text-neutral-50`}
-        onClick={() => props.handleEdit(false)}
-      >
-        edit
-      </button>
-    </div>
-  );
-}
-
-export function EditButtons(props: {
-  editMode: boolean;
-  setEditMode: (b: boolean) => void;
-  setGhInfo: (ghInfo: GhCard) => void;
-  handleEdit: (b: boolean) => void;
-  deletePost: () => void;
-  ghInfo: GhCard;
-  name: string;
-  description: string;
-}) {
-  const cancelEditMode = () => {
-    props.setEditMode(false);
-    props.setGhInfo({
-      name: props.name,
-      description: props.description,
-    });
-  };
-
-  return (
-    <div className="flex items-center justify-end text-neutral-400 transition-all">
-      <button
-        className={`px-2 font-bold hover:text-neutral-50`}
-        onClick={() => props.deletePost()}
-      >
-        delete
-      </button>
-      <button
-        className={`px-2 font-bold hover:text-neutral-50`}
-        onClick={() => cancelEditMode()}
-      >
-        cancel
-      </button>
-      <button
-        className={`px-2 font-bold hover:text-neutral-50`}
-        onClick={() => props.handleEdit(true)}
-      >
-        done
-      </button>
+      <DateDisplay createdDate={props.created} lastModDate={props.lastEdited} />
     </div>
   );
 }

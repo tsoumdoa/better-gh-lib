@@ -3,10 +3,12 @@ import { useState } from "react";
 import { api } from "@/trpc/react";
 import { GhCardSchema } from "@/types/types";
 import { InvalidValueDialog } from "./gh-card-dialog";
-import { EditButtons, NameAndDescription, NormalButtons } from "./gh-card-body";
 import { addNanoId } from "@/server/api/routers/util/ensureUniqueName";
 import { usePathname, useRouter } from "next/navigation";
 import { Posts } from "@/server/db/schema";
+import { NormalButtons } from "./gh-card-normal-buttons";
+import { EditButtons } from "./gh-card-edit-buttons";
+import { NameAndDescription } from "./gh-card-body";
 
 export default function GHCard(props: { id: number; cardInfo: Posts }) {
   const [editMode, setEditMode] = useState(false);

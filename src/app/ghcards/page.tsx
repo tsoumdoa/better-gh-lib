@@ -25,7 +25,7 @@ async function MainCard(props: { sortKey: SortOrder }) {
 
 function MainCardSkeleton() {
   return (
-    <div className="h-ful mb-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="h-ful mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {Array.from({ length: 12 }).map((_, i) => (
         <GHCard
           key={i}

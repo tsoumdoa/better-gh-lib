@@ -58,8 +58,7 @@ export default function GhShareCard(props: { uid: string }) {
             </span>
 
             <CardDescription>
-              Link expires in{" "}
-              {queryRes[0].expirationHours.toFixed(1) ?? "unknown"} hours
+              Link expires in {queryRes[0].expirationHours ?? "unknown"}
             </CardDescription>
           </CardTitle>
         </CardHeader>
