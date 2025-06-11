@@ -372,9 +372,6 @@ export const postRouter = createTRPCRouter({
         throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
       }
 
-      //get expiry time
-      const expiryTime = await ctx.redis.ttl(`sharedLink:${input.publicId}`);
-
       const postData = ctx.db
         .select()
         .from(posts)
@@ -413,6 +410,17 @@ export const postRouter = createTRPCRouter({
       }
       if (postDataRes.value.length > 1) {
         throw new Error("Post should be unique but found multiple");
+      }
+
+      //get expiry time
+      const expiryTime = await ctx.redis.ttl(`sharedLink:${input.publicId}`);
+      if (expiryTime < 0) {
+        return {
+          presignedUrl: presignedRes.value.url,
+          name: postDataRes.value[0].name,
+          description: postDataRes.value[0].description,
+          expirationHours: "unknown",
+        };
       }
 
       let formattedExpiryTime = "";
