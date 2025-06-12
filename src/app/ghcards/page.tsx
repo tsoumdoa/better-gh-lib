@@ -25,7 +25,7 @@ async function MainCard(props: { sortKey: SortOrder }) {
 
 function MainCardSkeleton() {
   return (
-    <div className="h-ful mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="h-ful mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
       {Array.from({ length: 12 }).map((_, i) => (
         <GHCard
           key={i}
@@ -72,7 +72,7 @@ export default async function Home(props: {
   return (
     <HydrateClient>
       <div className="min-h-screen bg-black p-4 font-sans text-white md:p-6">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[100rem]">
           <Header />
           <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
             <div className="flex items-center gap-2 text-lg font-medium">
