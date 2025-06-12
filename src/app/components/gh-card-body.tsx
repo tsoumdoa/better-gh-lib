@@ -42,16 +42,16 @@ export function NameAndDescription(props: {
   }, [props.expiryDate, props.isShared, props.bucketId, revokeLink]);
 
   return (
-    <div>
-      <div className="items-top flex flex-row justify-between">
-        <div>
+    <div className="w-full">
+      <div className="items-top flex w-full flex-row justify-between gap-2">
+        <div className="text-truncate w-full">
           <p
             className={` ${props.editMode ? "text-neutral-900" : "text-neutral-500"} `}
           >
             Name
           </p>
           <div
-            className={`pb-1 text-lg ${props.editMode ? "" : "font-semibold"} transition-all`}
+            className={`pb-1 text-lg ${props.editMode ? "" : "font-semibold"} text-truncate w-full transition-all`}
           >
             {props.editMode ? (
               <div>
@@ -64,7 +64,7 @@ export function NameAndDescription(props: {
                     props.setGhInfo({ ...props.ghInfo, name: e.target.value })
                   }
                 />
-                <p className="text-right text-xs text-neutral-100">
+                <p className="w-full text-right text-xs text-wrap text-neutral-100">
                   {props.ghInfo.name.length || 0} / 30 characters
                 </p>
               </div>
@@ -106,7 +106,9 @@ export function NameAndDescription(props: {
             </p>
           </div>
         ) : (
-          props.ghInfo.description || "-"
+          <p className="overflow-hidden text-ellipsis">
+            {props.ghInfo.description}
+          </p>
         )}
       </div>
       <DateDisplay createdDate={props.created} lastModDate={props.lastEdited} />

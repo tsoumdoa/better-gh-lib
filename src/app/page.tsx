@@ -30,7 +30,7 @@ export default async function Home() {
   return (
     <HydrateClient>
       <div className="min-h-screen bg-black p-4 font-sans text-white md:p-6">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[100rem]">
           <Header />
           <div className="flex flex-col gap-y-3">
             <h1 className="text-center text-2xl font-bold">
