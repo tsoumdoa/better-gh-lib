@@ -1,121 +1,24 @@
 "use client";
-import { useState } from "react";
-import { api } from "@/trpc/react";
-import { GhCardSchema } from "@/types/types";
 import { InvalidValueDialog } from "./gh-card-dialog";
-import { addNanoId } from "@/server/api/routers/util/ensureUniqueName";
-import { usePathname, useRouter } from "next/navigation";
 import { Posts } from "@/server/db/schema";
 import { NormalButtons } from "./gh-card-normal-buttons";
 import { EditButtons } from "./gh-card-edit-buttons";
 import { NameAndDescription } from "./gh-card-body";
+import useGhCardControl from "../hooks/use-gh-card-control";
 
 export default function GHCard(props: { id: number; cardInfo: Posts }) {
-  const [editMode, setEditMode] = useState(false);
-  const [invalidInput, setInvalidInput] = useState(false);
-  const [updating, setUpdating] = useState(false);
-  const [deleted, setDeleted] = useState(false);
-  const [ghInfo, setGhInfo] = useState({
-    name: props.cardInfo.name,
-    description: props.cardInfo.description,
-  });
-
-  const pathname = usePathname();
-  const router = useRouter();
-  const { replace } = useRouter();
-
-  const updateData = api.post.edit.useMutation({
-    onSuccess: async (ctx) => {
-      setUpdating(false);
-      setGhInfo(ctx);
-      replace(pathname);
-    },
-    onMutate: async () => {
-      setUpdating(true);
-    },
-    onError: async (err) => {
-      console.log("hey", err.message);
-      if (err.message === "AUTH_FAILED") {
-        router.push("/");
-      }
-      setGhInfo({
-        name: props.cardInfo.name,
-        description: props.cardInfo.description,
-      });
-      if (err.message === "DUPLICATED_NAME") {
-        const newName = addNanoId(ghInfo.name ?? "");
-        setGhInfo({ ...ghInfo, name: newName });
-      }
-      setUpdating(false);
-      setEditMode(true);
-    },
-  });
-
-  const deleteData = api.post.delete.useMutation({
-    onSuccess: async () => {
-      setUpdating(false);
-      setDeleted(true);
-      setEditMode(false);
-      setUpdating(false);
-    },
-    onMutate: async () => {
-      setUpdating(true);
-    },
-    onError: async () => {
-      //todo let user know the delete failed better...
-      setUpdating(false);
-      setEditMode(false);
-      setGhInfo({
-        name: "Failed to delete",
-        description:
-          "Failed to delete. Try again, or cancel and try again later",
-      });
-
-      await new Promise((r) => setTimeout(r, 1200));
-      setGhInfo({
-        name: props.cardInfo.name,
-        description: props.cardInfo.description,
-      });
-    },
-  });
-
-  const deletePost = () => {
-    deleteData.mutate({
-      id: props.id,
-      name: props.cardInfo.name!,
-      bucketId: props.cardInfo.bucketUrl!,
-    });
-  };
-
-  const handleEdit = (submit: boolean) => {
-    if (editMode) {
-      try {
-        GhCardSchema.parse(ghInfo);
-      } catch (err) {
-        console.log(err);
-        setInvalidInput(true);
-        return;
-      }
-
-      if (
-        ghInfo.name === props.cardInfo.name &&
-        ghInfo.description === props.cardInfo.description
-      ) {
-        setEditMode(false);
-        return;
-      }
-    }
-    if (submit) {
-      //todo add error boundary...
-      updateData.mutate({
-        id: props.id,
-        name: ghInfo.name!,
-        prevName: props.cardInfo.name!,
-        description: ghInfo.description!,
-      });
-    }
-    setEditMode(!editMode);
-  };
+  const {
+    editMode,
+    handleEdit,
+    deletePost,
+    setGhInfo,
+    invalidInput,
+    setInvalidInput,
+    updating,
+    deleted,
+    setEditMode,
+    shareExpired,
+  } = useGhCardControl(props.cardInfo, props.id);
 
   if (deleted) {
     return (
@@ -137,8 +40,15 @@ export default function GHCard(props: { id: number; cardInfo: Posts }) {
 
   return (
     <div
-      className={`flex flex-col justify-between rounded-md p-3 ring-1 ring-neutral-500 ${editMode || updating ? "bg-neutral-500" : "bg-neutral-900"}`}
+      className={`relative flex flex-col justify-between rounded-md p-3 ring-1 ring-neutral-500 ${editMode || updating ? "bg-neutral-500" : "bg-neutral-900"}`}
     >
+      {shareExpired && (
+        <p
+          className={`absolute top-3 right-3 h-fit w-fit rounded-md bg-green-300 px-2 text-sm font-bold text-neutral-800`}
+        >
+          Shared
+        </p>
+      )}
       <InvalidValueDialog
         open={invalidInput}
         setOpen={() => setInvalidInput(false)}

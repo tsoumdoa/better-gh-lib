@@ -1,9 +1,6 @@
 import { Textarea } from "@/components/ui/textarea";
 import { GhCard } from "@/types/types";
-import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
-import { api } from "@/trpc/react";
-import { useRouter } from "next/navigation";
 import { DateDisplay } from "./gh-card-date-display";
 
 export function NameAndDescription(props: {
@@ -17,30 +14,6 @@ export function NameAndDescription(props: {
   lastEdited: string | undefined;
   created: string | undefined;
 }) {
-  const [shareExpired, setShareExpired] = useState(false);
-  const router = useRouter();
-
-  const { mutate: revokeLink } = api.post.revokeSharablePublicLink.useMutation({
-    onSuccess: (data) => {
-      if (data.success) {
-        setShareExpired(false);
-        router.refresh();
-      }
-    },
-  });
-
-  useEffect(() => {
-    setShareExpired(false);
-    const expiryDate = new Date(props.expiryDate);
-    if (props.isShared && new Date() < expiryDate) {
-      setShareExpired(true);
-    } else {
-      if (props.bucketId !== "" && props.isShared) {
-        revokeLink({ bucketId: props.bucketId });
-      }
-    }
-  }, [props.expiryDate, props.isShared, props.bucketId, revokeLink]);
-
   return (
     <div className="w-full">
       <div className="items-top flex w-full flex-row justify-between gap-2">
@@ -75,13 +48,6 @@ export function NameAndDescription(props: {
             )}
           </div>
         </div>
-        {shareExpired && (
-          <p
-            className={`h-fit w-fit rounded-md bg-green-300 px-2 text-sm font-bold text-neutral-800`}
-          >
-            Shared
-          </p>
-        )}
       </div>
       <p
         className={` ${props.editMode ? "text-neutral-900" : "text-neutral-500"} `}
