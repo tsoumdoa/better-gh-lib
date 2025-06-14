@@ -37,6 +37,8 @@ function MainCardSkeleton() {
             clerkUserId: "",
             isPublicShared: false,
             publicShareExpiryDate: "",
+            dateCreated: "",
+            dateUpdated: "",
           }}
         />
       ))}
