@@ -35,12 +35,17 @@ export const postRouter = createTRPCRouter({
         });
       }
 
+      const currentDate = new Date();
+      const stringDate = currentDate.toISOString();
+
       try {
         await ctx.db.insert(posts).values({
           name: input.name,
           description: input.description,
           bucketUrl: input.nanoid,
           clerkUserId: userId,
+          dateCreated: stringDate,
+          dateUpdated: stringDate,
         });
       } catch (err) {
         if (err instanceof Error) {
@@ -51,6 +56,8 @@ export const postRouter = createTRPCRouter({
               description: input.description,
               bucketUrl: input.nanoid,
               clerkUserId: userId,
+              dateCreated: stringDate,
+              dateUpdated: stringDate,
             });
           }
         }

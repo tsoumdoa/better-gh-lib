@@ -13,12 +13,8 @@ export const posts = sqliteTable(
     id: integer().primaryKey().unique(),
     name: text(),
     description: text(),
-    dateCreated: text("date_created")
-      .notNull()
-      .default(sql`(current_timestamp)`),
-    dateUpdated: text("date_updated")
-      .notNull()
-      .default(sql`(current_timestamp)`),
+    dateCreated: text("date_created").notNull(),
+    dateUpdated: text("date_updated").notNull(),
     bucketUrl: text().notNull(),
     clerkUserId: text(),
     isPublicShared: integer({ mode: "boolean" }).default(false),
