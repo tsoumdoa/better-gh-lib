@@ -13,8 +13,8 @@ import { TRPCError } from "@trpc/server";
 import { waitUntil } from "@vercel/functions";
 import cleanUpBucket from "./util/run-bucket-cleanup";
 import { generateSharableLinkUid } from "./util/generate-sharable-link-uid";
-import { Duration } from "effect";
 import { deleteUrl, orderBy, presignedUrl } from "./util/helper-functions";
+import formatShareExpiryTime from "./util/format-expiry-time";
 
 export const postRouter = createTRPCRouter({
   add: publicProcedure
@@ -25,15 +25,16 @@ export const postRouter = createTRPCRouter({
         throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
       }
 
-      const checkNAllEntries = await ctx.db
+      const checkAllEntries = await ctx.db
         .select()
         .from(posts)
         .where(eq(posts.clerkUserId, userId));
-      if (checkNAllEntries.length > 50) {
+      if (checkAllEntries.length > 50) {
         throw new Error("CARD_LIMIT_50_HIT", {
           cause: new Error("MAC_CARD_LIMIT_HIT"),
         });
       }
+
       try {
         await ctx.db.insert(posts).values({
           name: input.name,
@@ -423,19 +424,7 @@ export const postRouter = createTRPCRouter({
         };
       }
 
-      let formattedExpiryTime = "";
-
-      const duration = Duration.seconds(expiryTime);
-      const minutes = Duration.toMinutes(duration);
-      if (minutes < 60) {
-        formattedExpiryTime = `${minutes.toFixed(0)} ${minutes.toFixed(0) === "1" ? "minute" : "minutes"}`;
-      } else if (minutes < 1440) {
-        const hour = Duration.toHours(duration);
-        formattedExpiryTime = `${hour.toFixed(1)} ${hour <= 1.0 ? "hour" : "hours"}`;
-      } else {
-        const days = Duration.toDays(duration);
-        formattedExpiryTime = `${days.toFixed(0)} ${days.toFixed(0) === "1" ? "day" : "days"}`;
-      }
+      const formattedExpiryTime = formatShareExpiryTime(expiryTime);
 
       return {
         presignedUrl: presignedRes.value.url,
