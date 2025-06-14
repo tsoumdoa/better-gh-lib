@@ -12,4 +12,6 @@ export default function formatShareExpiryTime(expiryTime: number) {
     const days = Duration.toDays(duration);
     formattedExpiryTime = `${days.toFixed(0)} ${days.toFixed(0) === "1" ? "day" : "days"}`;
   }
+
+  return formattedExpiryTime;
 }
