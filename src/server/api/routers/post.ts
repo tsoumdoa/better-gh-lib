@@ -440,4 +440,40 @@ export const postRouter = createTRPCRouter({
         expirationHours: formattedExpiryTime,
       };
     }),
+
+  getUserTags: publicProcedure
+    .input(z.object({ userId: z.string() }))
+    .query(async ({ input, ctx }) => {
+      const { userId } = ctx.auth;
+      if (!userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
+    }),
+
+  addUserTag: publicProcedure
+    .input(z.object({ userId: z.string(), tag: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      const { userId } = ctx.auth;
+      if (!userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
+    }),
+
+  deleteUserTag: publicProcedure
+    .input(z.object({ userId: z.string(), tag: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      const { userId } = ctx.auth;
+      if (!userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
+    }),
+
+  updateUserTag: publicProcedure
+    .input(z.object({ userId: z.string(), tag: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      const { userId } = ctx.auth;
+      if (!userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
+    }),
 });
