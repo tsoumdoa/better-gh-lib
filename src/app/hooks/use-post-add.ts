@@ -5,7 +5,8 @@ export function usePostAdd(
   setAddError: (err: string) => void,
   setAdding: (b: boolean) => void,
   setOpen: (b: boolean) => void,
-  setPosted: (b: boolean) => void
+  setPosted: (b: boolean) => void,
+  setTags: (tags: string[]) => void
 ) {
   const router = useRouter();
 
@@ -15,6 +16,9 @@ export function usePostAdd(
       setOpen(false);
       setAdding(false);
       setPosted(false);
+    },
+    onSettled: () => {
+      setTags([]);
     },
 
     onError: async (err) => {

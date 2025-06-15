@@ -18,7 +18,12 @@ import formatShareExpiryTime from "./util/format-expiry-time";
 
 export const postRouter = createTRPCRouter({
   add: publicProcedure
-    .input(GhCardSchema.extend({ nanoid: z.string() }))
+    .input(
+      GhCardSchema.extend({
+        nanoid: z.string(),
+        tags: z.array(z.string()),
+      })
+    )
     .mutation(async ({ ctx, input }) => {
       const { userId } = ctx.auth;
       if (!userId) {
@@ -38,6 +43,8 @@ export const postRouter = createTRPCRouter({
       const currentDate = new Date();
       const stringDate = currentDate.toISOString();
 
+      input.tags.sort((a, b) => a.localeCompare(b));
+
       try {
         await ctx.db.insert(posts).values({
           name: input.name,
@@ -46,6 +53,7 @@ export const postRouter = createTRPCRouter({
           clerkUserId: userId,
           dateCreated: stringDate,
           dateUpdated: stringDate,
+          tags: input.tags,
         });
       } catch (err) {
         if (err instanceof Error) {
@@ -58,6 +66,7 @@ export const postRouter = createTRPCRouter({
               clerkUserId: userId,
               dateCreated: stringDate,
               dateUpdated: stringDate,
+              tags: input.tags,
             });
           }
         }
@@ -441,39 +450,31 @@ export const postRouter = createTRPCRouter({
       };
     }),
 
-  getUserTags: publicProcedure
-    .input(z.object({ userId: z.string() }))
-    .query(async ({ input, ctx }) => {
-      const { userId } = ctx.auth;
-      if (!userId) {
-        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
-      }
-    }),
+  // getUserTags: publicProcedure
+  //   .input(z.object({ userId: z.string() }))
+  //   .query(async ({ input, ctx }) => {
+  //     const { userId } = ctx.auth;
+  //     if (!userId) {
+  //       throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+  //     }
+  // }),
 
-  addUserTag: publicProcedure
-    .input(z.object({ userId: z.string(), tag: z.string() }))
-    .mutation(async ({ input, ctx }) => {
-      const { userId } = ctx.auth;
-      if (!userId) {
-        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
-      }
-    }),
-
-  deleteUserTag: publicProcedure
-    .input(z.object({ userId: z.string(), tag: z.string() }))
-    .mutation(async ({ input, ctx }) => {
-      const { userId } = ctx.auth;
-      if (!userId) {
-        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
-      }
-    }),
-
-  updateUserTag: publicProcedure
-    .input(z.object({ userId: z.string(), tag: z.string() }))
-    .mutation(async ({ input, ctx }) => {
-      const { userId } = ctx.auth;
-      if (!userId) {
-        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
-      }
-    }),
+  // addUserTag: publicProcedure
+  //   .input(z.object({ userId: z.string(), tag: z.string() }))
+  //   .mutation(async ({ input, ctx }) => {
+  //     const { userId } = ctx.auth;
+  //     if (!userId) {
+  //       throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+  //     }
+  //   }),
+  //
+  // deleteUserTag: publicProcedure
+  //   .input(z.object({ userId: z.string(), tag: z.string() }))
+  //   .mutation(async ({ input, ctx }) => {
+  //     const { userId } = ctx.auth;
+  //     if (!userId) {
+  //       throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+  //     }
+  //   }),
+  //
 });

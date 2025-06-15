@@ -73,11 +73,18 @@ export function NameAndDescription(props: {
           </div>
         ) : (
           <p className="overflow-hidden text-ellipsis">
-            {props.ghInfo.description}
+            {props.ghInfo.description.length > 0
+              ? props.ghInfo.description
+              : "-"}
           </p>
         )}
       </div>
-      <DateDisplay createdDate={props.created} lastModDate={props.lastEdited} />
+      {!props.editMode && (
+        <DateDisplay
+          createdDate={props.created}
+          lastModDate={props.lastEdited}
+        />
+      )}
     </div>
   );
 }

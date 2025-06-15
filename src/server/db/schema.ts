@@ -18,6 +18,7 @@ export const posts = sqliteTable(
     clerkUserId: text(),
     isPublicShared: integer({ mode: "boolean" }).default(false),
     publicShareExpiryDate: text(),
+    tags: text("tags", { mode: "json" }).$type<string[]>().default([]),
   },
   (t) => [
     index("user_idx").on(t.clerkUserId),

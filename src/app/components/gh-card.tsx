@@ -5,6 +5,7 @@ import { NormalButtons } from "./gh-card-normal-buttons";
 import { EditButtons } from "./gh-card-edit-buttons";
 import { NameAndDescription } from "./gh-card-body";
 import useGhCardControl from "../hooks/use-gh-card-control";
+import GhCardTags from "./gh-card-tags";
 
 export default function GHCard(props: { id: number; cardInfo: Posts }) {
   const {
@@ -53,6 +54,14 @@ export default function GHCard(props: { id: number; cardInfo: Posts }) {
         open={invalidInput}
         setOpen={() => setInvalidInput(false)}
       />
+
+      {props.cardInfo.tags && props.cardInfo.tags.length > 0 && (
+        <GhCardTags
+          tags={props.cardInfo.tags}
+          useNarrow={props.cardInfo.isPublicShared ?? false}
+        />
+      )}
+
       <NameAndDescription
         editMode={editMode}
         setEditMode={() => setEditMode(!editMode)}

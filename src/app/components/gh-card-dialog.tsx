@@ -148,6 +148,7 @@ export function ShareDialog(props: {
     if (props.open) {
       reset(); //reset the sate from the previous run
       setRevoking(false);
+      setShareLink("generating...");
       generateLink({ bucketId: props.bucketId });
     }
   }, [props.open, generateLink, props.bucketId, reset]);
