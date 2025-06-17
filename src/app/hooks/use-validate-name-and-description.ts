@@ -27,23 +27,38 @@ export const useValidateNameDescriptionAndTags = (
 
     if (trimedTag.length > 20) {
       setAddError("Tag is too long");
+      setTimeout(() => {
+        setAddError("");
+      }, 900);
       return;
     }
     if (trimedTag.length === 0) {
       setAddError("Tag cannot be empty");
+      setTimeout(() => {
+        setAddError("");
+      }, 900);
       return;
     }
     if (tags.includes(trimedTag)) {
       setAddError("Tag already exists");
+      setTimeout(() => {
+        setAddError("");
+      }, 900);
       return;
     }
     if (trimedTag === " ") {
       setAddError("Tag cannot be empty");
+      setTimeout(() => {
+        setAddError("");
+      }, 900);
       return;
     }
     // no special characters
     if (trimedTag.match(/[^\p{L}\p{N}]/u)) {
       setAddError("Tag cannot contain special characters");
+      setTimeout(() => {
+        setAddError("");
+      }, 900);
       return;
     }
     setTags([...tags, trimedTag]);

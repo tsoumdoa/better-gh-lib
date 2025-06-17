@@ -450,31 +450,76 @@ export const postRouter = createTRPCRouter({
       };
     }),
 
-  // getUserTags: publicProcedure
-  //   .input(z.object({ userId: z.string() }))
-  //   .query(async ({ input, ctx }) => {
-  //     const { userId } = ctx.auth;
-  //     if (!userId) {
-  //       throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
-  //     }
-  // }),
+  getUserTags: publicProcedure.query(async ({ ctx }) => {
+    const { userId } = ctx.auth;
+    if (!userId) {
+      throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+    }
 
-  // addUserTag: publicProcedure
-  //   .input(z.object({ userId: z.string(), tag: z.string() }))
-  //   .mutation(async ({ input, ctx }) => {
-  //     const { userId } = ctx.auth;
-  //     if (!userId) {
-  //       throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
-  //     }
-  //   }),
-  //
-  // deleteUserTag: publicProcedure
-  //   .input(z.object({ userId: z.string(), tag: z.string() }))
-  //   .mutation(async ({ input, ctx }) => {
-  //     const { userId } = ctx.auth;
-  //     if (!userId) {
-  //       throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
-  //     }
-  //   }),
-  //
+    const cachedUserTags = await ctx.redis.smembers(`userTags:${userId}`);
+
+    if (cachedUserTags.length > 0) {
+      return cachedUserTags[0];
+    }
+
+    const userHasTags = await ctx.redis.get(`userHasTags:${userId}`);
+    if (userHasTags) {
+      return [];
+    }
+
+    const userTags = await ctx.db
+      .select({
+        tags: posts.tags,
+      })
+      .from(posts)
+      .where(eq(posts.clerkUserId, userId))
+      .limit(50); // hardcoded limit for now
+
+    const tagSet = new Set(
+      userTags.flatMap((userTag) => {
+        return userTag.tags !== null ? userTag.tags : [];
+      })
+    );
+
+    const uniqueTags = Array.from(tagSet);
+    uniqueTags.sort((a, b) => a.localeCompare(b));
+
+    waitUntil(ctx.redis.sadd(`userTags:${userId}`, uniqueTags));
+
+    return uniqueTags;
+  }),
+
+  addUserTag: publicProcedure
+    .input(z.object({ userId: z.string(), tag: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      const { userId } = ctx.auth;
+      if (!userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
+
+      //also upload the db at the specif post...
+
+      const runSadd = ctx.redis.sadd(`userTags:${userId}`, input.tag);
+      const runSet = ctx.redis.set(`userHasTags:${userId}`, true);
+      const res = await Promise.allSettled([runSadd, runSet]);
+      if (res.every((item) => item.status === "fulfilled")) {
+        return { success: true, error: "" };
+      }
+      return { success: false, error: "Failed to add tag" };
+    }),
+
+  deleteUserTag: publicProcedure
+    .input(
+      z.object({ userId: z.string(), tag: z.string(), postId: z.string() })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const { userId } = ctx.auth;
+      if (!userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
+
+      await ctx.redis.srem(`userTags:${userId}`, input.tag);
+
+      //todo also upload the db at the specif post...
+    }),
 });

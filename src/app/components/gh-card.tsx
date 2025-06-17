@@ -7,7 +7,11 @@ import { NameAndDescription } from "./gh-card-body";
 import useGhCardControl from "../hooks/use-gh-card-control";
 import GhCardTags from "./gh-card-tags";
 
-export default function GHCard(props: { id: number; cardInfo: Posts }) {
+export default function GHCard(props: {
+  id: number;
+  cardInfo: Posts;
+  tagFilter?: string[];
+}) {
   const {
     editMode,
     handleEdit,
@@ -59,6 +63,7 @@ export default function GHCard(props: { id: number; cardInfo: Posts }) {
         <GhCardTags
           tags={props.cardInfo.tags}
           useNarrow={props.cardInfo.isPublicShared ?? false}
+          tagFilter={props.tagFilter}
         />
       )}
 

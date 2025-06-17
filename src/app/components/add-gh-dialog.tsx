@@ -38,6 +38,7 @@ export function AddGhDialog(props: {
     isValid,
     tag,
     tags,
+    setTag,
     setTags,
     handleAddTag,
     deleteTag,
@@ -103,6 +104,8 @@ export function AddGhDialog(props: {
     setName("");
     setDescription("");
     setAddError("");
+    setTags([]);
+    setTag("");
     setXmlData(undefined);
     props.setOpen(false);
   };

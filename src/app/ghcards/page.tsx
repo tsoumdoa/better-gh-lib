@@ -8,11 +8,23 @@ import { redirect } from "next/navigation";
 import GhCardDisplay from "./components/gh-card-display";
 import SortDropDown from "./components/sort-drop-down";
 import { SortOrder, SORT_ORDERS } from "@/types/types";
+import UserTags from "./components/user-tags";
+import FilterTagDisplay from "./components/user-tag-display";
 
-async function MainCard(props: { sortKey: SortOrder }) {
+async function MainCard(props: { sortKey: SortOrder; tagFilter: string[] }) {
   //if failed to get data, redirect to home
   try {
     const ghCards = await api.post.getAll({ sortOrder: props.sortKey });
+    if (props.tagFilter.length > 0) {
+      const filtered = ghCards.filter((card) => {
+        for (const tag of props.tagFilter) {
+          if (card.tags?.includes(tag)) {
+            return true;
+          }
+        }
+      });
+      return <GhCardDisplay ghCards={filtered} tagFilter={props.tagFilter} />;
+    }
     return <GhCardDisplay ghCards={ghCards} />;
   } catch (err: unknown) {
     if (err instanceof Error) {
@@ -63,6 +75,12 @@ export default async function Home(props: {
   const isValidSortKey = SORT_ORDERS.map((item) => item.value).includes(
     sortKey
   );
+  const tagFilterParam = searchParams.tagFilter ?? [];
+  let sanitizedTagFilter: string[] = [];
+  if (Array.isArray(tagFilterParam)) {
+    sanitizedTagFilter = tagFilterParam;
+  } else sanitizedTagFilter = tagFilterParam.split(",");
+
   if (!isValidSortKey) {
     redirect("/ghcards");
   }
@@ -76,7 +94,7 @@ export default async function Home(props: {
       <div className="min-h-screen bg-black p-4 font-sans text-white md:p-6">
         <div className="mx-auto max-w-[100rem]">
           <Header />
-          <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+          <div className="flex flex-col items-start justify-between gap-2 pb-4 sm:flex-row sm:items-center sm:gap-4">
             <div className="flex items-center gap-2 text-lg font-medium">
               <span>{`${username}'s Fav`}</span>
             </div>
@@ -85,8 +103,11 @@ export default async function Home(props: {
               <AddGHCard />
             </div>
           </div>
+          <div className="flex flex-row flex-wrap items-start justify-start gap-2 pb-4">
+            <UserTags />
+          </div>
           <Suspense fallback={<MainCardSkeleton />}>
-            <MainCard sortKey={sortKey} />
+            <MainCard sortKey={sortKey} tagFilter={sanitizedTagFilter} />
           </Suspense>
         </div>
       </div>
