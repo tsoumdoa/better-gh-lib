@@ -17,6 +17,13 @@ export default function UserTags() {
   const pathname = usePathname();
   const { replace } = useRouter();
 
+  let dataArray: string[] = [];
+  if (Array.isArray(data)) {
+    dataArray = data;
+  } else if (data) {
+    dataArray = [data];
+  }
+
   useEffect(() => {
     if (tagFilters.length === 0) {
       replace(pathname);
@@ -52,27 +59,25 @@ export default function UserTags() {
         updatePath={updateSearchParam}
       />
     );
-  if (data && data.length > 0) {
-    return (
-      <div className={`flex w-full flex-wrap items-center gap-2`}>
-        {data.map((tag, i) => (
-          <FilterTagDisplay
-            key={`tag-${i}-${tag}`}
-            tag={tag}
-            tagFilters={tagFilters}
-            setTagFilters={setTagFilters}
-            updatePath={updateSearchParam}
-          />
-        ))}
-        {tagFilters.length > 0 && (
-          <Button
-            onClick={() => removeSearchParam()}
-            className="h-6 px-2 py-1 text-sm font-bold text-neutral-100 hover:cursor-pointer hover:bg-neutral-700 hover:text-neutral-300"
-          >
-            Clear
-          </Button>
-        )}
-      </div>
-    );
-  }
+  return (
+    <div className={`flex w-full flex-wrap items-center gap-2`}>
+      {dataArray.map((tag, i) => (
+        <FilterTagDisplay
+          key={`tag-${i}-${tag}`}
+          tag={tag}
+          tagFilters={tagFilters}
+          setTagFilters={setTagFilters}
+          updatePath={updateSearchParam}
+        />
+      ))}
+      {tagFilters.length > 0 && (
+        <Button
+          onClick={() => removeSearchParam()}
+          className="h-6 px-2 py-1 text-sm font-bold text-neutral-100 hover:cursor-pointer hover:bg-neutral-700 hover:text-neutral-300"
+        >
+          Clear
+        </Button>
+      )}
+    </div>
+  );
 }
