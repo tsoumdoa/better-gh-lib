@@ -1,13 +1,16 @@
 "use client";
 import { api } from "@/trpc/react";
 import FilterTagDisplay from "./user-tag-display";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import LoadingSpinner from "./loading-spinner";
 
 export default function UserTags() {
   const { data } = api.post.getUserTags.useQuery();
   const [tagFilters, setTagFilters] = useState<string[]>([]);
+
+  const [isPending, startTransition] = useTransition();
 
   const searchParams = useSearchParams();
   const params = useMemo(
@@ -28,7 +31,7 @@ export default function UserTags() {
     if (tagFilters.length === 0) {
       replace(pathname);
     }
-  }, [tagFilters]);
+  }, [tagFilters, pathname, replace]);
 
   const updateSearchParam = (t: string, add: boolean) => {
     const searchParam = "tagFilter";
@@ -36,12 +39,17 @@ export default function UserTags() {
       const newTagFilters = [...tagFilters, t];
       const sortBy = newTagFilters.join(",");
       params.set(searchParam, sortBy);
-      replace(`${pathname}?${params.toString()}`);
+
+      startTransition(() => {
+        replace(`${pathname}?${params.toString()}`);
+      });
     } else {
       const newTagFilters = tagFilters.filter((tf) => tf !== t);
       const sortBy = newTagFilters.join(",");
       params.set(searchParam, sortBy);
-      replace(`${pathname}?${params.toString()}`);
+      startTransition(() => {
+        replace(`${pathname}?${params.toString()}`);
+      });
     }
   };
   const removeSearchParam = () => {
@@ -70,7 +78,7 @@ export default function UserTags() {
           updatePath={updateSearchParam}
         />
       ))}
-      {tagFilters.length > 0 && (
+      {!isPending && tagFilters.length > 0 && (
         <Button
           onClick={() => removeSearchParam()}
           className="h-6 px-2 py-1 text-sm font-bold text-neutral-100 hover:cursor-pointer hover:bg-neutral-700 hover:text-neutral-300"
@@ -78,6 +86,7 @@ export default function UserTags() {
           Clear
         </Button>
       )}
+      {isPending && <LoadingSpinner />}
     </div>
   );
 }

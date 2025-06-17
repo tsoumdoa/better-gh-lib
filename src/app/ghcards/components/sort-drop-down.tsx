@@ -10,9 +10,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import { SORT_ORDERS, SortOrder, SortOrderValue } from "@/types/types";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import LoadingSpinner from "./loading-spinner";
 
 export default function SortDropDown() {
   const [position, setPosition] = useState<SortOrder>("ascLastEdited");
@@ -24,6 +25,7 @@ export default function SortDropDown() {
   );
   const pathname = usePathname();
   const { replace } = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
     const sortOrder = params.get("sort");
@@ -38,8 +40,9 @@ export default function SortDropDown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className="flex cursor-pointer items-center gap-1 rounded-md px-3 py-1 text-sm ring-1 ring-neutral-500 transition-all">
+        <div className="flex h-8 cursor-pointer items-center gap-1 rounded-md px-3 py-1 text-sm ring-1 ring-neutral-500 transition-all">
           <span>{sortBy || "Sort by"}</span>
+          {isPending && <LoadingSpinner />}
           <ChevronDown className="h-4 w-4" />
         </div>
       </DropdownMenuTrigger>
@@ -53,7 +56,9 @@ export default function SortDropDown() {
             const sortBy = SORT_ORDERS.find((item) => item.value === v)?.label;
             setSortBy(sortBy!);
             params.set("sort", v);
-            replace(`${pathname}?${params.toString()}`);
+            startTransition(() => {
+              replace(`${pathname}?${params.toString()}`);
+            });
           }}
         >
           {SORT_ORDERS.map((item) => (
