@@ -9,7 +9,6 @@ import GhCardDisplay from "./components/gh-card-display";
 import SortDropDown from "./components/sort-drop-down";
 import { SortOrder, SORT_ORDERS } from "@/types/types";
 import UserTags from "./components/user-tags";
-import FilterTagDisplay from "./components/user-tag-display";
 
 async function MainCard(props: { sortKey: SortOrder; tagFilter: string[] }) {
   //if failed to get data, redirect to home

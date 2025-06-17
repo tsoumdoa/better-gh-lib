@@ -6,7 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 export default function UserTags() {
-  const { data, refetch } = api.post.getUserTags.useQuery();
+  const { data } = api.post.getUserTags.useQuery();
   const [tagFilters, setTagFilters] = useState<string[]>([]);
 
   const searchParams = useSearchParams();
