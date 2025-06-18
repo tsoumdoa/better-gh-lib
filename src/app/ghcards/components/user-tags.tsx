@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import LoadingSpinner from "./loading-spinner";
 
 export default function UserTags() {
-  const { data } = api.post.getUserTags.useQuery();
+  const { data, refetch } = api.post.getUserTags.useQuery();
   const [tagFilters, setTagFilters] = useState<string[]>([]);
 
   const [isPending, startTransition] = useTransition();
@@ -28,6 +28,18 @@ export default function UserTags() {
   }
 
   useEffect(() => {
+    const tagFilterIsStale = params.get("tagFilterIsStale");
+    if (tagFilterIsStale === "true") {
+      const newParams = new URLSearchParams(params);
+      newParams.delete("tagFilterIsStale");
+      startTransition(() => {
+        replace(`${pathname}?${newParams.toString()}`);
+        refetch();
+      });
+    }
+  }, [tagFilters, pathname, replace, params, refetch]);
+
+  useEffect(() => {
     if (tagFilters.length === 0) {
       replace(pathname);
     }
@@ -39,7 +51,6 @@ export default function UserTags() {
       const newTagFilters = [...tagFilters, t];
       const sortBy = newTagFilters.join(",");
       params.set(searchParam, sortBy);
-
       startTransition(() => {
         replace(`${pathname}?${params.toString()}`);
       });

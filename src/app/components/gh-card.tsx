@@ -3,7 +3,7 @@ import { InvalidValueDialog } from "./gh-card-dialog";
 import { Posts } from "@/server/db/schema";
 import { NormalButtons } from "./gh-card-normal-buttons";
 import { EditButtons } from "./gh-card-edit-buttons";
-import { NameAndDescription } from "./gh-card-body";
+import { NameDescriptionAndTags } from "./gh-card-body";
 import useGhCardControl from "../hooks/use-gh-card-control";
 import GhCardTags from "./gh-card-tags";
 
@@ -23,21 +23,34 @@ export default function GHCard(props: {
     deleted,
     setEditMode,
     shareExpired,
+    removeTag,
+    handleCancelEditMode,
+    ghInfo,
+    addTag,
+    tag: inputTag,
+    setTag: setInputTag,
+    reset,
+    setReset,
   } = useGhCardControl(props.cardInfo, props.id);
 
   if (deleted) {
     return (
       <div className="relative flex h-full w-full rounded-md bg-neutral-800 p-3 ring-1 ring-neutral-500">
-        <NameAndDescription
+        <NameDescriptionAndTags
           editMode={editMode}
           setEditMode={() => setEditMode(!editMode)}
           setGhInfo={setGhInfo}
-          ghInfo={{ name: "deleted", description: "deleted" }}
+          ghInfo={{ name: "deleted", description: "deleted", tags: [] }}
           isShared={false}
           expiryDate={""}
           bucketId={""}
           lastEdited={""}
           created={""}
+          addTag={addTag}
+          tag={inputTag}
+          setTag={setInputTag}
+          reset={reset}
+          setReset={setReset}
         />
       </div>
     );
@@ -45,7 +58,7 @@ export default function GHCard(props: {
 
   return (
     <div
-      className={`relative flex flex-col justify-between rounded-md p-3 ring-1 ring-neutral-500 ${editMode || updating ? "bg-neutral-500" : "bg-neutral-900"}`}
+      className={`relative flex flex-col justify-between rounded-md p-3 ring-1 ring-neutral-500 ${editMode || updating ? "bg-neutral-500" : "bg-neutral-900"} aniamte transition-all`}
     >
       {shareExpired && (
         <p
@@ -59,27 +72,35 @@ export default function GHCard(props: {
         setOpen={() => setInvalidInput(false)}
       />
 
-      {props.cardInfo.tags && props.cardInfo.tags.length > 0 && (
+      {ghInfo.tags.length > 0 && (
         <GhCardTags
-          tags={props.cardInfo.tags}
+          tags={ghInfo.tags}
           useNarrow={props.cardInfo.isPublicShared ?? false}
           tagFilter={props.tagFilter}
+          editMode={editMode}
+          removeTag={removeTag}
         />
       )}
 
-      <NameAndDescription
+      <NameDescriptionAndTags
         editMode={editMode}
         setEditMode={() => setEditMode(!editMode)}
         setGhInfo={setGhInfo}
         ghInfo={{
           name: props.cardInfo.name!,
           description: props.cardInfo.description!,
+          tags: props.cardInfo.tags ?? [],
         }}
         isShared={props.cardInfo.isPublicShared ?? false}
         expiryDate={props.cardInfo.publicShareExpiryDate ?? ""}
         bucketId={props.cardInfo.bucketUrl ?? ""}
         lastEdited={props.cardInfo.dateUpdated!}
         created={props.cardInfo.dateCreated!}
+        addTag={addTag}
+        tag={inputTag}
+        setTag={setInputTag}
+        reset={reset}
+        setReset={setReset}
       />
       <div>
         {editMode ? (
@@ -89,12 +110,12 @@ export default function GHCard(props: {
             setGhInfo={setGhInfo}
             deletePost={() => deletePost()}
             handleEdit={(b) => handleEdit(b)}
+            handleCancel={() => handleCancelEditMode()}
             ghInfo={{
               name: props.cardInfo.name!,
               description: props.cardInfo.description!,
+              tags: props.cardInfo.tags ?? [],
             }}
-            name={props.cardInfo.name!}
-            description={props.cardInfo.description!}
           />
         ) : (
           <NormalButtons

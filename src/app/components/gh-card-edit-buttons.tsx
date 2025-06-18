@@ -5,19 +5,10 @@ export function EditButtons(props: {
   setEditMode: (b: boolean) => void;
   setGhInfo: (ghInfo: GhCard) => void;
   handleEdit: (b: boolean) => void;
+  handleCancel: () => void;
   deletePost: () => void;
   ghInfo: GhCard;
-  name: string;
-  description: string;
 }) {
-  const cancelEditMode = () => {
-    props.setEditMode(false);
-    props.setGhInfo({
-      name: props.name,
-      description: props.description,
-    });
-  };
-
   return (
     <div className="flex items-center justify-end text-neutral-400 transition-all">
       <button
@@ -28,7 +19,7 @@ export function EditButtons(props: {
       </button>
       <button
         className={`px-2 font-bold hover:text-neutral-50`}
-        onClick={() => cancelEditMode()}
+        onClick={() => props.handleCancel()}
       >
         cancel
       </button>

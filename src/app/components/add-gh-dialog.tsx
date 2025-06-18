@@ -21,6 +21,7 @@ import AddXml from "./add-xml";
 import { compress } from "@/server/api/routers/util/gzip";
 import { Button } from "@/components/ui/button";
 import AddGhTagDisplay, { AvailableGhTagDisplay } from "./add-gh-tag-display";
+import { api } from "@/trpc/react";
 
 export function AddGhDialog(props: {
   open: boolean;
@@ -30,6 +31,7 @@ export function AddGhDialog(props: {
 }) {
   const [addError, setAddError] = useState("");
   const [posted, setPosted] = useState(false);
+  const { data: userTags } = api.post.getUserTags.useQuery();
   const {
     name,
     setName,
@@ -44,7 +46,7 @@ export function AddGhDialog(props: {
     deleteTag,
     onTagValueChange,
     availableTags,
-  } = useValidateNameDescriptionAndTags(setAddError);
+  } = useValidateNameDescriptionAndTags(setAddError, userTags ?? []);
   const { mutate, uploading, uploadSuccess, data, gzipRef } =
     useUploadToR2(setAddError);
   const postData = usePostAdd(
@@ -62,6 +64,8 @@ export function AddGhDialog(props: {
     if (props.adding && !posted && data && !uploading && data.ok) {
       const id = data.data?.id || "";
       if (uploadSuccess && id.length > 0) {
+        console.log("id", id);
+        console.log("name", tags);
         postData.mutate({
           name: name,
           description: description,
@@ -137,6 +141,7 @@ export function AddGhDialog(props: {
                 maxLength={30}
                 onChange={(e) => setName(e.target.value)}
                 disabled={props.adding}
+                autoComplete="off"
               />
               <Textarea
                 name="description"
@@ -144,6 +149,7 @@ export function AddGhDialog(props: {
                 maxLength={150}
                 onChange={(e) => setDescription(e.target.value)}
                 disabled={props.adding}
+                autoComplete="off"
               />
               <div className="flex flex-wrap items-center gap-2">
                 {tags.map((tag, i) => (
@@ -159,11 +165,11 @@ export function AddGhDialog(props: {
                     type="text"
                     name="tag"
                     placeholder="Add a tag"
-                    autoComplete="off"
                     maxLength={20}
                     onChange={(e) => {
                       onTagValueChange(e.target.value);
                     }}
+                    autoComplete="off"
                     disabled={props.adding}
                     value={tag}
                     onKeyDown={(e) => {

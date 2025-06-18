@@ -21,7 +21,7 @@ export const postRouter = createTRPCRouter({
     .input(
       GhCardSchema.extend({
         nanoid: z.string(),
-        tags: z.array(z.string()),
+        tags: z.array(z.string()).max(20), //for now, hardcorded tags limit of 20
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -73,6 +73,11 @@ export const postRouter = createTRPCRouter({
       }
 
       waitUntil(cleanUpBucket(ctx.r2Client, ctx.redis, ctx.db, userId));
+      if (input.tags.length > 0) {
+        //invalidate cacche
+        waitUntil(ctx.redis.del(`userTags:${userId}`));
+        waitUntil(ctx.redis.del(`userHasTags:${userId}`));
+      }
     }),
 
   edit: publicProcedure
@@ -82,6 +87,7 @@ export const postRouter = createTRPCRouter({
         name: z.string().min(1),
         prevName: z.string(),
         description: z.string().max(150),
+        tags: z.array(z.string()).max(20).optional(), //for now, hardcorded tags limit of 20
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -95,31 +101,46 @@ export const postRouter = createTRPCRouter({
         description: input.description,
       };
 
+      const currentDate = new Date();
+      const stringDate = currentDate.toISOString();
+
       try {
-        const res = await ctx.db
+        await ctx.db
           .update(posts)
           .set({
             name: data.name,
             description: data.description,
-            dateUpdated: sql`CURRENT_TIMESTAMP`,
+            dateUpdated: stringDate,
+            tags: input.tags && input.tags,
           })
           .where(and(eq(posts.clerkUserId, userId), eq(posts.id, input.id)));
-        if (res.rowsAffected === 0) {
-          throw new Error("AUTH_FAILED", {
-            cause: new Error("AUTH_FAILED"),
-          });
-        }
       } catch (err) {
         if (err instanceof Error) {
+          if (err.message.includes("UNIQUE constraint failed")) {
+            data.name = addNanoId(input.name);
+            console.log("data.name", data.name);
+            await ctx.db
+              .update(posts)
+              .set({
+                name: data.name,
+                description: data.description,
+                dateUpdated: stringDate,
+                tags: input.tags && input.tags,
+              })
+              .where(
+                and(eq(posts.clerkUserId, userId), eq(posts.id, input.id))
+              );
+          }
           if (err.message === "AUTH_FAILED") {
             throw new Error("AUTH_FAILED", {
               cause: new Error("AUTH_FAILED"),
             });
           }
         }
-        throw new Error("FAILED_TO_UPDATE", {
-          cause: new Error("FAILED_TO_UPDATE"),
-        });
+      }
+      if (Array.isArray(input.tags)) {
+        waitUntil(ctx.redis.del(`userTags:${userId}`));
+        waitUntil(ctx.redis.del(`userHasTags:${userId}`));
       }
       return data;
     }),
@@ -163,6 +184,9 @@ export const postRouter = createTRPCRouter({
 
       await ctx.redis.del(`sharedLink:${existingEntry?.publicId}`);
       await ctx.redis.del(`sharedLinkBucket:${input.bucketId}`);
+
+      waitUntil(ctx.redis.del(`userTags:${userId}`));
+      waitUntil(ctx.redis.del(`userHasTags:${userId}`));
     }),
 
   getPutPresignedUrl: publicProcedure
@@ -459,7 +483,7 @@ export const postRouter = createTRPCRouter({
     const cachedUserTags = await ctx.redis.smembers(`userTags:${userId}`);
 
     if (cachedUserTags.length > 0) {
-      return cachedUserTags[0];
+      return cachedUserTags;
     }
 
     const userHasTags = await ctx.redis.get(`userHasTags:${userId}`);
@@ -484,42 +508,10 @@ export const postRouter = createTRPCRouter({
     const uniqueTags = Array.from(tagSet);
     uniqueTags.sort((a, b) => a.localeCompare(b));
 
-    waitUntil(ctx.redis.sadd(`userTags:${userId}`, uniqueTags));
+    //@ts-ignore
+    waitUntil(ctx.redis.sadd(`userTags:${userId}`, ...uniqueTags));
+    waitUntil(ctx.redis.set(`userHasTags:${userId}`, true));
 
     return uniqueTags;
   }),
-
-  addUserTag: publicProcedure
-    .input(z.object({ userId: z.string(), tag: z.string() }))
-    .mutation(async ({ input, ctx }) => {
-      const { userId } = ctx.auth;
-      if (!userId) {
-        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
-      }
-
-      //also upload the db at the specif post...
-
-      const runSadd = ctx.redis.sadd(`userTags:${userId}`, input.tag);
-      const runSet = ctx.redis.set(`userHasTags:${userId}`, true);
-      const res = await Promise.allSettled([runSadd, runSet]);
-      if (res.every((item) => item.status === "fulfilled")) {
-        return { success: true, error: "" };
-      }
-      return { success: false, error: "Failed to add tag" };
-    }),
-
-  deleteUserTag: publicProcedure
-    .input(
-      z.object({ userId: z.string(), tag: z.string(), postId: z.string() })
-    )
-    .mutation(async ({ input, ctx }) => {
-      const { userId } = ctx.auth;
-      if (!userId) {
-        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
-      }
-
-      await ctx.redis.srem(`userTags:${userId}`, input.tag);
-
-      //todo also upload the db at the specif post...
-    }),
 });

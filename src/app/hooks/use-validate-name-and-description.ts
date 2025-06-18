@@ -2,7 +2,6 @@ import { GhCardSchema } from "@/types/types";
 import { useEffect, useState } from "react";
 import Fuse from "fuse.js";
 
-const mockAvailableTags = ["Display", "2D", "3D", "VR", "AR", "XR"];
 const fuseOptions = {
   keys: [],
   includeScore: true,
@@ -12,7 +11,8 @@ const fuseOptions = {
 };
 
 export const useValidateNameDescriptionAndTags = (
-  setAddError: (s: string) => void
+  setAddError: (s: string) => void,
+  userTags: string[]
 ) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -20,7 +20,7 @@ export const useValidateNameDescriptionAndTags = (
   const [tags, setTags] = useState<string[]>([]);
   const [availableTags, setAvailableTags] = useState<string[]>([]);
   const [isValid, setIsValid] = useState(false);
-  const fuse = new Fuse(mockAvailableTags, fuseOptions);
+  const fuse = new Fuse(userTags, fuseOptions);
 
   const handleAddTag = (tag: string) => {
     const trimedTag = tag.trim();
@@ -30,28 +30,28 @@ export const useValidateNameDescriptionAndTags = (
       setTimeout(() => {
         setAddError("");
       }, 900);
-      return;
+      return false;
     }
     if (trimedTag.length === 0) {
       setAddError("Tag cannot be empty");
       setTimeout(() => {
         setAddError("");
       }, 900);
-      return;
+      return false;
     }
     if (tags.includes(trimedTag)) {
       setAddError("Tag already exists");
       setTimeout(() => {
         setAddError("");
       }, 900);
-      return;
+      return false;
     }
     if (trimedTag === " ") {
       setAddError("Tag cannot be empty");
       setTimeout(() => {
         setAddError("");
       }, 900);
-      return;
+      return false;
     }
     // no special characters
     if (trimedTag.match(/[^\p{L}\p{N}]/u)) {
@@ -59,26 +59,31 @@ export const useValidateNameDescriptionAndTags = (
       setTimeout(() => {
         setAddError("");
       }, 900);
-      return;
+      return false;
     }
-    setTags([...tags, trimedTag]);
+    const newTags = new Set([...tags, trimedTag]);
+    setTags([...newTags]);
     setTag("");
     setAvailableTags([]);
+    return true;
   };
 
   const deleteTag = (tag: string) => {
     setTags(tags.filter((t) => t !== tag));
   };
+  const addTag = (tag: string) => {
+    const newTags = new Set([...tags, tag]);
+    const array = [...newTags];
+    setTags(array);
+  };
 
   const onTagValueChange = (t: string) => {
     setTag(t);
     const matches = fuse.search(t);
-    const availableTags = matches.map((m) => m.item);
+    const tagMatch = matches.map((m) => m.item);
 
     //don't show it if it is already in tags
-    const filteredAvailableTags = availableTags.filter(
-      (t) => !tags.includes(t)
-    );
+    const filteredAvailableTags = tagMatch.filter((t) => !tags.includes(t));
     setAvailableTags(filteredAvailableTags);
   };
 
@@ -103,6 +108,7 @@ export const useValidateNameDescriptionAndTags = (
     tags,
     setTags,
     handleAddTag,
+    addTag,
     deleteTag,
     onTagValueChange,
     availableTags,
