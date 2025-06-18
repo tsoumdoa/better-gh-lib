@@ -17,6 +17,7 @@ import { ListBucketResultSchema, XmlSchema } from "./s3-bucket-list-schema";
 export const GhCardSchema = z.object({
   name: z.string().min(3).max(30),
   description: z.string().max(150),
+  tags: z.array(z.string()).max(20),
 });
 export const GhXmlGhCardSchema = GhCardSchema.extend({
   xml: z.string(),

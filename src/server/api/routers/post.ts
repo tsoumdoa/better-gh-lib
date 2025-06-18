@@ -18,7 +18,12 @@ import formatShareExpiryTime from "./util/format-expiry-time";
 
 export const postRouter = createTRPCRouter({
   add: publicProcedure
-    .input(GhCardSchema.extend({ nanoid: z.string() }))
+    .input(
+      GhCardSchema.extend({
+        nanoid: z.string(),
+        tags: z.array(z.string()).max(20), //for now, hardcorded tags limit of 20
+      })
+    )
     .mutation(async ({ ctx, input }) => {
       const { userId } = ctx.auth;
       if (!userId) {
@@ -38,6 +43,8 @@ export const postRouter = createTRPCRouter({
       const currentDate = new Date();
       const stringDate = currentDate.toISOString();
 
+      input.tags.sort((a, b) => a.localeCompare(b));
+
       try {
         await ctx.db.insert(posts).values({
           name: input.name,
@@ -46,6 +53,7 @@ export const postRouter = createTRPCRouter({
           clerkUserId: userId,
           dateCreated: stringDate,
           dateUpdated: stringDate,
+          tags: input.tags,
         });
       } catch (err) {
         if (err instanceof Error) {
@@ -58,12 +66,18 @@ export const postRouter = createTRPCRouter({
               clerkUserId: userId,
               dateCreated: stringDate,
               dateUpdated: stringDate,
+              tags: input.tags,
             });
           }
         }
       }
 
       waitUntil(cleanUpBucket(ctx.r2Client, ctx.redis, ctx.db, userId));
+      if (input.tags.length > 0) {
+        //invalidate cacche
+        waitUntil(ctx.redis.del(`userTags:${userId}`));
+        waitUntil(ctx.redis.del(`userHasTags:${userId}`));
+      }
     }),
 
   edit: publicProcedure
@@ -73,6 +87,7 @@ export const postRouter = createTRPCRouter({
         name: z.string().min(1),
         prevName: z.string(),
         description: z.string().max(150),
+        tags: z.array(z.string()).max(20).optional(), //for now, hardcorded tags limit of 20
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -86,31 +101,46 @@ export const postRouter = createTRPCRouter({
         description: input.description,
       };
 
+      const currentDate = new Date();
+      const stringDate = currentDate.toISOString();
+
       try {
-        const res = await ctx.db
+        await ctx.db
           .update(posts)
           .set({
             name: data.name,
             description: data.description,
-            dateUpdated: sql`CURRENT_TIMESTAMP`,
+            dateUpdated: stringDate,
+            tags: input.tags && input.tags,
           })
           .where(and(eq(posts.clerkUserId, userId), eq(posts.id, input.id)));
-        if (res.rowsAffected === 0) {
-          throw new Error("AUTH_FAILED", {
-            cause: new Error("AUTH_FAILED"),
-          });
-        }
       } catch (err) {
         if (err instanceof Error) {
+          if (err.message.includes("UNIQUE constraint failed")) {
+            data.name = addNanoId(input.name);
+            console.log("data.name", data.name);
+            await ctx.db
+              .update(posts)
+              .set({
+                name: data.name,
+                description: data.description,
+                dateUpdated: stringDate,
+                tags: input.tags && input.tags,
+              })
+              .where(
+                and(eq(posts.clerkUserId, userId), eq(posts.id, input.id))
+              );
+          }
           if (err.message === "AUTH_FAILED") {
             throw new Error("AUTH_FAILED", {
               cause: new Error("AUTH_FAILED"),
             });
           }
         }
-        throw new Error("FAILED_TO_UPDATE", {
-          cause: new Error("FAILED_TO_UPDATE"),
-        });
+      }
+      if (Array.isArray(input.tags)) {
+        waitUntil(ctx.redis.del(`userTags:${userId}`));
+        waitUntil(ctx.redis.del(`userHasTags:${userId}`));
       }
       return data;
     }),
@@ -154,6 +184,9 @@ export const postRouter = createTRPCRouter({
 
       await ctx.redis.del(`sharedLink:${existingEntry?.publicId}`);
       await ctx.redis.del(`sharedLinkBucket:${input.bucketId}`);
+
+      waitUntil(ctx.redis.del(`userTags:${userId}`));
+      waitUntil(ctx.redis.del(`userHasTags:${userId}`));
     }),
 
   getPutPresignedUrl: publicProcedure
@@ -440,4 +473,45 @@ export const postRouter = createTRPCRouter({
         expirationHours: formattedExpiryTime,
       };
     }),
+
+  getUserTags: publicProcedure.query(async ({ ctx }) => {
+    const { userId } = ctx.auth;
+    if (!userId) {
+      throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+    }
+
+    const cachedUserTags = await ctx.redis.smembers(`userTags:${userId}`);
+
+    if (cachedUserTags.length > 0) {
+      return cachedUserTags;
+    }
+
+    const userHasTags = await ctx.redis.get(`userHasTags:${userId}`);
+    if (userHasTags) {
+      return [];
+    }
+
+    const userTags = await ctx.db
+      .select({
+        tags: posts.tags,
+      })
+      .from(posts)
+      .where(eq(posts.clerkUserId, userId))
+      .limit(50); // hardcoded limit for now
+
+    const tagSet = new Set(
+      userTags.flatMap((userTag) => {
+        return userTag.tags !== null ? userTag.tags : [];
+      })
+    );
+
+    const uniqueTags = Array.from(tagSet);
+    uniqueTags.sort((a, b) => a.localeCompare(b));
+
+    //@ts-ignore
+    waitUntil(ctx.redis.sadd(`userTags:${userId}`, ...uniqueTags));
+    waitUntil(ctx.redis.set(`userHasTags:${userId}`, true));
+
+    return uniqueTags;
+  }),
 });
