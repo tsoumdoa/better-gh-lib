@@ -1,4 +1,4 @@
-import { GhCardSchema } from "@/types/types";
+import { GhCardSchema, UserTag } from "@/types/types";
 import { useEffect, useState } from "react";
 import Fuse from "fuse.js";
 
@@ -12,7 +12,7 @@ const fuseOptions = {
 
 export const useValidateNameDescriptionAndTags = (
   setAddError: (s: string) => void,
-  userTags: string[]
+  userTags: UserTag[]
 ) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -20,7 +20,8 @@ export const useValidateNameDescriptionAndTags = (
   const [tags, setTags] = useState<string[]>([]);
   const [availableTags, setAvailableTags] = useState<string[]>([]);
   const [isValid, setIsValid] = useState(false);
-  const fuse = new Fuse(userTags, fuseOptions);
+  const currentTags = userTags.map((userTag) => userTag.tag);
+  const fuse = new Fuse(currentTags, fuseOptions);
 
   const handleAddTag = (tag: string) => {
     const trimedTag = tag.trim();
@@ -95,7 +96,7 @@ export const useValidateNameDescriptionAndTags = (
       setIsValid(false);
       return;
     }
-  }, [name, description]);
+  }, [name, description, tags]);
 
   return {
     name,

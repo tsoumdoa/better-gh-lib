@@ -20,13 +20,6 @@ export default function UserTags() {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  let dataArray: string[] = [];
-  if (Array.isArray(data)) {
-    dataArray = data;
-  } else if (data) {
-    dataArray = [data];
-  }
-
   useEffect(() => {
     const tagFilterIsStale = params.get("tagFilterIsStale");
     if (tagFilterIsStale === "true") {
@@ -72,7 +65,7 @@ export default function UserTags() {
   if (!data)
     return (
       <FilterTagDisplay
-        tag="Loading..."
+        userTag={{ tag: "Loading...", count: 0 }}
         tagFilters={tagFilters}
         setTagFilters={setTagFilters}
         updatePath={updateSearchParam}
@@ -80,11 +73,11 @@ export default function UserTags() {
     );
   return (
     <div className={`flex w-full flex-wrap items-center gap-2`}>
-      {dataArray.map((tag, i) => (
+      {data?.map((t, i) => (
         <FilterTagDisplay
-          key={`tag-${i}-${tag}`}
-          tag={tag}
+          key={`tag-${i}-${t.tag}`}
           tagFilters={tagFilters}
+          userTag={t}
           setTagFilters={setTagFilters}
           updatePath={updateSearchParam}
         />
