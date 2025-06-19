@@ -89,7 +89,7 @@ export const useValidateNameDescriptionAndTags = (
 
   useEffect(() => {
     try {
-      GhCardSchema.parse({ name: name, description: description });
+      GhCardSchema.parse({ name: name, description: description, tags: tags });
       setIsValid(true);
     } catch {
       setIsValid(false);
