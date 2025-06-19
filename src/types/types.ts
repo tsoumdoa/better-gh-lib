@@ -179,3 +179,7 @@ export const SortOrderZenum = z.enum([
 ]);
 export type SortOrder = (typeof SORT_ORDERS)[number]["value"];
 export type SortOrderValue = (typeof SORT_ORDERS)[number]["label"];
+export type UserTag = {
+  tag: string;
+  count: number;
+};

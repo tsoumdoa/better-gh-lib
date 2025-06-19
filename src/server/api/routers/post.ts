@@ -8,6 +8,7 @@ import {
   GhCardSchema,
   ShareLinkUidSchema,
   SortOrderZenum,
+  UserTag,
 } from "@/types/types";
 import { TRPCError } from "@trpc/server";
 import { waitUntil } from "@vercel/functions";
@@ -480,9 +481,12 @@ export const postRouter = createTRPCRouter({
       throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
     }
 
-    const cachedUserTags = await ctx.redis.smembers(`userTags:${userId}`);
+    const cachedUserTags: UserTag[] = await ctx.redis.smembers(
+      `userTagAndCount:${userId}`
+    );
 
     if (cachedUserTags.length > 0) {
+      cachedUserTags.sort((a, b) => a.tag.localeCompare(b.tag));
       return cachedUserTags;
     }
 
@@ -499,19 +503,27 @@ export const postRouter = createTRPCRouter({
       .where(eq(posts.clerkUserId, userId))
       .limit(50); // hardcoded limit for now
 
-    const tagSet = new Set(
-      userTags.flatMap((userTag) => {
-        return userTag.tags !== null ? userTag.tags : [];
+    const tagCountsMap = new Map<string, number>();
+    userTags.forEach((userTag) => {
+      const tags = userTag.tags ?? [];
+      tags.forEach((tag) => {
+        tagCountsMap.set(tag, (tagCountsMap.get(tag) || 0) + 1);
+      });
+    });
+
+    const userTagCounts: UserTag[] = Array.from(
+      tagCountsMap,
+      ([tag, count]) => ({
+        tag,
+        count,
       })
     );
 
-    const uniqueTags = Array.from(tagSet);
-    uniqueTags.sort((a, b) => a.localeCompare(b));
-
+    userTagCounts.sort((a, b) => a.tag.localeCompare(b.tag));
     //@ts-ignore
-    waitUntil(ctx.redis.sadd(`userTags:${userId}`, ...uniqueTags));
+    waitUntil(ctx.redis.sadd(`userTagAndCount:${userId}`, ...userTagCounts));
     waitUntil(ctx.redis.set(`userHasTags:${userId}`, true));
 
-    return uniqueTags;
+    return userTagCounts;
   }),
 });

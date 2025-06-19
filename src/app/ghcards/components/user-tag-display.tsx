@@ -1,10 +1,11 @@
 "use client";
 import { Toggle } from "@/components/ui/toggle";
+import { UserTag } from "@/types/types";
 import { useEffect, useState } from "react";
 
 export default function FilterTagDisplay(props: {
-  tag: string;
   tagFilters: string[];
+  userTag: UserTag;
   setTagFilters: (tagFilters: string[]) => void;
   updatePath: (t: string, bool: boolean) => void;
 }) {
@@ -13,12 +14,12 @@ export default function FilterTagDisplay(props: {
     if (props.tagFilters.length === 0) {
       setIsChecked(true);
     }
-    if (props.tagFilters.includes(props.tag)) {
+    if (props.tagFilters.includes(props.userTag.tag)) {
       setIsChecked(true);
     } else {
       setIsChecked(false);
     }
-  }, [props.tagFilters, props.tag]);
+  }, [props.tagFilters, props.userTag.tag]);
   return (
     <Toggle
       aria-label="Toggle italic"
@@ -28,13 +29,18 @@ export default function FilterTagDisplay(props: {
         setIsChecked(bool);
         props.setTagFilters(
           !isChecked
-            ? [...props.tagFilters, props.tag]
-            : props.tagFilters.filter((t) => t !== props.tag)
+            ? [...props.tagFilters, props.userTag.tag]
+            : props.tagFilters.filter((t) => t !== props.userTag.tag)
         );
-        props.updatePath(props.tag, !isChecked);
+        props.updatePath(props.userTag.tag, !isChecked);
       }}
     >
-      {props.tag}
+      {props.userTag.tag}
+      <span
+        className={`text-xs font-normal tracking-wider ${props.tagFilters.length > 0 ? "text-neutral-600" : "text-neutral-400"}`}
+      >
+        {`(${props.userTag.count})`}
+      </span>
     </Toggle>
   );
 }
