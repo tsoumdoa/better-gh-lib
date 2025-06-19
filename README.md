@@ -98,9 +98,10 @@ The application should now be accessible in your web browser at \(http://localho
 
 ## TODO
 
-- [x] implement share button
-- [x] limit file size to 1.5mb
-- [x] limit to 50 scripts per user
-- [x] add datahog
 - [ ] improve validator
-- [x] scribble compoentn doesn't get parsed correctly
+- [ ] show how mainy items associated with the tags
+- [ ] sort by the most recently used and opposite
+- [ ] fetch and have freqquently and last created tags in the suggestions
+- [ ] improve the visibility of where to paste the ghxml
+- [ ] add concept of collections
+- [ ] add concept of versions
