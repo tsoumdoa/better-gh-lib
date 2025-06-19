@@ -76,7 +76,7 @@ export const postRouter = createTRPCRouter({
       waitUntil(cleanUpBucket(ctx.r2Client, ctx.redis, ctx.db, userId));
       if (input.tags.length > 0) {
         //invalidate cacche
-        waitUntil(ctx.redis.del(`userTags:${userId}`));
+        waitUntil(ctx.redis.del(`userTagAndCount:${userId}`));
         waitUntil(ctx.redis.del(`userHasTags:${userId}`));
       }
     }),
@@ -140,7 +140,7 @@ export const postRouter = createTRPCRouter({
         }
       }
       if (Array.isArray(input.tags)) {
-        waitUntil(ctx.redis.del(`userTags:${userId}`));
+        waitUntil(ctx.redis.del(`userTagAndCount:${userId}`));
         waitUntil(ctx.redis.del(`userHasTags:${userId}`));
       }
       return data;
@@ -186,7 +186,7 @@ export const postRouter = createTRPCRouter({
       await ctx.redis.del(`sharedLink:${existingEntry?.publicId}`);
       await ctx.redis.del(`sharedLinkBucket:${input.bucketId}`);
 
-      waitUntil(ctx.redis.del(`userTags:${userId}`));
+      waitUntil(ctx.redis.del(`userTagAndCount:${userId}`));
       waitUntil(ctx.redis.del(`userHasTags:${userId}`));
     }),
 
