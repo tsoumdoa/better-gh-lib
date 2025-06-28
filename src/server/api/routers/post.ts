@@ -361,22 +361,19 @@ export const postRouter = createTRPCRouter({
         userId: string;
       } | null = await ctx.redis.get(`sharedLinkBucket:${input.bucketId}`);
 
-      if (!existingEntry || existingEntry.userId !== userId) {
-        return { success: false, error: "UNAUTHORIZED" };
-      }
-
       const delSharedLink = ctx.redis.del(
-        `sharedLink:${existingEntry.publicId}`
+        `sharedLink:${existingEntry?.publicId}`
       );
 
       const delSharedLinkBucket = ctx.redis.del(
         `sharedLinkBucket:${input.bucketId}`
       );
 
-      const updateDb = ctx.db
+      const updateDb = await ctx.db
         .update(posts)
         .set({
           isPublicShared: false,
+          publicShareExpiryDate: null,
         })
         .where(
           and(
@@ -391,7 +388,6 @@ export const postRouter = createTRPCRouter({
           delSharedLinkBucket,
           updateDb,
         ]);
-
       if (
         delSharedLinkRes.status === "rejected" ||
         delSharedLinkBucketRes.status === "rejected" ||
@@ -399,8 +395,7 @@ export const postRouter = createTRPCRouter({
       ) {
         throw new Error("Failed to update db or redis");
       }
-
-      return { success: true, error: "" };
+      return { success: true, error: "", res: updateDb };
     }),
 
   getSharedPresignedUrlPublic: publicProcedure
