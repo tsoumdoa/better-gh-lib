@@ -100,6 +100,7 @@ The application should now be accessible in your web browser at \(http://localho
 
 - [ ] improve validator
 - [x] show how mainy items associated with the tags
+- [ ] make the tag at each card clickable
 - [ ] sort by the most recently used and opposite
 - [ ] fetch and have freqquently and last created tags in the suggestions
 - [ ] improve the visibility of where to paste the ghxml
