@@ -57,7 +57,6 @@ export default function UserTags() {
     }
   };
   const removeSearchParam = () => {
-    console.log("remove", pathname);
     setTagFilters([]);
     replace(pathname);
   };

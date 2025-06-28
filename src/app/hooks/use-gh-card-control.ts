@@ -43,6 +43,9 @@ export default function useGhCardControl(cardInfo: Posts, id: number) {
   const isShared = cardInfo.isPublicShared ?? false;
   const bucketId = cardInfo.bucketUrl ?? "";
 
+  // TODO: FIX THIS
+  // WARNING: this seems too excessive to run revokeSharblePublicLink on every render
+
   useEffect(() => {
     setShareExpired(false);
     const expiryDate = new Date(publicShareExpiryDate);
