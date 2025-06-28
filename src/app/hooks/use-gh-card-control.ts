@@ -49,11 +49,11 @@ export default function useGhCardControl(cardInfo: Posts, id: number) {
   useEffect(() => {
     setShareExpired(false);
     const expiryDate = new Date(publicShareExpiryDate);
-    if (isShared && new Date() < expiryDate) {
-      setShareExpired(true);
+    if (isShared && new Date() > expiryDate && publicShareExpiryDate !== null) {
+      revokeLink({ bucketId: bucketId });
     } else {
-      if (bucketId !== "" && isShared) {
-        revokeLink({ bucketId: bucketId });
+      if (isShared) {
+        setShareExpired(true);
       }
     }
   }, [publicShareExpiryDate, isShared, bucketId, revokeLink]);
