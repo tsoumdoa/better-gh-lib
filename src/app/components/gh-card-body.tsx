@@ -61,7 +61,7 @@ export function NameDescriptionAndTags(props: {
             className={`pb-1 text-lg ${props.editMode ? "" : "font-semibold"} text-truncate w-full transition-all`}
           >
             {props.editMode ? (
-              <div>
+              <div className="space-y-1">
                 <Input
                   type="name"
                   placeholder="NameOfGhCardInPascalCase"
