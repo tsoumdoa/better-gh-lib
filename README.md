@@ -98,7 +98,7 @@ The application should now be accessible in your web browser at \(http://localho
 
 ## TODO
 
-- [ ] improve the visibility of where to paste the ghxml
+- [x] improve the visibility of where to paste the ghxml
 - [ ] sort by the most recently used and opposite
 - [x] show how mainy items associated with the tags
 - [x] make the tag at each card clickable
