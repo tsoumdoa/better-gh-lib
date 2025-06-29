@@ -6,6 +6,7 @@ export default function TagDisplay(props: {
   removeTag: (tag: string, toBeRemoved: boolean) => void;
   isHighlighted: boolean;
   editMode: boolean;
+  updatePath: (t: string, bool: boolean) => void;
 }) {
   const [toBeRemoved, setToBeRemoved] = useState(false);
   const handleClick = () => {
@@ -16,7 +17,8 @@ export default function TagDisplay(props: {
     return (
       <p
         key={`tag-${props.tag}`}
-        className={`flex flex-row items-center gap-x-2 rounded-sm px-2 text-sm font-semibold text-neutral-800 ${toBeRemoved ? "bg-neutral-100/30" : "bg-neutral-100"} transition-all`}
+        className={`flex flex-row items-center gap-x-2 rounded-sm px-2 text-sm font-semibold text-neutral-800 ${toBeRemoved ? "bg-neutral-100/30" : "bg-neutral-100"} transition-all hover:cursor-pointer`}
+        onClick={() => props.updatePath(props.tag, false)}
       >
         {props.tag}
         {props.editMode && (
@@ -31,7 +33,8 @@ export default function TagDisplay(props: {
   return (
     <p
       key={`tag-${props.tag}`}
-      className={`flex flex-row items-center gap-x-2 rounded-sm px-2 text-sm font-semibold text-neutral-100 ${toBeRemoved ? "bg-neutral-600/30" : "bg-neutral-600"} transition-all`}
+      className={`flex flex-row items-center gap-x-2 rounded-sm px-2 text-sm font-semibold text-neutral-100 ${toBeRemoved ? "bg-neutral-600/30" : "bg-neutral-600"} transition-all hover:cursor-pointer`}
+      onClick={() => props.updatePath(props.tag, true)}
     >
       {props.tag}
       {props.editMode && (

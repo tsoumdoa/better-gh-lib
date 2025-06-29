@@ -10,7 +10,7 @@ import GhCardTags from "./gh-card-tags";
 export default function GHCard(props: {
   id: number;
   cardInfo: Posts;
-  tagFilter?: string[];
+  tagFilters?: string[];
 }) {
   const {
     editMode,
@@ -76,7 +76,7 @@ export default function GHCard(props: {
         <GhCardTags
           tags={ghInfo.tags}
           useNarrow={props.cardInfo.isPublicShared ?? false}
-          tagFilter={props.tagFilter}
+          tagFilters={props.tagFilters}
           editMode={editMode}
           removeTag={removeTag}
         />

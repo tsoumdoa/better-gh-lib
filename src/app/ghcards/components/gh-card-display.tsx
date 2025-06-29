@@ -3,7 +3,7 @@ import { Posts } from "@/server/db/schema";
 
 export default function GHCardDisplay(props: {
   ghCards: Posts[];
-  tagFilter?: string[];
+  tagFilters?: string[];
 }) {
   return (
     <div className="grid grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
@@ -12,7 +12,7 @@ export default function GHCardDisplay(props: {
           key={item.bucketUrl}
           id={item.id!}
           cardInfo={item}
-          tagFilter={props.tagFilter}
+          tagFilters={props.tagFilters}
         />
       ))}
     </div>
