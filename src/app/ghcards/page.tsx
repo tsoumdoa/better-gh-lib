@@ -22,7 +22,7 @@ async function MainCard(props: { sortKey: SortOrder; tagFilters: string[] }) {
           }
         }
       });
-      return <GhCardDisplay ghCards={filtered} tagFilter={props.tagFilters} />;
+      return <GhCardDisplay ghCards={filtered} tagFilters={props.tagFilters} />;
     }
     return <GhCardDisplay ghCards={ghCards} />;
   } catch (err: unknown) {
