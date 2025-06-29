@@ -1,24 +1,29 @@
 "use client";
 import { api } from "@/trpc/react";
 import FilterTagDisplay from "./user-tag-display";
-import { useEffect, useMemo, useState, useTransition } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import LoadingSpinner from "./loading-spinner";
+import useTagFilters from "../hooks/use-tag-filters";
 
-export default function UserTags() {
+export default function UserTags(props: { tagFilters: string[] }) {
   const { data, refetch } = api.post.getUserTags.useQuery();
-  const [tagFilters, setTagFilters] = useState<string[]>([]);
 
-  const [isPending, startTransition] = useTransition();
+  const {
+    tagFilters,
+    setTagFilters,
+    updateSearchParam,
+    removeSearchParam,
+    params,
+    pathname,
+    replace,
+    isPending,
+    startTransition,
+  } = useTagFilters();
 
-  const searchParams = useSearchParams();
-  const params = useMemo(
-    () => new URLSearchParams(searchParams),
-    [searchParams]
-  );
-  const pathname = usePathname();
-  const { replace } = useRouter();
+  useEffect(() => {
+    setTagFilters(props.tagFilters);
+  }, [props.tagFilters]);
 
   useEffect(() => {
     const tagFilterIsStale = params.get("tagFilterIsStale");
@@ -31,35 +36,6 @@ export default function UserTags() {
       });
     }
   }, [tagFilters, pathname, replace, params, refetch]);
-
-  useEffect(() => {
-    if (tagFilters.length === 0) {
-      replace(pathname);
-    }
-  }, [tagFilters, pathname, replace]);
-
-  const updateSearchParam = (t: string, add: boolean) => {
-    const searchParam = "tagFilter";
-    if (add) {
-      const newTagFilters = [...tagFilters, t];
-      const sortBy = newTagFilters.join(",");
-      params.set(searchParam, sortBy);
-      startTransition(() => {
-        replace(`${pathname}?${params.toString()}`);
-      });
-    } else {
-      const newTagFilters = tagFilters.filter((tf) => tf !== t);
-      const sortBy = newTagFilters.join(",");
-      params.set(searchParam, sortBy);
-      startTransition(() => {
-        replace(`${pathname}?${params.toString()}`);
-      });
-    }
-  };
-  const removeSearchParam = () => {
-    setTagFilters([]);
-    replace(pathname);
-  };
 
   if (!data)
     return (

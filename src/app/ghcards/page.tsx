@@ -10,19 +10,19 @@ import SortDropDown from "./components/sort-drop-down";
 import { SortOrder, SORT_ORDERS } from "@/types/types";
 import UserTags from "./components/user-tags";
 
-async function MainCard(props: { sortKey: SortOrder; tagFilter: string[] }) {
+async function MainCard(props: { sortKey: SortOrder; tagFilters: string[] }) {
   //if failed to get data, redirect to home
   try {
     const ghCards = await api.post.getAll({ sortOrder: props.sortKey });
-    if (props.tagFilter.length > 0) {
+    if (props.tagFilters.length > 0) {
       const filtered = ghCards.filter((card) => {
-        for (const tag of props.tagFilter) {
+        for (const tag of props.tagFilters) {
           if (card.tags?.includes(tag)) {
             return true;
           }
         }
       });
-      return <GhCardDisplay ghCards={filtered} tagFilter={props.tagFilter} />;
+      return <GhCardDisplay ghCards={filtered} tagFilter={props.tagFilters} />;
     }
     return <GhCardDisplay ghCards={ghCards} />;
   } catch (err: unknown) {
@@ -103,10 +103,10 @@ export default async function Home(props: {
             </div>
           </div>
           <div className="flex flex-row flex-wrap items-start justify-start gap-2 pb-4">
-            <UserTags />
+            <UserTags tagFilters={sanitizedTagFilter} />
           </div>
           <Suspense fallback={<MainCardSkeleton />}>
-            <MainCard sortKey={sortKey} tagFilter={sanitizedTagFilter} />
+            <MainCard sortKey={sortKey} tagFilters={sanitizedTagFilter} />
           </Suspense>
         </div>
       </div>
