@@ -8,7 +8,7 @@ export default function AddXml(props: {
   handlePasteFromClipboard: () => void;
 }) {
   return (
-    <div className="text-sm text-neutral-500">
+    <div className="text-sm">
       {props.xmlData ? (
         <button
           className="flex flex-row items-center gap-x-1 text-sm text-red-500"
@@ -21,7 +21,7 @@ export default function AddXml(props: {
         <button
           type="button"
           onClick={props.handlePasteFromClipboard}
-          className="text-neutral-500 hover:text-neutral-900"
+          className="animate text-neutral-500 shadow-amber-700 transition-all hover:text-neutral-700"
         >
           Paste GH XML from Clipboard
         </button>

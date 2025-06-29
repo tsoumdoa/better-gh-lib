@@ -116,41 +116,58 @@ export function AddGhDialog(props: {
 
   return (
     <AlertDialog open={props.open}>
-      <AlertDialogContent className="">
+      <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle className="text-lg">
             {props.adding && addError.length === 0
               ? "Adding..."
               : "Add a new card"}
           </AlertDialogTitle>
-          <AlertDialogDescription>
-            {addError.length > 0 && (
+          {addError.length > 0 && (
+            <AlertDialogDescription>
               <strong className="text-red-500">
                 Failed to add, try again. Cause: {addError}
               </strong>
-            )}
-          </AlertDialogDescription>
+            </AlertDialogDescription>
+          )}
 
           <AlertDialog>
             <div className="flex flex-col space-y-3">
-              <Input
-                type="text"
-                name="name"
-                placeholder="NameOfGhCardInPascalCase"
-                className="font-semibold"
-                maxLength={30}
-                onChange={(e) => setName(e.target.value)}
-                disabled={props.adding}
-                autoComplete="off"
+              <AddXml
+                setAddError={setAddError}
+                isValidXml={isValidXml}
+                xmlData={xmlData!}
+                setXmlData={setXmlData}
+                handlePasteFromClipboard={handlePasteFromClipboard}
               />
-              <Textarea
-                name="description"
-                placeholder="Type your description here."
-                maxLength={150}
-                onChange={(e) => setDescription(e.target.value)}
-                disabled={props.adding}
-                autoComplete="off"
-              />
+              <div className="flex flex-col gap-y-1.5">
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="NameOfGhCardInPascalCase"
+                  className="font-semibold"
+                  maxLength={30}
+                  onChange={(e) => setName(e.target.value)}
+                  disabled={props.adding}
+                  autoComplete="off"
+                />
+                <p className="w-full text-right text-xs text-wrap text-neutral-700">
+                  {name.length || 0} / 30 characters
+                </p>
+              </div>
+              <div className="flex flex-col gap-y-1.5">
+                <Textarea
+                  name="description"
+                  placeholder="Type your description here."
+                  maxLength={150}
+                  onChange={(e) => setDescription(e.target.value)}
+                  disabled={props.adding}
+                  autoComplete="off"
+                />
+                <p className="text-right text-xs text-neutral-700">
+                  {description.length || 0} / 300 characters
+                </p>
+              </div>
               <div className="flex flex-wrap items-center gap-2">
                 {tags.map((tag, i) => (
                   <AddGhTagDisplay
@@ -198,13 +215,6 @@ export function AddGhDialog(props: {
                   ))}
                 </div>
               )}
-              <AddXml
-                setAddError={setAddError}
-                isValidXml={isValidXml}
-                xmlData={xmlData!}
-                setXmlData={setXmlData}
-                handlePasteFromClipboard={handlePasteFromClipboard}
-              />
             </div>
           </AlertDialog>
         </AlertDialogHeader>
