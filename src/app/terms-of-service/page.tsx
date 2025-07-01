@@ -1,5 +1,4 @@
 import Header from "../components/header";
-
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-black font-sans text-white [&_h2]:text-neutral-200 [&_h3]:text-neutral-200 [&_li]:text-neutral-300 [&_p]:text-neutral-300">
@@ -365,7 +364,7 @@ export default function PrivacyPolicy() {
               contact us at:
             </p>
             <p className="pb-8 text-center text-lg font-semibold text-blue-600">
-              privacy@hopperclip.com
+              support@hopperclip.com
             </p>
           </div>
         </div>
