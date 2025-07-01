@@ -128,7 +128,7 @@ export default function PrivacyPolicy() {
                 Upload, post, transmit, or otherwise make available any content
                 that is unlawful, harmful, threatening, abusive, harassing,
                 tortious, defamatory, vulgar, obscene, libelous, invasive of
-                another's privacy, hateful, or racially, ethnically, or
+                another&apos;s privacy, hateful, or racially, ethnically, or
                 otherwise objectionable.
               </li>
               <li className="pb-2">Harm minors in any way.</li>
@@ -154,8 +154,9 @@ export default function PrivacyPolicy() {
               <li className="pb-2">
                 Upload, post, transmit, or otherwise make available any
                 unsolicited or unauthorized advertising, promotional materials,
-                "junk mail," "spam," "chain letters," "pyramid schemes," or any
-                other form of solicitation.
+                &quot;junk mail,&quot; &quot;spam,&quot; &quot;chain
+                letters,&quot; &quot;pyramid schemes,&quot; or any other form of
+                solicitation.
               </li>
               <li className="pb-2">
                 Upload, post, transmit, or otherwise make available any material
@@ -263,17 +264,17 @@ export default function PrivacyPolicy() {
               10. Disclaimers
             </h2>
             <p className="pb-6 leading-relaxed">
-              THE SERVICE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS.
-              HOPPER CLIP EXPRESSLY DISCLAIMS ALL WARRANTIES OF ANY KIND,
-              WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO THE
-              IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-              PURPOSE, AND NON-INFRINGEMENT. HOPPER CLIP MAKES NO WARRANTY THAT
-              (I) THE SERVICE WILL MEET YOUR REQUIREMENTS; (II) THE SERVICE WILL
-              BE UNINTERRUPTED, TIMELY, SECURE, OR ERROR-FREE; (III) THE RESULTS
-              THAT MAY BE OBTAINED FROM THE USE OF THE SERVICE WILL BE ACCURATE
-              OR RELIABLE; OR (IV) THE QUALITY OF ANY PRODUCTS, SERVICES,
-              INFORMATION, OR OTHER MATERIAL PURCHASED OR OBTAINED BY YOU
-              THROUGH THE SERVICE WILL MEET YOUR EXPECTATIONS.
+              THE SERVICE IS PROVIDED ON AN &quot;AS IS&quot; AND &quot;AS
+              AVAILABLE&quot; BASIS. HOPPER CLIP EXPRESSLY DISCLAIMS ALL
+              WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT
+              NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS
+              FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. HOPPER CLIP MAKES
+              NO WARRANTY THAT (I) THE SERVICE WILL MEET YOUR REQUIREMENTS; (II)
+              THE SERVICE WILL BE UNINTERRUPTED, TIMELY, SECURE, OR ERROR-FREE;
+              (III) THE RESULTS THAT MAY BE OBTAINED FROM THE USE OF THE SERVICE
+              WILL BE ACCURATE OR RELIABLE; OR (IV) THE QUALITY OF ANY PRODUCTS,
+              SERVICES, INFORMATION, OR OTHER MATERIAL PURCHASED OR OBTAINED BY
+              YOU THROUGH THE SERVICE WILL MEET YOUR EXPECTATIONS.
             </p>
 
             <h2 className="pb-4 text-3xl font-bold text-neutral-900">
@@ -302,8 +303,8 @@ export default function PrivacyPolicy() {
               You agree to indemnify, defend, and hold harmless Hopper Clip and
               its developer, Tomo Suda, from and against any and all claims,
               liabilities, damages, losses, costs, expenses, or fees (including
-              reasonable attorneys' fees) arising from your use of the Service
-              or your violation of these Terms.
+              reasonable attorneys&apos; fees) arising from your use of the
+              Service or your violation of these Terms.
             </p>
 
             <h2 className="pb-4 text-3xl font-bold text-neutral-900">
@@ -321,10 +322,10 @@ export default function PrivacyPolicy() {
             <p className="pb-6 leading-relaxed">
               We reserve the right to modify these Terms at any time. We will
               notify you of any changes by sending an email to the email address
-              associated with your account. The "Effective Date" at the top of
-              these Terms will also be updated. Your continued use of the
-              Service after any such modifications constitutes your acceptance
-              of the new Terms.
+              associated with your account. The &quot;Effective Date&quot; at
+              the top of these Terms will also be updated. Your continued use of
+              the Service after any such modifications constitutes your
+              acceptance of the new Terms.
             </p>
 
             <h2 className="pb-4 text-3xl font-bold text-neutral-900">
@@ -345,12 +346,14 @@ export default function PrivacyPolicy() {
                 provision. If any provision of these Terms is found by a court
                 of competent jurisdiction to be invalid, the parties
                 nevertheless agree that the court should endeavor to give effect
-                to the parties' intentions as reflected in the provision, and
-                the other provisions of these Terms remain in full force and
+                to the parties&apos; intentions as reflected in the provision,
+                and the other provisions of these Terms remain in full force and
                 effect.
               </li>
               <li className="pb-2">
-                <strong className="font-semibold">Children's Privacy:</strong>{" "}
+                <strong className="font-semibold">
+                  Children&apos;s Privacy:
+                </strong>{" "}
                 Hopper Clip is not intended for use by children under the age of
                 13. If we learn that we have collected personal information from
                 a child under 13 without verifiable parental consent, we will

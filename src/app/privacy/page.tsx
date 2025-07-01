@@ -75,9 +75,9 @@ export default function PrivacyPolicy() {
                     Hopper Clip Content:
                   </strong>{" "}
                   The core functionality of Hopper Clip involves you creating
-                  and managing "snippets" of scripts. This content, including
-                  the script text and any associated metadata, is stored by us
-                  as part of the Service.
+                  and managing &quot;snippets&quot; of scripts. This content,
+                  including the script text and any associated metadata, is
+                  stored by us as part of the Service.
                 </li>
               </ul>
               <h3 className="mb-3 text-2xl font-semibold text-neutral-800">
@@ -101,10 +101,10 @@ export default function PrivacyPolicy() {
                 <li className="mb-2">
                   <strong className="font-semibold">Log Data:</strong> Like most
                   websites, our servers automatically record information that
-                  your browser sends whenever you visit the Service. This "Log
-                  Data" may include your IP address, browser type and settings,
-                  the date and time of your request, and how you interacted with
-                  our Service.
+                  your browser sends whenever you visit the Service. This
+                  &quot;Effective DateLog Data&quot; may include your IP
+                  address, browser type and settings, the date and time of your
+                  request, and how you interacted with our Service.
                 </li>
                 <li className="mb-2">
                   <strong className="font-semibold">
@@ -242,7 +242,7 @@ export default function PrivacyPolicy() {
                 </li>
               </ul>
               <h2 className="mb-4 text-3xl font-bold text-neutral-300">
-                7. Children's Privacy
+                7. Children&apos;s Privacy
               </h2>
               <p className="mb-6 leading-relaxed">
                 Hopper Clip is not intended for use by children under the age of

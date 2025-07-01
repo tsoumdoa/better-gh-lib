@@ -47,13 +47,14 @@ function LandingPageCards() {
   return (
     <div className="flex flex-col gap-y-3">
       <h1 className="text-center text-2xl font-bold">
-        GitHub Gist-like platform for your Grasshopper Scripts - Check out demo{" "}
+        GitHub Gist-like platform for your Grasshopper Scripts
+        <br />
         <Link
           href="https://landing.hopperclip.com/"
           prefetch={true}
           className="text-orange-500 underline"
         >
-          here
+          DEMO
         </Link>
       </h1>
       <div className="mx-auto grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
