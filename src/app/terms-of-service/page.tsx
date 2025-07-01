@@ -15,11 +15,11 @@ export default function PrivacyPolicy() {
             </p>
 
             <p className="pb-6 leading-relaxed">
-              Welcome to Hopper Clip! These Terms and Conditions ("Terms")
-              govern your use of the Hopper Clip web application (the
-              "Service"). By accessing or using the Service, you agree to be
-              bound by these Terms. If you do not agree to these Terms, please
-              do not use the Service.
+              Welcome to Hopper Clip! These Terms and Conditions
+              (&quot;Terms&quot;) govern your use of the Hopper Clip web
+              application (the &quot;Service&quot;). By accessing or using the
+              Service, you agree to be bound by these Terms. If you do not agree
+              to these Terms, please do not use the Service.
             </p>
 
             <h2 className="pb-4 text-3xl font-bold text-neutral-900">
@@ -31,8 +31,9 @@ export default function PrivacyPolicy() {
               and agree to be bound by these Terms. If you are using the Service
               on behalf of an organization, you are agreeing to these Terms for
               that organization and promising that you have the authority to
-              bind that organization to these Terms. In that case, "you" and
-              "your" will refer to that organization.
+              bind that organization to these Terms. In that case,
+              &quot;you&quot; and &quot;your&quot; will refer to that
+              organization.
             </p>
 
             <h2 className="pb-4 text-3xl font-bold text-neutral-900">
@@ -41,9 +42,10 @@ export default function PrivacyPolicy() {
             <p className="pb-6 leading-relaxed">
               Hopper Clip is an open-source web application developed and
               maintained by Tomo Suda. The Service allows users to create,
-              store, and manage "snippets" of your Grasshopper scripts. As an
-              open-source project, you have the option to host your own version
-              of HopperClip. The GitHub repository for this project is available{" "}
+              store, and manage &quot;snippets&quot; of your Grasshopper
+              scripts. As an open-source project, you have the option to host
+              your own version of HopperClip. The GitHub repository for this
+              project is available{" "}
               <a
                 className="underline"
                 href="https://github.com/tsoumdoa/better-gh-lib"
@@ -111,8 +113,8 @@ export default function PrivacyPolicy() {
             </h3>
             <p className="pb-6 leading-relaxed">
               The core functionality of Hopper Clip involves you creating and
-              managing "snippets" of scripts. You retain all rights to the
-              content you create and store on Hopper Clip.
+              managing &quot;snippets&quot; of scripts. You retain all rights to
+              the content you create and store on Hopper Clip.
             </p>
 
             <h3 className="pb-3 text-2xl font-semibold text-neutral-800">

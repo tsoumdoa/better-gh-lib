@@ -15,13 +15,14 @@ export default function PrivacyPolicy() {
                 Effective Date: June 30, 2025
               </p>
               <p className="mb-6 leading-relaxed">
-                This Privacy Policy describes how Hopper Clip ("Hopper Clip",
-                "we", "us", or "our") collects, uses, and shares your personal
-                information when you use our web application (the "Service"). We
-                care deeply about your privacy. Hopper Clip is built with
-                privacy in mind, and as an open-source project, you even have
-                the option to host your own version of Hopper Clip. The GitHub
-                repository for this project is available{" "}
+                This Privacy Policy describes how Hopper Clip (&quot;Hopper
+                Clip&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;)
+                collects, uses, and shares your personal information when you
+                use our web application (the &quot;Service&quot;). We care
+                deeply about your privacy. Hopper Clip is built with privacy in
+                mind, and as an open-source project, you even have the option to
+                host your own version of Hopper Clip. The GitHub repository for
+                this project is available{" "}
                 <a
                   className="underline"
                   href="https://github.com/tsoumdoa/better-gh-lib"
@@ -281,10 +282,10 @@ export default function PrivacyPolicy() {
               <p className="mb-6 leading-relaxed">
                 We may update our Privacy Policy from time to time. We will
                 notify you of any changes by sending an email to the email
-                address associated with your account. The "Effective Date" at
-                the top of this Privacy Policy will also be updated. We
-                encourage you to review this Privacy Policy periodically for any
-                changes.
+                address associated with your account. The &quot;Effective
+                Date&quot; at the top of this Privacy Policy will also be
+                updated. We encourage you to review this Privacy Policy
+                periodically for any changes.
               </p>
               <h2 className="mb-4 text-3xl font-bold text-neutral-300">
                 10. Contact Us
