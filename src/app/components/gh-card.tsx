@@ -6,6 +6,7 @@ import { EditButtons } from "./gh-card-edit-buttons";
 import { NameDescriptionAndTags } from "./gh-card-body";
 import useGhCardControl from "../hooks/use-gh-card-control";
 import GhCardTags from "./gh-card-tags";
+import { useState } from "react";
 
 export default function GHCard(props: {
   id: number;
@@ -32,6 +33,11 @@ export default function GHCard(props: {
     reset,
     setReset,
   } = useGhCardControl(props.cardInfo, props.id);
+
+  const [openSharedDialog, setOpenSharedDialog] = useState(false);
+  const handleShare = () => {
+    setOpenSharedDialog(true);
+  };
 
   if (deleted) {
     return (
@@ -61,11 +67,12 @@ export default function GHCard(props: {
       className={`relative flex flex-col justify-between rounded-md p-3 ring-1 ring-neutral-500 ${editMode || updating ? "bg-neutral-500" : "bg-neutral-900"} aniamte transition-all`}
     >
       {shareExpired && (
-        <p
-          className={`absolute top-3 right-3 h-fit w-fit rounded-md bg-green-300 px-2 text-sm font-bold text-neutral-800`}
+        <button
+          className={`absolute top-3 right-3 h-fit w-fit rounded-md bg-green-300 px-2 text-sm font-bold text-neutral-800 hover:cursor-pointer`}
+          onClick={() => handleShare()}
         >
           Shared
-        </p>
+        </button>
       )}
       <InvalidValueDialog
         open={invalidInput}
@@ -123,6 +130,9 @@ export default function GHCard(props: {
             bucketId={props.cardInfo.bucketUrl}
             setEditMode={() => setEditMode(!editMode)}
             handleEdit={(b) => handleEdit(b)}
+            openSharedDialog={openSharedDialog}
+            setOpenSharedDialog={setOpenSharedDialog}
+            handleShare={handleShare}
           />
         )}
       </div>

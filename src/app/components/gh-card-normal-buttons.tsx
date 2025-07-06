@@ -8,9 +8,11 @@ export function NormalButtons(props: {
   bucketId: string;
   setEditMode: () => void;
   handleEdit: (b: boolean) => void;
+  openSharedDialog: boolean;
+  setOpenSharedDialog: (b: boolean) => void;
+  handleShare: () => void;
 }) {
   const [openCopyDialog, setOpenCopyDialog] = useState(false);
-  const [openSharedDialog, setOpenSharedDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const { refetch: getPresignedUrl } = useDownloadPresignedUrl(props.bucketId);
@@ -34,10 +36,6 @@ export function NormalButtons(props: {
     }
   };
 
-  const handleShare = () => {
-    setOpenSharedDialog(true);
-  };
-
   return (
     <div className="flex items-center justify-end text-neutral-400 transition-all">
       <CopiedDialog
@@ -48,8 +46,8 @@ export function NormalButtons(props: {
         decoded={decoded}
       />
       <ShareDialog
-        open={openSharedDialog}
-        setOpen={() => setOpenSharedDialog(!openSharedDialog)}
+        open={props.openSharedDialog}
+        setOpen={() => props.setOpenSharedDialog(!props.openSharedDialog)}
         bucketId={props.bucketId}
       />
       <button
@@ -61,7 +59,7 @@ export function NormalButtons(props: {
       </button>
       <button
         className={`px-2 font-bold hover:text-neutral-50`}
-        onClick={handleShare}
+        onClick={props.handleShare}
       >
         share
       </button>
