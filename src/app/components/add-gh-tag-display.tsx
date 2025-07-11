@@ -22,14 +22,14 @@ export function AvailableGhTagDisplay(props: {
   handleAddTag: (tag: string) => void;
 }) {
   return (
-    <span className="bg-primary text-primary-foreground hover:bg-primary/80 animate-fadeIn inline-flex h-8 w-fit cursor-default items-center rounded-sm px-2 text-sm transition-all disabled:cursor-not-allowed disabled:opacity-50">
+    <span
+      className="bg-primary text-primary-foreground hover:bg-primary/80 animate-fadeIn inline-flex h-8 w-fit cursor-default items-center rounded-sm px-2 text-sm transition-all hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+      onClick={() => {
+        props.handleAddTag(props.tag);
+      }}
+    >
       {props.tag}
-      <Plus
-        className="ml-2 h-4 w-3 hover:cursor-pointer"
-        onClick={() => {
-          props.handleAddTag(props.tag);
-        }}
-      />
+      <Plus className="ml-2 h-4 w-3 hover:cursor-pointer" />
     </span>
   );
 }
