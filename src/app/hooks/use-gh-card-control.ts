@@ -192,10 +192,8 @@ export default function useGhCardControl(cardInfo: Posts, id: number) {
 
   const removeTag = (tag: string, toBeRemoved: boolean) => {
     if (!toBeRemoved) {
-      console.log("removing tag", tag);
       const filteredTags = prevTags.current.filter((t) => t !== tag);
       newTags.current = filteredTags;
-      console.log("newTags", filteredTags);
     } else {
       newTags.current = [...prevTags.current, tag];
     }
