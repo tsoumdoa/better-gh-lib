@@ -10,7 +10,6 @@ export default function TagDisplay(props: {
 }) {
   const [toBeRemoved, setToBeRemoved] = useState(false);
   const handleClick = () => {
-    console.log("removing tag", props.tag);
     setToBeRemoved(!toBeRemoved);
     props.removeTag(props.tag, toBeRemoved);
   };
@@ -20,7 +19,7 @@ export default function TagDisplay(props: {
         key={`tag-${props.tag}`}
         className={`flex flex-row items-center gap-x-2 rounded-sm px-2 text-sm font-semibold text-neutral-800 ${toBeRemoved ? "bg-neutral-100/30" : "bg-neutral-100"} transition-all hover:cursor-pointer`}
         onClick={() =>
-          props.editMode ? handleClick() : props.updatePath(props.tag, true)
+          props.editMode ? handleClick() : props.updatePath(props.tag, false)
         }
       >
         {props.tag}

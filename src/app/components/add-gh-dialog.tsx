@@ -12,16 +12,14 @@ import {
   AlertDialogDescription,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useValidateNameDescriptionAndTags } from "../hooks/use-validate-name-and-description";
-import { useUploadToR2 } from "../hooks/use-upload-to-r2";
-import { usePostAdd } from "../hooks/use-post-add";
 import { useXmlPaste } from "../hooks/use-xml-paste";
 import AddXml from "./add-xml";
-import { compress } from "@/server/api/routers/util/gzip";
 import { Button } from "@/components/ui/button";
 import AddGhTagDisplay, { AvailableGhTagDisplay } from "./add-gh-tag-display";
 import { api } from "@/trpc/react";
+import { useUploadGhCard } from "../hooks/use-upload-gh-card";
 
 export function AddGhDialog(props: {
   open: boolean;
@@ -30,7 +28,6 @@ export function AddGhDialog(props: {
   setAdding: (b: boolean) => void;
 }) {
   const [addError, setAddError] = useState("");
-  const [posted, setPosted] = useState(false);
   const { data: userTags } = api.post.getUserTags.useQuery();
   const {
     name,
@@ -47,59 +44,21 @@ export function AddGhDialog(props: {
     onTagValueChange,
     availableTags,
   } = useValidateNameDescriptionAndTags(setAddError, userTags ?? []);
-  const { mutate, uploading, uploadSuccess, data, gzipRef } =
-    useUploadToR2(setAddError);
-  const postData = usePostAdd(
+
+  const { uploadGhCard } = useUploadGhCard(
     setAddError,
     props.setAdding,
-    props.setOpen,
-    setPosted,
-    setTags
+    props.setOpen
   );
+
   const { xmlData, setXmlData, isValidXml, handlePasteFromClipboard } =
     useXmlPaste(setAddError, props.setAdding);
-
-  //todo it breaks when r2 upload fails
-  useEffect(() => {
-    if (props.adding && !posted && data && !uploading && data.ok) {
-      const id = data.data?.id || "";
-      if (uploadSuccess && id.length > 0) {
-        console.log("id", id);
-        console.log("name", tags);
-        postData.mutate({
-          name: name,
-          description: description,
-          nanoid: id,
-          tags: tags,
-        });
-        setPosted(true);
-      } else if (!uploading) {
-        setAddError("Failed to upload to R2");
-        props.setAdding(false);
-      }
-    }
-  }, [
-    uploadSuccess,
-    name,
-    description,
-    postData,
-    props,
-    posted,
-    uploading,
-    data,
-    tags,
-  ]);
 
   const handleSubmit = async () => {
     if (isValidXml && isValid && xmlData) {
       setAddError("");
       props.setAdding(true);
-
-      const gziped = compress(xmlData);
-      gzipRef.current = gziped;
-      const size = gzipRef.current.length;
-      //this trigers useUpladToR2 to run
-      mutate({ size });
+      uploadGhCard(name, description, tags, xmlData);
       setXmlData(undefined);
     }
   };
