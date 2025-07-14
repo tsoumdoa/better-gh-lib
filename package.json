@@ -44,6 +44,7 @@
 		"effect": "^3.16.12",
 		"fast-xml-parser": "^5.2.5",
 		"fuse.js": "^7.1.0",
+		"jose": "^6.0.11",
 		"lucide-react": "^0.503.0",
 		"nanoid": "^5.1.5",
 		"next": "15.3.5",

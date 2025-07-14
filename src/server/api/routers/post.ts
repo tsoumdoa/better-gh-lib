@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
+import { SignJWT, importPKCS8 } from "jose";
 import { Posts, posts } from "@/server/db/schema";
 import { nanoid } from "nanoid";
 import { addNanoId } from "./util/ensureUniqueName";
@@ -16,6 +17,7 @@ import cleanUpBucket from "./util/run-bucket-cleanup";
 import { generateSharableLinkUid } from "./util/generate-sharable-link-uid";
 import { deleteUrl, orderBy, presignedUrl } from "./util/helper-functions";
 import formatShareExpiryTime from "./util/format-expiry-time";
+import { env } from "@/env";
 
 export const postRouter = createTRPCRouter({
   add: publicProcedure
@@ -521,4 +523,41 @@ export const postRouter = createTRPCRouter({
 
     return userTagCounts;
   }),
+
+  generateJwtToken: publicProcedure
+    .input(z.object({ size: z.number() }))
+    .mutation(async ({ input, ctx }) => {
+      const { userId } = ctx.auth;
+      if (!userId) {
+        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
+      }
+
+      const nanoId = nanoid();
+
+      const payload = {
+        role: "user",
+        postId: nanoId,
+        size: input.size,
+      };
+      const privateString = env.JWT_PRIVATE_KEY.replace(/\\n/g, "\n");
+      const privateKey = await importPKCS8(privateString, "RS256");
+
+      const jwt = await new SignJWT(payload)
+        .setProtectedHeader({ alg: "RS256" })
+        .setIssuedAt()
+        .setIssuer(env.JWT_ISSUER)
+        .setAudience(env.JWT_AUDIENCE)
+        .setExpirationTime("1 minutes")
+        .sign(privateKey);
+
+      // only for debug purpose...
+      // const publicString = env.JWT_PUBLIC_KEY.replace(/\\n/g, "\n");
+      // const publicKey = await importSPKI(publicString, "RS256");
+      // const verified = await jwtVerify(jwt, publicKey, {
+      //   issuer: env.JWT_ISSUER,
+      //   audience: env.JWT_AUDIENCE,
+      // });
+
+      return { jwt };
+    }),
 });

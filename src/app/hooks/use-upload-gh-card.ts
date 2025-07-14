@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { compress } from "@/server/api/routers/util/gzip";
 import { api } from "@/trpc/react";
 import { uploadToR2 } from "../utils/upload-to-r2";
@@ -25,42 +25,41 @@ export function useUploadGhCard(
       setOpen(false);
     },
   });
-  const {
-    isSuccess,
-    data,
-    mutate: getPutPresignedUrl,
-    isError,
-  } = api.post.getPutPresignedUrl.useMutation({
-    onSuccess: async (data) => {
-      writeToDb({
-        name: cardData.current?.name!,
-        description: cardData.current?.description!,
-        tags: cardData.current?.tags!,
-        nanoid: data.data?.id!,
-      });
+  const { mutate: getPutPresignedUrl } =
+    api.post.getPutPresignedUrl.useMutation({
+      onSuccess: async (data) => {
+        const d = data.data;
+        uploadToR2(d?.presignedUrl || "", gzipRef.current!).then((res) => {
+          if (res === true) {
+            setUploadSuccess(true);
+          }
+        });
+        mutateDb(d?.id ?? "");
+        if (!data?.ok && data?.error === "FILE_SIZE_TOO_BIG") {
+          setAddError("FILE_SIZE_TOO_BIG, max 1.5mb");
+        }
+      },
+      onError: (err) => {
+        setUploading(false);
+        setAddError(err.message);
+      },
+    });
+
+  const { mutate: generateJwtToken } = api.post.generateJwtToken.useMutation({
+    onSuccess: (data) => {
+      const jwt = data.jwt;
+      console.log(jwt);
     },
   });
 
-  useEffect(() => {
-    if (isError) {
-      setUploading(false);
-    }
-    if (!data?.ok && data?.error === "FILE_SIZE_TOO_BIG") {
-      setUploading(false);
-      setUploadSuccess(false);
-      setAddError("FILE_SIZE_TOO_BIG, max 1.5mb");
-    }
-    if (isSuccess && data.ok && data.data) {
-      setUploading(true);
-      const d = data.data;
-      uploadToR2(d.presignedUrl, gzipRef.current!).then((res) => {
-        if (res === true) {
-          setUploadSuccess(true);
-        }
-        setUploading(false);
-      });
-    }
-  }, [isSuccess, data, isError, setAddError]);
+  const mutateDb = async (id: string) => {
+    writeToDb({
+      name: cardData.current?.name ?? "",
+      description: cardData.current?.description ?? "",
+      tags: cardData.current?.tags ?? [],
+      nanoid: id,
+    });
+  };
 
   const uploadGhCard = async (
     name: string,
@@ -73,6 +72,7 @@ export function useUploadGhCard(
     cardData.current = { name, description, tags };
     const size = gzipRef.current.length;
     getPutPresignedUrl({ size });
+    generateJwtToken({ size });
   };
 
   return {
