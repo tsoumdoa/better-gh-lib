@@ -18,6 +18,7 @@ export function useUploadGhCard(
     description: string;
     tags: string[];
   }>(null);
+
   const { mutate: writeToDb } = api.post.add.useMutation({
     onSuccess: () => {
       router.refresh();
@@ -25,6 +26,7 @@ export function useUploadGhCard(
       setOpen(false);
     },
   });
+
   const { mutate: getPutPresignedUrl } =
     api.post.getPutPresignedUrl.useMutation({
       onSuccess: async (data) => {
@@ -47,8 +49,14 @@ export function useUploadGhCard(
 
   const { mutate: generateJwtToken } = api.post.generateJwtToken.useMutation({
     onSuccess: (data) => {
-      const jwt = data.jwt;
-      console.log(jwt);
+      if (data.result === "error") {
+        // only error expceted here is file size too big
+        setAddError(data.error ?? "");
+      }
+      if (data.result === "ok") {
+        const jwt = data.token;
+        console.log(jwt);
+      }
     },
   });
 

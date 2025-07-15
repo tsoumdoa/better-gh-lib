@@ -532,6 +532,10 @@ export const postRouter = createTRPCRouter({
         throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
       }
 
+      if (input.size > 1024 * 1024 * 1.5) {
+        return { result: "error", error: "FILE_SIZE_TOO_BIG" };
+      }
+
       const nanoId = nanoid();
 
       const payload = {
@@ -558,6 +562,6 @@ export const postRouter = createTRPCRouter({
       //   audience: env.JWT_AUDIENCE,
       // });
 
-      return { jwt };
+      return { result: "ok", token: jwt };
     }),
 });

@@ -7,10 +7,10 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
-    DATABASE_URL: z.string().url(),
+    DATABASE_URL: z.url(),
     DATABASE_AUTH_TOKEN: z.string(),
     CLERK_SECRET_KEY: z.string(),
-    UPSTASH_REDIS_REST_URL: z.string().url(),
+    UPSTASH_REDIS_REST_URL: z.url(),
     UPSTASH_REDIS_REST_TOKEN: z.string(),
     R2_ACCESS_KEY_ID: z.string(),
     R2_SECRET_ACCESS_KEY: z.string(),
@@ -32,8 +32,9 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
     NEXT_PUBLIC_POSTHOG_KEY: z.string(),
-    NEXT_PUBLIC_POSTHOG_HOST: z.string().url(),
-    NEXT_PUBLIC_HOSTING_DOMAIN: z.string().url(),
+    NEXT_PUBLIC_POSTHOG_HOST: z.url(),
+    NEXT_PUBLIC_HOSTING_DOMAIN: z.url(),
+    NEXT_PUBLIC_CF_WORKER: z.url(),
   },
 
   /**
@@ -59,6 +60,7 @@ export const env = createEnv({
     JWT_PRIVATE_KEY: process.env.JWT_PRIVATE_KEY,
     JWT_ISSUER: process.env.JWT_ISSUER,
     JWT_AUDIENCE: process.env.JWT_AUDIENCE,
+    NEXT_PUBLIC_CF_WORKER: process.env.NEXT_PUBLIC_CF_WORKER,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
