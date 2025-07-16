@@ -76,8 +76,8 @@ export function useUploadGhCard(
   };
 
   return {
-    // uploading,
-    // uploadSuccess,
+    uploading,
+    uploadSuccess,
     uploadGhCard,
   };
 }
