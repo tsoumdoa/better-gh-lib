@@ -121,7 +121,6 @@ export const postRouter = createTRPCRouter({
         if (err instanceof Error) {
           if (err.message.includes("UNIQUE constraint failed")) {
             data.name = addNanoId(input.name);
-            console.log("data.name", data.name);
             await ctx.db
               .update(posts)
               .set({
@@ -540,6 +539,7 @@ export const postRouter = createTRPCRouter({
 
       const payload = {
         role: "user",
+        userId: userId,
         postId: nanoId,
         size: input.size,
       };
@@ -562,6 +562,6 @@ export const postRouter = createTRPCRouter({
       //   audience: env.JWT_AUDIENCE,
       // });
 
-      return { result: "ok", token: jwt };
+      return { result: "ok", token: jwt, id: nanoId };
     }),
 });

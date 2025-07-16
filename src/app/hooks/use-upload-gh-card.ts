@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { compress } from "@/server/api/routers/util/gzip";
 import { api } from "@/trpc/react";
-import { uploadToR2 } from "../utils/upload-to-r2";
+import { uploadViaWorker } from "../utils/upload-to-r2";
 import { useRouter } from "next/navigation";
 
 export function useUploadGhCard(
@@ -22,40 +22,33 @@ export function useUploadGhCard(
   const { mutate: writeToDb } = api.post.add.useMutation({
     onSuccess: () => {
       router.refresh();
+      setUploading(false);
+      setAdding(false);
+      setOpen(false);
+    },
+    onError: (err) => {
+      console.log(err);
+      setUploading(false);
       setAdding(false);
       setOpen(false);
     },
   });
 
-  const { mutate: getPutPresignedUrl } =
-    api.post.getPutPresignedUrl.useMutation({
-      onSuccess: async (data) => {
-        const d = data.data;
-        uploadToR2(d?.presignedUrl || "", gzipRef.current!).then((res) => {
-          if (res === true) {
-            setUploadSuccess(true);
-          }
-        });
-        mutateDb(d?.id ?? "");
-        if (!data?.ok && data?.error === "FILE_SIZE_TOO_BIG") {
-          setAddError("FILE_SIZE_TOO_BIG, max 1.5mb");
-        }
-      },
-      onError: (err) => {
-        setUploading(false);
-        setAddError(err.message);
-      },
-    });
-
-  const { mutate: generateJwtToken } = api.post.generateJwtToken.useMutation({
+  const { mutate: runUpload } = api.post.generateJwtToken.useMutation({
     onSuccess: (data) => {
       if (data.result === "error") {
         // only error expceted here is file size too big
         setAddError(data.error ?? "");
       }
       if (data.result === "ok") {
+        setUploading(true);
         const jwt = data.token;
-        console.log(jwt);
+        uploadViaWorker(gzipRef.current!, jwt || "").then((res) => {
+          if (res === true) {
+            setUploadSuccess(true);
+          }
+        });
+        mutateDb(data.id ?? "");
       }
     },
   });
@@ -79,13 +72,12 @@ export function useUploadGhCard(
     gzipRef.current = gziped;
     cardData.current = { name, description, tags };
     const size = gzipRef.current.length;
-    getPutPresignedUrl({ size });
-    generateJwtToken({ size });
+    runUpload({ size });
   };
 
   return {
-    uploading,
-    uploadSuccess,
+    // uploading,
+    // uploadSuccess,
     uploadGhCard,
   };
 }
