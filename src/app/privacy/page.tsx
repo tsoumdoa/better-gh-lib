@@ -206,7 +206,7 @@ export default function PrivacyPolicy() {
                   <strong className="font-semibold">Service Providers:</strong>{" "}
                   We use third-party service providers (Clerk for
                   authentication, Turso for database hosting, Cloudflare R2 for
-                  blob storage, and PostHog for analytics) to help us operate
+                  blob storage, Cloudflare Worker for reverse proxy, and PostHog for analytics) to help us operate
                   and provide the Service. These providers is contractually
                   obligated to protect your information and only use it for the
                   purposes of providing their services to us.

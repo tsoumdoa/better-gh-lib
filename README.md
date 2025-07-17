@@ -33,6 +33,7 @@ Or hey, just do whatever you want with your fork! No pressure, just good vibes.
 - **Frontend & Backend:** Next.js (App Router)
 - **Styling:** Tailwind CSS & Shadcn UI
 - **Object Storage:** Cloudflare R2 (for storing Grasshopper scripts)
+- **Reverse Proxy:** Cloudflare Worker (for handling file updates to R2)
 - **Caching:** Redis (for various caching mechanisms, via Upstash)
 - **Database:** LibSQL (SQLite) (for main data storage, via Turso)
 - **Authentication & User Management:** Clerk
