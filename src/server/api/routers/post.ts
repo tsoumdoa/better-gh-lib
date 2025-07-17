@@ -506,12 +506,14 @@ export const postRouter = createTRPCRouter({
       }
 
       const nanoId = nanoid();
+      const isDev = env.NODE_ENV === "development";
 
       const payload = {
         role: "user",
         userId: userId,
         postId: nanoId,
         size: input.size,
+        env: isDev ? "development" : "production",
       };
       const privateString = env.JWT_PRIVATE_KEY.replace(/\\n/g, "\n");
       const privateKey = await importPKCS8(privateString, "RS256");

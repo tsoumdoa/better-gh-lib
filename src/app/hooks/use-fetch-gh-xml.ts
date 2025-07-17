@@ -1,5 +1,13 @@
 import { useMutation } from "@tanstack/react-query";
 
+const decompress = async (data: ArrayBuffer): Promise<Uint8Array> => {
+  const stream = new Response(data).body!.pipeThrough(
+    new DecompressionStream("gzip")
+  );
+  const decompressed = await new Response(stream).arrayBuffer();
+  return new Uint8Array(decompressed);
+};
+
 export function useFetchGhXml() {
   const { mutateAsync: downloadData, data: decoded } = useMutation({
     mutationFn: async (url: string) => {
@@ -13,9 +21,9 @@ export function useFetchGhXml() {
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
-      //browser will automatically decompress gzipped data
-      const arrayBuffer = await res.arrayBuffer();
-      const decoded = new TextDecoder().decode(arrayBuffer);
+      const blob = await res.blob();
+      const uncompressed = await decompress(await blob.arrayBuffer());
+      const decoded = new TextDecoder().decode(uncompressed);
       return decoded;
     },
   });
