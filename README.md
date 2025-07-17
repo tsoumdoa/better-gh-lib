@@ -82,7 +82,49 @@ You will also need to provide the necessary API keys and environment variables, 
     # Now, open .env and fill in your keys/credentials
     ```
 
-4.  **Install dependencies:**
+4.  **Deoloy CF worker:**
+    To complete the deployment, you need to deploy the Cloudflare worker.
+
+    ```bash
+    git clone https://github.com/tsoumdoa/hopper-worker
+    ```
+
+    Install dependencies:
+
+    ```bash
+    pnpm install
+    ```
+
+    Deploy the worker:
+
+    ```bash
+    pnpm wrangler publish
+    ```
+
+    This will deploy the worker to Cloudflare, you also need to generate JWT
+    token and update the env
+    accordingly.
+
+    to generate JWT private key:
+
+    ```bash
+    openssl genrsa -out private.pem 2048
+    ```
+
+    to generate public key:
+
+    ```bash
+    openssl rsa -pubout -in private_key.pem -out public_key.pem
+
+    ```
+
+- openssl rsa -pubout -in private_key.pem -out public_key.pem
+
+  ```
+
+  ```
+
+5.  **Install dependencies:**
     ```bash
     pnpm install
     ```
