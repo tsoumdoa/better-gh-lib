@@ -1,6 +1,13 @@
 import { useMutation } from "@tanstack/react-query";
 
 const decompress = async (data: ArrayBuffer): Promise<Uint8Array> => {
+  //check if it's already decompressed
+  const view = new Uint8Array(data);
+  const isGzipped = view[0] === 0x1f && view[1] === 0x8b;
+  if (!isGzipped) {
+    return view;
+  }
+
   const stream = new Response(data).body!.pipeThrough(
     new DecompressionStream("gzip")
   );
