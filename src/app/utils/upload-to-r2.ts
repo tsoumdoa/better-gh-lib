@@ -8,8 +8,8 @@ class UploadToR2Error {
 const postToWorker = (url: string, gziped: Uint8Array, token: string) =>
   Effect.tryPromise({
     try: () => {
-      // const test = "http://localhost:8787";
       const size = gziped.length;
+      // const test = "http://localhost:8787";
       // return fetch(test, {
       return fetch(url, {
         method: "POST",
