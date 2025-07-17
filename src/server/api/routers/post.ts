@@ -191,36 +191,6 @@ export const postRouter = createTRPCRouter({
       waitUntil(ctx.redis.del(`userHasTags:${userId}`));
     }),
 
-  getPutPresignedUrl: publicProcedure
-    .input(z.object({ size: z.number() }))
-    .mutation(async ({ ctx, input }) => {
-      // this is where the size limit logic is
-      if (input.size > 1024 * 1024 * 1.5) {
-        return { ok: false, error: "FILE_SIZE_TOO_BIG" };
-      }
-
-      const { userId } = ctx.auth;
-      const size = input.size;
-      if (!userId) {
-        throw new Error("UNAUTHORIZED", { cause: new Error("UNAUTHORIZED") });
-      }
-      const nanoId = nanoid();
-      const presigned = await ctx.r2Client.sign(
-        new Request(presignedUrl(userId, nanoId, 30), {
-          method: "PUT",
-        }),
-        {
-          aws: { signQuery: true },
-          headers: {
-            "Content-Encoding": "gzip",
-            "Content-Length": size.toString(),
-            "Content-Type": "application/gzip",
-          },
-        }
-      );
-      return { ok: true, data: { presignedUrl: presigned.url, id: nanoId } };
-    }),
-
   getPresignedUrl: publicProcedure
     .input(z.object({ bucketId: z.string() }))
     .query(async ({ input, ctx }) => {

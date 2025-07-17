@@ -31,7 +31,6 @@ export async function uploadViaWorker(
   token: string
 ) {
   const workerUrl = env.NEXT_PUBLIC_CF_WORKER;
-  console.log(workerUrl);
   const res = await Effect.runPromiseExit(
     postToWorker(workerUrl, gziped, token)
   );
