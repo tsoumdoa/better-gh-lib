@@ -9,9 +9,9 @@ import GhCardDisplay from "./components/gh-card-display";
 import SortDropDown from "./components/sort-drop-down";
 import { SortOrder, SORT_ORDERS } from "@/types/types";
 import UserTags from "./components/user-tags";
+import { FilterHint } from "./components/filter-hint";
 
 async function MainCard(props: { sortKey: SortOrder; tagFilters: string[] }) {
-  //if failed to get data, redirect to home
   try {
     const ghCards = await api.post.getAll({ sortOrder: props.sortKey });
     if (props.tagFilters.length > 0) {
@@ -98,6 +98,7 @@ export default async function Home(props: {
               <span>{`${username}'s Fav`}</span>
             </div>
             <div className="flex items-center gap-4">
+              <FilterHint />
               <SortDropDown />
               <AddGHCard />
             </div>
