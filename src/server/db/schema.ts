@@ -23,6 +23,9 @@ export const posts = sqliteTable(
   (t) => [
     index("user_idx").on(t.clerkUserId),
     index("post_idx").on(t.id),
+    index("post_name_idx").on(t.name),
+    index("date_updated_idx").on(t.dateUpdated),
+    index("date_created_idx").on(t.dateCreated),
     unique("unique_name").on(t.name, t.clerkUserId),
   ]
 );
