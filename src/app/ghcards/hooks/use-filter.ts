@@ -7,6 +7,8 @@ export default function useFilter(ghCards: Posts[]) {
   const filterKeyword = useRef<string>("");
 
   useEffect(() => {
+    if (ghCards) updateFilter(filterKeyword.current);
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
@@ -30,6 +32,10 @@ export default function useFilter(ghCards: Posts[]) {
   const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     const keyword = e.target.value.toLowerCase();
     filterKeyword.current = keyword;
+    updateFilter(keyword);
+  };
+
+  const updateFilter = (keyword: string) => {
     const filtered = ghCards.filter((card) => {
       const tags = card.tags ?? [];
       return (
