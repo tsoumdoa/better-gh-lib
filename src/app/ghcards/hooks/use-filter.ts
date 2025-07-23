@@ -1,23 +1,44 @@
 import { Posts } from "@/server/db/schema";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 export default function useFilter(ghCards: Posts[]) {
   const [filteredCards, setFilteredCards] = useState(ghCards);
   const [showFilter, setShowFilter] = useState(false);
   const filterKeyword = useRef<string>("");
+  const searchParams = useSearchParams();
+  const params = useMemo(
+    () => new URLSearchParams(searchParams),
+    [searchParams]
+  );
+  const pathname = usePathname();
+  const paramName = "searchFilterOn";
+  const router = useRouter();
+
+  const updateSearchParam = (b: boolean) => {
+    const newParams = new URLSearchParams(params);
+    newParams.set(paramName, b.toString());
+    router.replace(`${pathname}?${newParams.toString()}`);
+  };
+
+  const clearFilter = () => {
+    updateSearchParam(false);
+    setFilteredCards(ghCards);
+    filterKeyword.current = "";
+    setShowFilter(false);
+  };
 
   useEffect(() => {
     if (ghCards) updateFilter(filterKeyword.current);
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        updateSearchParam(true);
         e.preventDefault();
         setShowFilter((prev) => !prev);
       }
       if (e.key === "Escape") {
-        setShowFilter(false);
-        setFilteredCards(ghCards);
-        filterKeyword.current = "";
+        clearFilter();
       }
       if (e.key === "Enter") {
         setShowFilter(false);
@@ -52,6 +73,8 @@ export default function useFilter(ghCards: Posts[]) {
     showFilter,
     handleFilter,
     setShowFilter,
+    updateFilter,
     filterKeyword,
+    clearFilter,
   };
 }
