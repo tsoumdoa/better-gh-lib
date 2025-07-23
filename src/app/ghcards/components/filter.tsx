@@ -20,7 +20,7 @@ export default function Filter(props: {
       <Input
         ref={ref}
         onChange={props.handleFilterAction}
-        className="w-1/2 rounded-md border-2 border-neutral-700 bg-neutral-900 p-4 text-white ring-offset-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+        className="selection:bg-secondary w-1/2 rounded-md border-2 border-neutral-700 bg-neutral-900 p-4 text-white ring-offset-transparent selection:text-neutral-800 focus-visible:ring-0 focus-visible:ring-offset-0"
         placeholder="Filter by name, description, or tags... (esc to clear or enter to apply)"
         value={props.prevFilter}
       />

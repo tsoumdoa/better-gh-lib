@@ -33,7 +33,6 @@ export default function useFilter(ghCards: Posts[]) {
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        updateSearchParam(true);
         e.preventDefault();
         setShowFilter((prev) => !prev);
       }
@@ -42,6 +41,9 @@ export default function useFilter(ghCards: Posts[]) {
       }
       if (e.key === "Enter") {
         setShowFilter(false);
+        if (filterKeyword.current === "") {
+          updateSearchParam(false);
+        }
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -57,6 +59,9 @@ export default function useFilter(ghCards: Posts[]) {
   };
 
   const updateFilter = (keyword: string) => {
+    if (keyword.length > 0) updateSearchParam(true);
+    if (keyword === "") updateSearchParam(false);
+
     const filtered = ghCards.filter((card) => {
       const tags = card.tags ?? [];
       return (
