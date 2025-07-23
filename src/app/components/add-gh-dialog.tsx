@@ -60,6 +60,7 @@ export function AddGhDialog(props: {
       props.setAdding(true);
       uploadGhCard(name, description, tags, xmlData);
       setXmlData(undefined);
+      setTags([]);
     }
   };
 
