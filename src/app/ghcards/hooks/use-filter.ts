@@ -29,8 +29,6 @@ export default function useFilter(ghCards: Posts[]) {
   };
 
   useEffect(() => {
-    if (ghCards) updateFilter(filterKeyword.current);
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
