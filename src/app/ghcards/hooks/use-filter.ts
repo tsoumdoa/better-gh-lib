@@ -13,7 +13,7 @@ const fuseOptions = {
 
 export default function useFilter(ghCards: Posts[]) {
   const [filteredCards, setFilteredCards] = useState(ghCards);
-  const [showFilter, setShowFilter] = useState(false);
+  const [showFilterRes, setShowFilterRes] = useState(false);
   const filterKeyword = useRef<string>("");
   const searchParams = useSearchParams();
   const params = useMemo(
@@ -49,24 +49,26 @@ export default function useFilter(ghCards: Posts[]) {
     updateSearchParam(false);
     setFilteredCards(ghCards);
     filterKeyword.current = "";
-    setShowFilter(false);
+    setShowFilterRes(false);
   };
 
   useEffect(() => {
-    setFilteredCards(ghCards);
+    if (!showFilterRes) {
+      setFilteredCards(ghCards);
+    }
   }, [ghCards]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
-        setShowFilter((prev) => !prev);
+        setShowFilterRes((prev) => !prev);
       }
       if (e.key === "Escape") {
         clearFilter();
       }
       if (e.key === "Enter") {
-        setShowFilter(false);
+        setShowFilterRes(false);
         if (filterKeyword.current === "") {
           updateSearchParam(false);
         }
@@ -102,9 +104,9 @@ export default function useFilter(ghCards: Posts[]) {
 
   return {
     filteredCards,
-    showFilter,
+    showFilter: showFilterRes,
     handleFilter,
-    setShowFilter,
+    setShowFilter: setShowFilterRes,
     updateFilter,
     filterKeyword,
     clearFilter,
