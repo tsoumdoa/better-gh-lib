@@ -6,7 +6,7 @@ import Fuse from "fuse.js";
 const fuseOptions = {
   keys: [],
   includeScore: true,
-  threshold: 0.6,
+  threshold: 0.3,
   ignoreLocation: true,
   ignoreCase: true,
 };
@@ -97,8 +97,11 @@ export default function useFilter(ghCards: Posts[]) {
     const nameMatches = nameFuse.search(keyword);
     const descriptionMatches = descriptionFuse.search(keyword);
     const tagMatches = tagFuse.search(keyword);
-    const matches = [...nameMatches, ...descriptionMatches, ...tagMatches];
-    const set = new Set(matches.map((m) => m.item));
+    const set = new Set([
+      ...nameMatches.map((m) => m.item),
+      ...descriptionMatches.map((m) => m.item),
+      ...tagMatches.map((m) => m.item),
+    ]);
     setFilteredCards(
       ghCards.filter(
         (card) =>
