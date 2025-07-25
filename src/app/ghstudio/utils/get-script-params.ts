@@ -9,7 +9,7 @@ import { getKeyNameObjArray } from "./helper-functions";
 export function getScriptParam(
   container: ScriptContainerType[][] | ScriptParameterContainerType[][]
 ) {
-  //todo break down script data to extract
+  //TODO: break down script data to extract
   //language type
   //script itself
   const scriptData = container.map((c) =>
