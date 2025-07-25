@@ -74,6 +74,7 @@ export default async function Home(props: {
   const isValidSortKey = SORT_ORDERS.map((item) => item.value).includes(
     sortKey
   );
+
   const tagFilterParam = searchParams.tagFilter ?? [];
   let sanitizedTagFilter: string[] = [];
   if (Array.isArray(tagFilterParam)) {

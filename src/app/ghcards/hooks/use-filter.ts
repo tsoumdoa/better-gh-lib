@@ -13,7 +13,7 @@ const fuseOptions = {
 
 export default function useFilter(ghCards: Posts[]) {
   const [filteredCards, setFilteredCards] = useState(ghCards);
-  const [showFilterRes, setShowFilterRes] = useState(false);
+  const [showFilterInput, setShowFilterInput] = useState(false);
   const filterKeyword = useRef<string>("");
   const searchParams = useSearchParams();
   const params = useMemo(
@@ -49,11 +49,11 @@ export default function useFilter(ghCards: Posts[]) {
     updateSearchParam(false);
     setFilteredCards(ghCards);
     filterKeyword.current = "";
-    setShowFilterRes(false);
+    setShowFilterInput(false);
   };
 
   useEffect(() => {
-    if (!showFilterRes) {
+    if (filterKeyword.current === "") {
       setFilteredCards(ghCards);
     }
   }, [ghCards]);
@@ -62,13 +62,13 @@ export default function useFilter(ghCards: Posts[]) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
-        setShowFilterRes((prev) => !prev);
+        setShowFilterInput((prev) => !prev);
       }
       if (e.key === "Escape") {
         clearFilter();
       }
       if (e.key === "Enter") {
-        setShowFilterRes(false);
+        setShowFilterInput(false);
         if (filterKeyword.current === "") {
           updateSearchParam(false);
         }
@@ -98,15 +98,24 @@ export default function useFilter(ghCards: Posts[]) {
     const descriptionMatches = descriptionFuse.search(keyword);
     const tagMatches = tagFuse.search(keyword);
     const matches = [...nameMatches, ...descriptionMatches, ...tagMatches];
+    console.log(matches);
     const set = new Set(matches.map((m) => m.item));
-    setFilteredCards(ghCards.filter((card) => set.has(card.name ?? "")));
+    console.log(set);
+    setFilteredCards(
+      ghCards.filter(
+        (card) =>
+          set.has(card.name ?? "") ||
+          set.has(card.description ?? "") ||
+          card.tags?.some((tag) => set.has(tag))
+      )
+    );
   };
 
   return {
     filteredCards,
-    showFilter: showFilterRes,
+    showFilter: showFilterInput,
     handleFilter,
-    setShowFilter: setShowFilterRes,
+    setShowFilter: setShowFilterInput,
     updateFilter,
     filterKeyword,
     clearFilter,
