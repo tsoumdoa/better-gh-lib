@@ -49,7 +49,7 @@ export function ComponentsTabContent(props: {
               tickMargin={10}
               axisLine={false}
               width={120}
-              tickFormatter={(value) => value.slice(0, 12)}
+              tickFormatter={(value) => value.slice && value.slice(0, 12)}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <Bar dataKey="count" fill="#eab308" radius={5} />
