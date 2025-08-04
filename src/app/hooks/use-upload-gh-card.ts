@@ -12,7 +12,7 @@ export function useUploadGhCard(
   const router = useRouter();
   const [uploading, setUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
-  const gzipRef = useRef<null | Uint8Array<ArrayBufferLike>>(null);
+  const gzipRef = useRef<null | Uint8Array<ArrayBuffer>>(null);
   const cardData = useRef<{
     name: string;
     description: string;

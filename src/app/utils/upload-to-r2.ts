@@ -5,7 +5,11 @@ class UploadToR2Error {
   readonly _tag = "UploadToR2Error";
 }
 
-const postToWorker = (url: string, gziped: Uint8Array, token: string) =>
+const postToWorker = (
+  url: string,
+  gziped: Uint8Array<ArrayBuffer>,
+  token: string
+) =>
   Effect.tryPromise({
     try: () => {
       const size = gziped.length;
@@ -27,7 +31,7 @@ const postToWorker = (url: string, gziped: Uint8Array, token: string) =>
   });
 
 export async function uploadViaWorker(
-  gziped: Uint8Array<ArrayBufferLike>,
+  gziped: Uint8Array<ArrayBuffer>,
   token: string
 ) {
   const workerUrl = env.NEXT_PUBLIC_CF_WORKER;
