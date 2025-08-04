@@ -141,11 +141,7 @@ The application should now be accessible in your web browser at \(http://localho
 
 ## TODO
 
-- [x] improve the visibility of where to paste the ghxml
-- [ ] sort by the most recently used and opposite
-- [x] show how mainy items associated with the tags
-- [x] make the tag at each card clickable
-- [ ] fetch and have freqquently and last created tags in the suggestions
-- [ ] improve validator
 - [ ] add concept of collections
 - [ ] add concept of versions
+- [ ] fetch and have freqquently and last created tags in the suggestions
+- [ ] improve validator
