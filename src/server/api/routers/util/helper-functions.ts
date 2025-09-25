@@ -4,32 +4,35 @@ import { SortOrder } from "@/types/types";
 import { env } from "@/env";
 
 export const presignedUrl = (userId: string, nanoid: string, sec: number) =>
-  `${env.R2_URL}/${userId}/${nanoid}?X-Amz-Expires=${sec}`;
+	`${env.R2_URL}/${userId}/${nanoid}?X-Amz-Expires=${sec}`;
 
 export const deleteUrl = (userId: string, bucketKey: string) =>
-  `${env.R2_URL}/${userId}/${bucketKey}`;
+	`${env.R2_URL}/${userId}/${bucketKey}`;
+
+export const putUrl = (userId: string, bucketKey: string) =>
+	`${env.R2_URL}/${userId}/${bucketKey}`;
 
 export const orderBy = (key: SortOrder) => {
-  switch (key) {
-    case "ascAZ":
-      return [asc(posts.name)]; // No colon after case
+	switch (key) {
+		case "ascAZ":
+			return [asc(posts.name)]; // No colon after case
 
-    case "descZA":
-      return [desc(posts.name)];
+		case "descZA":
+			return [desc(posts.name)];
 
-    case "ascLastEdited":
-      return [desc(posts.dateUpdated)];
+		case "ascLastEdited":
+			return [desc(posts.dateUpdated)];
 
-    case "descLastEdited":
-      return [asc(posts.dateUpdated)];
+		case "descLastEdited":
+			return [asc(posts.dateUpdated)];
 
-    case "ascCreated":
-      return [desc(posts.dateCreated)];
+		case "ascCreated":
+			return [desc(posts.dateCreated)];
 
-    case "descCreated":
-      return [asc(posts.dateCreated)];
+		case "descCreated":
+			return [asc(posts.dateCreated)];
 
-    default:
-      return [desc(posts.dateUpdated)];
-  }
+		default:
+			return [desc(posts.dateUpdated)];
+	}
 };
