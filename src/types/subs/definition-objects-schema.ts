@@ -16,7 +16,7 @@ const TwoPropertyObject = z.object({
 	item: z.array(
 		z.union([
 			TypeNameCodeSchema.extend({
-				"#text": z.uuid().optional(),
+				// "#text": z.uuid().optional(),
 				"@_name": z.literal("GUID"),
 			}),
 			TypeNameCodeSchema.extend({
@@ -32,11 +32,11 @@ const ThreePropertyObject = z.object({
 	item: z.array(
 		z.union([
 			TypeNameCodeSchema.extend({
-				"#text": z.uuid().optional(),
+				// "#text": z.uuid().optional(),
 				"@_name": z.literal("GUID"),
 			}),
 			TypeNameCodeSchema.extend({
-				"#text": z.uuid().optional(),
+				// "#text": z.uuid().optional(),
 				"@_name": z.literal("Lib"),
 			}),
 			TypeNameCodeSchema.extend({
