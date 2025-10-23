@@ -1,6 +1,7 @@
 onlyBuiltDependencies:
   - '@clerk/shared'
   - '@tailwindcss/oxide'
+  - core-js
   - esbuild
   - msgpackr-extract
   - sharp
