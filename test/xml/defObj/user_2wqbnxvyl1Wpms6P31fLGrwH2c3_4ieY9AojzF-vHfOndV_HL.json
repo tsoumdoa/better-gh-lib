@@ -1,0 +1,355 @@
+{
+  "items": {
+    "item": [
+      {
+        "#text": "b6ba1144-02d6-4a2d-b53c-ec62e290eeb7",
+        "@_name": "GUID",
+        "@_type_name": "gh_guid",
+        "@_type_code": 9
+      },
+      {
+        "#text": "C# Script",
+        "@_name": "Name",
+        "@_type_name": "gh_string",
+        "@_type_code": 10
+      }
+    ],
+    "@_count": 2
+  },
+  "chunks": {
+    "chunk": [
+      {
+        "items": {
+          "item": [
+            {
+              "@_name": "Description",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": true,
+              "@_name": "GraftStandardOutputLines",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": "71b7b0fc-9229-49e0-b395-19ed6bc207d1",
+              "@_name": "InstanceGuid",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": true,
+              "@_name": "Locked",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": false,
+              "@_name": "MarshGuids",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": false,
+              "@_name": "MarshInputs",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": false,
+              "@_name": "MarshOutputs",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": "C# Script",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "dangerouslyRandomizeColor",
+              "@_name": "NickName",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": 3,
+              "@_name": "ScriptComponentVersion",
+              "@_type_name": "gh_int32",
+              "@_type_code": 3
+            },
+            {
+              "@_name": "Tooltip",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": false,
+              "@_name": "UsingLibraryInputParam",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": false,
+              "@_name": "UsingScriptInputParam",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": false,
+              "@_name": "UsingScriptOutputParam",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": true,
+              "@_name": "UsingStandardOutputParam",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            }
+          ],
+          "@_count": 15
+        },
+        "chunks": {
+          "chunk": [
+            {
+              "items": {
+                "item": [
+                  {
+                    "X": 212,
+                    "Y": 36,
+                    "W": 57,
+                    "H": 200,
+                    "@_name": "Bounds",
+                    "@_type_name": "gh_drawing_rectanglef",
+                    "@_type_code": 35
+                  },
+                  {
+                    "X": 226,
+                    "Y": 136,
+                    "@_name": "Pivot",
+                    "@_type_name": "gh_drawing_pointf",
+                    "@_type_code": 31
+                  },
+                  {
+                    "#text": true,
+                    "@_name": "Selected",
+                    "@_type_name": "gh_bool",
+                    "@_type_code": 1
+                  }
+                ],
+                "@_count": 3
+              },
+              "@_name": "Attributes"
+            },
+            {
+              "items": {
+                "item": [
+                  {
+                    "#text": 0,
+                    "@_name": "InputCount",
+                    "@_type_name": "gh_int32",
+                    "@_type_code": 3
+                  },
+                  {
+                    "#text": 1,
+                    "@_name": "OutputCount",
+                    "@_type_name": "gh_int32",
+                    "@_type_code": 3
+                  },
+                  {
+                    "#text": "3ede854e-c753-40eb-84cb-b48008f14fd4",
+                    "@_name": "OutputId",
+                    "@_index": 0,
+                    "@_type_name": "gh_guid",
+                    "@_type_code": 9
+                  }
+                ],
+                "@_count": 3
+              },
+              "chunks": {
+                "chunk": [
+                  {
+                    "items": {
+                      "item": [
+                        {
+                          "#text": "The execution information, as output and error streams",
+                          "@_name": "Description",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": "c7f5ed17-d480-45fd-9d3e-3633b525a034",
+                          "@_name": "InstanceGuid",
+                          "@_type_name": "gh_guid",
+                          "@_type_code": 9
+                        },
+                        {
+                          "#text": true,
+                          "@_name": "Locked",
+                          "@_type_name": "gh_bool",
+                          "@_type_code": 1
+                        },
+                        {
+                          "#text": "out",
+                          "@_name": "Name",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": "out",
+                          "@_name": "NickName",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": false,
+                          "@_name": "Optional",
+                          "@_type_name": "gh_bool",
+                          "@_type_code": 1
+                        },
+                        {
+                          "#text": 0,
+                          "@_name": "SourceCount",
+                          "@_type_name": "gh_int32",
+                          "@_type_code": 3
+                        }
+                      ],
+                      "@_count": 7
+                    },
+                    "chunks": {
+                      "chunk": [
+                        {
+                          "items": {
+                            "item": [
+                              {
+                                "X": 241,
+                                "Y": 38,
+                                "W": 26,
+                                "H": 196,
+                                "@_name": "Bounds",
+                                "@_type_name": "gh_drawing_rectanglef",
+                                "@_type_code": 35
+                              },
+                              {
+                                "X": 254,
+                                "Y": 136,
+                                "@_name": "Pivot",
+                                "@_type_name": "gh_drawing_pointf",
+                                "@_type_code": 31
+                              },
+                              {
+                                "#text": true,
+                                "@_name": "Selected",
+                                "@_type_name": "gh_bool",
+                                "@_type_code": 1
+                              }
+                            ],
+                            "@_count": 3
+                          },
+                          "@_name": "Attributes"
+                        }
+                      ],
+                      "@_count": 1
+                    },
+                    "@_name": "OutputParam",
+                    "@_index": 0
+                  }
+                ],
+                "@_count": 1
+              },
+              "@_name": "ParameterData"
+            },
+            {
+              "items": {
+                "item": [
+                  {
+                    "#text": false,
+                    "@_name": "MarshGuids",
+                    "@_type_name": "gh_bool",
+                    "@_type_code": 1
+                  },
+                  {
+                    "#text": false,
+                    "@_name": "MarshInputs",
+                    "@_type_name": "gh_bool",
+                    "@_type_code": 1
+                  },
+                  {
+                    "#text": false,
+                    "@_name": "MarshOutputs",
+                    "@_type_name": "gh_bool",
+                    "@_type_code": 1
+                  },
+                  {
+                    "#text": "dXNpbmcgR3Jhc3Nob3BwZXIuS2VybmVsOw0KdXNpbmcgUmhpbm8uQ29sbGVjdGlvbnM7DQp1c2luZyBSaGluby5Eb2NPYmplY3RzOw0KdXNpbmcgU3lzdGVtOw0KdXNpbmcgU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWM7DQp1c2luZyBTeXN0ZW0uRHJhd2luZzsNCg0KcHVibGljIGNsYXNzIFNjcmlwdF9JbnN0YW5jZSA6IEdIX1NjcmlwdEluc3RhbmNlDQp7DQogICAgcHJpdmF0ZSB2b2lkIFJ1blNjcmlwdCgpDQogICAgew0KICAgICAgICAvLyBHZXQgdGhlIGN1cnJlbnQgYWN0aXZlIGRvY3VtZW50DQogICAgICAgIHZhciBkb2MgPSBSaGluby5SaGlub0RvYy5BY3RpdmVEb2M7DQoNCiAgICAgICAgLy8gR2V0IGxheWVycyBpbiB0aGUgY3VycmVudCBkb2MNCiAgICAgICAgdmFyIGxheWVycyA9IGRvYy5MYXllcnM7DQoNCiAgICAgICAgLy8gUmFuZG9taXplIGFsbCBsYXllciBjb2xvcnMNCiAgICAgICAgdmFyIHJhbmRvbSA9IG5ldyBSYW5kb20oKTsNCiAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCBsYXllcnMuQ291bnQ7IGkrKykNCiAgICAgICAgew0KICAgICAgICAgICAgdmFyIG5ld0NvbG9yID0gQ29sb3IuRnJvbUFyZ2IocmFuZG9tLk5leHQoMjU2KSwgcmFuZG9tLk5leHQoMjU2KSwgcmFuZG9tLk5leHQoMjU2KSk7DQogICAgICAgICAgICBsYXllcnNbaV0uQ29sb3IgPSBuZXdDb2xvcjsNCiAgICAgICAgfQ0KDQoNCiAgICAgICANCiAgICB9DQp9",
+                    "@_name": "Text",
+                    "@_type_name": "gh_string",
+                    "@_type_code": 10
+                  },
+                  {
+                    "#text": "dangerouslyRandomizeColor",
+                    "@_name": "Title",
+                    "@_type_name": "gh_string",
+                    "@_type_code": 10
+                  }
+                ],
+                "@_count": 5
+              },
+              "chunks": {
+                "chunk": [
+                  {
+                    "items": {
+                      "item": [
+                        {
+                          "#text": "*.*.csharp",
+                          "@_name": "Taxon",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": "*.*",
+                          "@_name": "Version",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        }
+                      ],
+                      "@_count": 2
+                    },
+                    "@_name": "LanguageSpec"
+                  }
+                ],
+                "@_count": 1
+              },
+              "@_name": "Script"
+            },
+            {
+              "items": {
+                "item": [
+                  {
+                    "X": 1067,
+                    "Y": 497,
+                    "W": 1216,
+                    "H": 650,
+                    "@_name": "StartBounds",
+                    "@_type_name": "gh_drawing_rectangle",
+                    "@_type_code": 34
+                  }
+                ],
+                "@_count": 1
+              },
+              "@_name": "ScriptEditor"
+            }
+          ],
+          "@_count": 4
+        },
+        "@_name": "Container"
+      }
+    ],
+    "@_count": 1
+  },
+  "@_name": "Object",
+  "@_index": 0
+}

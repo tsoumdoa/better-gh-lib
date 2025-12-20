@@ -1,0 +1,310 @@
+{
+  "items": {
+    "item": [
+      {
+        "#text": "00c2fe26-2082-44e4-a4ff-9460e8cecbd2",
+        "@_name": "GUID",
+        "@_type_name": "gh_guid",
+        "@_type_code": 9
+      },
+      {
+        "#text": "Query Model Environments",
+        "@_name": "Name",
+        "@_type_name": "gh_string",
+        "@_type_code": 10
+      }
+    ],
+    "@_count": 2
+  },
+  "chunks": {
+    "chunk": [
+      {
+        "items": {
+          "item": [
+            {
+              "#text": true,
+              "@_name": "AutoUpdateState",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": "Query a Rhino document for all available render environments",
+              "@_name": "Description",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": true,
+              "@_name": "Hidden",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": "e6e6637e-b1aa-4e4d-853d-b665fe5b295f",
+              "@_name": "InstanceGuid",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": "Query Model Environments",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "Environments",
+              "@_name": "NickName",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "IOComponents, Version=8.19.25132.1002",
+              "@_name": "VariableParameterScheme",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            }
+          ],
+          "@_count": 7
+        },
+        "chunks": {
+          "chunk": [
+            {
+              "items": {
+                "item": [
+                  {
+                    "X": 312,
+                    "Y": 46,
+                    "W": 72,
+                    "H": 92,
+                    "@_name": "Bounds",
+                    "@_type_name": "gh_drawing_rectanglef",
+                    "@_type_code": 35
+                  },
+                  {
+                    "X": 355,
+                    "Y": 92,
+                    "@_name": "Pivot",
+                    "@_type_name": "gh_drawing_pointf",
+                    "@_type_code": 31
+                  },
+                  {
+                    "#text": true,
+                    "@_name": "Selected",
+                    "@_type_name": "gh_bool",
+                    "@_type_code": 1
+                  }
+                ],
+                "@_count": 3
+              },
+              "@_name": "Attributes"
+            },
+            {
+              "items": {
+                "item": [
+                  {
+                    "#text": 1,
+                    "@_name": "InputCount",
+                    "@_type_name": "gh_int32",
+                    "@_type_code": 3
+                  },
+                  {
+                    "#text": "d0abb9f4-6c6b-47d3-993b-58507ed13071",
+                    "@_name": "InputId",
+                    "@_index": 0,
+                    "@_type_name": "gh_guid",
+                    "@_type_code": 9
+                  },
+                  {
+                    "#text": 1,
+                    "@_name": "OutputCount",
+                    "@_type_name": "gh_int32",
+                    "@_type_code": 3
+                  },
+                  {
+                    "#text": "f0de0cc5-4178-4f6d-b804-cc1c4c8c8f1a",
+                    "@_name": "OutputId",
+                    "@_index": 0,
+                    "@_type_name": "gh_guid",
+                    "@_type_code": 9
+                  }
+                ],
+                "@_count": 4
+              },
+              "chunks": {
+                "chunk": [
+                  {
+                    "items": {
+                      "item": [
+                        {
+                          "#text": 1,
+                          "@_name": "ComparisonMode",
+                          "@_type_name": "gh_byte",
+                          "@_type_code": 2
+                        },
+                        {
+                          "#text": "Name filter. Right-click on this parameter to set the matching method.",
+                          "@_name": "Description",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": "9f8d333f-fde4-4289-aa02-5817f254f618",
+                          "@_name": "InstanceGuid",
+                          "@_type_name": "gh_guid",
+                          "@_type_code": 9
+                        },
+                        {
+                          "#text": "Name",
+                          "@_name": "Name",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": "N",
+                          "@_name": "NickName",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": true,
+                          "@_name": "Optional",
+                          "@_type_name": "gh_bool",
+                          "@_type_code": 1
+                        },
+                        {
+                          "#text": 0,
+                          "@_name": "SourceCount",
+                          "@_type_name": "gh_int32",
+                          "@_type_code": 3
+                        }
+                      ],
+                      "@_count": 7
+                    },
+                    "chunks": {
+                      "chunk": [
+                        {
+                          "items": {
+                            "item": [
+                              {
+                                "X": 314,
+                                "Y": 48,
+                                "W": 26,
+                                "H": 88,
+                                "@_name": "Bounds",
+                                "@_type_name": "gh_drawing_rectanglef",
+                                "@_type_code": 35
+                              },
+                              {
+                                "X": 336.5,
+                                "Y": 92,
+                                "@_name": "Pivot",
+                                "@_type_name": "gh_drawing_pointf",
+                                "@_type_code": 31
+                              }
+                            ],
+                            "@_count": 2
+                          },
+                          "@_name": "Attributes"
+                        }
+                      ],
+                      "@_count": 1
+                    },
+                    "@_name": "InputParam",
+                    "@_index": 0
+                  },
+                  {
+                    "items": {
+                      "item": [
+                        {
+                          "#text": 1,
+                          "@_name": "Access",
+                          "@_type_name": "gh_int32",
+                          "@_type_code": 3
+                        },
+                        {
+                          "#text": "The resultant list of available environments in the model.",
+                          "@_name": "Description",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": "ab2fb9dc-2112-499a-a0c8-59dfced848c5",
+                          "@_name": "InstanceGuid",
+                          "@_type_name": "gh_guid",
+                          "@_type_code": 9
+                        },
+                        {
+                          "#text": "Environments",
+                          "@_name": "Name",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": "E",
+                          "@_name": "NickName",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": false,
+                          "@_name": "Optional",
+                          "@_type_name": "gh_bool",
+                          "@_type_code": 1
+                        },
+                        {
+                          "#text": 0,
+                          "@_name": "SourceCount",
+                          "@_type_name": "gh_int32",
+                          "@_type_code": 3
+                        }
+                      ],
+                      "@_count": 7
+                    },
+                    "chunks": {
+                      "chunk": [
+                        {
+                          "items": {
+                            "item": [
+                              {
+                                "X": 370,
+                                "Y": 48,
+                                "W": 12,
+                                "H": 88,
+                                "@_name": "Bounds",
+                                "@_type_name": "gh_drawing_rectanglef",
+                                "@_type_code": 35
+                              },
+                              {
+                                "X": 376,
+                                "Y": 92,
+                                "@_name": "Pivot",
+                                "@_type_name": "gh_drawing_pointf",
+                                "@_type_code": 31
+                              }
+                            ],
+                            "@_count": 2
+                          },
+                          "@_name": "Attributes"
+                        }
+                      ],
+                      "@_count": 1
+                    },
+                    "@_name": "OutputParam",
+                    "@_index": 0
+                  }
+                ],
+                "@_count": 2
+              },
+              "@_name": "ParameterData"
+            }
+          ],
+          "@_count": 2
+        },
+        "@_name": "Container"
+      }
+    ],
+    "@_count": 1
+  },
+  "@_name": "Object",
+  "@_index": 0
+}

@@ -1,0 +1,165 @@
+{
+  "items": {
+    "item": [
+      {
+        "#text": "deaf8653-5528-4286-807c-3de8b8dad781",
+        "@_name": "GUID",
+        "@_type_name": "gh_guid",
+        "@_type_code": 9
+      },
+      {
+        "#text": "Surface",
+        "@_name": "Name",
+        "@_type_name": "gh_string",
+        "@_type_code": 10
+      }
+    ],
+    "@_count": 2
+  },
+  "chunks": {
+    "chunk": [
+      {
+        "items": {
+          "item": [
+            {
+              "#text": "Contains a collection of generic surfaces",
+              "@_name": "Description",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9",
+              "@_name": "InstanceGuid",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": "Surface",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "Srf",
+              "@_name": "NickName",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": false,
+              "@_name": "Optional",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": 0,
+              "@_name": "SourceCount",
+              "@_type_name": "gh_int32",
+              "@_type_code": 3
+            }
+          ],
+          "@_count": 6
+        },
+        "chunks": {
+          "chunk": [
+            {
+              "items": {
+                "item": [
+                  {
+                    "X": 824,
+                    "Y": 305,
+                    "W": 50,
+                    "H": 20,
+                    "@_name": "Bounds",
+                    "@_type_name": "gh_drawing_rectanglef",
+                    "@_type_code": 35
+                  },
+                  {
+                    "X": 849.8335,
+                    "Y": 315.33334,
+                    "@_name": "Pivot",
+                    "@_type_name": "gh_drawing_pointf",
+                    "@_type_code": 31
+                  },
+                  {
+                    "#text": true,
+                    "@_name": "Selected",
+                    "@_type_name": "gh_bool",
+                    "@_type_code": 1
+                  }
+                ],
+                "@_count": 3
+              },
+              "@_name": "Attributes"
+            },
+            {
+              "items": {
+                "item": [
+                  {
+                    "#text": 1,
+                    "@_name": "Count",
+                    "@_type_name": "gh_int32",
+                    "@_type_code": 3
+                  }
+                ],
+                "@_count": 1
+              },
+              "chunks": {
+                "chunk": [
+                  {
+                    "items": {
+                      "item": [
+                        {
+                          "#text": 1,
+                          "@_name": "Count",
+                          "@_type_name": "gh_int32",
+                          "@_type_code": 3
+                        },
+                        {
+                          "#text": "{0}",
+                          "@_name": "Path",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        }
+                      ],
+                      "@_count": 2
+                    },
+                    "chunks": {
+                      "chunk": [
+                        {
+                          "items": {
+                            "item": [
+                              {
+                                "#text": "d0ed66a1-dbe2-4409-8dc0-1ae503c62072",
+                                "@_name": "RefID",
+                                "@_type_name": "gh_guid",
+                                "@_type_code": 9
+                              }
+                            ],
+                            "@_count": 1
+                          },
+                          "@_name": "Item",
+                          "@_index": 0
+                        }
+                      ],
+                      "@_count": 1
+                    },
+                    "@_name": "Branch",
+                    "@_index": 0
+                  }
+                ],
+                "@_count": 1
+              },
+              "@_name": "PersistentData"
+            }
+          ],
+          "@_count": 2
+        },
+        "@_name": "Container"
+      }
+    ],
+    "@_count": 1
+  },
+  "@_name": "Object",
+  "@_index": 0
+}

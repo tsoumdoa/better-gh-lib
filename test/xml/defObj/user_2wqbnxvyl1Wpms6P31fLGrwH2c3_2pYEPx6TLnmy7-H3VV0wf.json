@@ -1,0 +1,485 @@
+{
+  "items": {
+    "item": [
+      {
+        "#text": "b6ba1144-02d6-4a2d-b53c-ec62e290eeb7",
+        "@_name": "GUID",
+        "@_type_name": "gh_guid",
+        "@_type_code": 9
+      },
+      {
+        "#text": "C# Script",
+        "@_name": "Name",
+        "@_type_name": "gh_string",
+        "@_type_code": 10
+      }
+    ],
+    "@_count": 2
+  },
+  "chunks": {
+    "chunk": [
+      {
+        "items": {
+          "item": [
+            {
+              "@_name": "Description",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": true,
+              "@_name": "GraftStandardOutputLines",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": "4e00b7fd-0df1-4e0c-b77a-26dc7342bc96",
+              "@_name": "InstanceGuid",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": false,
+              "@_name": "MarshGuids",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": false,
+              "@_name": "MarshInputs",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": false,
+              "@_name": "MarshOutputs",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": "C# Script",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "dangerouslyFlattenLayers",
+              "@_name": "NickName",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": 3,
+              "@_name": "ScriptComponentVersion",
+              "@_type_name": "gh_int32",
+              "@_type_code": 3
+            },
+            {
+              "@_name": "Tooltip",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": false,
+              "@_name": "UsingLibraryInputParam",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": false,
+              "@_name": "UsingScriptInputParam",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": false,
+              "@_name": "UsingScriptOutputParam",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            },
+            {
+              "#text": true,
+              "@_name": "UsingStandardOutputParam",
+              "@_type_name": "gh_bool",
+              "@_type_code": 1
+            }
+          ],
+          "@_count": 14
+        },
+        "chunks": {
+          "chunk": [
+            {
+              "items": {
+                "item": [
+                  {
+                    "X": 304,
+                    "Y": -16,
+                    "W": 57,
+                    "H": 179,
+                    "@_name": "Bounds",
+                    "@_type_name": "gh_drawing_rectanglef",
+                    "@_type_code": 35
+                  },
+                  {
+                    "X": 318,
+                    "Y": 74,
+                    "@_name": "Pivot",
+                    "@_type_name": "gh_drawing_pointf",
+                    "@_type_code": 31
+                  },
+                  {
+                    "#text": true,
+                    "@_name": "Selected",
+                    "@_type_name": "gh_bool",
+                    "@_type_code": 1
+                  }
+                ],
+                "@_count": 3
+              },
+              "@_name": "Attributes"
+            },
+            {
+              "items": {
+                "item": [
+                  {
+                    "#text": 0,
+                    "@_name": "InputCount",
+                    "@_type_name": "gh_int32",
+                    "@_type_code": 3
+                  },
+                  {
+                    "#text": 2,
+                    "@_name": "OutputCount",
+                    "@_type_name": "gh_int32",
+                    "@_type_code": 3
+                  },
+                  {
+                    "#text": "3ede854e-c753-40eb-84cb-b48008f14fd4",
+                    "@_name": "OutputId",
+                    "@_index": 0,
+                    "@_type_name": "gh_guid",
+                    "@_type_code": 9
+                  },
+                  {
+                    "#text": "08908df5-fa14-4982-9ab2-1aa0927566aa",
+                    "@_name": "OutputId",
+                    "@_index": 1,
+                    "@_type_name": "gh_guid",
+                    "@_type_code": 9
+                  }
+                ],
+                "@_count": 4
+              },
+              "chunks": {
+                "chunk": [
+                  {
+                    "items": {
+                      "item": [
+                        {
+                          "#text": "The execution information, as output and error streams",
+                          "@_name": "Description",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": "6751fa3c-62ca-4668-8bd8-303f4876bb82",
+                          "@_name": "InstanceGuid",
+                          "@_type_name": "gh_guid",
+                          "@_type_code": 9
+                        },
+                        {
+                          "#text": "out",
+                          "@_name": "Name",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": "out",
+                          "@_name": "NickName",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": false,
+                          "@_name": "Optional",
+                          "@_type_name": "gh_bool",
+                          "@_type_code": 1
+                        },
+                        {
+                          "#text": 0,
+                          "@_name": "SourceCount",
+                          "@_type_name": "gh_int32",
+                          "@_type_code": 3
+                        }
+                      ],
+                      "@_count": 6
+                    },
+                    "chunks": {
+                      "chunk": [
+                        {
+                          "items": {
+                            "item": [
+                              {
+                                "X": 333,
+                                "Y": -14,
+                                "W": 26,
+                                "H": 87,
+                                "@_name": "Bounds",
+                                "@_type_name": "gh_drawing_rectanglef",
+                                "@_type_code": 35
+                              },
+                              {
+                                "X": 346,
+                                "Y": 29.75,
+                                "@_name": "Pivot",
+                                "@_type_name": "gh_drawing_pointf",
+                                "@_type_code": 31
+                              },
+                              {
+                                "#text": true,
+                                "@_name": "Selected",
+                                "@_type_name": "gh_bool",
+                                "@_type_code": 1
+                              }
+                            ],
+                            "@_count": 3
+                          },
+                          "@_name": "Attributes"
+                        }
+                      ],
+                      "@_count": 1
+                    },
+                    "@_name": "OutputParam",
+                    "@_index": 0
+                  },
+                  {
+                    "items": {
+                      "item": [
+                        {
+                          "#text": false,
+                          "@_name": "AllowTreeAccess",
+                          "@_type_name": "gh_bool",
+                          "@_type_code": 1
+                        },
+                        {
+                          "#text": "No conversion",
+                          "@_name": "Description",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": "71698d5a-49fb-4995-bbc4-8fa9e908b17d",
+                          "@_name": "InstanceGuid",
+                          "@_type_name": "gh_guid",
+                          "@_type_code": 9
+                        },
+                        {
+                          "#text": "a",
+                          "@_name": "Name",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": "a",
+                          "@_name": "NickName",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": false,
+                          "@_name": "Optional",
+                          "@_type_name": "gh_bool",
+                          "@_type_code": 1
+                        },
+                        {
+                          "#text": 0,
+                          "@_name": "ScriptParamAccess",
+                          "@_type_name": "gh_int32",
+                          "@_type_code": 3
+                        },
+                        {
+                          "#text": 2,
+                          "@_name": "ScriptParameterVersion",
+                          "@_type_name": "gh_int32",
+                          "@_type_code": 3
+                        },
+                        {
+                          "#text": true,
+                          "@_name": "ShowTypeHints",
+                          "@_type_name": "gh_bool",
+                          "@_type_code": 1
+                        },
+                        {
+                          "#text": 0,
+                          "@_name": "SourceCount",
+                          "@_type_name": "gh_int32",
+                          "@_type_code": 3
+                        },
+                        {
+                          "@_name": "ToolTip",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": "6a184b65-baa3-42d1-a548-3915b401de53",
+                          "@_name": "TypeHintID",
+                          "@_type_name": "gh_guid",
+                          "@_type_code": 9
+                        }
+                      ],
+                      "@_count": 12
+                    },
+                    "chunks": {
+                      "chunk": [
+                        {
+                          "items": {
+                            "item": [
+                              {
+                                "X": 333,
+                                "Y": 73,
+                                "W": 26,
+                                "H": 88,
+                                "@_name": "Bounds",
+                                "@_type_name": "gh_drawing_rectanglef",
+                                "@_type_code": 35
+                              },
+                              {
+                                "X": 346,
+                                "Y": 117.25,
+                                "@_name": "Pivot",
+                                "@_type_name": "gh_drawing_pointf",
+                                "@_type_code": 31
+                              },
+                              {
+                                "#text": true,
+                                "@_name": "Selected",
+                                "@_type_name": "gh_bool",
+                                "@_type_code": 1
+                              }
+                            ],
+                            "@_count": 3
+                          },
+                          "@_name": "Attributes"
+                        },
+                        {
+                          "items": {
+                            "item": [
+                              {
+                                "#text": "System.Private.CoreLib",
+                                "@_name": "AssemblyName",
+                                "@_type_name": "gh_string",
+                                "@_type_code": 10
+                              },
+                              {
+                                "#text": "System.Object",
+                                "@_name": "TypeName",
+                                "@_type_name": "gh_string",
+                                "@_type_code": 10
+                              }
+                            ],
+                            "@_count": 2
+                          },
+                          "@_name": "ConverterData"
+                        }
+                      ],
+                      "@_count": 2
+                    },
+                    "@_name": "OutputParam",
+                    "@_index": 1
+                  }
+                ],
+                "@_count": 2
+              },
+              "@_name": "ParameterData"
+            },
+            {
+              "items": {
+                "item": [
+                  {
+                    "#text": false,
+                    "@_name": "MarshGuids",
+                    "@_type_name": "gh_bool",
+                    "@_type_code": 1
+                  },
+                  {
+                    "#text": false,
+                    "@_name": "MarshInputs",
+                    "@_type_name": "gh_bool",
+                    "@_type_code": 1
+                  },
+                  {
+                    "#text": false,
+                    "@_name": "MarshOutputs",
+                    "@_type_name": "gh_bool",
+                    "@_type_code": 1
+                  },
+                  {
+                    "#text": "Ly8gR3Jhc3Nob3BwZXIgU2NyaXB0IEluc3RhbmNlCiNyZWdpb24gVXNpbmdzCnVzaW5nIFN5c3RlbTsKdXNpbmcgU3lzdGVtLkxpbnE7CnVzaW5nIFN5c3RlbS5Db2xsZWN0aW9uczsKdXNpbmcgU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWM7CnVzaW5nIFN5c3RlbS5EcmF3aW5nOwoKdXNpbmcgUmhpbm87CnVzaW5nIFJoaW5vLkdlb21ldHJ5OwoKdXNpbmcgR3Jhc3Nob3BwZXI7CnVzaW5nIEdyYXNzaG9wcGVyLktlcm5lbDsKdXNpbmcgR3Jhc3Nob3BwZXIuS2VybmVsLkRhdGE7CnVzaW5nIEdyYXNzaG9wcGVyLktlcm5lbC5UeXBlczsKdXNpbmcgTGF5ZXIgPSBSaGluby5Eb2NPYmplY3RzLkxheWVyOwojZW5kcmVnaW9uCgpwdWJsaWMgY2xhc3MgU2NyaXB0X0luc3RhbmNlIDogR0hfU2NyaXB0SW5zdGFuY2UKewogICAgI3JlZ2lvbiBOb3RlcwogICAgLyogCiAgICAgIE1lbWJlcnM6CiAgICAgICAgUmhpbm9Eb2MgUmhpbm9Eb2N1bWVudAogICAgICAgIEdIX0RvY3VtZW50IEdyYXNzaG9wcGVyRG9jdW1lbnQKICAgICAgICBJR0hfQ29tcG9uZW50IENvbXBvbmVudAogICAgICAgIGludCBJdGVyYXRpb24KCiAgICAgIE1ldGhvZHMgKFZpcnR1YWwgJiBvdmVycmlkYWJsZSk6CiAgICAgICAgUHJpbnQoc3RyaW5nIHRleHQpCiAgICAgICAgUHJpbnQoc3RyaW5nIGZvcm1hdCwgcGFyYW1zIG9iamVjdFtdIGFyZ3MpCiAgICAgICAgUmVmbGVjdChvYmplY3Qgb2JqKQogICAgICAgIFJlZmxlY3Qob2JqZWN0IG9iaiwgc3RyaW5nIG1ldGhvZF9uYW1lKQogICAgKi8KICAgICNlbmRyZWdpb24KCiAgICBwcml2YXRlIHZvaWQgUnVuU2NyaXB0KHJlZiBvYmplY3QgYSkKICAgIHsKICAgLy8gR2V0IHRoZSBhY3RpdmUgZG9jdW1lbnQKICAgIFJoaW5vRG9jIGRvYyA9IFJoaW5vRG9jLkFjdGl2ZURvYzsKCiAgICAvLyBHZXQgYWxsIGxheWVycwogICAgdmFyIGxheWVycyA9IGRvYy5MYXllcnM7CgogICAgLy8gSXRlcmF0ZSBvdmVyIGFsbCBsYXllcnMKICAgIGZvciAoaW50IGkgPSBsYXllcnMuQ291bnQgLSAxOyBpID49IDA7IGktLSkKICAgIHsKICAgICAgTGF5ZXIgbGF5ZXIgPSBsYXllcnNbaV07CgogICAgICAvLyBJZiB0aGUgbGF5ZXIgaGFzIGEgcGFyZW50LCBtb3ZlIGl0IHRvIHRoZSB0b3AgbGV2ZWwKICAgICAgaWYgKGxheWVyLlBhcmVudExheWVySWQgIT0gR3VpZC5FbXB0eSkKICAgICAgewogICAgICAgIGxheWVyLlBhcmVudExheWVySWQgPSBHdWlkLkVtcHR5OwogICAgICB9CgogICAgICAvLyBDaGVjayBmb3IgZHVwbGljYXRlIGxheWVyIG5hbWVzIGFuZCBtZXJnZSBvYmplY3RzCiAgICAgIGZvcmVhY2ggKExheWVyIG90aGVyTGF5ZXIgaW4gbGF5ZXJzKQogICAgICB7CiAgICAgICAgaWYgKG90aGVyTGF5ZXIgIT0gbGF5ZXIgJiYgb3RoZXJMYXllci5OYW1lID09IGxheWVyLk5hbWUpCiAgICAgICAgewogICAgICAgICAgLy8gTW92ZSBvYmplY3RzIGZyb20gdGhlIGR1cGxpY2F0ZSBsYXllciB0byB0aGUgY3VycmVudCBsYXllcgogICAgICAgICAgZm9yZWFjaCAoUmhpbm8uRG9jT2JqZWN0cy5SaGlub09iamVjdCBvYmogaW4gZG9jLk9iamVjdHMuRmluZEJ5TGF5ZXIob3RoZXJMYXllcikpCiAgICAgICAgICB7CiAgICAgICAgICAgIG9iai5BdHRyaWJ1dGVzLkxheWVySW5kZXggPSBsYXllci5JbmRleDsKICAgICAgICAgICAgb2JqLkNvbW1pdENoYW5nZXMoKTsKICAgICAgICAgIH0KCiAgICAgICAgICAvLyBEZWxldGUgdGhlIGR1cGxpY2F0ZSBsYXllcgogICAgICAgICAgbGF5ZXJzLkRlbGV0ZShvdGhlckxheWVyLkluZGV4LCB0cnVlKTsKICAgICAgICAgIGJyZWFrOwogICAgICAgIH0KICAgICAgfQogICAgfQogIH0gIAogICB9Cgo=",
+                    "@_name": "Text",
+                    "@_type_name": "gh_string",
+                    "@_type_code": 10
+                  },
+                  {
+                    "#text": "dangerouslyFlattenLayers",
+                    "@_name": "Title",
+                    "@_type_name": "gh_string",
+                    "@_type_code": 10
+                  }
+                ],
+                "@_count": 5
+              },
+              "chunks": {
+                "chunk": [
+                  {
+                    "items": {
+                      "item": [
+                        {
+                          "#text": "*.*.csharp",
+                          "@_name": "Taxon",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        },
+                        {
+                          "#text": "*.*",
+                          "@_name": "Version",
+                          "@_type_name": "gh_string",
+                          "@_type_code": 10
+                        }
+                      ],
+                      "@_count": 2
+                    },
+                    "@_name": "LanguageSpec"
+                  }
+                ],
+                "@_count": 1
+              },
+              "@_name": "Script"
+            },
+            {
+              "items": {
+                "item": [
+                  {
+                    "X": 1121,
+                    "Y": 342,
+                    "W": 702,
+                    "H": 950,
+                    "@_name": "StartBounds",
+                    "@_type_name": "gh_drawing_rectangle",
+                    "@_type_code": 34
+                  }
+                ],
+                "@_count": 1
+              },
+              "@_name": "ScriptEditor"
+            }
+          ],
+          "@_count": 4
+        },
+        "@_name": "Container"
+      }
+    ],
+    "@_count": 1
+  },
+  "@_name": "Object",
+  "@_index": 0
+}
