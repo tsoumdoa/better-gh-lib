@@ -1,5 +1,16 @@
 import { GhXmlType } from "../types/types";
 
+type CanvasPoint = {
+	x: number;
+	y: number;
+};
+
+type DrawSize = {
+	width: number;
+	height: number;
+};
+
+type Bound = CanvasPoint & DrawSize;
 type DrawType = "Thick" | "Thin" | "Hidden"; //TODO: check these names...
 const NODE_TYPES = [
 	"Relay",
@@ -8,10 +19,16 @@ const NODE_TYPES = [
 	"CSharpCodeBlock",
 	"PythonCodeBlock",
 	"AndMOre...",
-] as const;
+] as const; //TODO: check these names...
 
 type Group = {
 	index: number[];
+};
+
+export type GhaLibDiscripor = {
+	name: string;
+	author: string;
+	version: string;
 };
 
 export type TghCanvas = {
@@ -26,14 +43,12 @@ export type TghCanvas = {
 		groupCount: number;
 	};
 	plugins: {
-		names: string[];
+		names: GhaLibDiscripor[];
 		count: number;
 	};
 	Nodes: TghNode[];
 	Groups?: Group[];
 	connections: Connection[];
-
-	// getNodeCounts: () => Promise<number[]>;
 };
 
 type Connection = {
@@ -42,17 +57,6 @@ type Connection = {
 };
 
 type NodeType = (typeof NODE_TYPES)[number];
-type CanvasPoint = {
-	x: number;
-	y: number;
-};
-
-type DrawSize = {
-	width: number;
-	height: number;
-};
-
-type Bound = CanvasPoint & DrawSize;
 
 type Parameter = {
 	guid: string;
@@ -71,14 +75,20 @@ type OutputParameter = Parameter & {
 };
 
 type TghNode = {
-	type: NodeType;
+	identifier: NodeIdentifier;
+	// type: NodeType;
+	// guid: string;
+	// author: string;
+	// locked: boolean;
+	// preview: boolean;
+	// input: InputParameter[];
+	// output: OutputParameter[];
+	// parents: string[];
+	// bounds: Bound;
+	// pivot: CanvasPoint;
+};
+
+export type NodeIdentifier = {
 	guid: string;
-	author: string;
-	locked: boolean;
-	preview: boolean;
-	input: InputParameter[];
-	output: OutputParameter[];
-	parents: string[];
-	bounds: Bound;
-	pivot: CanvasPoint;
+	name: string;
 };

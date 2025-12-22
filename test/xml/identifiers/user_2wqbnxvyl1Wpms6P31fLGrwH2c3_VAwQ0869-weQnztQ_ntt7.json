@@ -1,0 +1,18 @@
+[
+  {
+    "guid": "f9c90ac2-4669-44f3-a76b-f6cf743d4b4c",
+    "name": "Connection Service Runner"
+  },
+  {
+    "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+    "name": "Panel"
+  },
+  {
+    "guid": "06953bda-1d37-4d58-9b38-4b3c74e54c8f",
+    "name": "File Path"
+  },
+  {
+    "guid": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
+    "name": "Group"
+  }
+]

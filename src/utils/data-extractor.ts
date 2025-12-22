@@ -1,12 +1,13 @@
 import three from "../../test/xml/json/three.json";
+import { GhaLibDiscripor, NodeIdentifier } from "./tgh";
 
 export const SchemaNames = [
-	"DocumentHeader",
-	"PreviewBoundary",
-	"DefinitionProperties",
-	"RcpLayout", //Remote Control Procedure Layout
+	"Docum:ntHeader", // not so important
+	"PreviewBoundary", // not so important
+	"DefinitionProperties", // not so important
+	"RcpLayout", //not so important - Remote Control Procedure Layout
+	"ValueTable", //not so important - DefinitionProperties
 	"GHALibraries",
-	"ValueTable",
 	"DefinitionObjects",
 ] as const;
 export type SchemaNameLiteral = (typeof SchemaNames)[number];
@@ -20,7 +21,6 @@ export function getVersion(ghJson: any) {
 }
 
 export function getObjectCount(ghJson: any) {
-	// three.Archive.items.item;
 	return {
 		componentCount: ghJson.DefinitionObjects.items.item[0]
 			.ObjectCount as number,
@@ -37,7 +37,7 @@ export function getMainChunkObj(ghJson: any, chunkObjName: SchemaNameLiteral) {
 
 	return {
 		main: objChunk.chunk,
-		count: objChunk["@_count"],
+		count: objChunk["@_count"], // count that should be the same as the length of chunk
 	};
 }
 
@@ -48,9 +48,56 @@ export function getMainChunkObj(ghJson: any, chunkObjName: SchemaNameLiteral) {
  * @returns An object containing the primary definition data and its metadata.
  * @property {any} main - The actual definition object data found in the chunk.
  * @property {number} count - The total number of components (componentCount).
+ *
  */
 export function getDefinitionObject(ghJson: any) {
-	return getMainChunkObj(ghJson, "DefinitionObjects");
+	const defObj = getMainChunkObj(ghJson, "DefinitionObjects");
+	const componenentCount = defObj.count;
+
+	const identifiers: NodeIdentifier[] = [];
+	for (const obj of defObj.main) {
+		identifiers.push(getIdentifier(obj));
+	}
+
+	return {
+		defObj: defObj,
+		componenentCount: componenentCount,
+		identifiers: identifiers,
+	};
 }
 
-// console.log(getDefinitionObject(three).main);
+function getIdentifier(obj: any) {
+	//@ts-ignore
+	const guid = obj.items.item.find((i) => i["@_name"] === "GUID")?.["#text"];
+	//@ts-ignore
+	const name = obj.items.item.find((i) => i["@_name"] === "Name")?.["#text"];
+	return {
+		guid: guid,
+		name: name,
+	};
+}
+
+export function getGhaLibraryDescriptors(ghJson: any) {
+	const descs: GhaLibDiscripor[] = [];
+	const ghaLibs = getMainChunkObj(ghJson, "GHALibraries");
+
+	for (const ghaLib of ghaLibs.main) {
+		//@ts-ignore
+		const author = ghaLib.items.item.find((i) => i["@_name"] === "Author");
+		//@ts-ignore
+		const name = ghaLib.items.item.find((i) => i["@_name"] === "Name");
+		//@ts-ignore
+		const version = ghaLib.items.item.find((i) => i["@_name"] === "Version");
+
+		descs.push({
+			name: name?.["#text"] ?? "",
+			author: author?.["#text"] ?? "",
+			version: version?.["#text"] ?? "",
+		});
+	}
+
+	return {
+		ghaLibs: ghaLibs,
+		descriptor: descs,
+	};
+}
