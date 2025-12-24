@@ -1,0 +1,48 @@
+[
+  {
+    "inputCount": 2,
+    "outputCount": 1,
+    "inputIdentifiers": [
+      {
+        "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+        "typeCode": 9
+      },
+      {
+        "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+        "typeCode": 9
+      }
+    ],
+    "outputIdentifiers": [
+      {
+        "guid": "8ec86459-bf01-4409-baee-174d0d2b13d0",
+        "typeCode": 9
+      }
+    ]
+  },
+  {
+    "inputIdentifiers": [],
+    "outputIdentifiers": []
+  },
+  {
+    "inputIdentifiers": [],
+    "outputIdentifiers": []
+  },
+  {
+    "inputIdentifiers": [],
+    "outputIdentifiers": []
+  },
+  {
+    "inputIdentifiers": [],
+    "outputIdentifiers": []
+  },
+  {
+    "inputIdentifiers": [],
+    "outputIdentifiers": []
+  },
+  {
+    "inputCount": -1,
+    "outputCount": -1,
+    "inputIdentifiers": [],
+    "outputIdentifiers": []
+  }
+]

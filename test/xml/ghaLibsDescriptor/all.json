@@ -1,87 +1,26 @@
 [
   {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.19.25132.1002"
-  },
-  {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.19.25132.1002"
-  },
-  {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.19.25132.1002"
-  },
-  {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.19.25132.1002"
-  },
-  {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.19.25132.1002"
-  },
-  {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.19.25132.1002"
-  },
-  {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.19.25132.1002"
-  },
-  {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.19.25132.1002"
-  },
-  {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.19.25132.1002"
-  },
-  {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.19.25132.1002"
-  },
-  {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.19.25132.1002"
-  },
-  {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.19.25132.1002"
-  },
-  {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.19.25132.1002"
-  },
-  {
     "name": "LunchBoxML",
     "author": "",
-    "version": "2024.2.11.0"
+    "version": "2024.2.11.0",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "name": "PTComponentLibrary",
     "author": "",
-    "version": "2021.4.1.0"
+    "version": "2021.4.1.0",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "name": "Hops",
     "author": "Robert McNeel & Associates",
-    "version": "0.16.28"
+    "version": "0.16.28",
+    "libId": "82cb7266-a8bc-4d3e-99f6-b91504c7117f"
   },
   {
     "name": "LunchBox",
     "author": "",
-    "version": "2025.5.5.0"
+    "version": "2025.5.5.0",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   }
 ]

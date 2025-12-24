@@ -1,0 +1,20 @@
+[
+  {
+    "instanceGuid": "4e00b7fd-0df1-4e0c-b77a-26dc7342bc96",
+    "name": "C# Script",
+    "nickName": "dangerouslyFlattenLayers",
+    "locked": false,
+    "hidden": false,
+    "others": {
+      "GraftStandardOutputLines": true,
+      "MarshGuids": false,
+      "MarshInputs": false,
+      "MarshOutputs": false,
+      "ScriptComponentVersion": 3,
+      "UsingLibraryInputParam": false,
+      "UsingScriptInputParam": false,
+      "UsingScriptOutputParam": false,
+      "UsingStandardOutputParam": true
+    }
+  }
+]

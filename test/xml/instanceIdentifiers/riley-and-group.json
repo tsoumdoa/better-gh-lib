@@ -1,0 +1,41 @@
+[
+  {
+    "instanceGuid": "4ace14e7-ca10-4c26-9e9a-1173d6209825",
+    "name": "Text",
+    "nickName": "Txt",
+    "description": "Contains a collection of text fragments",
+    "locked": false,
+    "hidden": false,
+    "others": {
+      "Optional": false,
+      "SourceCount": 0
+    }
+  },
+  {
+    "instanceGuid": "1c838281-9ec0-44ea-b38e-fc4a824ff16a",
+    "name": "Text",
+    "nickName": "Txt",
+    "description": "Contains a collection of text fragments",
+    "locked": false,
+    "hidden": false,
+    "others": {
+      "Optional": false,
+      "SourceCount": 0
+    }
+  },
+  {
+    "instanceGuid": "fdb8d076-27ce-466d-91f0-e416f0979473",
+    "name": "Group",
+    "description": "A group of Grasshopper objects",
+    "locked": false,
+    "hidden": false,
+    "others": {
+      "Border": 1,
+      "ID": [
+        "4ace14e7-ca10-4c26-9e9a-1173d6209825",
+        "1c838281-9ec0-44ea-b38e-fc4a824ff16a"
+      ],
+      "ID_Count": 2
+    }
+  }
+]

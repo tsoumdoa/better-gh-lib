@@ -1,0 +1,11 @@
+[
+  {
+    "instanceGuid": "dd56fda8-9276-40b5-be7f-10538926dd33",
+    "name": "Seam",
+    "nickName": "Seam",
+    "description": "Adjust the seam of a closed curve.",
+    "locked": false,
+    "hidden": false,
+    "others": {}
+  }
+]

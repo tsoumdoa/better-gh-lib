@@ -1,0 +1,20 @@
+[
+  {
+    "instanceGuid": "4d24da1c-6a89-4a43-96e7-369a280d8c61",
+    "name": "C# Script",
+    "nickName": "C#",
+    "locked": false,
+    "hidden": false,
+    "others": {
+      "GraftStandardOutputLines": true,
+      "MarshGuids": false,
+      "MarshInputs": false,
+      "MarshOutputs": false,
+      "ScriptComponentVersion": 3,
+      "UsingLibraryInputParam": false,
+      "UsingScriptInputParam": false,
+      "UsingScriptOutputParam": false,
+      "UsingStandardOutputParam": true
+    }
+  }
+]

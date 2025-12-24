@@ -1,0 +1,86 @@
+[
+  {
+    "instanceGuid": "0c35f6a1-079c-463c-870f-97158525a1f9",
+    "name": "Hops",
+    "nickName": ".01ChildCutter",
+    "description": "Solve an external definition using Rhino Compute",
+    "locked": false,
+    "hidden": true,
+    "others": {
+      "CacheResultsInMemory": false,
+      "CacheSolveResults": false,
+      "ShowInput_Enabled": false,
+      "ShowInput_Path": false,
+      "SynchronousSolve": false
+    }
+  },
+  {
+    "instanceGuid": "6007b696-f304-4310-9f11-4c91472c00b4",
+    "name": "Partition List",
+    "nickName": "Partition",
+    "description": "Partition a list into sub-lists",
+    "locked": false,
+    "hidden": true,
+    "others": {}
+  },
+  {
+    "instanceGuid": "e206325e-dd81-4a2d-aff9-6be0037cee9d",
+    "name": "Group",
+    "nickName": "Group",
+    "description": "Group a geometry set",
+    "locked": false,
+    "hidden": true,
+    "others": {}
+  },
+  {
+    "instanceGuid": "e27326d2-a417-40fd-9679-810a49c12f82",
+    "name": "Trim Tree",
+    "nickName": "Trim",
+    "description": "Reduce the complexity of a tree by merging the outermost branches.",
+    "locked": false,
+    "hidden": true,
+    "others": {}
+  },
+  {
+    "instanceGuid": "d03c5214-d019-4550-ba1f-40f61cd401b7",
+    "name": "Path Mapper",
+    "nickName": "Path Mapper",
+    "description": "Perform lexical operations on data trees.",
+    "locked": false,
+    "hidden": false,
+    "others": {
+      "Access": 2,
+      "Optional": true,
+      "Source": "4ad876e5-2893-4618-9151-94ee58ded32b",
+      "SourceCount": 1
+    }
+  },
+  {
+    "instanceGuid": "07c7d2c2-6f65-4bb3-b9e5-1d090e3eae99",
+    "name": "Tree Statistics",
+    "nickName": "TStat",
+    "description": "Get some statistics regarding a data tree.",
+    "locked": false,
+    "hidden": true,
+    "others": {}
+  },
+  {
+    "instanceGuid": "e3824912-1b44-4637-b7a4-9726014c1546",
+    "name": "Group",
+    "description": "A group of Grasshopper objects",
+    "locked": false,
+    "hidden": false,
+    "others": {
+      "Border": 1,
+      "ID": [
+        "0c35f6a1-079c-463c-870f-97158525a1f9",
+        "6007b696-f304-4310-9f11-4c91472c00b4",
+        "e206325e-dd81-4a2d-aff9-6be0037cee9d",
+        "e27326d2-a417-40fd-9679-810a49c12f82",
+        "d03c5214-d019-4550-ba1f-40f61cd401b7",
+        "07c7d2c2-6f65-4bb3-b9e5-1d090e3eae99"
+      ],
+      "ID_Count": 6
+    }
+  }
+]

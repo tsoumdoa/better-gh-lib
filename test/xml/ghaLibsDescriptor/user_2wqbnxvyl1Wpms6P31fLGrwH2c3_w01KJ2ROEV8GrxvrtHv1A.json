@@ -1,17 +1,8 @@
 [
   {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.17.25066.7001"
-  },
-  {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.17.25066.7001"
-  },
-  {
     "name": "Hops",
     "author": "Robert McNeel & Associates",
-    "version": "0.16.23"
+    "version": "0.16.23",
+    "libId": "82cb7266-a8bc-4d3e-99f6-b91504c7117f"
   }
 ]

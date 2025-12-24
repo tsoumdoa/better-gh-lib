@@ -1,7 +1,8 @@
 [
   {
     "guid": "f9c90ac2-4669-44f3-a76b-f6cf743d4b4c",
-    "name": "Connection Service Runner"
+    "name": "Connection Service Runner",
+    "libId": "0729affd-7a74-48ca-b210-519b87461343"
   },
   {
     "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",

@@ -1,0 +1,164 @@
+[
+  {
+    "inputParam": {
+      "items": {
+        "item": [
+          {
+            "#text": "Morphed\n\t\t\t\t\t\t\t\t\t\t\t\t\tgeometry",
+            "@_name": "Description",
+            "@_type_name": "gh_string",
+            "@_type_code": 10
+          },
+          {
+            "#text": "88df00e9-bbe8-400c-9b04-4d95989652cf",
+            "@_name": "InstanceGuid",
+            "@_type_name": "gh_guid",
+            "@_type_code": 9
+          },
+          {
+            "#text": "Geometry",
+            "@_name": "Name",
+            "@_type_name": "gh_string",
+            "@_type_code": 10
+          },
+          {
+            "#text": "G",
+            "@_name": "NickName",
+            "@_type_name": "gh_string",
+            "@_type_code": 10
+          },
+          {
+            "#text": false,
+            "@_name": "Optional",
+            "@_type_name": "gh_bool",
+            "@_type_code": 1
+          },
+          {
+            "#text": 0,
+            "@_name": "SourceCount",
+            "@_type_name": "gh_int32",
+            "@_type_code": 3
+          }
+        ],
+        "@_count": 6
+      },
+      "chunks": {
+        "chunk": [
+          {
+            "items": {
+              "item": [
+                {
+                  "X": 406,
+                  "Y": 200,
+                  "W": 13,
+                  "H": 80,
+                  "@_name": "Bounds",
+                  "@_type_name": "gh_drawing_rectanglef",
+                  "@_type_code": 35
+                },
+                {
+                  "X": 412.5,
+                  "Y": 240,
+                  "@_name": "Pivot",
+                  "@_type_name": "gh_drawing_pointf",
+                  "@_type_code": 31
+                },
+                {
+                  "#text": true,
+                  "@_name": "Selected",
+                  "@_type_name": "gh_bool",
+                  "@_type_code": 1
+                }
+              ],
+              "@_count": 3
+            },
+            "@_name": "Attributes"
+          }
+        ],
+        "@_count": 1
+      },
+      "@_name": "param_output",
+      "@_index": 0
+    },
+    "outputParam": {
+      "items": {
+        "item": [
+          {
+            "#text": "Base geometry",
+            "@_name": "Description",
+            "@_type_name": "gh_string",
+            "@_type_code": 10
+          },
+          {
+            "#text": "ecc215b9-b681-47eb-b429-46acd0f1a307",
+            "@_name": "InstanceGuid",
+            "@_type_name": "gh_guid",
+            "@_type_code": 9
+          },
+          {
+            "#text": "Geometry",
+            "@_name": "Name",
+            "@_type_name": "gh_string",
+            "@_type_code": 10
+          },
+          {
+            "#text": "G",
+            "@_name": "NickName",
+            "@_type_name": "gh_string",
+            "@_type_code": 10
+          },
+          {
+            "#text": false,
+            "@_name": "Optional",
+            "@_type_name": "gh_bool",
+            "@_type_code": 1
+          },
+          {
+            "#text": 0,
+            "@_name": "SourceCount",
+            "@_type_name": "gh_int32",
+            "@_type_code": 3
+          }
+        ],
+        "@_count": 6
+      },
+      "chunks": {
+        "chunk": [
+          {
+            "items": {
+              "item": [
+                {
+                  "X": 366,
+                  "Y": 200,
+                  "W": 10,
+                  "H": 20,
+                  "@_name": "Bounds",
+                  "@_type_name": "gh_drawing_rectanglef",
+                  "@_type_code": 35
+                },
+                {
+                  "X": 372.5,
+                  "Y": 210,
+                  "@_name": "Pivot",
+                  "@_type_name": "gh_drawing_pointf",
+                  "@_type_code": 31
+                },
+                {
+                  "#text": true,
+                  "@_name": "Selected",
+                  "@_type_name": "gh_bool",
+                  "@_type_code": 1
+                }
+              ],
+              "@_count": 3
+            },
+            "@_name": "Attributes"
+          }
+        ],
+        "@_count": 1
+      },
+      "@_name": "param_input",
+      "@_index": 0
+    }
+  }
+]

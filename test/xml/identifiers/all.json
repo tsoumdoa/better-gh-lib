@@ -37,7 +37,8 @@
   },
   {
     "guid": "01ecf878-1de3-402d-9c9a-1e6daca12f2d",
-    "name": "Building Mass (Floor Count)"
+    "name": "Building Mass (Floor Count)",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "0233a5e5-91d3-4cd6-be0f-6d7ce5de3202",
@@ -45,7 +46,8 @@
   },
   {
     "guid": "024d9e8f-371f-4acd-b31e-6fe3890d22a0",
-    "name": "Cellulate 3D Grid"
+    "name": "Cellulate 3D Grid",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "02b1c69b-b3f7-4528-988e-449a59963e5e",
@@ -57,7 +59,8 @@
   },
   {
     "guid": "036d4d62-2448-4722-99af-ef8963bdd1c3",
-    "name": "Draft Angle Attraction"
+    "name": "Draft Angle Attraction",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "0373008a-80ee-45be-887d-ab5a244afc29",
@@ -89,7 +92,8 @@
   },
   {
     "guid": "04b95f89-44fd-4b85-9739-65b88b19d9c4",
-    "name": "Triangle Panels C"
+    "name": "Triangle Panels C",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "04d3eace-deaa-475e-9e69-8f804d687998",
@@ -133,7 +137,8 @@
   },
   {
     "guid": "08967d3b-40fa-4f87-800f-ca3ca2c37a61",
-    "name": "Patch Surface"
+    "name": "Patch Surface",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "08a8ba79-88b0-47c7-8e8b-be30d6ce6b50",
@@ -201,7 +206,8 @@
   },
   {
     "guid": "0c252dd0-e91e-4e99-9315-8f15edf068da",
-    "name": "Create JSON"
+    "name": "Create JSON",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "0c2f0932-5ddc-4ece-bd84-a3a059d3df7a",
@@ -209,11 +215,13 @@
   },
   {
     "guid": "0cd9d423-5ee6-420b-a4f5-c6b3d4b9202f",
-    "name": "Remove Columns"
+    "name": "Remove Columns",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "0cdbe954-cbc8-49ab-a768-a31654027d39",
-    "name": "Brep Join with Tolerance"
+    "name": "Brep Join with Tolerance",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "0d1e2027-f153-460d-84c0-f9af431b08cb",
@@ -297,11 +305,13 @@
   },
   {
     "guid": "12bb2f93-889d-4ba5-baca-c6730e5f7828",
-    "name": "Surface Domain Length"
+    "name": "Surface Domain Length",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "12faf0dd-a4d1-4088-b80b-372025daaecd",
-    "name": "Random Split List"
+    "name": "Random Split List",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "1303da7b-e339-4e65-a051-82c4dce8224d",
@@ -309,7 +319,8 @@
   },
   {
     "guid": "130f8e96-ed6e-4f6f-8a6e-35c9816b5d07",
-    "name": "Lbfgs Logistic Regression Binary Classifier"
+    "name": "Lbfgs Logistic Regression Binary Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "134a849b-0ff4-4f36-bdd5-95e3996bae8b",
@@ -325,11 +336,13 @@
   },
   {
     "guid": "1429b57c-873a-443e-93ad-f11217baa47a",
-    "name": "Rebuild Surface"
+    "name": "Rebuild Surface",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "146eeff7-41e4-4218-826a-138b2664911b",
-    "name": "Space Truss Structure 2"
+    "name": "Space Truss Structure 2",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "14a26cd3-abe2-4651-b1f9-0b9177bcc220",
@@ -365,7 +378,8 @@
   },
   {
     "guid": "1637a78b-2802-4dc8-809b-eb8195281d0d",
-    "name": "Average Perceptron Binary Classifier"
+    "name": "Average Perceptron Binary Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "169fee80-074f-4b6a-9e60-cde26129d10b",
@@ -377,7 +391,8 @@
   },
   {
     "guid": "16f23e8f-8e0f-4ac5-b960-d9d9aca404d1",
-    "name": "Morph 2D List"
+    "name": "Morph 2D List",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "17223436-22ea-4192-a683-0f97f9014d8c",
@@ -425,7 +440,8 @@
   },
   {
     "guid": "19d2bedb-3306-4466-a0e1-7f8beb3c807b",
-    "name": "Hexagonal Structure"
+    "name": "Hexagonal Structure",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "19e1c6e9-6823-4c37-a222-db06efbd998b",
@@ -445,7 +461,8 @@
   },
   {
     "guid": "1a94ee6b-7fec-4484-bd54-1e8376770b9b",
-    "name": "Braced Grid 1-D Structure"
+    "name": "Braced Grid 1-D Structure",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "1addcc85-b04e-46e6-bd4a-6f6c93bf7efd",
@@ -469,7 +486,8 @@
   },
   {
     "guid": "1cb3e240-ef15-4b6b-bd96-304d9bbeee7c",
-    "name": "Load Data From Text File"
+    "name": "Load Data From Text File",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "1cb59c86-7f6b-4e52-9a0c-6441850e9520",
@@ -481,11 +499,13 @@
   },
   {
     "guid": "1ce3c892-495f-409f-a2a8-0cfaeef6a55a",
-    "name": "Wrap Grids"
+    "name": "Wrap Grids",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "1d27e28c-c3e9-4371-ac6a-416bac497b78",
-    "name": "Platonic Tetrahedron"
+    "name": "Platonic Tetrahedron",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "1d8b0e2c-e772-4fa9-b7f7-b158251b34b8",
@@ -493,11 +513,13 @@
   },
   {
     "guid": "1dbfb833-3266-45f2-a6b4-a56831ac02bb",
-    "name": "Naive Bayes Multiclass Classifier"
+    "name": "Naive Bayes Multiclass Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "1e22e371-f973-47a7-beb7-e83f6f2b921f",
-    "name": "Version"
+    "name": "Version",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "1e531c08-9c80-46d6-8850-1b50d1dae69f",
@@ -557,7 +579,8 @@
   },
   {
     "guid": "20388bae-18d1-4a7a-b9bf-0e6fd378e06a",
-    "name": "Multivariate Linear Regression"
+    "name": "Multivariate Linear Regression",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "203a91c3-287a-43b6-a9c5-ebb96240a650",
@@ -569,7 +592,8 @@
   },
   {
     "guid": "20b86e86-2311-465d-9f3a-9e2f9cb662c9",
-    "name": "Mobius Surface"
+    "name": "Mobius Surface",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "20c109e7-c39d-46df-a29e-f0a8c661e6e5",
@@ -581,7 +605,8 @@
   },
   {
     "guid": "2114332c-d28c-4991-a127-0543717bba00",
-    "name": "Divide Distance with Reference"
+    "name": "Divide Distance with Reference",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "2128cde3-9694-40b0-874c-670c89341acd",
@@ -621,7 +646,8 @@
   },
   {
     "guid": "22643c83-7db2-46fd-bf0a-36801978754c",
-    "name": "Deserialize Geometry"
+    "name": "Deserialize Geometry",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "2280dde4-9fa2-4b4a-ae2f-37d554861367",
@@ -661,11 +687,13 @@
   },
   {
     "guid": "23f6e5ef-7474-4f0c-897a-73dab7bb4436",
-    "name": "Extract Column"
+    "name": "Extract Column",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "24619e50-4acd-4bdf-a67b-93598ca7c585",
-    "name": "Multiclass Classifier Tester"
+    "name": "Multiclass Classifier Tester",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "246cda78-5e88-4087-ba09-ae082bbc4af8",
@@ -689,11 +717,13 @@
   },
   {
     "guid": "259e0d29-431e-47e3-b556-2ed9bd797b00",
-    "name": "Flatness Check"
+    "name": "Flatness Check",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "25c345c7-9bd6-471a-974c-8fd901adf4b5",
-    "name": "Create RTree"
+    "name": "Create RTree",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "264b4aa6-4915-4a67-86a7-22a5c4acf565",
@@ -717,7 +747,8 @@
   },
   {
     "guid": "26e5dee7-a353-4d76-b0ee-48814b6ea92d",
-    "name": "Create XML from Tree"
+    "name": "Create XML from Tree",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "26efde70-0c5c-4181-af3e-1a767d64b449",
@@ -761,7 +792,8 @@
   },
   {
     "guid": "286fa936-49fd-42ed-8e80-d60df09e041a",
-    "name": "Extract Item"
+    "name": "Extract Item",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "288cfe66-f3dc-4c9a-bb96-ef81f47fe724",
@@ -821,7 +853,8 @@
   },
   {
     "guid": "2a5b6ba0-439c-49b7-83e7-41554ad48fe1",
-    "name": "Convert Column Type"
+    "name": "Convert Column Type",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "2a5cfb31-028a-4b34-b4e1-9b20ae15312e",
@@ -873,7 +906,8 @@
   },
   {
     "guid": "2daea094-2b19-4961-b22d-1df0e4beb0f5",
-    "name": "Mesh Offset"
+    "name": "Mesh Offset",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "2dc44b22-b1dd-460a-a704-6462d6e91096",
@@ -921,7 +955,8 @@
   },
   {
     "guid": "302feaef-a1f1-4089-8b09-4892dc6fce16",
-    "name": "Read XML by Tag"
+    "name": "Read XML by Tag",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "3092caf0-7cf9-4885-bcc0-e635d878832a",
@@ -941,7 +976,8 @@
   },
   {
     "guid": "313b151d-50fc-42ca-af2e-9ea990073a86",
-    "name": "Fast Tree Regression"
+    "name": "Fast Tree Regression",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "31534405-6573-4be6-8bf8-262e55847a3a",
@@ -961,7 +997,8 @@
   },
   {
     "guid": "3218c814-49d2-44bd-8559-a3c8252dcd09",
-    "name": "Field Aware Factorization Machine Binary Classifier"
+    "name": "Field Aware Factorization Machine Binary Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "323f3245-af49-4489-8677-7a2c73664077",
@@ -973,7 +1010,8 @@
   },
   {
     "guid": "32864682-9c58-4484-b3cf-6d32298295d7",
-    "name": "Restricted Boltzmann Machine"
+    "name": "Restricted Boltzmann Machine",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "330eb9c9-0098-4375-9078-e00a419d49fb",
@@ -1029,7 +1067,8 @@
   },
   {
     "guid": "35644787-bd9d-4440-b1d5-b8879699afcd",
-    "name": "Create DataSet"
+    "name": "Create DataSet",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "3581f42a-9592-4549-bd6b-1c0fc39d067b",
@@ -1053,7 +1092,8 @@
   },
   {
     "guid": "36a74083-acc0-4123-a363-ba5f5758fb5c",
-    "name": "Direction Attraction"
+    "name": "Direction Attraction",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "36dd5551-b6bd-4246-bd2f-1fd91eb2f02d",
@@ -1065,7 +1105,8 @@
   },
   {
     "guid": "370e8c20-a977-45d1-987d-d26c4a4df0ca",
-    "name": "Diagrid Structure"
+    "name": "Diagrid Structure",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "3756c55f-95c3-442c-a027-6b3ab0455a94",
@@ -1077,7 +1118,8 @@
   },
   {
     "guid": "37dc5dc9-8cc5-46ea-9a9b-5cea3577442f",
-    "name": "Local Deep SVM Binary Classifier"
+    "name": "Local Deep SVM Binary Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "383929c0-6515-4899-8b4b-3bd0d0b32471",
@@ -1085,7 +1127,8 @@
   },
   {
     "guid": "38a071b4-9887-4828-86fb-d301d7f61fd6",
-    "name": "Conoid Surface"
+    "name": "Conoid Surface",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "38a4e722-ad5a-4229-a170-e27ae1345538",
@@ -1101,7 +1144,8 @@
   },
   {
     "guid": "390c8a3b-9f14-4c66-bacd-13410333c118",
-    "name": "Enneper Surface"
+    "name": "Enneper Surface",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "3962cf86-9b9e-41d7-94f9-42bd0326291d",
@@ -1133,7 +1177,8 @@
   },
   {
     "guid": "3b19ce08-ce59-49ea-8deb-b9f265347bc2",
-    "name": "Select Columns"
+    "name": "Select Columns",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "3b1ae469-0e9b-461d-8c30-fa5a7de8b7a9",
@@ -1153,7 +1198,8 @@
   },
   {
     "guid": "3c822206-4de9-484f-9ccb-8bc5b563ccff",
-    "name": "Rhino Command"
+    "name": "Rhino Command",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "3cadddef-1e2b-4c09-9390-0e8f78f7609f",
@@ -1165,7 +1211,8 @@
   },
   {
     "guid": "3cd639e6-8e08-4878-b282-4361f78e8723",
-    "name": "Morph 3D Mean"
+    "name": "Morph 3D Mean",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "3cfd77d3-30d0-45f6-adeb-ea8defed58d3",
@@ -1185,7 +1232,8 @@
   },
   {
     "guid": "3df255b6-3c28-4cc4-bf00-195b6dd1fac3",
-    "name": "Morph 3D"
+    "name": "Morph 3D",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "3dfb9a77-6e05-4016-9f20-94f78607d672",
@@ -1217,7 +1265,8 @@
   },
   {
     "guid": "3edbfd47-b143-4287-8b3f-16349add9741",
-    "name": "Center Grid"
+    "name": "Center Grid",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "3ede854e-c753-40eb-84cb-b48008f14fd4",
@@ -1273,7 +1322,8 @@
   },
   {
     "guid": "4142e474-4707-4d9e-af4e-f4bbed4d9279",
-    "name": "Create Data Grid"
+    "name": "Create Data Grid",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "415750fd-c0ec-4411-84d0-01f28ab23066",
@@ -1281,7 +1331,8 @@
   },
   {
     "guid": "41910ccd-37aa-4c63-ba32-34632cd01f82",
-    "name": "Klein Surface"
+    "name": "Klein Surface",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "41995f16-087e-425a-97c4-ec4fa0f78e1c",
@@ -1293,7 +1344,8 @@
   },
   {
     "guid": "41ad90bb-98a7-436e-ac58-6c348456ed95",
-    "name": "Clean Grid"
+    "name": "Clean Grid",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "41dd7ba9-1f53-49d9-af42-a9270b0e9454",
@@ -1317,11 +1369,13 @@
   },
   {
     "guid": "4327c857-28b9-4c60-9f1e-20e2b9b21607",
-    "name": "Hash Objects"
+    "name": "Hash Objects",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "435f31b6-89bf-4825-8d8d-a3f663bc01b1",
-    "name": "Subdivide Triangle"
+    "name": "Subdivide Triangle",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "439a55a5-2f9e-4f66-9de2-32f24fec2ef5",
@@ -1353,15 +1407,18 @@
   },
   {
     "guid": "4505b82a-5921-4400-8493-30750d8cd85d",
-    "name": "Replace Missing Data"
+    "name": "Replace Missing Data",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "4523b656-efb2-4e9d-9775-47de0e50ea7c",
-    "name": "Generate Faces"
+    "name": "Generate Faces",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "454e1e45-2805-4a6d-85ce-b6dc1ff33075",
-    "name": "Light GBM Regression"
+    "name": "Light GBM Regression",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "455925fd-23ff-4e57-a0e7-913a4165e659",
@@ -1385,7 +1442,8 @@
   },
   {
     "guid": "4721be95-090a-4065-83fc-c0d4a1879c4f",
-    "name": "Surface Distance"
+    "name": "Surface Distance",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "476c0cf8-bc3c-4f1c-a61a-6e91e1f8b91e",
@@ -1397,7 +1455,8 @@
   },
   {
     "guid": "4780db41-1260-4cbb-bde8-3a8aaf4b8e8c",
-    "name": "Intersect Curves"
+    "name": "Intersect Curves",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "47814a17-ca9e-4305-9400-3a9c8d71c19d",
@@ -1521,11 +1580,13 @@
   },
   {
     "guid": "4e7f23a7-9fcc-4b08-a6e9-45a4634a7b5b",
-    "name": "Surface Parameter"
+    "name": "Surface Parameter",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "4e827384-495e-4289-b78f-252f30c06001",
-    "name": "Polar Grid"
+    "name": "Polar Grid",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "4e86ba36-05e2-4cc0-a0f5-3ad57c91f04e",
@@ -1533,7 +1594,8 @@
   },
   {
     "guid": "4f1ce64b-7900-46f2-a50d-47b23b4facec",
-    "name": "Light GBM Binary Classifier"
+    "name": "Light GBM Binary Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "4f3147f4-9fcd-4a7e-be0e-b1841caa5f97",
@@ -1581,7 +1643,8 @@
   },
   {
     "guid": "5044ce24-a5da-4534-869e-9ea936f57d28",
-    "name": "Panel Connections"
+    "name": "Panel Connections",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "50b204ef-d3de-41bb-a006-02fba2d3f709",
@@ -1601,7 +1664,8 @@
   },
   {
     "guid": "5124b07f-0ece-4d0e-bef9-7713fd3f3241",
-    "name": "Morph 3D Map"
+    "name": "Morph 3D Map",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "5184b8cb-b71e-4def-a590-cd2c9bc58906",
@@ -1609,7 +1673,8 @@
   },
   {
     "guid": "5186d211-40eb-4af0-a2fb-a4fb640f4ca3",
-    "name": "Launch Application"
+    "name": "Launch Application",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "51a2ede9-8f8c-4fdf-a375-999c2062eab7",
@@ -1621,7 +1686,8 @@
   },
   {
     "guid": "51e58dae-55da-4199-8aeb-54b7ea589308",
-    "name": "Fast Forest Binary Classifier"
+    "name": "Fast Forest Binary Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "51ea6cbf-9681-4a4b-8f66-20e0e2faf182",
@@ -1637,15 +1703,18 @@
   },
   {
     "guid": "521c65bf-723a-41dd-8289-f4fa1c046e4f",
-    "name": "Gaussian Curvature"
+    "name": "Gaussian Curvature",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "521f5358-c59b-4a64-be84-3a88e5aef29d",
-    "name": "2D Truss"
+    "name": "2D Truss",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "522454c4-4d36-46ab-8d6c-6cef757475b7",
-    "name": "Morph 2D Mean"
+    "name": "Morph 2D Mean",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "522ffa00-cf42-4e34-90b6-eb375d901c74",
@@ -1657,7 +1726,8 @@
   },
   {
     "guid": "531d7a1b-3c88-48c0-bc2c-2f65695444b9",
-    "name": "Building Mass (Area Constrained)"
+    "name": "Building Mass (Area Constrained)",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "537b0419-bbc2-4ff4-bf08-afe526367b2c",
@@ -1665,7 +1735,8 @@
   },
   {
     "guid": "537d4d9a-a8a8-4aa1-87fa-2aedbd07e6bd",
-    "name": "Write XML File"
+    "name": "Write XML File",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "537e7b52-4f3e-4bb6-b5f5-98233a66b79d",
@@ -1689,7 +1760,8 @@
   },
   {
     "guid": "5474b0d2-3c33-4d37-b60a-498b95c6e227",
-    "name": "Triangle Panels B"
+    "name": "Triangle Panels B",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "548177c2-d1db-4172-b667-bec979e2d38b",
@@ -1709,11 +1781,13 @@
   },
   {
     "guid": "5534ee28-862b-4f69-855c-db43c0d1c09d",
-    "name": "Compose Grid"
+    "name": "Compose Grid",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "55bd2794-8fb8-4752-9014-8ecea132a611",
-    "name": "Mesh Edges (with Tolerance)"
+    "name": "Mesh Edges (with Tolerance)",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "55f9ce6a-490c-4f25-a536-a3d47b794752",
@@ -1725,7 +1799,8 @@
   },
   {
     "guid": "566c22e2-9d73-441f-829c-b8e156f60e58",
-    "name": "Sdca Noncalibrated Multiclass Classifier"
+    "name": "Sdca Noncalibrated Multiclass Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "56b92eab-d121-43f7-94d3-6cd8f0ddead8",
@@ -1737,7 +1812,8 @@
   },
   {
     "guid": "56dba203-8834-40e4-8e98-cf64f2b791a6",
-    "name": "Hexagon Cells"
+    "name": "Hexagon Cells",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "571ca323-6e55-425a-bf9e-ee103c7ba4b9",
@@ -1789,7 +1865,8 @@
   },
   {
     "guid": "592d0f74-c615-4ad8-8069-784e9c6e7fb7",
-    "name": "Flatten Grids"
+    "name": "Flatten Grids",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "5958a658-20c2-4a2b-86ba-4d1b81bf5348",
@@ -1801,7 +1878,8 @@
   },
   {
     "guid": "59769b81-650e-490b-9e7a-d4a457892ce2",
-    "name": "Polar 3D Grid"
+    "name": "Polar 3D Grid",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "59aaebf8-6654-46b7-8386-89223c773978",
@@ -1861,7 +1939,8 @@
   },
   {
     "guid": "5b7d8c5f-6be2-478f-9602-91ef21f0ef07",
-    "name": "Braced Grid 2-D Structure"
+    "name": "Braced Grid 2-D Structure",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "5b850221-b527-4bd6-8c62-e94168cd6efa",
@@ -1877,7 +1956,8 @@
   },
   {
     "guid": "5bc05cc4-a012-405f-a2ca-de2be92fd13b",
-    "name": "Fast Tree Tweedie Regression"
+    "name": "Fast Tree Tweedie Regression",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "5c270622-ee80-45a4-b07a-bd8ffede92a2",
@@ -1925,11 +2005,13 @@
   },
   {
     "guid": "5e42bffd-677b-4db5-9358-24079f0b80fb",
-    "name": "Excel Writer"
+    "name": "Excel Writer",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "5eb96a5f-25c4-4e53-8d8f-d31479da272e",
-    "name": "Grid Structure"
+    "name": "Grid Structure",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "5edaea74-32cb-4586-bd72-66694eb73160",
@@ -1953,11 +2035,13 @@
   },
   {
     "guid": "5fd2452d-4d42-428b-aa06-39f83a2a968f",
-    "name": "Generate Borders"
+    "name": "Generate Borders",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "5fd8fe11-afdd-4c02-ba21-2791b88ee04c",
-    "name": "Object Bake"
+    "name": "Object Bake",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "6003658a-c422-41cf-8a2f-8e106b09cc10",
@@ -2021,7 +2105,8 @@
   },
   {
     "guid": "64ae05a5-ecb0-4b35-b31b-333e69d94c26",
-    "name": "Serialize Geometry"
+    "name": "Serialize Geometry",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "64fda9ad-68a6-4871-8031-ca71f6ba2a21",
@@ -2041,7 +2126,8 @@
   },
   {
     "guid": "6602d641-c18d-47a7-b95f-f8ba8978cccf",
-    "name": "3D Supershape"
+    "name": "3D Supershape",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "66d2a68e-2f1d-43d2-a53b-c6a4d17e627b",
@@ -2057,7 +2143,8 @@
   },
   {
     "guid": "67577ff0-c1bb-4fe5-a15d-3adf5ce54f4b",
-    "name": "Divide Length"
+    "name": "Divide Length",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "675e31bf-1775-48d7-bb8d-76b77786dd53",
@@ -2077,7 +2164,8 @@
   },
   {
     "guid": "6829530f-10ad-4d1b-9a41-8d110c9439a4",
-    "name": "Sort Duplicate Curves"
+    "name": "Sort Duplicate Curves",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "68546dd0-aa82-471c-87e9-81cb16ac50ed",
@@ -2085,7 +2173,8 @@
   },
   {
     "guid": "6979c478-e349-46f8-89f2-202310f599f4",
-    "name": "Object Save"
+    "name": "Object Save",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "69a52798-b567-4a36-b5b4-7614bea071bc",
@@ -2105,7 +2194,8 @@
   },
   {
     "guid": "6ad70fd1-5b3d-4d50-b4a5-37b9bcd7e24f",
-    "name": "Kernel SVM Trainer"
+    "name": "Kernel SVM Trainer",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "6b021f56-b194-4210-b9a1-6cef3b7d0848",
@@ -2117,7 +2207,8 @@
   },
   {
     "guid": "6b25f354-f4da-4712-9820-a74cf8c85bae",
-    "name": "Coordinates"
+    "name": "Coordinates",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "6b2a5853-07aa-4329-ba84-0a5d46b51dbd",
@@ -2133,7 +2224,8 @@
   },
   {
     "guid": "6b9113fc-c2e9-489e-93f9-27b26e29bd71",
-    "name": "Normalize Data"
+    "name": "Normalize Data",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "6c1c3018-487b-4573-afc5-3af263ae5808",
@@ -2161,7 +2253,8 @@
   },
   {
     "guid": "6d78b308-bcfd-4821-9365-aea5cfd9178b",
-    "name": "Kernel SVM Tester"
+    "name": "Kernel SVM Tester",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "6da9f120-3ad0-4b6e-9fe0-f8cde3a649b7",
@@ -2173,11 +2266,13 @@
   },
   {
     "guid": "6dc9c14a-b61f-479e-8535-d9e6984c50a1",
-    "name": "Surface Domain Chord Distance"
+    "name": "Surface Domain Chord Distance",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "6e048422-e242-465f-93ef-8dcc3358aac4",
-    "name": "Generalized Additive Models Binary Classifier"
+    "name": "Generalized Additive Models Binary Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "6e5de495-ba76-42d0-9985-a5c265e9aeca",
@@ -2213,7 +2308,8 @@
   },
   {
     "guid": "6f75d9f9-014d-4d7d-bfe0-b83c0686a61b",
-    "name": "SDCA Noncalibrated Binary Classifier"
+    "name": "SDCA Noncalibrated Binary Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "6f93d366-919f-4dda-a35e-ba03dd62799b",
@@ -2225,11 +2321,13 @@
   },
   {
     "guid": "6fb6c659-fc3b-4de6-9eef-b39bdc1b1278",
-    "name": "Cellulate"
+    "name": "Cellulate",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "7034f8a2-37a6-4f1f-9530-fe199405a648",
-    "name": "Divide Length with Reference"
+    "name": "Divide Length with Reference",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "7062df7c-7f0e-484b-9354-902a8762499a",
@@ -2245,7 +2343,8 @@
   },
   {
     "guid": "70de1114-9a0d-49a1-a101-f2d26374e161",
-    "name": "Unroll Brep"
+    "name": "Unroll Brep",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "71506fa8-9bf0-432d-b897-b2e0c5ac316c",
@@ -2265,7 +2364,8 @@
   },
   {
     "guid": "71b08d3e-2252-46e2-9e69-d42a4ca8bf77",
-    "name": "Morph 2D"
+    "name": "Morph 2D",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "71b5b089-500a-4ea6-81c5-2f960441a0e8",
@@ -2289,7 +2389,8 @@
   },
   {
     "guid": "72051c7a-6dd4-41e6-a85b-94e6d57fd250",
-    "name": "Confusion Matrix Properties"
+    "name": "Confusion Matrix Properties",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "722dd73f-2b6a-494e-b361-1118bf63b9e2",
@@ -2337,11 +2438,13 @@
   },
   {
     "guid": "75245842-a7ba-497b-83df-2fc9aa2e8c54",
-    "name": "Mesh Extrude"
+    "name": "Mesh Extrude",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "7539614d-dee1-44b4-a781-95accee71c8c",
-    "name": "Reverse Surface Direction"
+    "name": "Reverse Surface Direction",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "758d91a0-4aec-47f8-9671-16739a8a2c5d",
@@ -2421,7 +2524,8 @@
   },
   {
     "guid": "78ab7d1a-51c8-43a8-b17a-fe42d699f938",
-    "name": "Create DataTable"
+    "name": "Create DataTable",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "78fed580-851b-46fe-af2f-6519a9d378e0",
@@ -2429,7 +2533,8 @@
   },
   {
     "guid": "79378f43-e639-4155-98ef-897f39884f81",
-    "name": "Trim Grid"
+    "name": "Trim Grid",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "79747717-1874-4c34-b790-faef53b50569",
@@ -2441,7 +2546,8 @@
   },
   {
     "guid": "797e3a90-16e6-4cfc-9a0b-d0d494d9d598",
-    "name": "Staggered Quad Panels"
+    "name": "Staggered Quad Panels",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "7986486c-621a-48fb-8f27-a28a22c91cc9",
@@ -2473,7 +2579,8 @@
   },
   {
     "guid": "7afc86f3-c23e-4835-b006-61f4a7a3179e",
-    "name": "Weight Attraction"
+    "name": "Weight Attraction",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "7b181be1-30e7-4a97-915a-1b461741aef8",
@@ -2489,7 +2596,8 @@
   },
   {
     "guid": "7bb44991-067e-4e90-aab0-8eb1a72a5a7c",
-    "name": "One Hot Encoding"
+    "name": "One Hot Encoding",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "7c0523e8-79c9-45a2-8777-cf0d46bc5432",
@@ -2497,11 +2605,13 @@
   },
   {
     "guid": "7c3a6b0a-9c51-4739-b087-4622f7947377",
-    "name": "Peek At Data"
+    "name": "Peek At Data",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "7cf46619-66b8-4313-a493-edd54e7133b9",
-    "name": "Diamond Grid"
+    "name": "Diamond Grid",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "7d2a6064-51f0-45b2-adc4-f417b30dcd15",
@@ -2521,7 +2631,8 @@
   },
   {
     "guid": "7e077f48-9ae8-4ef5-bb4b-77ab75106a2d",
-    "name": "Text Reader"
+    "name": "Text Reader",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "7e266319-a439-481e-afa5-daa09ab97417",
@@ -2545,11 +2656,13 @@
   },
   {
     "guid": "7f39fde7-a216-45bf-bfe5-629f86b32790",
-    "name": "Surface Domain Number"
+    "name": "Surface Domain Number",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "7f4aa17b-3561-4a03-9e71-e18ee40ccefc",
-    "name": "Grid Dir"
+    "name": "Grid Dir",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "7f5c6c55-f846-4a08-9c9a-cfdc285cc6fe",
@@ -2569,7 +2682,8 @@
   },
   {
     "guid": "8009fbc3-b083-4043-be51-cbfd913d0329",
-    "name": "Panel 3D Connections"
+    "name": "Panel 3D Connections",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "8073a420-6bec-49e3-9b18-367f6fd76ac3",
@@ -2581,7 +2695,8 @@
   },
   {
     "guid": "8083a51c-2e58-4f1b-af42-a5c6d22eb6a5",
-    "name": "Brep Join Progression"
+    "name": "Brep Join Progression",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "80e3614a-25ae-43e7-bb0a-760e68ade864",
@@ -2629,7 +2744,8 @@
   },
   {
     "guid": "83caa148-b897-471d-b020-735b0d1bac9c",
-    "name": "Regression Trainer"
+    "name": "Regression Trainer",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "8440fd1b-b6e0-4bdb-aa93-4ec295c213e9",
@@ -2661,7 +2777,8 @@
   },
   {
     "guid": "8527a98f-0238-41ec-9fef-5cfff8c61dad",
-    "name": "Divide Number"
+    "name": "Divide Number",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "8529dbdf-9b6f-42e9-8e1f-c7a2bde56a70",
@@ -2669,7 +2786,8 @@
   },
   {
     "guid": "853076e8-5b04-43cb-b075-c6b469d74da2",
-    "name": "Gaussian Mixture"
+    "name": "Gaussian Mixture",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "8555a743-36c1-42b8-abcc-06d9cb94519f",
@@ -2685,7 +2803,8 @@
   },
   {
     "guid": "8582bf30-b78b-4d21-b4cf-f744a84af497",
-    "name": "Diamond Panels"
+    "name": "Diamond Panels",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "859daa86-3ab7-49cb-9eda-f2811c984070",
@@ -2729,7 +2848,8 @@
   },
   {
     "guid": "8787b53a-7985-4dac-a466-c2f4ad5efe90",
-    "name": "Curve Attraction"
+    "name": "Curve Attraction",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "87e1d9ef-088b-4d30-9dda-8a7448a17329",
@@ -2745,7 +2865,8 @@
   },
   {
     "guid": "888d89c6-8580-4f8e-96ea-41225c33e883",
-    "name": "Convert XML to JSON"
+    "name": "Convert XML to JSON",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "888f9c3c-f1e1-4344-94b0-5ee6a45aee11",
@@ -2765,11 +2886,13 @@
   },
   {
     "guid": "894ce9f3-45c4-41b4-9301-501bef0a84fa",
-    "name": "Create CSV"
+    "name": "Create CSV",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "89bc7614-a135-4d75-8a6d-9d784b1d4d4f",
-    "name": "Sdca Regression"
+    "name": "Sdca Regression",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "89cd1a12-0007-4581-99ba-66578665e610",
@@ -2777,7 +2900,8 @@
   },
   {
     "guid": "89d6bc9d-34ee-4799-a69b-81e26cf7e1e7",
-    "name": "Linear SVM Binary Classifier"
+    "name": "Linear SVM Binary Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "8aa5774d-422a-433b-9a3f-667946bde157",
@@ -2797,7 +2921,8 @@
   },
   {
     "guid": "8bdb8e9f-f1dd-491d-ab9a-f80f1e170708",
-    "name": "Shortest Walk"
+    "name": "Shortest Walk",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "8cb1880b-464e-470e-87af-ea27ae95132d",
@@ -2821,7 +2946,8 @@
   },
   {
     "guid": "8e7dc738-3375-43f1-b437-28bbebee5458",
-    "name": "Lbfgs Maximum Entropy Multiclass Classifier"
+    "name": "Lbfgs Maximum Entropy Multiclass Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "8e9ce0ba-8819-48fe-bc74-9b139914f219",
@@ -2897,7 +3023,8 @@
   },
   {
     "guid": "91a707bf-071f-403f-94c5-51c3e8009d60",
-    "name": "SGD Calibrated Binary Classifier"
+    "name": "SGD Calibrated Binary Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "91f1eafc-4804-4f9f-96ad-35be27178c36",
@@ -2945,7 +3072,8 @@
   },
   {
     "guid": "93705de7-bc3e-414f-a201-824b40e828b8",
-    "name": "Sort Duplicate Breps"
+    "name": "Sort Duplicate Breps",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "93b8e93d-f932-402c-b435-84be04d87666",
@@ -2985,7 +3113,8 @@
   },
   {
     "guid": "954db275-7e18-40f6-ae4f-291bd7e8b28f",
-    "name": "Planar Grid"
+    "name": "Planar Grid",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "95866bbe-648e-4e2b-a97c-7d04679e94e0",
@@ -3021,11 +3150,13 @@
   },
   {
     "guid": "97e94daa-7958-489a-aaaa-223c6f76bfc4",
-    "name": "Linear Regression"
+    "name": "Linear Regression",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "9839664e-9edf-4664-8403-ed1cc133cad4",
-    "name": "Surface from Grid"
+    "name": "Surface from Grid",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "983c7600-980c-44da-bc53-c804067f667f",
@@ -3033,7 +3164,8 @@
   },
   {
     "guid": "9870952c-ff3d-49a6-8006-cf128686bd27",
-    "name": "Morph 3D List"
+    "name": "Morph 3D List",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "988fbdfd-d3eb-4ead-ab83-d0db9f2a36d9",
@@ -3053,7 +3185,8 @@
   },
   {
     "guid": "9a4d18a1-87f0-428d-8c01-da8530f5fb7a",
-    "name": "Platonic Octahedron"
+    "name": "Platonic Octahedron",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "9ab93e1a-ebdf-4090-9296-b000cff7b202",
@@ -3069,7 +3202,8 @@
   },
   {
     "guid": "9b0ea392-6635-4ece-a3be-ef3365af88e8",
-    "name": "K-Means Clustering"
+    "name": "K-Means Clustering",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "9b1495a1-6c40-447a-b8fb-60b7ea71b47f",
@@ -3077,11 +3211,13 @@
   },
   {
     "guid": "9b4f48c6-f73b-456a-a9e1-25455a6a3a78",
-    "name": "Bake Grid"
+    "name": "Bake Grid",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "9b67d915-6dd7-4742-b85f-7826ab7f234e",
-    "name": "Text Writer"
+    "name": "Text Writer",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "9bc98a1d-2ecc-407e-948a-09a09ed3e69d",
@@ -3109,7 +3245,8 @@
   },
   {
     "guid": "9ca706c7-3b92-45cc-9663-21a75ffaea29",
-    "name": "Short Edges"
+    "name": "Short Edges",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "9cacad37-b09f-4b54-b2b1-1ccdc2e3ffea",
@@ -3145,11 +3282,13 @@
   },
   {
     "guid": "9e8f42f8-8688-4718-a498-522d2263bf37",
-    "name": "Read CSV"
+    "name": "Read CSV",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "9eb5c920-3679-4807-95d2-b37ddc72a640",
-    "name": "Orient to Grid"
+    "name": "Orient to Grid",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "9ee31ba5-81a6-4f94-b256-7383f66a33ab",
@@ -3157,7 +3296,8 @@
   },
   {
     "guid": "9f285ac9-49be-44c7-9f25-e66b5c22a554",
-    "name": "Generalized Additive Models Regression"
+    "name": "Generalized Additive Models Regression",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "9f6d85c9-1143-4538-bca7-69dcb11a74ef",
@@ -3185,19 +3325,23 @@
   },
   {
     "guid": "a13c7624-91d4-4eb3-97f8-d54e9be53c83",
-    "name": "Binary Classifier Trainer"
+    "name": "Binary Classifier Trainer",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "a16a3c53-7ae9-4bb0-a0c2-fcc67e0c432c",
-    "name": "Hyperbolic Paraboloid"
+    "name": "Hyperbolic Paraboloid",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "a19a4259-ef04-4990-8af0-754470baca45",
-    "name": "Fast Tree Binary Classifier"
+    "name": "Fast Tree Binary Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "a1b5310f-eb7d-4534-9ca1-c0acad970a28",
-    "name": "Triangular Panels A"
+    "name": "Triangular Panels A",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "a1c16251-74f0-400f-9e7c-5e379d739963",
@@ -3209,7 +3353,8 @@
   },
   {
     "guid": "a21a767d-26df-401b-a1ca-1bee89a255be",
-    "name": "Tokenize Into Words"
+    "name": "Tokenize Into Words",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "a2d9503d-a83c-4d71-81e0-02af8d09cd0c",
@@ -3221,7 +3366,8 @@
   },
   {
     "guid": "a3586a96-8767-48df-87ff-bc336b24ae1b",
-    "name": "Decrypt Text"
+    "name": "Decrypt Text",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "a3a15b59-10f5-4625-8086-7d36f90e7c3c",
@@ -3229,11 +3375,13 @@
   },
   {
     "guid": "a3b3a4c5-fe0c-42fb-aa8a-0fa5b23b411a",
-    "name": "Select Grids"
+    "name": "Select Grids",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "a3c33654-0db2-4aeb-8551-d7a48b763128",
-    "name": "Mesh Reduce"
+    "name": "Mesh Reduce",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "a3f9f19e-3e6c-4ac7-97c3-946de32c3e8e",
@@ -3277,7 +3425,8 @@
   },
   {
     "guid": "a4ee8303-24ff-4f9c-8784-d75d20fa3577",
-    "name": "Symbolic SGD Logistic Regression Binary Classifier"
+    "name": "Symbolic SGD Logistic Regression Binary Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "a50c4a3b-0177-4c91-8556-db95de6c56c8",
@@ -3289,11 +3438,13 @@
   },
   {
     "guid": "a5287477-4326-442f-8ab3-904779ec720d",
-    "name": "RTree Closest Point"
+    "name": "RTree Closest Point",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "a5446931-9ca9-411f-a41c-fa5e179b26ae",
-    "name": "Load Model"
+    "name": "Load Model",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "a559fee2-4b76-4370-8042-c7440cd75049",
@@ -3313,7 +3464,8 @@
   },
   {
     "guid": "a789a9b8-62f7-4560-ba28-77e0bc5b356e",
-    "name": "Pull Edges"
+    "name": "Pull Edges",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "a78e3fbc-d199-4bd9-8df0-fc4c2743eb31",
@@ -3337,7 +3489,8 @@
   },
   {
     "guid": "a9d8bc14-3bbf-4030-993f-d98820e1561f",
-    "name": "Platonic Dodecahedron"
+    "name": "Platonic Dodecahedron",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "a9df4095-08a3-401f-8670-5cbcbe05206f",
@@ -3349,7 +3502,8 @@
   },
   {
     "guid": "aa4ad6c1-2787-455a-b9fd-f231f1e2b453",
-    "name": "Replace"
+    "name": "Replace",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "aa538b89-3df8-436f-9ae4-bc44525984de",
@@ -3369,11 +3523,13 @@
   },
   {
     "guid": "ab5e86b2-aaee-49f3-8961-308cf112b63c",
-    "name": "Generate Flat Faces"
+    "name": "Generate Flat Faces",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "ab65b1e7-941a-4781-9823-2c9bd58e36e6",
-    "name": "Point Attraction"
+    "name": "Point Attraction",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "ab723d11-5713-4df2-9d3c-b8bbb3bb5d61",
@@ -3385,7 +3541,8 @@
   },
   {
     "guid": "aba471bc-0a0a-4dbe-a125-75bb2d9d4e55",
-    "name": "String Distance"
+    "name": "String Distance",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "abf9c670-5462-4cd8-acb3-f1ab0256dbf3",
@@ -3397,7 +3554,8 @@
   },
   {
     "guid": "ac6fecd0-7d12-49dc-a8c0-052b274f00f8",
-    "name": "Panel Frame"
+    "name": "Panel Frame",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "ac750e41-2450-4f98-9658-98fef97b01b2",
@@ -3417,7 +3575,8 @@
   },
   {
     "guid": "ad710c25-49b9-4e94-9b03-a306bcccea9c",
-    "name": "Sdca Maximum Entropy Multiclass Classifier"
+    "name": "Sdca Maximum Entropy Multiclass Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "add6be3e-c57f-4740-96e4-5680abaa9169",
@@ -3425,11 +3584,13 @@
   },
   {
     "guid": "addaa14d-25ea-4be0-98e9-85d0a5f694ef",
-    "name": "Create GUID"
+    "name": "Create GUID",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "addbc879-4835-49cd-b51b-dfc8a00b0c0f",
-    "name": "Compose Grid Number"
+    "name": "Compose Grid Number",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "ae2531b4-bab2-4bb1-b5bf-f2143d10c132",
@@ -3441,7 +3602,8 @@
   },
   {
     "guid": "af4ba4c4-e974-42d5-bf8b-8dd25a856ed0",
-    "name": "Divide Distance"
+    "name": "Divide Distance",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "af519c71-7dc1-4524-b8cc-add5544e2ef6",
@@ -3489,7 +3651,8 @@
   },
   {
     "guid": "b1340fb5-2b32-45e4-b89f-39acbf70bc59",
-    "name": "Ordinary Least Squares Regression"
+    "name": "Ordinary Least Squares Regression",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "b1991128-8bf1-4dea-8497-4b7188a64e9d",
@@ -3501,7 +3664,8 @@
   },
   {
     "guid": "b1a5591d-f462-4b67-ab77-523dc778a2de",
-    "name": "Building Mass (Boundary and Area)"
+    "name": "Building Mass (Boundary and Area)",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "b228887e-0852-4d9f-bd46-2591646e0d7c",
@@ -3517,11 +3681,13 @@
   },
   {
     "guid": "b2417354-3be4-441c-897d-b1f9fc0b71dd",
-    "name": "Neural Network Tester"
+    "name": "Neural Network Tester",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "b2481595-e41e-4d87-ac1d-9c9a8ef13302",
-    "name": "Filter Data"
+    "name": "Filter Data",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "b25c5762-f90e-4839-9fc5-74b74ab42b1e",
@@ -3549,7 +3715,8 @@
   },
   {
     "guid": "b3f24117-156c-42fa-b24e-e9bc2da27906",
-    "name": "Object Detection Using ONNX File"
+    "name": "Object Detection Using ONNX File",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "b4610792-5911-4b2e-b564-724d9b5b1494",
@@ -3625,11 +3792,13 @@
   },
   {
     "guid": "b8383b40-922c-49ad-85ce-9b945d8f8386",
-    "name": "Extract Row"
+    "name": "Extract Row",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "b8638f51-30ef-4d90-9da7-b44e4e755848",
-    "name": "Sort Duplicate Values"
+    "name": "Sort Duplicate Values",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "b8a66384-fc66-4574-a8a9-ad18e610d623",
@@ -3637,7 +3806,8 @@
   },
   {
     "guid": "b8a7e311-67e7-4787-b247-a116e5197f52",
-    "name": "Divide Parameter"
+    "name": "Divide Parameter",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "b8e2aa8f-8830-4ee1-bb59-613ea279c281",
@@ -3649,15 +3819,18 @@
   },
   {
     "guid": "b93b4e57-422b-43e2-b152-7ca71525f5af",
-    "name": "Torus Surface"
+    "name": "Torus Surface",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "b980959c-0315-4edc-87dc-5d92a3d63677",
-    "name": "Featurize Text"
+    "name": "Featurize Text",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "b9c82026-3812-4b88-a266-cc6c7c914cb0",
-    "name": "Mean Curvature"
+    "name": "Mean Curvature",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "b9fde5fa-d654-4306-8ee1-6b69e6757604",
@@ -3681,7 +3854,8 @@
   },
   {
     "guid": "baec1561-6b4d-43f1-a0a5-6bdc5e7a4546",
-    "name": "Random Quad Panels"
+    "name": "Random Quad Panels",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "bafac914-ede4-4a59-a7b2-cc41bc3de961",
@@ -3709,7 +3883,8 @@
   },
   {
     "guid": "bbfd3f3f-7c53-4842-b980-ecfd6de033e1",
-    "name": "Quad Grid"
+    "name": "Quad Grid",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "bc3e379e-7206-4e7b-b63a-ff61f4b38a3e",
@@ -3721,7 +3896,8 @@
   },
   {
     "guid": "bc8d44fc-778a-4c05-a80c-41658686f2b5",
-    "name": "Morph 2D Map"
+    "name": "Morph 2D Map",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "bc984576-7aa6-491f-a91d-e444c33675a7",
@@ -3733,11 +3909,13 @@
   },
   {
     "guid": "bceb3de2-af5b-44d1-863e-3d172a460e40",
-    "name": "Arc Divide"
+    "name": "Arc Divide",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "bd3da25d-f240-4857-8197-df563b9e2e83",
-    "name": "Convert to Diamond"
+    "name": "Convert to Diamond",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "bd4a8a18-a3cc-40ba-965b-3be91fee563b",
@@ -3769,7 +3947,8 @@
   },
   {
     "guid": "bee4c5d8-69e5-47a8-8169-ded8247af0a8",
-    "name": "Planar Extrude"
+    "name": "Planar Extrude",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "bf106e4c-68f4-476f-b05b-9c15fb50e078",
@@ -3789,7 +3968,8 @@
   },
   {
     "guid": "c0431065-bc87-410c-8068-e768a5ebba5d",
-    "name": "Get Column Label"
+    "name": "Get Column Label",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "c048ad76-ffcd-43b1-a007-4dd1b2373326",
@@ -3809,7 +3989,8 @@
   },
   {
     "guid": "c1aa9aea-eafb-4429-83b7-77092dc7399c",
-    "name": "Fast Forest Regression"
+    "name": "Fast Forest Regression",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "c1ec65a3-bda4-4fad-87d0-edf86ed9d81c",
@@ -3833,7 +4014,8 @@
   },
   {
     "guid": "c311580b-a32b-43e3-b594-e313b313fe28",
-    "name": "Deconstruct Wireframe"
+    "name": "Deconstruct Wireframe",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "c3249da4-3f8e-4400-833e-e4e984d28657",
@@ -3845,11 +4027,13 @@
   },
   {
     "guid": "c350624c-c060-4562-b77c-ea0b99ea17dc",
-    "name": "Sort Duplicate Points"
+    "name": "Sort Duplicate Points",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "c35c406f-8f84-4e1c-8993-8fe6b7538c05",
-    "name": "Codify Data"
+    "name": "Codify Data",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "c3d1f2b8-8596-4e8d-8861-c28ba8ffb4f4",
@@ -3885,7 +4069,8 @@
   },
   {
     "guid": "c53baefd-7dde-4be7-b89a-4586da0254e7",
-    "name": "Logistic Regression"
+    "name": "Logistic Regression",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "c5ca5c17-3d7c-4848-b994-a7406dc519ed",
@@ -3897,11 +4082,13 @@
   },
   {
     "guid": "c678f249-2274-444e-af09-7a9392d65c7b",
-    "name": "Grid Density"
+    "name": "Grid Density",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "c69bb52c-88ba-4640-b69f-188d111029e8",
-    "name": "Hops"
+    "name": "Hops",
+    "libId": "82cb7266-a8bc-4d3e-99f6-b91504c7117f"
   },
   {
     "guid": "c6d7093d-90a1-4cad-9533-c066222b322b",
@@ -3941,7 +4128,8 @@
   },
   {
     "guid": "c863eab5-a30a-442d-97b8-7626ac24e62c",
-    "name": "Sort Adjacent Brep Faces"
+    "name": "Sort Adjacent Brep Faces",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "c8b01cec-6dd9-460b-b43f-254314ffdc2e",
@@ -3953,15 +4141,18 @@
   },
   {
     "guid": "c8d1e1fb-54ae-41dd-ba98-344ae6950bef",
-    "name": "SDCA Logistic Regression Binary Classifier"
+    "name": "SDCA Logistic Regression Binary Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "c8fc4bbe-2107-499d-bdd8-5acca1c5b985",
-    "name": "Excel Reader"
+    "name": "Excel Reader",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "c915a6ef-582c-48cc-909a-ea231cf765c9",
-    "name": "Binary Classifier Tester"
+    "name": "Binary Classifier Tester",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "c92cdfc8-3df8-4c4e-abc1-ede092a0aa8a",
@@ -3977,7 +4168,8 @@
   },
   {
     "guid": "c96ed4a7-0e97-420b-8e8f-aaf1ad32ad56",
-    "name": "Polar Extrude"
+    "name": "Polar Extrude",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "c9785b8e-2f30-4f90-8ee3-cca710f82402",
@@ -4037,7 +4229,8 @@
   },
   {
     "guid": "cb95ce32-70bd-4d98-8de8-80d73a4f78e4",
-    "name": "Platonic Icosahedron"
+    "name": "Platonic Icosahedron",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "cb95db89-6165-43b6-9c41-5702bc5bf137",
@@ -4045,7 +4238,8 @@
   },
   {
     "guid": "cc010201-a5bf-439e-8190-cadb8019b820",
-    "name": "Neural Network Trainer"
+    "name": "Neural Network Trainer",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "cc14daa5-911a-4fcc-8b3b-1149bf7f2eeb",
@@ -4061,11 +4255,13 @@
   },
   {
     "guid": "cc5c4ff9-e4a6-472c-8f75-8ccbef3838eb",
-    "name": "Helicoid Surface"
+    "name": "Helicoid Surface",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "cc754e40-f9aa-4bda-8ea2-0e5af7702c51",
-    "name": "Create Data Set"
+    "name": "Create Data Set",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "ccc3f2ff-c9f6-45f8-aa30-8a924a9bda36",
@@ -4081,7 +4277,8 @@
   },
   {
     "guid": "cd6d6e47-2059-4dd9-aeac-931954e3be49",
-    "name": "Regression Tester"
+    "name": "Regression Tester",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "cdee962f-4202-456b-a1b4-f3ed9aa0dc29",
@@ -4097,7 +4294,8 @@
   },
   {
     "guid": "ceb676b3-969f-4a6a-a332-8fc4a5586f44",
-    "name": "Attractor Wave"
+    "name": "Attractor Wave",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "cec16c67-7b8b-41f7-a5a5-f675177e524b",
@@ -4109,7 +4307,8 @@
   },
   {
     "guid": "cfba1813-ae31-4197-994c-1832d3bef2ac",
-    "name": "Hidden Markov Model"
+    "name": "Hidden Markov Model",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "cffdbaf3-8d33-4b38-9cad-c264af9fc3f4",
@@ -4117,7 +4316,8 @@
   },
   {
     "guid": "d05767e1-6a14-452c-8afc-32ea3dd02c24",
-    "name": "Lbfgs Poisson Regression"
+    "name": "Lbfgs Poisson Regression",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "d0a1b843-873d-4d1d-965c-b5423b35f327",
@@ -4145,7 +4345,8 @@
   },
   {
     "guid": "d18977ec-7cbe-4907-b4b1-687de45a62b0",
-    "name": "Coordinates 3D"
+    "name": "Coordinates 3D",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "d1a28e95-cf96-4936-bf34-8bf142d731bf",
@@ -4153,7 +4354,8 @@
   },
   {
     "guid": "d1b2efd7-2095-40de-95b1-a1afca5faca0",
-    "name": "Quad Remesh"
+    "name": "Quad Remesh",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "d1d57181-d594-41e8-8efb-041e29f8a5ca",
@@ -4161,7 +4363,8 @@
   },
   {
     "guid": "d1d89898-a64a-4ec4-89bb-b7148f699040",
-    "name": "Layer Reference"
+    "name": "Layer Reference",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "d222500b-dfd5-45e0-933e-eabefd07cbfa",
@@ -4209,11 +4412,13 @@
   },
   {
     "guid": "d4297f2f-42d3-48f0-92a7-0e44cb5691c5",
-    "name": "Convert JSON to XML"
+    "name": "Convert JSON to XML",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "d4a44158-ba34-4388-aaed-381bf014ad1f",
-    "name": "Mesh to Nurbs"
+    "name": "Mesh to Nurbs",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "d4bc9653-c770-4bee-a31d-d120cbb75b39",
@@ -4225,7 +4430,8 @@
   },
   {
     "guid": "d4ffcfd6-0d9d-407d-9789-ccefb6bafe0f",
-    "name": "Iso Edges"
+    "name": "Iso Edges",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "d51e9b65-aa4e-4fd6-976c-cef35d421d05",
@@ -4233,7 +4439,8 @@
   },
   {
     "guid": "d530efc6-c259-418d-afc1-ed65e74f7254",
-    "name": "Online Gradient Descent Regression"
+    "name": "Online Gradient Descent Regression",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "d5788074-d75d-4021-b1a3-0bf992928584",
@@ -4245,7 +4452,8 @@
   },
   {
     "guid": "d5a8c008-1bc6-42b6-a8ed-2d502863b2a5",
-    "name": "Multiclass Classifier Trainer"
+    "name": "Multiclass Classifier Trainer",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "d5e28df8-495b-4892-bca8-60748743d955",
@@ -4285,7 +4493,8 @@
   },
   {
     "guid": "d7ece2b6-5e38-4d8c-9518-d97fc6063c1c",
-    "name": "Square Grid"
+    "name": "Square Grid",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "d7ee52ff-89b8-4d1a-8662-3e0dd391d0af",
@@ -4305,7 +4514,8 @@
   },
   {
     "guid": "d8429d4b-98d2-4ce7-a4b4-6dcafd6077c9",
-    "name": "Offset Grid"
+    "name": "Offset Grid",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "d84d2c2a-2813-4667-afb4-46642581e5f9",
@@ -4329,7 +4539,8 @@
   },
   {
     "guid": "d8d5a48b-7651-46a1-9554-546a49edfd5d",
-    "name": "Building Mass (Boundary and Floors)"
+    "name": "Building Mass (Boundary and Floors)",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "d8d68c35-f869-486d-adf3-69ee3cc2d501",
@@ -4369,7 +4580,8 @@
   },
   {
     "guid": "dbe04b8a-a53f-4eb3-abfb-5866e0bd39d1",
-    "name": "RTree Points in Range"
+    "name": "RTree Points in Range",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "dbe9fce4-b6b3-465f-9615-34833c4763bd",
@@ -4377,7 +4589,8 @@
   },
   {
     "guid": "dc53c0a1-80ee-49f3-83d8-19bebbe273ea",
-    "name": "Attractor"
+    "name": "Attractor",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "dc934310-67eb-4d1d-8607-7cc62a501dd9",
@@ -4397,7 +4610,8 @@
   },
   {
     "guid": "dcbff0dc-0149-4dfb-974a-3c7547a6e848",
-    "name": "Subdivide Quad"
+    "name": "Subdivide Quad",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "dcd23728-8e0e-4241-94b3-7cc3985031dd",
@@ -4441,7 +4655,8 @@
   },
   {
     "guid": "deaac45c-8a40-40f8-b451-89e0635c52f5",
-    "name": "Text Loader Options"
+    "name": "Text Loader Options",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "deadf87d-99a6-4980-90c3-f98350aa6f0f",
@@ -4473,7 +4688,8 @@
   },
   {
     "guid": "e04d0d4e-8228-412d-9092-2e378c301964",
-    "name": "Load Saved Model"
+    "name": "Load Saved Model",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "e168ff6b-e5c0-48f1-b831-f6996bf3b459",
@@ -4497,7 +4713,8 @@
   },
   {
     "guid": "e2607438-8337-4885-a831-3c0d58a3f784",
-    "name": "Platonic Cube"
+    "name": "Platonic Cube",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "e28fa9c3-aed2-4595-bbd3-497255f7280c",
@@ -4549,7 +4766,8 @@
   },
   {
     "guid": "e536d215-4a12-400a-ac8e-1dcb885f08c1",
-    "name": "Light Gbm Multiclass Classifier"
+    "name": "Light Gbm Multiclass Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "e59e1368-a7c3-4a35-9f1d-8cf2cf67dc1b",
@@ -4609,7 +4827,8 @@
   },
   {
     "guid": "e83dfbc3-fbc8-4275-aaf3-772c920945be",
-    "name": "SGD Noncalibrated Binary Classifier"
+    "name": "SGD Noncalibrated Binary Classifier",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "e843424b-2b2e-4a3f-8528-18e3c188a474",
@@ -4625,7 +4844,8 @@
   },
   {
     "guid": "e9ce551b-c684-418e-8724-27c1c2e29432",
-    "name": "Split Data"
+    "name": "Split Data",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "e9eb1dcf-92f6-4d4d-84ae-96222d60f56b",
@@ -4641,7 +4861,8 @@
   },
   {
     "guid": "eb2e9015-122a-4fb6-abee-02cb54a5a00b",
-    "name": "Flatten 3D Grids"
+    "name": "Flatten 3D Grids",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "eba95904-9ef5-40f8-8590-079055192299",
@@ -4649,11 +4870,13 @@
   },
   {
     "guid": "ebb6bbc8-842e-4948-8bef-6e18b3dc40b1",
-    "name": "Naive Bayes Classification Tester"
+    "name": "Naive Bayes Classification Tester",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "ebc4f408-1953-48b2-8b7b-dbda75f5ab09",
-    "name": "Layer Information"
+    "name": "Layer Information",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "ebd6c758-19ae-4d74-aed7-b8a0392ff743",
@@ -4677,7 +4900,8 @@
   },
   {
     "guid": "ed9b12ed-a533-4a67-a342-4eea8f172fcf",
-    "name": "Create Layers"
+    "name": "Create Layers",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "ed9fbfde-1a0d-4469-a03f-feb54ac3e5cf",
@@ -4693,7 +4917,8 @@
   },
   {
     "guid": "ee6921fb-ded7-49d1-85ef-2e42601b168b",
-    "name": "Shell Brep"
+    "name": "Shell Brep",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "eeafc956-268e-461d-8e73-ee05c6f72c01",
@@ -4705,7 +4930,8 @@
   },
   {
     "guid": "ef29d5dd-3038-4cc1-b4c1-7467dc32afe4",
-    "name": "Sub Grid"
+    "name": "Sub Grid",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "ef6b26f4-f820-48d6-b0c5-85898ef8888b",
@@ -4749,7 +4975,8 @@
   },
   {
     "guid": "f118f3f8-1164-4248-9189-149d9699694c",
-    "name": "Constant Quad Subdivide"
+    "name": "Constant Quad Subdivide",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "f12daa2f-4fd5-48c1-8ac3-5dea476912ca",
@@ -4785,7 +5012,8 @@
   },
   {
     "guid": "f2c351f6-1164-4287-9f9d-8d78cbaee0b1",
-    "name": "Quad Remesh Parameters"
+    "name": "Quad Remesh Parameters",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "f3230ecb-3631-4d6f-86f2-ef4b2ed37f45",
@@ -4797,11 +5025,13 @@
   },
   {
     "guid": "f382501b-2f8e-48c4-a893-4a32bd2cd71e",
-    "name": "Encrypt Text"
+    "name": "Encrypt Text",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "f38f6324-aba8-4285-9845-2c76affd12a7",
-    "name": "Extract Grid Indices"
+    "name": "Extract Grid Indices",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "f3fcd287-f1f2-4b76-84ac-e7dd462979fa",
@@ -4825,7 +5055,8 @@
   },
   {
     "guid": "f568a52c-8793-46e9-a3cc-4d44a52f495b",
-    "name": "Naive Bayes Classification Trainer"
+    "name": "Naive Bayes Classification Trainer",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "f5f95b51-7431-4e80-a32f-d33e5dee53a5",
@@ -4845,7 +5076,8 @@
   },
   {
     "guid": "f69c2fef-13af-4cd4-b45a-d6db4cf17025",
-    "name": "Relative Coordinates"
+    "name": "Relative Coordinates",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "f6f14b09-6497-4564-8403-09e4eb5a6b82",
@@ -4869,7 +5101,8 @@
   },
   {
     "guid": "f833bc29-9335-4915-abd3-56274c940e4f",
-    "name": "Quad Panels"
+    "name": "Quad Panels",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "f881810b-96de-4668-a95a-f9a6d683e65c",
@@ -4877,7 +5110,8 @@
   },
   {
     "guid": "f8895db4-74e9-40b6-a8dc-1ec8bb5bb6a3",
-    "name": "Skewed Quads"
+    "name": "Skewed Quads",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "f88a6cd9-1035-4361-b896-4f2dfe79272d",
@@ -4965,11 +5199,13 @@
   },
   {
     "guid": "fd3ee094-8bf3-418b-abaf-a570476da257",
-    "name": "Random Attraction"
+    "name": "Random Attraction",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   },
   {
     "guid": "fd9ab1cd-dff2-48c0-9ac3-6ebe7c24a992",
-    "name": "Nonlinear Regression"
+    "name": "Nonlinear Regression",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "guid": "fdc466a9-d3b8-4056-852a-09dba0f74aca",
@@ -4981,7 +5217,8 @@
   },
   {
     "guid": "fe7df5b4-a8c8-4003-a614-d62e20f80776",
-    "name": "Space Truss Structure 1"
+    "name": "Space Truss Structure 1",
+    "libId": "9d96da9c-9354-ef32-7983-0acb11a3d493"
   },
   {
     "guid": "fe99f302-3d0d-4389-8494-bd53f7935a02",

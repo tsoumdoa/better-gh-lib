@@ -1,6 +1,6 @@
 import { GhXmlType } from "../types/types";
 
-type CanvasPoint = {
+export type CanvasPoint = {
 	x: number;
 	y: number;
 };
@@ -10,16 +10,16 @@ type DrawSize = {
 	height: number;
 };
 
-type Bound = CanvasPoint & DrawSize;
+export type Bound = CanvasPoint & DrawSize;
 type DrawType = "Thick" | "Thin" | "Hidden"; //TODO: check these names...
-const NODE_TYPES = [
-	"Relay",
-	"Compoemnent",
-	"Group",
-	"CSharpCodeBlock",
-	"PythonCodeBlock",
-	"AndMOre...",
-] as const; //TODO: check these names...
+// const NODE_TYPES = [
+// 	"Relay",
+// 	"Compoemnent",
+// 	"Group",
+// 	"CSharpCodeBlock",
+// 	"PythonCodeBlock",
+// 	"AndMOre...",
+// ] as const; //TODO: check these names...
 
 type Group = {
 	index: number[];
@@ -27,6 +27,7 @@ type Group = {
 
 export type GhaLibDiscripor = {
 	name: string;
+	libId: string;
 	author: string;
 	version: string;
 };
@@ -56,7 +57,7 @@ type Connection = {
 	to: number;
 };
 
-type NodeType = (typeof NODE_TYPES)[number];
+// type NodeType = (typeof NODE_TYPES)[number];
 
 type Parameter = {
 	guid: string;
@@ -75,20 +76,42 @@ type OutputParameter = Parameter & {
 };
 
 type TghNode = {
-	identifier: NodeIdentifier;
 	// type: NodeType;
-	// guid: string;
-	// author: string;
-	// locked: boolean;
-	// preview: boolean;
-	// input: InputParameter[];
-	// output: OutputParameter[];
 	// parents: string[];
-	// bounds: Bound;
-	// pivot: CanvasPoint;
+	identifier: NodeIdentifier;
+	instanceIdentifier: InstanceIdentifier;
+	bound: Bound;
+	pivot: CanvasPoint;
+	interfaceDescriptor: InterfaceDescriptor;
+	input: InputParameter[];
+	output: OutputParameter[];
 };
 
+// Identifiers for which node is being used
 export type NodeIdentifier = {
 	guid: string;
 	name: string;
+	libId?: string;
+};
+
+export type InstanceIdentifier = {
+	instanceGuid: string;
+	name: string;
+	nickName: string;
+	description: string;
+	locked: boolean;
+	hidden: boolean;
+	others: Record<string, string>;
+};
+
+export type InterfaceDescriptor = {
+	inputCount: number;
+	outputCount: number;
+	inputIdentifiers: InterfaceIdentifier[];
+	outputIdentifiers: InterfaceIdentifier[];
+};
+
+export type InterfaceIdentifier = {
+	guid: string;
+	typeCode: number;
 };

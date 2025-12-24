@@ -1,0 +1,13 @@
+[
+  {
+    "instanceGuid": "dc49083d-1af0-40f8-896d-81e3774609fc",
+    "name": "Cluster",
+    "nickName": "Cluster",
+    "description": "Contains a cluster of Grasshopper components",
+    "locked": false,
+    "hidden": false,
+    "others": {
+      "PreviewDocument": false
+    }
+  }
+]

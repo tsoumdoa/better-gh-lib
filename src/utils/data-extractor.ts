@@ -1,5 +1,19 @@
-import three from "../../test/xml/json/three.json";
-import { GhaLibDiscripor, NodeIdentifier } from "./tgh";
+import {
+	getBounds,
+	getIdentifier,
+	getInstanceIdentifier,
+	getInterfaceDescriptor,
+	getPivot,
+	parseIOs,
+} from "./helper";
+import {
+	Bound,
+	CanvasPoint,
+	GhaLibDiscripor,
+	InstanceIdentifier,
+	InterfaceDescriptor,
+	NodeIdentifier,
+} from "./tgh";
 
 export const SchemaNames = [
 	"Docum:ntHeader", // not so important
@@ -55,27 +69,33 @@ export function getDefinitionObject(ghJson: any) {
 	const componenentCount = defObj.count;
 
 	const identifiers: NodeIdentifier[] = [];
+	const bounds: Bound[] = [];
+	const pivots: CanvasPoint[] = [];
+	const instanceIdentifiers: InstanceIdentifier[] = [];
+	const interfaceDescriptors: InterfaceDescriptor[] = [];
+	const ios: any[] = [];
+
 	for (const obj of defObj.main) {
 		identifiers.push(getIdentifier(obj));
+		bounds.push(getBounds(obj));
+		pivots.push(getPivot(obj));
+		instanceIdentifiers.push(getInstanceIdentifier(obj));
+		interfaceDescriptors.push(getInterfaceDescriptor(obj));
+		ios.push(parseIOs(obj));
 	}
 
 	return {
 		defObj: defObj,
 		componenentCount: componenentCount,
 		identifiers: identifiers,
+		pivots: pivots,
+		bounds: bounds,
+		instanceIdentifiers: instanceIdentifiers,
+		interfaceDescriptors: interfaceDescriptors,
+		ios: ios,
 	};
 }
-
-function getIdentifier(obj: any) {
-	//@ts-ignore
-	const guid = obj.items.item.find((i) => i["@_name"] === "GUID")?.["#text"];
-	//@ts-ignore
-	const name = obj.items.item.find((i) => i["@_name"] === "Name")?.["#text"];
-	return {
-		guid: guid,
-		name: name,
-	};
-}
+export type DefinitionObjectResult = ReturnType<typeof getDefinitionObject>;
 
 export function getGhaLibraryDescriptors(ghJson: any) {
 	const descs: GhaLibDiscripor[] = [];
@@ -88,16 +108,27 @@ export function getGhaLibraryDescriptors(ghJson: any) {
 		const name = ghaLib.items.item.find((i) => i["@_name"] === "Name");
 		//@ts-ignore
 		const version = ghaLib.items.item.find((i) => i["@_name"] === "Version");
+		//@ts-ignore
+		const ghaLibId = ghaLib.items.item.find((i) => i["@_name"] === "Id");
+
+		const n = name?.["#text"] ?? "";
+
+		if (n === "Grasshopper") continue;
 
 		descs.push({
-			name: name?.["#text"] ?? "",
+			name: n,
 			author: author?.["#text"] ?? "",
 			version: version?.["#text"] ?? "",
+			libId: ghaLibId?.["#text"] ?? "",
 		});
 	}
 
 	return {
 		ghaLibs: ghaLibs,
 		descriptor: descs,
+		isAlltanilla: descs.length === 0,
 	};
 }
+export type GhaLibraryDescriptorsResult = ReturnType<
+	typeof getGhaLibraryDescriptors
+>;

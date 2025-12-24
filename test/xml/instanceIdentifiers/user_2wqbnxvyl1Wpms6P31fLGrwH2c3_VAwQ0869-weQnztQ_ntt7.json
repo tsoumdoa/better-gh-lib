@@ -1,0 +1,56 @@
+[
+  {
+    "instanceGuid": "dd394a47-b7de-4f1a-840e-2039b9d95bea",
+    "name": "Connection Service Runner",
+    "nickName": "SR",
+    "description": "Run Idea StatiCa Connection API Service",
+    "locked": false,
+    "hidden": false,
+    "others": {}
+  },
+  {
+    "instanceGuid": "ed0605be-d1c5-48b5-9129-0188a391cbd1",
+    "name": "Panel",
+    "description": "A panel for custom notes and text values",
+    "locked": false,
+    "hidden": false,
+    "others": {
+      "Optional": false,
+      "ScrollRatio": 0,
+      "SourceCount": 0,
+      "UserText": "C:\\Program Files\\IDEA StatiCa\\StatiCa 24.1"
+    }
+  },
+  {
+    "instanceGuid": "db19b4f3-ccf1-48b6-94b5-eb3398b18d1e",
+    "name": "File Path",
+    "nickName": "Path",
+    "description": "Contains a collection of file paths",
+    "locked": false,
+    "hidden": false,
+    "others": {
+      "ExpireOnFileEvent": false,
+      "FileFilter": "All files|*.*",
+      "Optional": false,
+      "Source": "ed0605be-d1c5-48b5-9129-0188a391cbd1",
+      "SourceCount": 1
+    }
+  },
+  {
+    "instanceGuid": "47a82ede-78ac-4255-b9da-e81db379fd4d",
+    "name": "Group",
+    "nickName": "click Run",
+    "description": "A group of Grasshopper objects",
+    "locked": false,
+    "hidden": false,
+    "others": {
+      "Border": 1,
+      "ID": [
+        "dd394a47-b7de-4f1a-840e-2039b9d95bea",
+        "ed0605be-d1c5-48b5-9129-0188a391cbd1",
+        "db19b4f3-ccf1-48b6-94b5-eb3398b18d1e"
+      ],
+      "ID_Count": 3
+    }
+  }
+]

@@ -1,22 +1,14 @@
 [
   {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.26.25349.19002"
-  },
-  {
-    "name": "Grasshopper",
-    "author": "Robert McNeel & Associates",
-    "version": "8.26.25349.19002"
-  },
-  {
     "name": "LunchBoxML",
     "author": "",
-    "version": "2024.2.11.0"
+    "version": "2024.2.11.0",
+    "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
   },
   {
     "name": "PTComponentLibrary",
     "author": "",
-    "version": "2021.4.1.0"
+    "version": "2021.4.1.0",
+    "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
   }
 ]

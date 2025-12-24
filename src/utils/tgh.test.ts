@@ -6,6 +6,7 @@ import {
 	getGhaLibraryDescriptors,
 	getVersion,
 } from "./data-extractor";
+import { writeDefObjTofiles, writeGhaLibsToFiles } from "./tgh-test-helper";
 
 const xmlFolder = "./test/xml/";
 const files = fs.readdirSync("./test/xml/");
@@ -45,43 +46,21 @@ function testGetVersion(jsonXml: any) {
 function testGetGhaLibraries(jsonXml: any, file: string) {
 	const r = getGhaLibraryDescriptors(jsonXml);
 
-	fs.writeFileSync(
-		xmlFolder + `ghaLibs/${file.replace(".xml", ".json")}`,
-		JSON.stringify(r.ghaLibs.main, null, 2)
-	);
-
-	fs.writeFileSync(
-		xmlFolder + `ghaLibsDescriptor/${file.replace(".xml", ".json")}`,
-		JSON.stringify(r.descriptor, null, 2)
-	);
-
+	writeGhaLibsToFiles(r, file, xmlFolder);
 	for (const ghaLib of r.descriptor) {
 		expect(ghaLib.name).toEqual(expect.any(String));
 		expect(ghaLib.author).toEqual(expect.any(String));
 		expect(ghaLib.version).toEqual(expect.any(String));
 	}
 
-	const mainBodyCount = r.ghaLibs.count;
-	const mainBodyLength = r.ghaLibs.main.length;
-	const parsedLength = r.descriptor.length;
-	expect(mainBodyCount).toBe(mainBodyLength);
-	expect(mainBodyLength).toBe(parsedLength);
+	const isAllVanilla = r.isAlltanilla;
+	expect(isAllVanilla).toBe(r.descriptor.length === 0);
 }
 
 function testGetDefObject(jsonXml: any, file: string) {
 	const r = getDefinitionObject(jsonXml);
 
-	//write defObj to file
-	fs.writeFileSync(
-		xmlFolder + `defObj/${file.replace(".xml", ".json")}`,
-		JSON.stringify(r.defObj.main[0], null, 2) // exporting the first object for ease of pasrsing the data structure
-	);
-
-	// write identifiers to file
-	fs.writeFileSync(
-		xmlFolder + `identifiers/${file.replace(".xml", ".json")}`,
-		JSON.stringify(r.identifiers, null, 2)
-	);
+	writeDefObjTofiles(r, file, xmlFolder);
 
 	// might not be so useful but ok for now
 	for (const obj of r.defObj.main) {
@@ -91,4 +70,11 @@ function testGetDefObject(jsonXml: any, file: string) {
 
 	const mainBodyLength = r.defObj.main.length;
 	expect(mainBodyLength).toBe(r.componenentCount); // this one is just testing the count
+
+	// main body length is number of components
+	//length of identifiers, pivots, bounds should be the same as the main body length
+	expect(r.identifiers.length).toBe(mainBodyLength);
+	expect(r.pivots.length).toBe(mainBodyLength);
+	expect(r.bounds.length).toBe(mainBodyLength);
+	expect(r.interfaceDescriptors.length).toBe(mainBodyLength);
 }
