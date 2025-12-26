@@ -1,3 +1,4 @@
+import { filterObjByAtName, findObjByAtName } from "./helper";
 import {
 	Bound,
 	CanvasPoint,
@@ -7,42 +8,24 @@ import {
 
 export function handleBounds(p: any): Bound {
 	if (!p) {
-		return {
-			x: -1,
-			y: -1,
-			width: -1,
-			height: -1,
-		};
+		return { x: -1, y: -1, width: -1, height: -1 };
 	}
-	return {
-		x: p.X,
-		y: p.Y,
-		width: p.W,
-		height: p.H,
-	};
+	return { x: p.X, y: p.Y, width: p.W, height: p.H };
 }
 
 export function handlePivot(p: any): CanvasPoint {
 	if (!p) {
-		return {
-			x: -1,
-			y: -1,
-		};
+		return { x: -1, y: -1 };
 	}
-	return {
-		x: p.X,
-		y: p.Y,
-	};
+	return { x: p.X, y: p.Y };
 }
 
 export function extractInterfaceDescriptor(
 	attr: Record<string, any>
 ): InterfaceDescriptor {
 	const items: Record<string, any>[] = attr.items.item;
-	const inputCount = items.find((i) => i["@_name"] === "InputCount")?.["#text"];
-	const outputCount = items.find((i) => i["@_name"] === "OutputCount")?.[
-		"#text"
-	];
+	const inputCount = findObjByAtName(items, "InputCount")?.["#text"];
+	const outputCount = findObjByAtName(items, "OutputCount")?.["#text"];
 
 	const inputIdentifiers: InterfaceIdentifier[] = [];
 	const outputIdentifiers: InterfaceIdentifier[] = [];
@@ -68,11 +51,8 @@ export function extractInterfaceDescriptor(
 }
 
 export function handleZuiIoAttrs(chunk: Record<string, any>[]) {
-	const inputAttrInputParams =
-		chunk.filter((i) => i["@_name"] === "InputParam") ?? [];
-
-	const outputAttrOutputParams =
-		chunk.filter((i) => i["@_name"] === "OutputParam") ?? [];
+	const inputAttrInputParams = filterObjByAtName(chunk, "InputParam");
+	const outputAttrOutputParams = filterObjByAtName(chunk, "OutputParam");
 
 	var inputBounds: Bound[] = [];
 	var outputBounds: Bound[] = [];
@@ -81,37 +61,25 @@ export function handleZuiIoAttrs(chunk: Record<string, any>[]) {
 
 	for (const inputParam of inputAttrInputParams) {
 		//@ts-ignore
-		const inputParamAttr = inputParam.chunks.chunk.find(
+		const inputParamAttrItems = inputParam.chunks.chunk.find(
 			(i: Record<string, unknown>) => i["@_name"] === "Attributes"
-		);
+		).items.item;
 
-		const inputParamAttrItems = inputParamAttr.items.item;
-		const bounds = inputParamAttrItems.find(
-			(i: Record<string, unknown>) => i["@_name"] === "Bounds"
-		);
-
-		const pivots = inputParamAttrItems.find(
-			(i: Record<string, unknown>) => i["@_name"] === "Pivot"
-		);
+		const bounds = findObjByAtName(inputParamAttrItems, "Bounds");
+		const pivots = findObjByAtName(inputParamAttrItems, "Pivot");
 
 		inputBounds.push(handleBounds(bounds));
 		inputPivots.push(handlePivot(pivots));
 	}
 
 	for (const outputParam of outputAttrOutputParams) {
-		//@ts-ignore
-		const outputParamAttr = outputParam.chunks.chunk.find(
-			(i: Record<string, unknown>) => i["@_name"] === "Attributes"
-		);
+		const outputParamAttrItems = findObjByAtName(
+			outputParam.chunks.chunk,
+			"Attributes"
+		).items.item;
 
-		const outputParamAttrItems = outputParamAttr.items.item;
-		const bounds = outputParamAttrItems.find(
-			(i: Record<string, unknown>) => i["@_name"] === "Bounds"
-		);
-
-		const pivots = outputParamAttrItems.find(
-			(i: Record<string, unknown>) => i["@_name"] === "Pivot"
-		);
+		const bounds = findObjByAtName(outputParamAttrItems, "Bounds");
+		const pivots = findObjByAtName(outputParamAttrItems, "Pivot");
 
 		outputBounds.push(handleBounds(bounds));
 		outputPivots.push(handlePivot(pivots));

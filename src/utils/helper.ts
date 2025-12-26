@@ -4,7 +4,7 @@ import {
 	handleZuiIoAttrs,
 	handlePivot,
 } from "./handler";
-import { Bound, CanvasPoint, InstanceIdentifier, NodeIdentifier } from "./tgh";
+import { Bound, CanvasPoint, NodeIdentifier } from "./tgh";
 
 export function getComponentBounds(obj: any): Bound {
 	const p = getComponentAttribute(obj, "Bounds");
@@ -15,13 +15,18 @@ export function getComponentPivot(obj: any): CanvasPoint {
 	return handlePivot(p);
 }
 
-function findObjByAtName(obj: any, atName: string) {
+export function findObjByAtName(obj: any, atName: string) {
 	return obj.find((i: Record<string, unknown>) => i["@_name"] === atName);
 }
 
+export function filterObjByAtName(obj: any, atName: string) {
+	return obj.filter((i: Record<string, unknown>) => i["@_name"] === atName);
+}
+
 function getComponentAttribute(obj: any, name: "Bounds" | "Pivot") {
-	const attr = obj.chunks.chunk[0].chunks.chunk.find(
-		(i: Record<string, unknown>) => i["@_name"] === "Attributes"
+	const attr = findObjByAtName(
+		obj.chunks.chunk[0].chunks.chunk,
+		"Attributes"
 	).items;
 
 	if (!attr) {
@@ -32,15 +37,12 @@ function getComponentAttribute(obj: any, name: "Bounds" | "Pivot") {
 }
 
 export function getIdentifier(obj: any): NodeIdentifier {
-	const ii: Record<string, any>[] = obj.items.item;
-	const g = ii.find((i) => i["@_name"] === "GUID")?.["#text"];
-	const n = ii.find((i) => i["@_name"] === "Name")?.["#text"];
-	const id = ii.find((i) => i["@_name"] === "Lib")?.["#text"];
+	const identifier: Record<string, any>[] = obj.items.item;
 
 	return {
-		guid: g,
-		name: n,
-		libId: id,
+		guid: findObjByAtName(identifier, "GUID")?.["#text"],
+		name: findObjByAtName(identifier, "Name")?.["#text"],
+		libId: findObjByAtName(identifier, "Lib")?.["#text"],
 	};
 }
 
@@ -76,10 +78,9 @@ function parseZuiIOs(zuiBody: any) {
 	const chunk: Record<string, any>[] = chunks.chunk;
 	const parsedAttrs = handleZuiIoAttrs(chunk);
 
-	const inputAttrItems =
-		chunk.find((i) => i["@_name"] === "InputParam")?.items.item ?? [];
+	const inputAttrItems = findObjByAtName(chunk, "InputParam")?.items.item ?? [];
 	const outputAttrItems =
-		chunk.find((i) => i["@_name"] === "OutputParam")?.items.item ?? [];
+		findObjByAtName(chunk, "OutputParam")?.items.item ?? [];
 
 	return {
 		inputParams: transformParams(inputAttrItems),
@@ -130,8 +131,7 @@ function handleStandardIOs(obj: any) {
 	for (const inputParam of inputParams) {
 		// @ts-ignore
 		const chunk = inputParam.chunks.chunk;
-		const inputParamAttr = findObjByAtName(chunk, "Attributes");
-		const inputParamAttrItems = inputParamAttr.items.item;
+		const inputParamAttrItems = findObjByAtName(chunk, "Attributes").items.item;
 		const bounds = findObjByAtName(inputParamAttrItems, "Bounds");
 		const pivots = findObjByAtName(inputParamAttrItems, "Pivot");
 
@@ -142,8 +142,8 @@ function handleStandardIOs(obj: any) {
 	for (const outputParam of outputParams) {
 		//@ts-ignore
 		const chunk = outputParam.chunks.chunk;
-		const outputParamAttr = findObjByAtName(chunk, "Attributes");
-		const outputParamAttrItems = outputParamAttr.items.item;
+		const outputParamAttrItems = findObjByAtName(chunk, "Attributes").items
+			.item;
 		const bounds = findObjByAtName(outputParamAttrItems, "Bounds");
 
 		const pivots = findObjByAtName(outputParamAttrItems, "Pivot");

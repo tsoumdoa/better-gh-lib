@@ -15,6 +15,7 @@ export function buildGhJson(xml: any) {
 	return {
 		GhVersion: `${version.major}.${version.minor}.${version.revision}`,
 		...defObjs,
-		...ghLibs,
+		ghLibs: ghLibs.descriptor,
+		isAllVanilla: ghLibs.isAllVanilla,
 	};
 }
