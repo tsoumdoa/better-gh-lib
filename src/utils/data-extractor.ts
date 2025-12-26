@@ -12,6 +12,7 @@ import {
 	InstanceIdentifier,
 	NodeIdentifier,
 } from "./tgh";
+import { findObjByAtName } from "./helper";
 
 export const SchemaNames = [
 	"Docum:ntHeader", // not so important
@@ -100,14 +101,11 @@ export function getGhaLibraryDescriptors(ghJson: any) {
 	const ghaLibs = getMainChunkObj(ghJson, "GHALibraries");
 
 	for (const ghaLib of ghaLibs.main) {
-		//@ts-ignore
-		const author = ghaLib.items.item.find((i) => i["@_name"] === "Author");
-		//@ts-ignore
-		const name = ghaLib.items.item.find((i) => i["@_name"] === "Name");
-		//@ts-ignore
-		const version = ghaLib.items.item.find((i) => i["@_name"] === "Version");
-		//@ts-ignore
-		const ghaLibId = ghaLib.items.item.find((i) => i["@_name"] === "Id");
+		const item = ghaLib.items.item;
+		const author = findObjByAtName(item, "Author");
+		const name = findObjByAtName(item, "Name");
+		const version = findObjByAtName(item, "Version");
+		const ghaLibId = findObjByAtName(item, "Id");
 
 		const n = name?.["#text"] ?? "";
 
@@ -122,7 +120,6 @@ export function getGhaLibraryDescriptors(ghJson: any) {
 	}
 
 	return {
-		// ghaLibs: ghaLibs,
 		descriptor: descs,
 		isAllVanilla: descs.length === 0,
 	};

@@ -37,15 +37,12 @@ function getComponentAttribute(obj: any, name: "Bounds" | "Pivot") {
 }
 
 export function getIdentifier(obj: any): NodeIdentifier {
-	const ii: Record<string, any>[] = obj.items.item;
-	const g = findObjByAtName(ii, "GUID")?.["#text"];
-	const n = findObjByAtName(ii, "Name")?.["#text"];
-	const id = findObjByAtName(ii, "Lib")?.["#text"];
+	const identifier: Record<string, any>[] = obj.items.item;
 
 	return {
-		guid: g,
-		name: n,
-		libId: id,
+		guid: findObjByAtName(identifier, "GUID")?.["#text"],
+		name: findObjByAtName(identifier, "Name")?.["#text"],
+		libId: findObjByAtName(identifier, "Lib")?.["#text"],
 	};
 }
 
@@ -134,8 +131,7 @@ function handleStandardIOs(obj: any) {
 	for (const inputParam of inputParams) {
 		// @ts-ignore
 		const chunk = inputParam.chunks.chunk;
-		const inputParamAttr = findObjByAtName(chunk, "Attributes");
-		const inputParamAttrItems = inputParamAttr.items.item;
+		const inputParamAttrItems = findObjByAtName(chunk, "Attributes").items.item;
 		const bounds = findObjByAtName(inputParamAttrItems, "Bounds");
 		const pivots = findObjByAtName(inputParamAttrItems, "Pivot");
 
@@ -146,8 +142,8 @@ function handleStandardIOs(obj: any) {
 	for (const outputParam of outputParams) {
 		//@ts-ignore
 		const chunk = outputParam.chunks.chunk;
-		const outputParamAttr = findObjByAtName(chunk, "Attributes");
-		const outputParamAttrItems = outputParamAttr.items.item;
+		const outputParamAttrItems = findObjByAtName(chunk, "Attributes").items
+			.item;
 		const bounds = findObjByAtName(outputParamAttrItems, "Bounds");
 
 		const pivots = findObjByAtName(outputParamAttrItems, "Pivot");
