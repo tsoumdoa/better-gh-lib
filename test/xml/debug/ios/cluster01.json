@@ -1,0 +1,72 @@
+[
+  {
+    "params": {
+      "inputParams": {
+        "Description": "Base curve",
+        "InstanceGuid": "7ceab4f4-4e3e-4307-916a-1005ea0916ac",
+        "Name": "Curve",
+        "NickName": "C",
+        "Optional": true,
+        "SourceCount": 0
+      },
+      "outputParams": {
+        "Access": 1,
+        "Description": "Resulting Pipe",
+        "InstanceGuid": "fce0e3c4-87d5-4c7a-842e-95c08a921e86",
+        "Name": "Pipe",
+        "NickName": "P",
+        "Optional": false,
+        "SourceCount": 0
+      }
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 271,
+          "y": 185,
+          "width": 10,
+          "height": 50
+        }
+      ],
+      "output": [
+        {
+          "x": 311,
+          "y": 185,
+          "width": 12,
+          "height": 50
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 277.5,
+          "y": 210
+        }
+      ],
+      "output": [
+        {
+          "x": 317,
+          "y": 210
+        }
+      ]
+    },
+    "zuiDescriptor": {
+      "inputCount": 1,
+      "outputCount": 1,
+      "inputIdentifiers": [
+        {
+          "guid": "d5967b9f-e8ee-436b-a8ad-29fdcecf32d5",
+          "typeCode": 9
+        }
+      ],
+      "outputIdentifiers": [
+        {
+          "guid": "919e146f-30ae-4aae-be34-4d72f555e7da",
+          "typeCode": 9
+        }
+      ]
+    },
+    "isZui": true
+  }
+]

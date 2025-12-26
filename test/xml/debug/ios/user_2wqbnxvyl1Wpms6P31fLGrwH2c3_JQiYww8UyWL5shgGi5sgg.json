@@ -1,0 +1,290 @@
+[
+  {
+    "params": {
+      "inputParams": [],
+      "outputParams": []
+    },
+    "bounds": {
+      "input": [],
+      "output": []
+    },
+    "pivots": {
+      "input": [],
+      "output": []
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [
+        {
+          "Description": "Point in the middle of the curve",
+          "InstanceGuid": "af54ded6-6ace-4fd3-9a60-9a0f28d7f482",
+          "Name": "Midpoint",
+          "NickName": "M",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Description": "Curve for mid-point.",
+          "InstanceGuid": "7e75b165-9b72-4053-b391-3b9d5cc5cb0f",
+          "Name": "Curve",
+          "NickName": "C",
+          "Optional": false,
+          "Source": [
+            "1d6217a3-3d5c-45f6-bac5-441c742698f3"
+          ],
+          "SourceCount": 1
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 1233,
+          "y": 624,
+          "width": 20,
+          "height": 49
+        }
+      ],
+      "output": [
+        {
+          "x": 1189,
+          "y": 624,
+          "width": 14,
+          "height": 49
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 1243,
+          "y": 648.5
+        }
+      ],
+      "output": [
+        {
+          "x": 1197.5,
+          "y": 648.5
+        }
+      ]
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": {
+        "Access": 1,
+        "Description": "List of sortable keys",
+        "InstanceGuid": "8786a6c5-6a48-4217-bbe5-5eb53e9b7c26",
+        "Name": "Keys",
+        "NickName": "K",
+        "Optional": false,
+        "Source": [
+          "1d6217a3-3d5c-45f6-bac5-441c742698f3"
+        ],
+        "SourceCount": 1
+      },
+      "outputParams": {
+        "Access": 1,
+        "Description": "Sorted keys",
+        "InstanceGuid": "deb559f5-a8e0-4c28-99c0-d9bffadd62f5",
+        "Name": "Keys",
+        "NickName": "K",
+        "Optional": false,
+        "SourceCount": 0
+      }
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 1373,
+          "y": 590,
+          "width": 14,
+          "height": 20
+        },
+        {
+          "x": 1373,
+          "y": 610,
+          "width": 14,
+          "height": 20
+        }
+      ],
+      "output": [
+        {
+          "x": 1417,
+          "y": 590,
+          "width": 17,
+          "height": 20
+        },
+        {
+          "x": 1417,
+          "y": 610,
+          "width": 17,
+          "height": 20
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 1381.5,
+          "y": 600
+        },
+        {
+          "x": 1381.5,
+          "y": 620
+        }
+      ],
+      "output": [
+        {
+          "x": 1425.5,
+          "y": 600
+        },
+        {
+          "x": 1425.5,
+          "y": 620
+        }
+      ]
+    },
+    "zuiDescriptor": {
+      "inputCount": 2,
+      "outputCount": 2,
+      "inputIdentifiers": [
+        {
+          "guid": "3e8ca6be-fda8-4aaf-b5c0-3c54c8bb7312",
+          "typeCode": 9
+        },
+        {
+          "guid": "8ec86459-bf01-4409-baee-174d0d2b13d0",
+          "typeCode": 9
+        }
+      ],
+      "outputIdentifiers": [
+        {
+          "guid": "3e8ca6be-fda8-4aaf-b5c0-3c54c8bb7312",
+          "typeCode": 9
+        },
+        {
+          "guid": "8ec86459-bf01-4409-baee-174d0d2b13d0",
+          "typeCode": 9
+        }
+      ]
+    },
+    "isZui": true
+  },
+  {
+    "params": {
+      "inputParams": [
+        {
+          "Description": "Point {x} component",
+          "InstanceGuid": "e02f9069-e9c8-40be-a43c-564915a5eecd",
+          "Name": "X component",
+          "NickName": "X",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "Point {y} component",
+          "InstanceGuid": "bb088fd7-8051-4973-9b66-04f726a121ba",
+          "Name": "Y component",
+          "NickName": "Y",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "Point {z} component",
+          "InstanceGuid": "80f2a282-5182-4437-9ee3-601e75a9b1b4",
+          "Name": "Z component",
+          "NickName": "Z",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Description": "Input point",
+          "InstanceGuid": "6c2ef317-0c4c-418c-a9bc-76367a5c6071",
+          "Name": "Point",
+          "NickName": "P",
+          "Optional": false,
+          "Source": [
+            "af54ded6-6ace-4fd3-9a60-9a0f28d7f482"
+          ],
+          "SourceCount": 1
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 1317,
+          "y": 618,
+          "width": 17,
+          "height": 20
+        },
+        {
+          "x": 1317,
+          "y": 638,
+          "width": 17,
+          "height": 20
+        },
+        {
+          "x": 1317,
+          "y": 658,
+          "width": 17,
+          "height": 20
+        }
+      ],
+      "output": [
+        {
+          "x": 1274,
+          "y": 618,
+          "width": 13,
+          "height": 60
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 1325.5,
+          "y": 628
+        },
+        {
+          "x": 1325.5,
+          "y": 648
+        },
+        {
+          "x": 1325.5,
+          "y": 668
+        }
+      ],
+      "output": [
+        {
+          "x": 1282,
+          "y": 648
+        }
+      ]
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [],
+      "outputParams": []
+    },
+    "bounds": {
+      "input": [],
+      "output": []
+    },
+    "pivots": {
+      "input": [],
+      "output": []
+    },
+    "isZui": false
+  }
+]

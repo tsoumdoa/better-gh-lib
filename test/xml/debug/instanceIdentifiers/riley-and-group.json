@@ -1,0 +1,26 @@
+[
+  {
+    "Description": "Contains a collection of text fragments",
+    "InstanceGuid": "4ace14e7-ca10-4c26-9e9a-1173d6209825",
+    "Name": "Text",
+    "NickName": "Txt",
+    "Optional": false,
+    "SourceCount": 0
+  },
+  {
+    "Description": "Contains a collection of text fragments",
+    "InstanceGuid": "1c838281-9ec0-44ea-b38e-fc4a824ff16a",
+    "Name": "Text",
+    "NickName": "Txt",
+    "Optional": false,
+    "SourceCount": 0
+  },
+  {
+    "Border": 1,
+    "Description": "A group of Grasshopper objects",
+    "ID": "1c838281-9ec0-44ea-b38e-fc4a824ff16a",
+    "ID_Count": 2,
+    "InstanceGuid": "fdb8d076-27ce-466d-91f0-e416f0979473",
+    "Name": "Group"
+  }
+]

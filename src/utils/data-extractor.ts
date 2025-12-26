@@ -1,9 +1,8 @@
 import {
-	getBounds,
+	getComponentBounds,
 	getIdentifier,
 	getInstanceIdentifier,
-	getInterfaceDescriptor,
-	getPivot,
+	getComponentPivot,
 	parseIOs,
 } from "./helper";
 import {
@@ -11,7 +10,6 @@ import {
 	CanvasPoint,
 	GhaLibDiscripor,
 	InstanceIdentifier,
-	InterfaceDescriptor,
 	NodeIdentifier,
 } from "./tgh";
 
@@ -64,7 +62,7 @@ export function getMainChunkObj(ghJson: any, chunkObjName: SchemaNameLiteral) {
  * @property {number} count - The total number of components (componentCount).
  *
  */
-export function getDefinitionObject(ghJson: any) {
+export function getDefObj(ghJson: any) {
 	const defObj = getMainChunkObj(ghJson, "DefinitionObjects");
 	const componenentCount = defObj.count;
 
@@ -72,30 +70,30 @@ export function getDefinitionObject(ghJson: any) {
 	const bounds: Bound[] = [];
 	const pivots: CanvasPoint[] = [];
 	const instanceIdentifiers: InstanceIdentifier[] = [];
-	const interfaceDescriptors: InterfaceDescriptor[] = [];
 	const ios: any[] = [];
 
 	for (const obj of defObj.main) {
 		identifiers.push(getIdentifier(obj));
-		bounds.push(getBounds(obj));
-		pivots.push(getPivot(obj));
-		instanceIdentifiers.push(getInstanceIdentifier(obj));
-		interfaceDescriptors.push(getInterfaceDescriptor(obj));
+		bounds.push(getComponentBounds(obj));
+		pivots.push(getComponentPivot(obj));
+		instanceIdentifiers.push(getInstanceIdentifier(obj) as any);
 		ios.push(parseIOs(obj));
 	}
+	const allGuids = identifiers.map((c) => c.guid);
+	const uniqueGuids = new Set(allGuids);
+	const uniqueCount = uniqueGuids.size;
 
 	return {
-		defObj: defObj,
 		componenentCount: componenentCount,
+		uniqueCount: uniqueCount,
 		identifiers: identifiers,
 		pivots: pivots,
 		bounds: bounds,
 		instanceIdentifiers: instanceIdentifiers,
-		interfaceDescriptors: interfaceDescriptors,
 		ios: ios,
 	};
 }
-export type DefinitionObjectResult = ReturnType<typeof getDefinitionObject>;
+export type DefinitionObjectResult = ReturnType<typeof getDefObj>;
 
 export function getGhaLibraryDescriptors(ghJson: any) {
 	const descs: GhaLibDiscripor[] = [];
@@ -126,7 +124,7 @@ export function getGhaLibraryDescriptors(ghJson: any) {
 	return {
 		ghaLibs: ghaLibs,
 		descriptor: descs,
-		isAlltanilla: descs.length === 0,
+		isAllVanilla: descs.length === 0,
 	};
 }
 export type GhaLibraryDescriptorsResult = ReturnType<

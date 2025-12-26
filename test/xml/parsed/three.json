@@ -1,0 +1,569 @@
+{
+  "GhVersion": "0.2.2",
+  "componenentCount": 3,
+  "uniqueCount": 3,
+  "identifiers": [
+    {
+      "guid": "00c2fe26-2082-44e4-a4ff-9460e8cecbd2",
+      "name": "Query Model Environments"
+    },
+    {
+      "guid": "0b3b7956-f88b-4ca3-99f6-b6508a8dac3f",
+      "name": "Support"
+    },
+    {
+      "guid": "14cf43b6-5eb9-460f-899c-bdece732213a",
+      "name": "Blend Curve Pt"
+    }
+  ],
+  "pivots": [
+    {
+      "x": 355,
+      "y": 92
+    },
+    {
+      "x": 355,
+      "y": 172
+    },
+    {
+      "x": 355,
+      "y": 252
+    }
+  ],
+  "bounds": [
+    {
+      "x": 312,
+      "y": 46,
+      "width": 72,
+      "height": 92
+    },
+    {
+      "x": 294,
+      "y": 80,
+      "width": 90,
+      "height": 184
+    },
+    {
+      "x": 328,
+      "y": 210,
+      "width": 56,
+      "height": 84
+    }
+  ],
+  "instanceIdentifiers": [
+    {
+      "AutoUpdateState": true,
+      "Description": "Query a Rhino document for all available render environments",
+      "Hidden": true,
+      "InstanceGuid": "e6e6637e-b1aa-4e4d-853d-b665fe5b295f",
+      "Name": "Query Model Environments",
+      "NickName": "Environments",
+      "VariableParameterScheme": "IOComponents, Version=8.19.25132.1002"
+    },
+    {
+      "Description": "Set support conditions for a beam end or rigid body",
+      "Hidden": true,
+      "InstanceGuid": "d6945b3c-d4f7-4877-831f-592ffe224eb7",
+      "Name": "Support",
+      "NickName": "Support"
+    },
+    {
+      "Description": "Create a blend curve between two curves that intersects a point.",
+      "Hidden": true,
+      "InstanceGuid": "3b59e3a7-bd7d-45a3-95d0-5979573cac74",
+      "Name": "Blend Curve Pt",
+      "NickName": "BlendCPt"
+    }
+  ],
+  "ios": [
+    {
+      "params": {
+        "inputParams": {
+          "ComparisonMode": 1,
+          "Description": "Name filter. Right-click on this parameter to set the matching method.",
+          "InstanceGuid": "9f8d333f-fde4-4289-aa02-5817f254f618",
+          "Name": "Name",
+          "NickName": "N",
+          "Optional": true,
+          "SourceCount": 0
+        },
+        "outputParams": {
+          "Access": 1,
+          "Description": "The resultant list of available environments in the model.",
+          "InstanceGuid": "ab2fb9dc-2112-499a-a0c8-59dfced848c5",
+          "Name": "Environments",
+          "NickName": "E",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      },
+      "bounds": {
+        "input": [
+          {
+            "x": 314,
+            "y": 48,
+            "width": 26,
+            "height": 88
+          }
+        ],
+        "output": [
+          {
+            "x": 370,
+            "y": 48,
+            "width": 12,
+            "height": 88
+          }
+        ]
+      },
+      "pivots": {
+        "input": [
+          {
+            "x": 336.5,
+            "y": 92
+          }
+        ],
+        "output": [
+          {
+            "x": 376,
+            "y": 92
+          }
+        ]
+      },
+      "zuiDescriptor": {
+        "inputCount": 1,
+        "outputCount": 1,
+        "inputIdentifiers": [
+          {
+            "guid": "d0abb9f4-6c6b-47d3-993b-58507ed13071",
+            "typeCode": 9
+          }
+        ],
+        "outputIdentifiers": [
+          {
+            "guid": "f0de0cc5-4178-4f6d-b804-cc1c4c8c8f1a",
+            "typeCode": 9
+          }
+        ]
+      },
+      "isZui": true
+    },
+    {
+      "params": {
+        "inputParams": [
+          {
+            "Description": "S",
+            "InstanceGuid": "443989f6-b00d-4611-93f6-fde775d87c41",
+            "Name": "Support",
+            "NickName": "S",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "outputParams": [
+          {
+            "Description": "The plane to restrain",
+            "InstanceGuid": "7d5525c1-e9ec-4eb5-9a7f-a667615c093f",
+            "Name": "Frame",
+            "NickName": "Frame",
+            "Optional": true,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Target plane. If none supplied, the initial Frame will be used",
+            "InstanceGuid": "c2f059a0-91bf-4b54-ad62-80140efe3f6c",
+            "Name": "Target",
+            "NickName": "Target",
+            "Optional": true,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Translation in X",
+            "InstanceGuid": "1fa8e8f9-4df0-4b09-8170-7d916f0d3339",
+            "Name": "X",
+            "NickName": "X",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Translation in Y",
+            "InstanceGuid": "e7fe98ac-4d52-4720-bee5-bf65a0d53d78",
+            "Name": "Y",
+            "NickName": "Y",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Translation in Z",
+            "InstanceGuid": "edb67d55-12e1-4658-863d-cb9b425822a0",
+            "Name": "Z",
+            "NickName": "Z",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Rotation about X",
+            "InstanceGuid": "6af95085-488f-4388-9be2-681080eff6d9",
+            "Name": "XX",
+            "NickName": "XX",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Rotation about Y",
+            "InstanceGuid": "a6d9da13-d0f1-4717-8a21-3a54ee8fae1f",
+            "Name": "YY",
+            "NickName": "YY",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Rotation about Z",
+            "InstanceGuid": "c80bd40d-d113-48eb-9499-b320bd61cf7c",
+            "Name": "ZZ",
+            "NickName": "ZZ",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Strength",
+            "InstanceGuid": "064048a0-11a1-4023-a813-ad498838aa31",
+            "Name": "Strength",
+            "NickName": "Strength",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ]
+      },
+      "bounds": {
+        "input": [
+          {
+            "x": 370,
+            "y": 82,
+            "width": 12,
+            "height": 180
+          }
+        ],
+        "output": [
+          {
+            "x": 296,
+            "y": 82,
+            "width": 44,
+            "height": 20
+          },
+          {
+            "x": 296,
+            "y": 102,
+            "width": 44,
+            "height": 20
+          },
+          {
+            "x": 296,
+            "y": 122,
+            "width": 44,
+            "height": 20
+          },
+          {
+            "x": 296,
+            "y": 142,
+            "width": 44,
+            "height": 20
+          },
+          {
+            "x": 296,
+            "y": 162,
+            "width": 44,
+            "height": 20
+          },
+          {
+            "x": 296,
+            "y": 182,
+            "width": 44,
+            "height": 20
+          },
+          {
+            "x": 296,
+            "y": 202,
+            "width": 44,
+            "height": 20
+          },
+          {
+            "x": 296,
+            "y": 222,
+            "width": 44,
+            "height": 20
+          },
+          {
+            "x": 296,
+            "y": 242,
+            "width": 44,
+            "height": 20
+          }
+        ]
+      },
+      "pivots": {
+        "input": [
+          {
+            "x": 376,
+            "y": 172
+          }
+        ],
+        "output": [
+          {
+            "x": 319.5,
+            "y": 92
+          },
+          {
+            "x": 319.5,
+            "y": 112
+          },
+          {
+            "x": 319.5,
+            "y": 132
+          },
+          {
+            "x": 319.5,
+            "y": 152
+          },
+          {
+            "x": 319.5,
+            "y": 172
+          },
+          {
+            "x": 319.5,
+            "y": 192
+          },
+          {
+            "x": 319.5,
+            "y": 212
+          },
+          {
+            "x": 319.5,
+            "y": 232
+          },
+          {
+            "x": 319.5,
+            "y": 252
+          }
+        ]
+      },
+      "isZui": false
+    },
+    {
+      "params": {
+        "inputParams": [
+          {
+            "Description": "Blend curve connecting the end of A to the start of B, ideally coincident with P",
+            "InstanceGuid": "b9ba030a-a04b-425e-9236-6e90b3508b0e",
+            "Name": "Blend",
+            "NickName": "B",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "outputParams": [
+          {
+            "Description": "First curve for blend",
+            "InstanceGuid": "76885245-4126-4ab2-a533-d53f471a89c1",
+            "Name": "Curve A",
+            "NickName": "A",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Second curve for blend",
+            "InstanceGuid": "0520f3f4-f580-4b7a-9d85-8e0f14594f82",
+            "Name": "Curve B",
+            "NickName": "B",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Point for blend intersection",
+            "InstanceGuid": "b6850a10-7dc2-4d74-ae9c-0e1111aee6e7",
+            "Name": "Point",
+            "NickName": "P",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Continuity of blend (1=tangency, 2=curvature)",
+            "InstanceGuid": "71e228ce-328a-473e-887c-51b80e5e583b",
+            "Name": "Continuity",
+            "NickName": "C",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ]
+      },
+      "bounds": {
+        "input": [
+          {
+            "x": 370,
+            "y": 212,
+            "width": 12,
+            "height": 80
+          }
+        ],
+        "output": [
+          {
+            "x": 330,
+            "y": 212,
+            "width": 10,
+            "height": 20
+          },
+          {
+            "x": 330,
+            "y": 232,
+            "width": 10,
+            "height": 20
+          },
+          {
+            "x": 330,
+            "y": 252,
+            "width": 10,
+            "height": 20
+          },
+          {
+            "x": 330,
+            "y": 272,
+            "width": 10,
+            "height": 20
+          }
+        ]
+      },
+      "pivots": {
+        "input": [
+          {
+            "x": 376,
+            "y": 252
+          }
+        ],
+        "output": [
+          {
+            "x": 336.5,
+            "y": 222
+          },
+          {
+            "x": 336.5,
+            "y": 242
+          },
+          {
+            "x": 336.5,
+            "y": 262
+          },
+          {
+            "x": 336.5,
+            "y": 282
+          }
+        ]
+      },
+      "isZui": false
+    }
+  ],
+  "ghaLibs": {
+    "main": [
+      {
+        "items": {
+          "item": [
+            {
+              "#text": "Robert McNeel & Associates",
+              "@_name": "Author",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "00000000-0000-0000-0000-000000000000",
+              "@_name": "Id",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": "Grasshopper",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "8.19.25132.1002",
+              "@_name": "Version",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            }
+          ],
+          "@_count": 4
+        },
+        "@_name": "Library",
+        "@_index": 0
+      },
+      {
+        "items": {
+          "item": [
+            {
+              "#text": "Robert McNeel & Associates",
+              "@_name": "Author",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "00000000-0000-0000-0000-000000000000",
+              "@_name": "Id",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": "Grasshopper",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "8.19.25132.1002",
+              "@_name": "Version",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            }
+          ],
+          "@_count": 4
+        },
+        "@_name": "Library",
+        "@_index": 1
+      },
+      {
+        "items": {
+          "item": [
+            {
+              "#text": "Robert McNeel & Associates",
+              "@_name": "Author",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "00000000-0000-0000-0000-000000000000",
+              "@_name": "Id",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": "Grasshopper",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "8.19.25132.1002",
+              "@_name": "Version",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            }
+          ],
+          "@_count": 4
+        },
+        "@_name": "Library",
+        "@_index": 2
+      }
+    ],
+    "count": 3
+  },
+  "descriptor": [],
+  "isAllVanilla": true
+}

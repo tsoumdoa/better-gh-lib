@@ -1,0 +1,61 @@
+[
+  {
+    "params": {
+      "inputParams": {},
+      "outputParams": {
+        "Description": "The execution information, as output and error streams",
+        "InstanceGuid": "6751fa3c-62ca-4668-8bd8-303f4876bb82",
+        "Name": "out",
+        "NickName": "out",
+        "Optional": false,
+        "SourceCount": 0
+      }
+    },
+    "bounds": {
+      "input": [],
+      "output": [
+        {
+          "x": 333,
+          "y": -14,
+          "width": 26,
+          "height": 87
+        },
+        {
+          "x": 333,
+          "y": 73,
+          "width": 26,
+          "height": 88
+        }
+      ]
+    },
+    "pivots": {
+      "input": [],
+      "output": [
+        {
+          "x": 346,
+          "y": 29.75
+        },
+        {
+          "x": 346,
+          "y": 117.25
+        }
+      ]
+    },
+    "zuiDescriptor": {
+      "inputCount": 0,
+      "outputCount": 2,
+      "inputIdentifiers": [],
+      "outputIdentifiers": [
+        {
+          "guid": "3ede854e-c753-40eb-84cb-b48008f14fd4",
+          "typeCode": 9
+        },
+        {
+          "guid": "08908df5-fa14-4982-9ab2-1aa0927566aa",
+          "typeCode": 9
+        }
+      ]
+    },
+    "isZui": true
+  }
+]

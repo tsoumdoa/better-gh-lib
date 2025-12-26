@@ -1,0 +1,113 @@
+[
+  {
+    "params": {
+      "inputParams": [
+        {
+          "Description": "Morphed\n\t\t\t\t\t\t\t\t\t\t\t\t\tgeometry",
+          "InstanceGuid": "88df00e9-bbe8-400c-9b04-4d95989652cf",
+          "Name": "Geometry",
+          "NickName": "G",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Description": "Base geometry",
+          "InstanceGuid": "ecc215b9-b681-47eb-b429-46acd0f1a307",
+          "Name": "Geometry",
+          "NickName": "G",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "Stretch axis",
+          "InstanceGuid": "ab785ca2-40dd-406d-b273-8d305e2bde62",
+          "Name": "Axis",
+          "NickName": "X",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "Length of new\n\t\t\t\t\t\t\t\t\t\t\t\t\tstretch axis.",
+          "InstanceGuid": "d42666ce-7057-4377-a5aa-1144e4fd35ab",
+          "Name": "Length",
+          "NickName": "L",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "Geometry will\n\t\t\t\t\t\t\t\t\t\t\t\t\tnot be deformed as it is transformed",
+          "InstanceGuid": "d8e21bf4-f6f5-437c-a05a-370824577c9f",
+          "Name": "Rigid",
+          "NickName": "R",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 406,
+          "y": 200,
+          "width": 13,
+          "height": 80
+        }
+      ],
+      "output": [
+        {
+          "x": 366,
+          "y": 200,
+          "width": 10,
+          "height": 20
+        },
+        {
+          "x": 366,
+          "y": 220,
+          "width": 10,
+          "height": 20
+        },
+        {
+          "x": 366,
+          "y": 240,
+          "width": 10,
+          "height": 20
+        },
+        {
+          "x": 366,
+          "y": 260,
+          "width": 10,
+          "height": 20
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 412.5,
+          "y": 240
+        }
+      ],
+      "output": [
+        {
+          "x": 372.5,
+          "y": 210
+        },
+        {
+          "x": 372.5,
+          "y": 230
+        },
+        {
+          "x": 372.5,
+          "y": 250
+        },
+        {
+          "x": 372.5,
+          "y": 270
+        }
+      ]
+    },
+    "isZui": false
+  }
+]

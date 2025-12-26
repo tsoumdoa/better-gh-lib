@@ -1,0 +1,166 @@
+{
+  "GhVersion": "0.2.2",
+  "componenentCount": 3,
+  "uniqueCount": 2,
+  "identifiers": [
+    {
+      "guid": "3ede854e-c753-40eb-84cb-b48008f14fd4",
+      "name": "Text"
+    },
+    {
+      "guid": "3ede854e-c753-40eb-84cb-b48008f14fd4",
+      "name": "Text"
+    },
+    {
+      "guid": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
+      "name": "Group"
+    }
+  ],
+  "pivots": [
+    {
+      "x": 233,
+      "y": 241
+    },
+    {
+      "x": 433,
+      "y": 280
+    },
+    {
+      "x": -1,
+      "y": -1
+    }
+  ],
+  "bounds": [
+    {
+      "x": 208,
+      "y": 231,
+      "width": 50,
+      "height": 20
+    },
+    {
+      "x": 408,
+      "y": 270,
+      "width": 50,
+      "height": 20
+    },
+    {
+      "x": -1,
+      "y": -1,
+      "width": -1,
+      "height": -1
+    }
+  ],
+  "instanceIdentifiers": [
+    {
+      "Description": "Contains a collection of text fragments",
+      "InstanceGuid": "4ace14e7-ca10-4c26-9e9a-1173d6209825",
+      "Name": "Text",
+      "NickName": "Txt",
+      "Optional": false,
+      "SourceCount": 0
+    },
+    {
+      "Description": "Contains a collection of text fragments",
+      "InstanceGuid": "1c838281-9ec0-44ea-b38e-fc4a824ff16a",
+      "Name": "Text",
+      "NickName": "Txt",
+      "Optional": false,
+      "SourceCount": 0
+    },
+    {
+      "Border": 1,
+      "Description": "A group of Grasshopper objects",
+      "ID": "1c838281-9ec0-44ea-b38e-fc4a824ff16a",
+      "ID_Count": 2,
+      "InstanceGuid": "fdb8d076-27ce-466d-91f0-e416f0979473",
+      "Name": "Group"
+    }
+  ],
+  "ios": [
+    {
+      "params": {
+        "inputParams": [],
+        "outputParams": []
+      },
+      "bounds": {
+        "input": [],
+        "output": []
+      },
+      "pivots": {
+        "input": [],
+        "output": []
+      },
+      "isZui": false
+    },
+    {
+      "params": {
+        "inputParams": [],
+        "outputParams": []
+      },
+      "bounds": {
+        "input": [],
+        "output": []
+      },
+      "pivots": {
+        "input": [],
+        "output": []
+      },
+      "isZui": false
+    },
+    {
+      "params": {
+        "inputParams": [],
+        "outputParams": []
+      },
+      "bounds": {
+        "input": [],
+        "output": []
+      },
+      "pivots": {
+        "input": [],
+        "output": []
+      },
+      "isZui": false
+    }
+  ],
+  "ghaLibs": {
+    "main": [
+      {
+        "items": {
+          "item": [
+            {
+              "#text": "Robert McNeel & Associates",
+              "@_name": "Author",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "00000000-0000-0000-0000-000000000000",
+              "@_name": "Id",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": "Grasshopper",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "8.26.25349.19002",
+              "@_name": "Version",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            }
+          ],
+          "@_count": 4
+        },
+        "@_name": "Library",
+        "@_index": 0
+      }
+    ],
+    "count": 1
+  },
+  "descriptor": [],
+  "isAllVanilla": true
+}

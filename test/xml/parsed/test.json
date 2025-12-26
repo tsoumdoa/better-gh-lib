@@ -1,0 +1,93 @@
+{
+  "GhVersion": "0.2.2",
+  "componenentCount": 1,
+  "uniqueCount": 1,
+  "identifiers": [
+    {
+      "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+      "name": "Panel"
+    }
+  ],
+  "pivots": [
+    {
+      "x": 487.99176,
+      "y": 143.4917
+    }
+  ],
+  "bounds": [
+    {
+      "x": 487,
+      "y": 143,
+      "width": 160,
+      "height": 100
+    }
+  ],
+  "instanceIdentifiers": [
+    {
+      "Description": "A panel for custom notes and text values",
+      "InstanceGuid": "fbb386c0-7f2a-474b-b0a2-18df7a0ff03f",
+      "Name": "Panel",
+      "Optional": false,
+      "ScrollRatio": 0,
+      "SourceCount": 0,
+      "UserText": "fa"
+    }
+  ],
+  "ios": [
+    {
+      "params": {
+        "inputParams": [],
+        "outputParams": []
+      },
+      "bounds": {
+        "input": [],
+        "output": []
+      },
+      "pivots": {
+        "input": [],
+        "output": []
+      },
+      "isZui": false
+    }
+  ],
+  "ghaLibs": {
+    "main": [
+      {
+        "items": {
+          "item": [
+            {
+              "#text": "Robert McNeel & Associates",
+              "@_name": "Author",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "00000000-0000-0000-0000-000000000000",
+              "@_name": "Id",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": "Grasshopper",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "8.15.25019.13002",
+              "@_name": "Version",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            }
+          ],
+          "@_count": 4
+        },
+        "@_name": "Library",
+        "@_index": 0
+      }
+    ],
+    "count": 1
+  },
+  "descriptor": [],
+  "isAllVanilla": true
+}

@@ -1,0 +1,13 @@
+[
+  {
+    "Description": "Contains a collection of three-dimensional axis-systems",
+    "InstanceGuid": "f51d7cfb-c27f-4610-ab5f-2d27a00ebd30",
+    "Name": "Plane",
+    "NickName": "Pln",
+    "Optional": false,
+    "Source": [
+      "7100986d-a381-44a7-a723-933eb8b98fd3"
+    ],
+    "SourceCount": 1
+  }
+]

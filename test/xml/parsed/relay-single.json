@@ -1,0 +1,95 @@
+{
+  "GhVersion": "0.2.2",
+  "componenentCount": 1,
+  "uniqueCount": 1,
+  "identifiers": [
+    {
+      "guid": "4f8984c4-7c7a-4d69-b0a2-183cbb330d20",
+      "name": "Plane"
+    }
+  ],
+  "pivots": [
+    {
+      "x": 153,
+      "y": 148
+    }
+  ],
+  "bounds": [
+    {
+      "x": 128,
+      "y": 138,
+      "width": 50,
+      "height": 20
+    }
+  ],
+  "instanceIdentifiers": [
+    {
+      "Description": "Contains a collection of three-dimensional axis-systems",
+      "InstanceGuid": "f51d7cfb-c27f-4610-ab5f-2d27a00ebd30",
+      "Name": "Plane",
+      "NickName": "Pln",
+      "Optional": false,
+      "Source": [
+        "7100986d-a381-44a7-a723-933eb8b98fd3"
+      ],
+      "SourceCount": 1
+    }
+  ],
+  "ios": [
+    {
+      "params": {
+        "inputParams": [],
+        "outputParams": []
+      },
+      "bounds": {
+        "input": [],
+        "output": []
+      },
+      "pivots": {
+        "input": [],
+        "output": []
+      },
+      "isZui": false
+    }
+  ],
+  "ghaLibs": {
+    "main": [
+      {
+        "items": {
+          "item": [
+            {
+              "#text": "Robert McNeel & Associates",
+              "@_name": "Author",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "00000000-0000-0000-0000-000000000000",
+              "@_name": "Id",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": "Grasshopper",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "8.19.25132.1002",
+              "@_name": "Version",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            }
+          ],
+          "@_count": 4
+        },
+        "@_name": "Library",
+        "@_index": 0
+      }
+    ],
+    "count": 1
+  },
+  "descriptor": [],
+  "isAllVanilla": true
+}

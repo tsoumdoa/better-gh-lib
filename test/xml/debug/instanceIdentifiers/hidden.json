@@ -1,0 +1,9 @@
+[
+  {
+    "Description": "Deforms objects by\n\t\t\t\t\t\t\t\t\t\t\tstretching them along a finite axis.",
+    "Hidden": true,
+    "InstanceGuid": "ef64a7fd-a71d-4000-9ed5-8dbff36770a8",
+    "Name": "Stretch",
+    "NickName": "Stretch"
+  }
+]

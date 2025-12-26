@@ -1,0 +1,25 @@
+[
+  {
+    "AutoUpdateState": true,
+    "Description": "Query a Rhino document for all available render environments",
+    "Hidden": true,
+    "InstanceGuid": "e6e6637e-b1aa-4e4d-853d-b665fe5b295f",
+    "Name": "Query Model Environments",
+    "NickName": "Environments",
+    "VariableParameterScheme": "IOComponents, Version=8.19.25132.1002"
+  },
+  {
+    "Description": "Set support conditions for a beam end or rigid body",
+    "Hidden": true,
+    "InstanceGuid": "d6945b3c-d4f7-4877-831f-592ffe224eb7",
+    "Name": "Support",
+    "NickName": "Support"
+  },
+  {
+    "Description": "Create a blend curve between two curves that intersects a point.",
+    "Hidden": true,
+    "InstanceGuid": "3b59e3a7-bd7d-45a3-95d0-5979573cac74",
+    "Name": "Blend Curve Pt",
+    "NickName": "BlendCPt"
+  }
+]

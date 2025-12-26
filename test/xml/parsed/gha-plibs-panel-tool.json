@@ -1,0 +1,170 @@
+{
+  "GhVersion": "0.2.2",
+  "componenentCount": 1,
+  "uniqueCount": 1,
+  "identifiers": [
+    {
+      "guid": "d4ffcfd6-0d9d-407d-9789-ccefb6bafe0f",
+      "name": "Iso Edges",
+      "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
+    }
+  ],
+  "pivots": [
+    {
+      "x": 514,
+      "y": 233
+    }
+  ],
+  "bounds": [
+    {
+      "x": 488,
+      "y": 209,
+      "width": 56,
+      "height": 48
+    }
+  ],
+  "instanceIdentifiers": [
+    {
+      "Description": "Extract iso-edges on surface from linear edges",
+      "InstanceGuid": "db9dff29-7343-463f-89bd-8f4c60adc6ed",
+      "Name": "Iso Edges",
+      "NickName": "ptIsoE"
+    }
+  ],
+  "ios": [
+    {
+      "params": {
+        "inputParams": [
+          {
+            "Description": "Iso curve segments",
+            "InstanceGuid": "9078adcb-786e-414b-b434-8a337c76f26e",
+            "Name": "Curves",
+            "NickName": "C",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "outputParams": [
+          {
+            "Access": 1,
+            "Description": "Lines to extract their iso",
+            "InstanceGuid": "c54955ad-d52f-438d-b2f5-b0f424ae4ed0",
+            "Name": "Lines",
+            "NickName": "L",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Surface",
+            "InstanceGuid": "840c735e-b4b6-4614-b037-788cdef437d1",
+            "Name": "BRep",
+            "NickName": "S",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ]
+      },
+      "bounds": {
+        "input": [
+          {
+            "x": 529,
+            "y": 211,
+            "width": 13,
+            "height": 44
+          }
+        ],
+        "output": [
+          {
+            "x": 490,
+            "y": 211,
+            "width": 9,
+            "height": 22
+          },
+          {
+            "x": 490,
+            "y": 233,
+            "width": 9,
+            "height": 22
+          }
+        ]
+      },
+      "pivots": {
+        "input": [
+          {
+            "x": 535.5,
+            "y": 233
+          }
+        ],
+        "output": [
+          {
+            "x": 496,
+            "y": 222
+          },
+          {
+            "x": 496,
+            "y": 244
+          }
+        ]
+      },
+      "isZui": false
+    }
+  ],
+  "ghaLibs": {
+    "main": [
+      {
+        "items": {
+          "item": [
+            {
+              "#text": "PTComponentLibrary, Version=2021.4.1.0, Culture=neutral, PublicKeyToken=null",
+              "@_name": "AssemblyFullName",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "2021.4.1.0",
+              "@_name": "AssemblyVersion",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "@_name": "Author",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de",
+              "@_name": "Id",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": "PTComponentLibrary",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "2021.4.1.0",
+              "@_name": "Version",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            }
+          ],
+          "@_count": 6
+        },
+        "@_name": "Library",
+        "@_index": 0
+      }
+    ],
+    "count": 1
+  },
+  "descriptor": [
+    {
+      "name": "PTComponentLibrary",
+      "author": "",
+      "version": "2021.4.1.0",
+      "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
+    }
+  ],
+  "isAllVanilla": false
+}

@@ -1,0 +1,36 @@
+[
+  {
+    "Description": "Contains a collection of generic surfaces",
+    "InstanceGuid": "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9",
+    "Name": "Surface",
+    "NickName": "Srf",
+    "Optional": false,
+    "SourceCount": 0
+  },
+  {
+    "Description": "Solve area properties for breps, meshes and planar closed curves.",
+    "InstanceGuid": "3a34a54f-431f-4260-9706-364b3e6ff8ab",
+    "Name": "Area",
+    "NickName": "Area"
+  },
+  {
+    "Description": "Evaluate local surface properties at a {uv} coordinate.",
+    "InstanceGuid": "99d28540-7f1e-4c39-9c56-16373445ed5f",
+    "Name": "Evaluate Surface",
+    "NickName": "EvalSrf"
+  },
+  {
+    "Description": "Find the closest point on a surface.",
+    "InstanceGuid": "9ea37707-5302-4d6c-ba38-65d5dd54e3ac",
+    "Name": "Surface Closest Point",
+    "NickName": "Srf CP"
+  },
+  {
+    "Border": 1,
+    "Description": "A group of Grasshopper objects",
+    "ID": "9ea37707-5302-4d6c-ba38-65d5dd54e3ac",
+    "ID_Count": 4,
+    "InstanceGuid": "5493eb71-1c24-4364-b077-14808540269b",
+    "Name": "Group"
+  }
+]

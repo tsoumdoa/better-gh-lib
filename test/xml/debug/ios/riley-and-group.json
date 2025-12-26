@@ -1,0 +1,47 @@
+[
+  {
+    "params": {
+      "inputParams": [],
+      "outputParams": []
+    },
+    "bounds": {
+      "input": [],
+      "output": []
+    },
+    "pivots": {
+      "input": [],
+      "output": []
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [],
+      "outputParams": []
+    },
+    "bounds": {
+      "input": [],
+      "output": []
+    },
+    "pivots": {
+      "input": [],
+      "output": []
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [],
+      "outputParams": []
+    },
+    "bounds": {
+      "input": [],
+      "output": []
+    },
+    "pivots": {
+      "input": [],
+      "output": []
+    },
+    "isZui": false
+  }
+]

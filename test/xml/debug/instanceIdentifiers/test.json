@@ -1,0 +1,11 @@
+[
+  {
+    "Description": "A panel for custom notes and text values",
+    "InstanceGuid": "fbb386c0-7f2a-474b-b0a2-18df7a0ff03f",
+    "Name": "Panel",
+    "Optional": false,
+    "ScrollRatio": 0,
+    "SourceCount": 0,
+    "UserText": "fa"
+  }
+]

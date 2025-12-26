@@ -1,0 +1,246 @@
+[
+  {
+    "params": {
+      "inputParams": [
+        {
+          "Description": "Iso curve segments",
+          "InstanceGuid": "9078adcb-786e-414b-b434-8a337c76f26e",
+          "Name": "Curves",
+          "NickName": "C",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Access": 1,
+          "Description": "Lines to extract their iso",
+          "InstanceGuid": "c54955ad-d52f-438d-b2f5-b0f424ae4ed0",
+          "Name": "Lines",
+          "NickName": "L",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "Surface",
+          "InstanceGuid": "840c735e-b4b6-4614-b037-788cdef437d1",
+          "Name": "BRep",
+          "NickName": "S",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 529,
+          "y": 211,
+          "width": 13,
+          "height": 44
+        }
+      ],
+      "output": [
+        {
+          "x": 490,
+          "y": 211,
+          "width": 9,
+          "height": 22
+        },
+        {
+          "x": 490,
+          "y": 233,
+          "width": 9,
+          "height": 22
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 535.5,
+          "y": 233
+        }
+      ],
+      "output": [
+        {
+          "x": 496,
+          "y": 222
+        },
+        {
+          "x": 496,
+          "y": 244
+        }
+      ]
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [
+        {
+          "Description": "Deformed geometry",
+          "InstanceGuid": "b3588b9a-082e-44a3-a7db-219098b47d3a",
+          "Name": "Geometry",
+          "NickName": "G",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Description": "Geometry to deform",
+          "InstanceGuid": "6902fb24-d44e-4636-9627-3c19481478c3",
+          "Name": "Geometry",
+          "NickName": "G",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "Bending arc segment",
+          "InstanceGuid": "429d23ff-cff1-4ff8-94f6-2a5a33f76fd6",
+          "Name": "Bending Arc",
+          "NickName": "B",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 394,
+          "y": 128,
+          "width": 13,
+          "height": 40
+        }
+      ],
+      "output": [
+        {
+          "x": 354,
+          "y": 128,
+          "width": 10,
+          "height": 20
+        },
+        {
+          "x": 354,
+          "y": 148,
+          "width": 10,
+          "height": 20
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 400.5,
+          "y": 148
+        }
+      ],
+      "output": [
+        {
+          "x": 360.5,
+          "y": 138
+        },
+        {
+          "x": 360.5,
+          "y": 158
+        }
+      ]
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [
+        {
+          "Description": "The trainer used for machine learning problems.",
+          "InstanceGuid": "ad0c5efb-f804-49da-92e9-e15066b0b1d9",
+          "Name": "Trainer Type",
+          "NickName": "Trainer Type",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Description": "The L1 regularization weight.",
+          "InstanceGuid": "b1361413-650e-4009-8f93-8e5e60e4d765",
+          "Name": "L1 Regularization",
+          "NickName": "L1 Regularization",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "The L2 regularization weight.",
+          "InstanceGuid": "1c500746-6c0a-4390-90b4-90dc6ac457bf",
+          "Name": "L2 Regularization",
+          "NickName": "L2 Regularization",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "The maximum number of passes to perform over the data.",
+          "InstanceGuid": "7785e9a6-8c87-40bc-91f8-b71ae0dcd13c",
+          "Name": "Maximum Number of Iterations",
+          "NickName": "Iterations",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 552,
+          "y": 96,
+          "width": 65,
+          "height": 60
+        }
+      ],
+      "output": [
+        {
+          "x": 436,
+          "y": 96,
+          "width": 86,
+          "height": 20
+        },
+        {
+          "x": 436,
+          "y": 116,
+          "width": 86,
+          "height": 20
+        },
+        {
+          "x": 436,
+          "y": 136,
+          "width": 86,
+          "height": 20
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 584.5,
+          "y": 126
+        }
+      ],
+      "output": [
+        {
+          "x": 480.5,
+          "y": 106
+        },
+        {
+          "x": 480.5,
+          "y": 126
+        },
+        {
+          "x": 480.5,
+          "y": 146
+        }
+      ]
+    },
+    "isZui": false
+  }
+]

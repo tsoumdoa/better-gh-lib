@@ -1,0 +1,28 @@
+[
+  {
+    "Description": "Extract iso-edges on surface from linear edges",
+    "InstanceGuid": "db9dff29-7343-463f-89bd-8f4c60adc6ed",
+    "Name": "Iso Edges",
+    "NickName": "ptIsoE"
+  },
+  {
+    "Description": "Deform a shape by bending it",
+    "InstanceGuid": "114fbc1d-e109-4089-bb49-26dcaf5d500a",
+    "Name": "Bend Deform",
+    "NickName": "Bend"
+  },
+  {
+    "Description": "The Sdca trainer is used to train a regression model using the stochastic dual coordinate ascent method.",
+    "InstanceGuid": "f6de3eff-2546-4ece-b6ac-fb09ec46d258",
+    "Name": "Sdca Regression",
+    "NickName": "Sdca"
+  },
+  {
+    "Border": 1,
+    "Description": "A group of Grasshopper objects",
+    "ID": "f6de3eff-2546-4ece-b6ac-fb09ec46d258",
+    "ID_Count": 3,
+    "InstanceGuid": "4b47f2c5-b060-4270-95cc-150501d0b58e",
+    "Name": "Group"
+  }
+]

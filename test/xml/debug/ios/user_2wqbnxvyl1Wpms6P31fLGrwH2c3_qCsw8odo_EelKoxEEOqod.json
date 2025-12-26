@@ -1,0 +1,390 @@
+[
+  {
+    "params": {
+      "inputParams": [],
+      "outputParams": []
+    },
+    "bounds": {
+      "input": [],
+      "output": []
+    },
+    "pivots": {
+      "input": [],
+      "output": []
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": {
+        "Description": "Brep, mesh or planar closed curve for area computation",
+        "InstanceGuid": "8f996d6f-16b6-4185-afb1-1d7dd9642f56",
+        "Name": "Geometry",
+        "NickName": "G",
+        "Optional": false,
+        "Source": [
+          "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9"
+        ],
+        "SourceCount": 1
+      },
+      "outputParams": {
+        "Description": "Area of geometry",
+        "InstanceGuid": "bcbc03c6-98af-4d43-a355-32308e7608e1",
+        "Name": "Area",
+        "NickName": "A",
+        "Optional": true,
+        "SourceCount": 0
+      }
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 897,
+          "y": 354,
+          "width": 15,
+          "height": 40
+        }
+      ],
+      "output": [
+        {
+          "x": 942,
+          "y": 354,
+          "width": 17,
+          "height": 20
+        },
+        {
+          "x": 942,
+          "y": 374,
+          "width": 17,
+          "height": 20
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 906,
+          "y": 374
+        }
+      ],
+      "output": [
+        {
+          "x": 950.5,
+          "y": 364
+        },
+        {
+          "x": 950.5,
+          "y": 384
+        }
+      ]
+    },
+    "zuiDescriptor": {
+      "inputCount": 1,
+      "outputCount": 2,
+      "inputIdentifiers": [
+        {
+          "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+          "typeCode": 9
+        }
+      ],
+      "outputIdentifiers": [
+        {
+          "guid": "3e8ca6be-fda8-4aaf-b5c0-3c54c8bb7312",
+          "typeCode": 9
+        },
+        {
+          "guid": "fbac3e32-f100-4292-8692-77240a42fd1a",
+          "typeCode": 9
+        }
+      ]
+    },
+    "isZui": true
+  },
+  {
+    "params": {
+      "inputParams": [
+        {
+          "Description": "Point at {uv}",
+          "InstanceGuid": "5967f5b4-c5e8-4a32-87ce-3ea80a8962ec",
+          "Name": "Point",
+          "NickName": "P",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "Normal at {uv}",
+          "InstanceGuid": "ce93b76d-e426-42bf-a7c8-0718a96ab99a",
+          "Name": "Normal",
+          "NickName": "N",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "U direction at {uv}",
+          "InstanceGuid": "13ae8ff9-5b77-447f-b01f-744898a868c3",
+          "Name": "U direction",
+          "NickName": "U",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "V direction at {uv}",
+          "InstanceGuid": "3467f7f6-e72a-4b09-8668-9bacc1bc3ba3",
+          "Name": "V direction",
+          "NickName": "V",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "Frame at {uv}",
+          "InstanceGuid": "20827a8c-83ae-4a7c-b7f0-e1a9d13a70bf",
+          "Name": "Frame",
+          "NickName": "F",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Description": "Base surface",
+          "InstanceGuid": "d36e017c-a92d-497e-88c8-e4eb86823880",
+          "Name": "Surface",
+          "NickName": "S",
+          "Optional": false,
+          "Source": [
+            "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9"
+          ],
+          "SourceCount": 1
+        },
+        {
+          "Description": "{uv} coordinate to evaluate",
+          "Hidden": true,
+          "InstanceGuid": "72e87fe8-0da9-485d-9d42-02297198a12a",
+          "Name": "Point",
+          "NickName": "uv",
+          "Optional": false,
+          "Source": [
+            "4996710a-b78e-4ad4-96aa-c6d1d83ce2fb"
+          ],
+          "SourceCount": 1
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 1153,
+          "y": 290,
+          "width": 18,
+          "height": 20
+        },
+        {
+          "x": 1153,
+          "y": 310,
+          "width": 18,
+          "height": 20
+        },
+        {
+          "x": 1153,
+          "y": 330,
+          "width": 18,
+          "height": 20
+        },
+        {
+          "x": 1153,
+          "y": 350,
+          "width": 18,
+          "height": 20
+        },
+        {
+          "x": 1153,
+          "y": 370,
+          "width": 18,
+          "height": 20
+        }
+      ],
+      "output": [
+        {
+          "x": 1104,
+          "y": 290,
+          "width": 19,
+          "height": 50
+        },
+        {
+          "x": 1104,
+          "y": 340,
+          "width": 19,
+          "height": 50
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 1162,
+          "y": 300
+        },
+        {
+          "x": 1162,
+          "y": 320
+        },
+        {
+          "x": 1162,
+          "y": 340
+        },
+        {
+          "x": 1162,
+          "y": 360
+        },
+        {
+          "x": 1162,
+          "y": 380
+        }
+      ],
+      "output": [
+        {
+          "x": 1115,
+          "y": 315
+        },
+        {
+          "x": 1115,
+          "y": 365
+        }
+      ]
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [
+        {
+          "Description": "Closest point",
+          "InstanceGuid": "fcda2e5e-439e-431f-8ea1-08e5ff8cd677",
+          "Name": "Point",
+          "NickName": "P",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "{uv} coordinates of closest point",
+          "Hidden": true,
+          "InstanceGuid": "4996710a-b78e-4ad4-96aa-c6d1d83ce2fb",
+          "Name": "UV Point",
+          "NickName": "uvP",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "Distance between sample point and surface",
+          "InstanceGuid": "43144173-4824-42eb-ab7f-f5b601f9e08d",
+          "Name": "Distance",
+          "NickName": "D",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Description": "Sample point",
+          "InstanceGuid": "b9f7950d-c370-41c7-a0e6-28d3f91d316b",
+          "Name": "Point",
+          "NickName": "P",
+          "Optional": false,
+          "Source": [
+            "558b7bf7-4590-447b-a7f0-196b4d03acc8"
+          ],
+          "SourceCount": 1
+        },
+        {
+          "Description": "Base surface",
+          "InstanceGuid": "97538235-68b2-49f8-a8e4-31891b25189a",
+          "Name": "Surface",
+          "NickName": "S",
+          "Optional": false,
+          "Source": [
+            "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9"
+          ],
+          "SourceCount": 1
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 1043,
+          "y": 335,
+          "width": 28,
+          "height": 20
+        },
+        {
+          "x": 1043,
+          "y": 355,
+          "width": 28,
+          "height": 20
+        },
+        {
+          "x": 1043,
+          "y": 375,
+          "width": 28,
+          "height": 20
+        }
+      ],
+      "output": [
+        {
+          "x": 1000,
+          "y": 335,
+          "width": 13,
+          "height": 30
+        },
+        {
+          "x": 1000,
+          "y": 365,
+          "width": 13,
+          "height": 30
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 1057,
+          "y": 345
+        },
+        {
+          "x": 1057,
+          "y": 365
+        },
+        {
+          "x": 1057,
+          "y": 385
+        }
+      ],
+      "output": [
+        {
+          "x": 1008,
+          "y": 350
+        },
+        {
+          "x": 1008,
+          "y": 380
+        }
+      ]
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [],
+      "outputParams": []
+    },
+    "bounds": {
+      "input": [],
+      "output": []
+    },
+    "pivots": {
+      "input": [],
+      "output": []
+    },
+    "isZui": false
+  }
+]

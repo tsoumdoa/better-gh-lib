@@ -1,0 +1,204 @@
+[
+  {
+    "params": {
+      "inputParams": [],
+      "outputParams": []
+    },
+    "bounds": {
+      "input": [],
+      "output": []
+    },
+    "pivots": {
+      "input": [],
+      "output": []
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": {
+        "Description": "Brep, mesh or planar closed curve for area computation",
+        "InstanceGuid": "9e7ff88b-6020-40a8-baa9-98380038bd17",
+        "Name": "Geometry",
+        "NickName": "G",
+        "Optional": false,
+        "Source": [
+          "e8fb9e7f-caee-40a2-a57f-4e4472ec0664"
+        ],
+        "SourceCount": 1
+      },
+      "outputParams": {
+        "Description": "Area of geometry",
+        "InstanceGuid": "bba969c5-ec1b-4287-8cec-ad80ec856b38",
+        "Name": "Area",
+        "NickName": "A",
+        "Optional": true,
+        "SourceCount": 0
+      }
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 608,
+          "y": 334,
+          "width": 10,
+          "height": 40
+        }
+      ],
+      "output": [
+        {
+          "x": 648,
+          "y": 334,
+          "width": 13,
+          "height": 20
+        },
+        {
+          "x": 648,
+          "y": 354,
+          "width": 13,
+          "height": 20
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 614.5,
+          "y": 354
+        }
+      ],
+      "output": [
+        {
+          "x": 654.5,
+          "y": 344
+        },
+        {
+          "x": 654.5,
+          "y": 364
+        }
+      ]
+    },
+    "zuiDescriptor": {
+      "inputCount": 1,
+      "outputCount": 2,
+      "inputIdentifiers": [
+        {
+          "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+          "typeCode": 9
+        }
+      ],
+      "outputIdentifiers": [
+        {
+          "guid": "3e8ca6be-fda8-4aaf-b5c0-3c54c8bb7312",
+          "typeCode": 9
+        },
+        {
+          "guid": "fbac3e32-f100-4292-8692-77240a42fd1a",
+          "typeCode": 9
+        }
+      ]
+    },
+    "isZui": true
+  },
+  {
+    "params": {
+      "inputParams": [],
+      "outputParams": []
+    },
+    "bounds": {
+      "input": [],
+      "output": []
+    },
+    "pivots": {
+      "input": [],
+      "output": []
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": {
+        "Description": "Brep, mesh or planar closed curve for area computation",
+        "InstanceGuid": "e25e9511-f027-4acb-9ef5-fccb5db960ec",
+        "Name": "Geometry",
+        "NickName": "G",
+        "Optional": false,
+        "Source": [
+          "e8fb9e7f-caee-40a2-a57f-4e4472ec0664"
+        ],
+        "SourceCount": 1
+      },
+      "outputParams": {
+        "Description": "Area of geometry",
+        "InstanceGuid": "f04b60cb-a6a1-4211-a90f-824db542a57c",
+        "Name": "Area",
+        "NickName": "A",
+        "Optional": true,
+        "SourceCount": 0
+      }
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 618,
+          "y": 388,
+          "width": 10,
+          "height": 40
+        }
+      ],
+      "output": [
+        {
+          "x": 658,
+          "y": 388,
+          "width": 13,
+          "height": 20
+        },
+        {
+          "x": 658,
+          "y": 408,
+          "width": 13,
+          "height": 20
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 624.5,
+          "y": 408
+        }
+      ],
+      "output": [
+        {
+          "x": 664.5,
+          "y": 398
+        },
+        {
+          "x": 664.5,
+          "y": 418
+        }
+      ]
+    },
+    "zuiDescriptor": {
+      "inputCount": 1,
+      "outputCount": 2,
+      "inputIdentifiers": [
+        {
+          "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+          "typeCode": 9
+        }
+      ],
+      "outputIdentifiers": [
+        {
+          "guid": "3e8ca6be-fda8-4aaf-b5c0-3c54c8bb7312",
+          "typeCode": 9
+        },
+        {
+          "guid": "fbac3e32-f100-4292-8692-77240a42fd1a",
+          "typeCode": 9
+        }
+      ]
+    },
+    "isZui": true
+  }
+]

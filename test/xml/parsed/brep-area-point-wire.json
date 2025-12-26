@@ -1,0 +1,378 @@
+{
+  "GhVersion": "0.2.2",
+  "componenentCount": 4,
+  "uniqueCount": 3,
+  "identifiers": [
+    {
+      "guid": "919e146f-30ae-4aae-be34-4d72f555e7da",
+      "name": "Brep"
+    },
+    {
+      "guid": "86b28a7e-94d9-4791-8306-e13e10d5f8d5",
+      "name": "Area"
+    },
+    {
+      "guid": "fbac3e32-f100-4292-8692-77240a42fd1a",
+      "name": "Point"
+    },
+    {
+      "guid": "86b28a7e-94d9-4791-8306-e13e10d5f8d5",
+      "name": "Area"
+    }
+  ],
+  "pivots": [
+    {
+      "x": 470.7053,
+      "y": 361.23895
+    },
+    {
+      "x": 633,
+      "y": 354
+    },
+    {
+      "x": 772.83246,
+      "y": 361.23895
+    },
+    {
+      "x": 643,
+      "y": 408
+    }
+  ],
+  "bounds": [
+    {
+      "x": 445,
+      "y": 351,
+      "width": 50,
+      "height": 20
+    },
+    {
+      "x": 606,
+      "y": 332,
+      "width": 57,
+      "height": 44
+    },
+    {
+      "x": 747,
+      "y": 351,
+      "width": 50,
+      "height": 20
+    },
+    {
+      "x": 616,
+      "y": 386,
+      "width": 57,
+      "height": 44
+    }
+  ],
+  "instanceIdentifiers": [
+    {
+      "Description": "Contains a collection of Breps (Boundary REPresentations)",
+      "InstanceGuid": "e8fb9e7f-caee-40a2-a57f-4e4472ec0664",
+      "Name": "Brep",
+      "NickName": "Brep",
+      "Optional": false,
+      "SourceCount": 0
+    },
+    {
+      "Description": "Solve area properties for breps, meshes and planar closed curves.",
+      "InstanceGuid": "096f0eed-8b81-4db2-bdd6-4959b5d45e70",
+      "Name": "Area",
+      "NickName": "Area"
+    },
+    {
+      "Description": "Contains a collection of three-dimensional points",
+      "InstanceGuid": "1e1706e2-2a61-40f2-a7ea-1475f1b878d9",
+      "Name": "Point",
+      "NickName": "Pt",
+      "Optional": false,
+      "Source": [
+        "0fa0dd03-ebab-4bf9-84bd-a62cee6a2371",
+        "aacdc5a0-362e-4346-96ab-b5e2778b98a2"
+      ],
+      "SourceCount": 2
+    },
+    {
+      "Description": "Solve area properties for breps, meshes and planar closed curves.",
+      "InstanceGuid": "fe2c0507-d0d9-4ffd-9d7c-1aff7cb6833a",
+      "Name": "Area",
+      "NickName": "Area"
+    }
+  ],
+  "ios": [
+    {
+      "params": {
+        "inputParams": [],
+        "outputParams": []
+      },
+      "bounds": {
+        "input": [],
+        "output": []
+      },
+      "pivots": {
+        "input": [],
+        "output": []
+      },
+      "isZui": false
+    },
+    {
+      "params": {
+        "inputParams": {
+          "Description": "Brep, mesh or planar closed curve for area computation",
+          "InstanceGuid": "9e7ff88b-6020-40a8-baa9-98380038bd17",
+          "Name": "Geometry",
+          "NickName": "G",
+          "Optional": false,
+          "Source": [
+            "e8fb9e7f-caee-40a2-a57f-4e4472ec0664"
+          ],
+          "SourceCount": 1
+        },
+        "outputParams": {
+          "Description": "Area of geometry",
+          "InstanceGuid": "bba969c5-ec1b-4287-8cec-ad80ec856b38",
+          "Name": "Area",
+          "NickName": "A",
+          "Optional": true,
+          "SourceCount": 0
+        }
+      },
+      "bounds": {
+        "input": [
+          {
+            "x": 608,
+            "y": 334,
+            "width": 10,
+            "height": 40
+          }
+        ],
+        "output": [
+          {
+            "x": 648,
+            "y": 334,
+            "width": 13,
+            "height": 20
+          },
+          {
+            "x": 648,
+            "y": 354,
+            "width": 13,
+            "height": 20
+          }
+        ]
+      },
+      "pivots": {
+        "input": [
+          {
+            "x": 614.5,
+            "y": 354
+          }
+        ],
+        "output": [
+          {
+            "x": 654.5,
+            "y": 344
+          },
+          {
+            "x": 654.5,
+            "y": 364
+          }
+        ]
+      },
+      "zuiDescriptor": {
+        "inputCount": 1,
+        "outputCount": 2,
+        "inputIdentifiers": [
+          {
+            "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+            "typeCode": 9
+          }
+        ],
+        "outputIdentifiers": [
+          {
+            "guid": "3e8ca6be-fda8-4aaf-b5c0-3c54c8bb7312",
+            "typeCode": 9
+          },
+          {
+            "guid": "fbac3e32-f100-4292-8692-77240a42fd1a",
+            "typeCode": 9
+          }
+        ]
+      },
+      "isZui": true
+    },
+    {
+      "params": {
+        "inputParams": [],
+        "outputParams": []
+      },
+      "bounds": {
+        "input": [],
+        "output": []
+      },
+      "pivots": {
+        "input": [],
+        "output": []
+      },
+      "isZui": false
+    },
+    {
+      "params": {
+        "inputParams": {
+          "Description": "Brep, mesh or planar closed curve for area computation",
+          "InstanceGuid": "e25e9511-f027-4acb-9ef5-fccb5db960ec",
+          "Name": "Geometry",
+          "NickName": "G",
+          "Optional": false,
+          "Source": [
+            "e8fb9e7f-caee-40a2-a57f-4e4472ec0664"
+          ],
+          "SourceCount": 1
+        },
+        "outputParams": {
+          "Description": "Area of geometry",
+          "InstanceGuid": "f04b60cb-a6a1-4211-a90f-824db542a57c",
+          "Name": "Area",
+          "NickName": "A",
+          "Optional": true,
+          "SourceCount": 0
+        }
+      },
+      "bounds": {
+        "input": [
+          {
+            "x": 618,
+            "y": 388,
+            "width": 10,
+            "height": 40
+          }
+        ],
+        "output": [
+          {
+            "x": 658,
+            "y": 388,
+            "width": 13,
+            "height": 20
+          },
+          {
+            "x": 658,
+            "y": 408,
+            "width": 13,
+            "height": 20
+          }
+        ]
+      },
+      "pivots": {
+        "input": [
+          {
+            "x": 624.5,
+            "y": 408
+          }
+        ],
+        "output": [
+          {
+            "x": 664.5,
+            "y": 398
+          },
+          {
+            "x": 664.5,
+            "y": 418
+          }
+        ]
+      },
+      "zuiDescriptor": {
+        "inputCount": 1,
+        "outputCount": 2,
+        "inputIdentifiers": [
+          {
+            "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+            "typeCode": 9
+          }
+        ],
+        "outputIdentifiers": [
+          {
+            "guid": "3e8ca6be-fda8-4aaf-b5c0-3c54c8bb7312",
+            "typeCode": 9
+          },
+          {
+            "guid": "fbac3e32-f100-4292-8692-77240a42fd1a",
+            "typeCode": 9
+          }
+        ]
+      },
+      "isZui": true
+    }
+  ],
+  "ghaLibs": {
+    "main": [
+      {
+        "items": {
+          "item": [
+            {
+              "#text": "Robert McNeel & Associates",
+              "@_name": "Author",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "00000000-0000-0000-0000-000000000000",
+              "@_name": "Id",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": "Grasshopper",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "8.26.25349.19002",
+              "@_name": "Version",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            }
+          ],
+          "@_count": 4
+        },
+        "@_name": "Library",
+        "@_index": 0
+      },
+      {
+        "items": {
+          "item": [
+            {
+              "#text": "Robert McNeel & Associates",
+              "@_name": "Author",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "00000000-0000-0000-0000-000000000000",
+              "@_name": "Id",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": "Grasshopper",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "8.26.25349.19002",
+              "@_name": "Version",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            }
+          ],
+          "@_count": 4
+        },
+        "@_name": "Library",
+        "@_index": 1
+      }
+    ],
+    "count": 2
+  },
+  "descriptor": [],
+  "isAllVanilla": true
+}

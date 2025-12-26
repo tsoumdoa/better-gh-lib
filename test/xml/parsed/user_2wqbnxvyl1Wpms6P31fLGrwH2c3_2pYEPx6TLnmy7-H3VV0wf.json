@@ -1,0 +1,142 @@
+{
+  "GhVersion": "0.2.2",
+  "componenentCount": 1,
+  "uniqueCount": 1,
+  "identifiers": [
+    {
+      "guid": "b6ba1144-02d6-4a2d-b53c-ec62e290eeb7",
+      "name": "C# Script"
+    }
+  ],
+  "pivots": [
+    {
+      "x": 318,
+      "y": 74
+    }
+  ],
+  "bounds": [
+    {
+      "x": 304,
+      "y": -16,
+      "width": 57,
+      "height": 179
+    }
+  ],
+  "instanceIdentifiers": [
+    {
+      "GraftStandardOutputLines": true,
+      "InstanceGuid": "4e00b7fd-0df1-4e0c-b77a-26dc7342bc96",
+      "MarshGuids": false,
+      "MarshInputs": false,
+      "MarshOutputs": false,
+      "Name": "C# Script",
+      "NickName": "dangerouslyFlattenLayers",
+      "ScriptComponentVersion": 3,
+      "UsingLibraryInputParam": false,
+      "UsingScriptInputParam": false,
+      "UsingScriptOutputParam": false,
+      "UsingStandardOutputParam": true
+    }
+  ],
+  "ios": [
+    {
+      "params": {
+        "inputParams": {},
+        "outputParams": {
+          "Description": "The execution information, as output and error streams",
+          "InstanceGuid": "6751fa3c-62ca-4668-8bd8-303f4876bb82",
+          "Name": "out",
+          "NickName": "out",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      },
+      "bounds": {
+        "input": [],
+        "output": [
+          {
+            "x": 333,
+            "y": -14,
+            "width": 26,
+            "height": 87
+          },
+          {
+            "x": 333,
+            "y": 73,
+            "width": 26,
+            "height": 88
+          }
+        ]
+      },
+      "pivots": {
+        "input": [],
+        "output": [
+          {
+            "x": 346,
+            "y": 29.75
+          },
+          {
+            "x": 346,
+            "y": 117.25
+          }
+        ]
+      },
+      "zuiDescriptor": {
+        "inputCount": 0,
+        "outputCount": 2,
+        "inputIdentifiers": [],
+        "outputIdentifiers": [
+          {
+            "guid": "3ede854e-c753-40eb-84cb-b48008f14fd4",
+            "typeCode": 9
+          },
+          {
+            "guid": "08908df5-fa14-4982-9ab2-1aa0927566aa",
+            "typeCode": 9
+          }
+        ]
+      },
+      "isZui": true
+    }
+  ],
+  "ghaLibs": {
+    "main": [
+      {
+        "items": {
+          "item": [
+            {
+              "#text": "Robert McNeel & Associates",
+              "@_name": "Author",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "00000000-0000-0000-0000-000000000000",
+              "@_name": "Id",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": "Grasshopper",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "8.17.25066.7001",
+              "@_name": "Version",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            }
+          ],
+          "@_count": 4
+        },
+        "@_name": "Library",
+        "@_index": 0
+      }
+    ],
+    "count": 1
+  },
+  "descriptor": [],
+  "isAllVanilla": true
+}

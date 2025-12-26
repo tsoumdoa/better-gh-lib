@@ -1,0 +1,146 @@
+{
+  "GhVersion": "0.2.2",
+  "componenentCount": 1,
+  "uniqueCount": 1,
+  "identifiers": [
+    {
+      "guid": "f31d8d7a-7536-4ac8-9c96-fde6ecda4d0a",
+      "name": "Cluster"
+    }
+  ],
+  "pivots": [
+    {
+      "x": 296,
+      "y": 210
+    }
+  ],
+  "bounds": [
+    {
+      "x": 269,
+      "y": 183,
+      "width": 56,
+      "height": 54
+    }
+  ],
+  "instanceIdentifiers": [
+    {
+      "Description": "Contains a cluster of Grasshopper components",
+      "InstanceGuid": "dc49083d-1af0-40f8-896d-81e3774609fc",
+      "Name": "Cluster",
+      "NickName": "Cluster",
+      "PreviewDocument": false
+    }
+  ],
+  "ios": [
+    {
+      "params": {
+        "inputParams": {
+          "Description": "Base curve",
+          "InstanceGuid": "7ceab4f4-4e3e-4307-916a-1005ea0916ac",
+          "Name": "Curve",
+          "NickName": "C",
+          "Optional": true,
+          "SourceCount": 0
+        },
+        "outputParams": {
+          "Access": 1,
+          "Description": "Resulting Pipe",
+          "InstanceGuid": "fce0e3c4-87d5-4c7a-842e-95c08a921e86",
+          "Name": "Pipe",
+          "NickName": "P",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      },
+      "bounds": {
+        "input": [
+          {
+            "x": 271,
+            "y": 185,
+            "width": 10,
+            "height": 50
+          }
+        ],
+        "output": [
+          {
+            "x": 311,
+            "y": 185,
+            "width": 12,
+            "height": 50
+          }
+        ]
+      },
+      "pivots": {
+        "input": [
+          {
+            "x": 277.5,
+            "y": 210
+          }
+        ],
+        "output": [
+          {
+            "x": 317,
+            "y": 210
+          }
+        ]
+      },
+      "zuiDescriptor": {
+        "inputCount": 1,
+        "outputCount": 1,
+        "inputIdentifiers": [
+          {
+            "guid": "d5967b9f-e8ee-436b-a8ad-29fdcecf32d5",
+            "typeCode": 9
+          }
+        ],
+        "outputIdentifiers": [
+          {
+            "guid": "919e146f-30ae-4aae-be34-4d72f555e7da",
+            "typeCode": 9
+          }
+        ]
+      },
+      "isZui": true
+    }
+  ],
+  "ghaLibs": {
+    "main": [
+      {
+        "items": {
+          "item": [
+            {
+              "#text": "Robert McNeel & Associates",
+              "@_name": "Author",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "00000000-0000-0000-0000-000000000000",
+              "@_name": "Id",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": "Grasshopper",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "8.19.25132.1002",
+              "@_name": "Version",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            }
+          ],
+          "@_count": 4
+        },
+        "@_name": "Library",
+        "@_index": 0
+      }
+    ],
+    "count": 1
+  },
+  "descriptor": [],
+  "isAllVanilla": true
+}

@@ -1,0 +1,444 @@
+[
+  {
+    "params": {
+      "inputParams": {
+        "Access": 1,
+        "Description": "child",
+        "InstanceGuid": "ee75fe63-994f-45a9-b262-ebf2e1409d1f",
+        "Name": "child",
+        "NickName": "child",
+        "Optional": false,
+        "Source": [
+          "f5bcbe4a-9481-4774-b5b9-b43b6c288e0a"
+        ],
+        "SourceCount": 1
+      },
+      "outputParams": {
+        "Access": 2,
+        "Description": "Contains a collection of generic data",
+        "InstanceGuid": "c1bc66ac-940c-4811-81cd-d11e33a17e99",
+        "Name": "Content",
+        "NickName": "Content",
+        "Optional": false,
+        "SourceCount": 0
+      }
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 5590,
+          "y": 1935,
+          "width": 40,
+          "height": 51
+        },
+        {
+          "x": 5590,
+          "y": 1986,
+          "width": 40,
+          "height": 52
+        }
+      ],
+      "output": [
+        {
+          "x": 5660,
+          "y": 1935,
+          "width": 49,
+          "height": 103
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 5611.5,
+          "y": 1960.75
+        },
+        {
+          "x": 5611.5,
+          "y": 2012.25
+        }
+      ],
+      "output": [
+        {
+          "x": 5684.5,
+          "y": 1986.5
+        }
+      ]
+    },
+    "zuiDescriptor": {
+      "inputCount": 2,
+      "outputCount": 1,
+      "inputIdentifiers": [
+        {
+          "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+          "typeCode": 9
+        },
+        {
+          "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+          "typeCode": 9
+        }
+      ],
+      "outputIdentifiers": [
+        {
+          "guid": "8ec86459-bf01-4409-baee-174d0d2b13d0",
+          "typeCode": 9
+        }
+      ]
+    },
+    "isZui": true
+  },
+  {
+    "params": {
+      "inputParams": [
+        {
+          "Access": 2,
+          "Description": "List chunks",
+          "InstanceGuid": "4ad876e5-2893-4618-9151-94ee58ded32b",
+          "Name": "Chunks",
+          "NickName": "C",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Access": 1,
+          "Description": "List to partition",
+          "InstanceGuid": "d1f1b78b-f95f-4574-829d-db7d78805bb5",
+          "Name": "List",
+          "NickName": "L",
+          "Optional": false,
+          "Source": [
+            "c1bc66ac-940c-4811-81cd-d11e33a17e99"
+          ],
+          "SourceCount": 1
+        },
+        {
+          "Access": 1,
+          "Description": "Size of partitions",
+          "InstanceGuid": "5d99363e-0b87-4c86-a765-c8a1aa007f20",
+          "Name": "Size",
+          "NickName": "S",
+          "Optional": false,
+          "Source": [
+            "83ea1506-17c0-480c-a9cd-be9c4b606d79"
+          ],
+          "SourceCount": 1
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 5790,
+          "y": 1988,
+          "width": 17,
+          "height": 66
+        }
+      ],
+      "output": [
+        {
+          "x": 5747,
+          "y": 1988,
+          "width": 13,
+          "height": 33
+        },
+        {
+          "x": 5747,
+          "y": 2021,
+          "width": 13,
+          "height": 33
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 5798.5,
+          "y": 2021
+        }
+      ],
+      "output": [
+        {
+          "x": 5755,
+          "y": 2004.5
+        },
+        {
+          "x": 5755,
+          "y": 2037.5
+        }
+      ]
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [
+        {
+          "Description": "Grouped objects",
+          "InstanceGuid": "44b0f181-75fd-451f-975e-b267388e180f",
+          "Name": "Group",
+          "NickName": "G",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Access": 1,
+          "Description": "Geometry to group",
+          "InstanceGuid": "cf3f9e22-353a-47e3-83be-7d5654b2bb2b",
+          "Name": "Geometry",
+          "NickName": "G",
+          "Optional": false,
+          "Source": [
+            "d03c5214-d019-4550-ba1f-40f61cd401b7"
+          ],
+          "SourceCount": 1
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 6027,
+          "y": 2003,
+          "width": 18,
+          "height": 50
+        }
+      ],
+      "output": [
+        {
+          "x": 5982,
+          "y": 2003,
+          "width": 15,
+          "height": 50
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 6036,
+          "y": 2028
+        }
+      ],
+      "output": [
+        {
+          "x": 5991,
+          "y": 2028
+        }
+      ]
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [
+        {
+          "Access": 2,
+          "Description": "Trimmed data tree",
+          "InstanceGuid": "53c32eb3-5d9f-41a3-a3e1-4dc5a1b21bb7",
+          "Name": "Tree",
+          "NickName": "T",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Access": 2,
+          "Description": "Data tree to flatten",
+          "InstanceGuid": "c90c0722-ead6-4a21-8545-643aae29c6c4",
+          "Name": "Tree",
+          "NickName": "T",
+          "Optional": false,
+          "Source": [
+            "44b0f181-75fd-451f-975e-b267388e180f"
+          ],
+          "SourceCount": 1
+        },
+        {
+          "Description": "Number of outermost branches to merge",
+          "InstanceGuid": "1b894f1e-9cfd-44cd-aa05-fac769e68fcb",
+          "Name": "Depth",
+          "NickName": "D",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 6105,
+          "y": 2009,
+          "width": 16,
+          "height": 40
+        }
+      ],
+      "output": [
+        {
+          "x": 6060,
+          "y": 2009,
+          "width": 15,
+          "height": 20
+        },
+        {
+          "x": 6060,
+          "y": 2029,
+          "width": 15,
+          "height": 20
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 6113,
+          "y": 2029
+        }
+      ],
+      "output": [
+        {
+          "x": 6069,
+          "y": 2019
+        },
+        {
+          "x": 6069,
+          "y": 2039
+        }
+      ]
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [],
+      "outputParams": []
+    },
+    "bounds": {
+      "input": [],
+      "output": []
+    },
+    "pivots": {
+      "input": [],
+      "output": []
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [
+        {
+          "Access": 1,
+          "Description": "All the paths of the tree",
+          "InstanceGuid": "fe264566-f5fe-489b-a62f-da09189990da",
+          "Name": "Paths",
+          "NickName": "P",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Access": 1,
+          "Description": "The length of each branch in the tree",
+          "InstanceGuid": "83ea1506-17c0-480c-a9cd-be9c4b606d79",
+          "Name": "Length",
+          "NickName": "L",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "Number of paths and branches in the tree",
+          "InstanceGuid": "7842c82e-43d0-4008-b864-44b2438a355d",
+          "Name": "Count",
+          "NickName": "C",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Access": 2,
+          "Description": "Data Tree to analyze",
+          "InstanceGuid": "1c96a0ad-fe2f-493b-b607-209f929d286e",
+          "Name": "Tree",
+          "NickName": "T",
+          "Optional": false,
+          "Source": [
+            "56f936fc-b71e-47fd-84e1-a93174c5ea2b"
+          ],
+          "SourceCount": 1
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 5666,
+          "y": 2086,
+          "width": 17,
+          "height": 20
+        },
+        {
+          "x": 5666,
+          "y": 2106,
+          "width": 17,
+          "height": 20
+        },
+        {
+          "x": 5666,
+          "y": 2126,
+          "width": 17,
+          "height": 20
+        }
+      ],
+      "output": [
+        {
+          "x": 5623,
+          "y": 2086,
+          "width": 13,
+          "height": 60
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 5674.5,
+          "y": 2096
+        },
+        {
+          "x": 5674.5,
+          "y": 2116
+        },
+        {
+          "x": 5674.5,
+          "y": 2136
+        }
+      ],
+      "output": [
+        {
+          "x": 5631,
+          "y": 2116
+        }
+      ]
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [],
+      "outputParams": []
+    },
+    "bounds": {
+      "input": [],
+      "output": []
+    },
+    "pivots": {
+      "input": [],
+      "output": []
+    },
+    "isZui": false
+  }
+]

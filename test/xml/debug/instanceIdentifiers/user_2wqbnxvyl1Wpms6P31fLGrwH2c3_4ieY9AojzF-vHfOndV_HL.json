@@ -1,0 +1,17 @@
+[
+  {
+    "GraftStandardOutputLines": true,
+    "InstanceGuid": "71b7b0fc-9229-49e0-b395-19ed6bc207d1",
+    "Locked": true,
+    "MarshGuids": false,
+    "MarshInputs": false,
+    "MarshOutputs": false,
+    "Name": "C# Script",
+    "NickName": "dangerouslyRandomizeColor",
+    "ScriptComponentVersion": 3,
+    "UsingLibraryInputParam": false,
+    "UsingScriptInputParam": false,
+    "UsingScriptOutputParam": false,
+    "UsingStandardOutputParam": true
+  }
+]

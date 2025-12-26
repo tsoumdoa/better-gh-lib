@@ -1,0 +1,16 @@
+[
+  {
+    "Description": "Solve area properties for breps, meshes and planar closed curves.",
+    "InstanceGuid": "bfd08430-973c-49e8-adab-04487445d763",
+    "Name": "Area",
+    "NickName": "Area"
+  },
+  {
+    "Description": "Contains a collection of Breps (Boundary REPresentations)",
+    "InstanceGuid": "fb6c9287-cd45-4367-b9ba-f7db4cadbbb8",
+    "Name": "Brep",
+    "NickName": "Brep",
+    "Optional": false,
+    "SourceCount": 0
+  }
+]

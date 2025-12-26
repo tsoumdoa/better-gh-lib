@@ -1,0 +1,228 @@
+{
+  "GhVersion": "0.2.2",
+  "componenentCount": 2,
+  "uniqueCount": 2,
+  "identifiers": [
+    {
+      "guid": "86b28a7e-94d9-4791-8306-e13e10d5f8d5",
+      "name": "Area"
+    },
+    {
+      "guid": "919e146f-30ae-4aae-be34-4d72f555e7da",
+      "name": "Brep"
+    }
+  ],
+  "pivots": [
+    {
+      "x": 387,
+      "y": 150
+    },
+    {
+      "x": 288,
+      "y": 152
+    }
+  ],
+  "bounds": [
+    {
+      "x": 360,
+      "y": 128,
+      "width": 57,
+      "height": 44
+    },
+    {
+      "x": 263,
+      "y": 142,
+      "width": 50,
+      "height": 20
+    }
+  ],
+  "instanceIdentifiers": [
+    {
+      "Description": "Solve area properties for breps, meshes and planar closed curves.",
+      "InstanceGuid": "bfd08430-973c-49e8-adab-04487445d763",
+      "Name": "Area",
+      "NickName": "Area"
+    },
+    {
+      "Description": "Contains a collection of Breps (Boundary REPresentations)",
+      "InstanceGuid": "fb6c9287-cd45-4367-b9ba-f7db4cadbbb8",
+      "Name": "Brep",
+      "NickName": "Brep",
+      "Optional": false,
+      "SourceCount": 0
+    }
+  ],
+  "ios": [
+    {
+      "params": {
+        "inputParams": {
+          "Description": "Brep, mesh or planar closed curve for area computation",
+          "InstanceGuid": "3a6e01b6-1fbd-4fd4-a8c1-ccdbbdc197d1",
+          "Name": "Geometry",
+          "NickName": "G",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        "outputParams": {
+          "Description": "Area of geometry",
+          "InstanceGuid": "90103901-cd88-4eaf-af07-834c472aaea5",
+          "Name": "Area",
+          "NickName": "A",
+          "Optional": true,
+          "SourceCount": 0
+        }
+      },
+      "bounds": {
+        "input": [
+          {
+            "x": 362,
+            "y": 130,
+            "width": 10,
+            "height": 40
+          }
+        ],
+        "output": [
+          {
+            "x": 402,
+            "y": 130,
+            "width": 13,
+            "height": 20
+          },
+          {
+            "x": 402,
+            "y": 150,
+            "width": 13,
+            "height": 20
+          }
+        ]
+      },
+      "pivots": {
+        "input": [
+          {
+            "x": 368.5,
+            "y": 150
+          }
+        ],
+        "output": [
+          {
+            "x": 408.5,
+            "y": 140
+          },
+          {
+            "x": 408.5,
+            "y": 160
+          }
+        ]
+      },
+      "zuiDescriptor": {
+        "inputCount": 1,
+        "outputCount": 2,
+        "inputIdentifiers": [
+          {
+            "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+            "typeCode": 9
+          }
+        ],
+        "outputIdentifiers": [
+          {
+            "guid": "3e8ca6be-fda8-4aaf-b5c0-3c54c8bb7312",
+            "typeCode": 9
+          },
+          {
+            "guid": "fbac3e32-f100-4292-8692-77240a42fd1a",
+            "typeCode": 9
+          }
+        ]
+      },
+      "isZui": true
+    },
+    {
+      "params": {
+        "inputParams": [],
+        "outputParams": []
+      },
+      "bounds": {
+        "input": [],
+        "output": []
+      },
+      "pivots": {
+        "input": [],
+        "output": []
+      },
+      "isZui": false
+    }
+  ],
+  "ghaLibs": {
+    "main": [
+      {
+        "items": {
+          "item": [
+            {
+              "#text": "Robert McNeel & Associates",
+              "@_name": "Author",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "00000000-0000-0000-0000-000000000000",
+              "@_name": "Id",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": "Grasshopper",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "8.26.25349.19002",
+              "@_name": "Version",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            }
+          ],
+          "@_count": 4
+        },
+        "@_name": "Library",
+        "@_index": 0
+      },
+      {
+        "items": {
+          "item": [
+            {
+              "#text": "Robert McNeel & Associates",
+              "@_name": "Author",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "00000000-0000-0000-0000-000000000000",
+              "@_name": "Id",
+              "@_type_name": "gh_guid",
+              "@_type_code": 9
+            },
+            {
+              "#text": "Grasshopper",
+              "@_name": "Name",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            },
+            {
+              "#text": "8.26.25349.19002",
+              "@_name": "Version",
+              "@_type_name": "gh_string",
+              "@_type_code": 10
+            }
+          ],
+          "@_count": 4
+        },
+        "@_name": "Library",
+        "@_index": 1
+      }
+    ],
+    "count": 2
+  },
+  "descriptor": [],
+  "isAllVanilla": true
+}

@@ -11,15 +11,14 @@ type DrawSize = {
 };
 
 export type Bound = CanvasPoint & DrawSize;
-type DrawType = "Thick" | "Thin" | "Hidden"; //TODO: check these names...
-// const NODE_TYPES = [
-// 	"Relay",
-// 	"Compoemnent",
-// 	"Group",
-// 	"CSharpCodeBlock",
-// 	"PythonCodeBlock",
-// 	"AndMOre...",
-// ] as const; //TODO: check these names...
+// type DrawType = "Thick" | "Thin" | "Hidden";
+const NODE_TYPES = [
+	"Compoemnent",
+	"Relay",
+	"Group",
+	"CSharpCodeBlock",
+	"PythonCodeBlock",
+] as const;
 
 type Group = {
 	index: number[];
@@ -32,10 +31,13 @@ export type GhaLibDiscripor = {
 	version: string;
 };
 
-export type TghCanvas = {
-	ghXmlJson?: GhXmlType;
+export type GhJsonScript = {
 	stats: {
-		GhVersion: string;
+		GhVersion: {
+			major: number;
+			minor: number;
+			revision: number;
+		};
 		uniqueCount: number;
 		canvasSize: DrawSize;
 		totalNodeCount: number;
@@ -57,7 +59,7 @@ type Connection = {
 	to: number;
 };
 
-// type NodeType = (typeof NODE_TYPES)[number];
+type NodeType = (typeof NODE_TYPES)[number];
 
 type Parameter = {
 	guid: string;
@@ -66,28 +68,26 @@ type Parameter = {
 	location: CanvasPoint;
 };
 
-type InputParameter = Parameter & {
-	paramOverride: string;
-	drawType: DrawType;
-};
-
-type OutputParameter = Parameter & {
-	//
+type IoParam = Parameter & {
+	type: "Input" | "Output";
+	description: string;
+	instanceGuid: string;
+	name: string;
+	nickName: string;
+	[key: string]: any;
 };
 
 type TghNode = {
-	// type: NodeType;
-	// parents: string[];
+	type: NodeType;
 	identifier: NodeIdentifier;
 	instanceIdentifier: InstanceIdentifier;
 	bound: Bound;
 	pivot: CanvasPoint;
 	interfaceDescriptor: InterfaceDescriptor;
-	input: InputParameter[];
-	output: OutputParameter[];
+	input: IoParam[];
+	output: IoParam[];
 };
 
-// Identifiers for which node is being used
 export type NodeIdentifier = {
 	guid: string;
 	name: string;
@@ -101,7 +101,6 @@ export type InstanceIdentifier = {
 	description: string;
 	locked: boolean;
 	hidden: boolean;
-	others: Record<string, string>;
 };
 
 export type InterfaceDescriptor = {
@@ -109,6 +108,7 @@ export type InterfaceDescriptor = {
 	outputCount: number;
 	inputIdentifiers: InterfaceIdentifier[];
 	outputIdentifiers: InterfaceIdentifier[];
+	[key: string]: any;
 };
 
 export type InterfaceIdentifier = {

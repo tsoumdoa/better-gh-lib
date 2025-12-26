@@ -1,0 +1,17 @@
+[
+  {
+    "Description": "C# scripting component",
+    "GraftStandardOutputLines": true,
+    "InstanceGuid": "f7443a61-a2e9-43bb-890f-cf22f40271ff",
+    "MarshGuids": false,
+    "MarshInputs": false,
+    "MarshOutputs": false,
+    "Name": "C# Script",
+    "NickName": "C#",
+    "ScriptComponentVersion": 3,
+    "UsingLibraryInputParam": false,
+    "UsingScriptInputParam": false,
+    "UsingScriptOutputParam": false,
+    "UsingStandardOutputParam": true
+  }
+]

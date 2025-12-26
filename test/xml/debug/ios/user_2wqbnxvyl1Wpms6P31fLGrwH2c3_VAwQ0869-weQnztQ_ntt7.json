@@ -1,0 +1,143 @@
+[
+  {
+    "params": {
+      "inputParams": [
+        {
+          "Description": "Connected to the Idea StatiCa API Service",
+          "InstanceGuid": "effebd5c-eadb-4526-b490-8101594d39a4",
+          "Name": "Status",
+          "NickName": "C",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "Version of the Idea StatiCa Connection API Service",
+          "InstanceGuid": "0c4268b8-de11-4411-a587-7b255f82ab7d",
+          "Name": "Version",
+          "NickName": "V",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Description": "Path to directory where ConnectionRestApi.exe is saved. Directory where IdeaStatiCa was installed is used by default if no path provided.",
+          "InstanceGuid": "e1fd465e-b807-4b8e-a6fa-23ad2f17a54d",
+          "Name": "Path",
+          "NickName": "U",
+          "Optional": true,
+          "Source": [
+            "db19b4f3-ccf1-48b6-94b5-eb3398b18d1e"
+          ],
+          "SourceCount": 1
+        },
+        {
+          "Description": "Run the API component via a boolean input",
+          "InstanceGuid": "75f430b8-cbd4-4f28-8984-9c585f8dd497",
+          "Name": "Active",
+          "NickName": "A",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 574,
+          "y": 111,
+          "width": 17,
+          "height": 20
+        },
+        {
+          "x": 574,
+          "y": 131,
+          "width": 17,
+          "height": 20
+        }
+      ],
+      "output": [
+        {
+          "x": 529,
+          "y": 111,
+          "width": 15,
+          "height": 20
+        },
+        {
+          "x": 529,
+          "y": 131,
+          "width": 15,
+          "height": 20
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 582.5,
+          "y": 121
+        },
+        {
+          "x": 582.5,
+          "y": 141
+        }
+      ],
+      "output": [
+        {
+          "x": 538,
+          "y": 121
+        },
+        {
+          "x": 538,
+          "y": 141
+        }
+      ]
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [],
+      "outputParams": []
+    },
+    "bounds": {
+      "input": [],
+      "output": []
+    },
+    "pivots": {
+      "input": [],
+      "output": []
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [],
+      "outputParams": []
+    },
+    "bounds": {
+      "input": [],
+      "output": []
+    },
+    "pivots": {
+      "input": [],
+      "output": []
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [],
+      "outputParams": []
+    },
+    "bounds": {
+      "input": [],
+      "output": []
+    },
+    "pivots": {
+      "input": [],
+      "output": []
+    },
+    "isZui": false
+  }
+]

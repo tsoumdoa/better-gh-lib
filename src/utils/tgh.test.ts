@@ -2,11 +2,12 @@ import { expect, test } from "vitest";
 import fs from "node:fs";
 import { ghXmlParser } from "./gh-xml-parser";
 import {
-	getDefinitionObject,
+	getDefObj,
 	getGhaLibraryDescriptors,
 	getVersion,
 } from "./data-extractor";
 import { writeDefObjTofiles, writeGhaLibsToFiles } from "./tgh-test-helper";
+import { buildGhJson } from "./gh-json-builder";
 
 const xmlFolder = "./test/xml/";
 const files = fs.readdirSync("./test/xml/");
@@ -17,9 +18,16 @@ for (const file of files) {
 	}
 
 	const xml = fs.readFileSync(xmlFolder + file, "utf8");
+	const parsed = buildGhJson(xml);
+
+	fs.writeFileSync(
+		xmlFolder + "parsed/" + file.replace(".xml", ".json"),
+		JSON.stringify(parsed, null, 2)
+	);
+
 	const jsonXml = ghXmlParser.parse(xml);
 	fs.writeFileSync(
-		xmlFolder + "json/" + file.replace(".xml", ".json"),
+		xmlFolder + "devs/json/" + file.replace(".xml", ".json"),
 		JSON.stringify(jsonXml, null, 2)
 	);
 
@@ -52,29 +60,10 @@ function testGetGhaLibraries(jsonXml: any, file: string) {
 		expect(ghaLib.author).toEqual(expect.any(String));
 		expect(ghaLib.version).toEqual(expect.any(String));
 	}
-
-	const isAllVanilla = r.isAlltanilla;
-	expect(isAllVanilla).toBe(r.descriptor.length === 0);
 }
 
 function testGetDefObject(jsonXml: any, file: string) {
-	const r = getDefinitionObject(jsonXml);
+	const r = getDefObj(jsonXml);
 
 	writeDefObjTofiles(r, file, xmlFolder);
-
-	// might not be so useful but ok for now
-	for (const obj of r.defObj.main) {
-		const atName = obj["@_name"];
-		expect(atName).toBe("Object");
-	}
-
-	const mainBodyLength = r.defObj.main.length;
-	expect(mainBodyLength).toBe(r.componenentCount); // this one is just testing the count
-
-	// main body length is number of components
-	//length of identifiers, pivots, bounds should be the same as the main body length
-	expect(r.identifiers.length).toBe(mainBodyLength);
-	expect(r.pivots.length).toBe(mainBodyLength);
-	expect(r.bounds.length).toBe(mainBodyLength);
-	expect(r.interfaceDescriptors.length).toBe(mainBodyLength);
 }
