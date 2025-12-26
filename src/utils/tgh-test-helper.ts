@@ -10,11 +10,6 @@ export function writeGhaLibsToFiles(
 	xmlFolder: string
 ) {
 	fs.writeFileSync(
-		xmlFolder + `debug/ghaLibs/${file.replace(".xml", ".json")}`,
-		JSON.stringify(r.ghaLibs.main, null, 2)
-	);
-
-	fs.writeFileSync(
 		xmlFolder + `debug/ghaLibsDescriptor/${file.replace(".xml", ".json")}`,
 		JSON.stringify(r.descriptor, null, 2)
 	);

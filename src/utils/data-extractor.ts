@@ -122,7 +122,7 @@ export function getGhaLibraryDescriptors(ghJson: any) {
 	}
 
 	return {
-		ghaLibs: ghaLibs,
+		// ghaLibs: ghaLibs,
 		descriptor: descs,
 		isAllVanilla: descs.length === 0,
 	};
