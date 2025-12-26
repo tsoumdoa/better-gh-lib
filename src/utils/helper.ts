@@ -4,7 +4,7 @@ import {
 	handleZuiIoAttrs,
 	handlePivot,
 } from "./handler";
-import { Bound, CanvasPoint, InstanceIdentifier, NodeIdentifier } from "./tgh";
+import { Bound, CanvasPoint, NodeIdentifier } from "./tgh";
 
 export function getComponentBounds(obj: any): Bound {
 	const p = getComponentAttribute(obj, "Bounds");
@@ -15,8 +15,12 @@ export function getComponentPivot(obj: any): CanvasPoint {
 	return handlePivot(p);
 }
 
-function findObjByAtName(obj: any, atName: string) {
+export function findObjByAtName(obj: any, atName: string) {
 	return obj.find((i: Record<string, unknown>) => i["@_name"] === atName);
+}
+
+export function filterObjByAtName(obj: any, atName: string) {
+	return obj.filter((i: Record<string, unknown>) => i["@_name"] === atName);
 }
 
 function getComponentAttribute(obj: any, name: "Bounds" | "Pivot") {

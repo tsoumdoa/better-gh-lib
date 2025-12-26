@@ -1,3 +1,4 @@
+import { filterObjByAtName, findObjByAtName } from "./helper";
 import {
 	Bound,
 	CanvasPoint,
@@ -39,10 +40,8 @@ export function extractInterfaceDescriptor(
 	attr: Record<string, any>
 ): InterfaceDescriptor {
 	const items: Record<string, any>[] = attr.items.item;
-	const inputCount = items.find((i) => i["@_name"] === "InputCount")?.["#text"];
-	const outputCount = items.find((i) => i["@_name"] === "OutputCount")?.[
-		"#text"
-	];
+	const inputCount = findObjByAtName(items, "InputCount")?.["#text"];
+	const outputCount = findObjByAtName(items, "OutputCount")?.["#text"];
 
 	const inputIdentifiers: InterfaceIdentifier[] = [];
 	const outputIdentifiers: InterfaceIdentifier[] = [];
@@ -68,11 +67,8 @@ export function extractInterfaceDescriptor(
 }
 
 export function handleZuiIoAttrs(chunk: Record<string, any>[]) {
-	const inputAttrInputParams =
-		chunk.filter((i) => i["@_name"] === "InputParam") ?? [];
-
-	const outputAttrOutputParams =
-		chunk.filter((i) => i["@_name"] === "OutputParam") ?? [];
+	const inputAttrInputParams = filterObjByAtName(chunk, "InputParam");
+	const outputAttrOutputParams = filterObjByAtName(chunk, "OutputParam");
 
 	var inputBounds: Bound[] = [];
 	var outputBounds: Bound[] = [];
