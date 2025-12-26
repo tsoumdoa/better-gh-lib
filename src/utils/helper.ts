@@ -33,9 +33,9 @@ function getComponentAttribute(obj: any, name: "Bounds" | "Pivot") {
 
 export function getIdentifier(obj: any): NodeIdentifier {
 	const ii: Record<string, any>[] = obj.items.item;
-	const g = ii.find((i) => i["@_name"] === "GUID")?.["#text"];
-	const n = ii.find((i) => i["@_name"] === "Name")?.["#text"];
-	const id = ii.find((i) => i["@_name"] === "Lib")?.["#text"];
+	const g = findObjByAtName(ii, "GUID")?.["#text"];
+	const n = findObjByAtName(ii, "Name")?.["#text"];
+	const id = findObjByAtName(ii, "Lib")?.["#text"];
 
 	return {
 		guid: g,
@@ -76,10 +76,9 @@ function parseZuiIOs(zuiBody: any) {
 	const chunk: Record<string, any>[] = chunks.chunk;
 	const parsedAttrs = handleZuiIoAttrs(chunk);
 
-	const inputAttrItems =
-		chunk.find((i) => i["@_name"] === "InputParam")?.items.item ?? [];
+	const inputAttrItems = findObjByAtName(chunk, "InputParam")?.items.item ?? [];
 	const outputAttrItems =
-		chunk.find((i) => i["@_name"] === "OutputParam")?.items.item ?? [];
+		findObjByAtName(chunk, "OutputParam")?.items.item ?? [];
 
 	return {
 		inputParams: transformParams(inputAttrItems),
