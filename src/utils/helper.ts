@@ -20,8 +20,9 @@ function findObjByAtName(obj: any, atName: string) {
 }
 
 function getComponentAttribute(obj: any, name: "Bounds" | "Pivot") {
-	const attr = obj.chunks.chunk[0].chunks.chunk.find(
-		(i: Record<string, unknown>) => i["@_name"] === "Attributes"
+	const attr = findObjByAtName(
+		obj.chunks.chunk[0].chunks.chunk,
+		"Attributes"
 	).items;
 
 	if (!attr) {
