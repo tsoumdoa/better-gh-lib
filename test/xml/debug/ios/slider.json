@@ -1,0 +1,77 @@
+[
+  {
+    "params": {
+      "inputParams": [],
+      "outputParams": []
+    },
+    "bounds": {
+      "input": [],
+      "output": []
+    },
+    "pivots": {
+      "input": [],
+      "output": []
+    },
+    "isZui": false
+  },
+  {
+    "params": {
+      "inputParams": [
+        {
+          "Description": "Output value",
+          "InstanceGuid": "4d0d43d1-377b-4b27-8b0a-71fd10ef4b02",
+          "Name": "Result",
+          "NickName": "y",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Description": "Input value",
+          "InstanceGuid": "3568ec7d-f881-4dea-895e-be1e78d97b8e",
+          "Name": "Value",
+          "NickName": "x",
+          "Optional": false,
+          "Source": [
+            "fbe9a838-5173-40be-944f-4af700c06b49"
+          ],
+          "SourceCount": 1
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 358,
+          "y": 171,
+          "width": 12,
+          "height": 27
+        }
+      ],
+      "output": [
+        {
+          "x": 319,
+          "y": 171,
+          "width": 9,
+          "height": 27
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 364,
+          "y": 184.5
+        }
+      ],
+      "output": [
+        {
+          "x": 325,
+          "y": 184.5
+        }
+      ]
+    },
+    "isZui": false
+  }
+]

@@ -16,25 +16,37 @@
   },
   {
     "params": {
-      "inputParams": {
-        "Description": "Brep, mesh or planar closed curve for area computation",
-        "InstanceGuid": "8f996d6f-16b6-4185-afb1-1d7dd9642f56",
-        "Name": "Geometry",
-        "NickName": "G",
-        "Optional": false,
-        "Source": [
-          "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9"
-        ],
-        "SourceCount": 1
-      },
-      "outputParams": {
-        "Description": "Area of geometry",
-        "InstanceGuid": "bcbc03c6-98af-4d43-a355-32308e7608e1",
-        "Name": "Area",
-        "NickName": "A",
-        "Optional": true,
-        "SourceCount": 0
-      }
+      "inputParams": [
+        {
+          "Description": "Brep, mesh or planar closed curve for area computation",
+          "InstanceGuid": "8f996d6f-16b6-4185-afb1-1d7dd9642f56",
+          "Name": "Geometry",
+          "NickName": "G",
+          "Optional": false,
+          "Source": [
+            "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9"
+          ],
+          "SourceCount": 1
+        }
+      ],
+      "outputParams": [
+        {
+          "Description": "Area of geometry",
+          "InstanceGuid": "bcbc03c6-98af-4d43-a355-32308e7608e1",
+          "Name": "Area",
+          "NickName": "A",
+          "Optional": true,
+          "SourceCount": 0
+        },
+        {
+          "Description": "Area centroid of geometry",
+          "InstanceGuid": "558b7bf7-4590-447b-a7f0-196b4d03acc8",
+          "Name": "Centroid",
+          "NickName": "C",
+          "Optional": true,
+          "SourceCount": 0
+        }
+      ]
     },
     "bounds": {
       "input": [

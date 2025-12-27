@@ -1,4 +1,4 @@
-import { filterObjByAtName, findObjByAtName } from "./helper";
+import { filterObjByAtName, findObjByAtName, transformParams } from "./helper";
 import {
 	Bound,
 	CanvasPoint,
@@ -90,5 +90,36 @@ export function handleZuiIoAttrs(chunk: Record<string, any>[]) {
 		outputBounds: outputBounds,
 		inputPivots: inputPivots,
 		outputPivots: outputPivots,
+	};
+}
+export function parseZuiIOs(zuiBody: any) {
+	const chunks = zuiBody.chunks;
+
+	if (!chunks)
+		return {
+			inputParams: [],
+			outputParams: [],
+			inputBounds: [],
+			outputBounds: [],
+			inputPivots: [],
+			outputPivots: [],
+		};
+	const chunk: Record<string, any>[] = chunks.chunk;
+	const parsedAttrs = handleZuiIoAttrs(chunk);
+
+	const inParams = filterObjByAtName(chunk, "InputParam").map((i: any) =>
+		transformParams(i.items.item)
+	);
+	const outParams = filterObjByAtName(chunk, "OutputParam").map((i: any) =>
+		transformParams(i.items.item)
+	);
+
+	return {
+		inputParams: inParams,
+		outputParams: outParams,
+		inputBounds: parsedAttrs.inputBounds,
+		outputBounds: parsedAttrs.outputBounds,
+		inputPivots: parsedAttrs.inputPivots,
+		outputPivots: parsedAttrs.outputPivots,
 	};
 }

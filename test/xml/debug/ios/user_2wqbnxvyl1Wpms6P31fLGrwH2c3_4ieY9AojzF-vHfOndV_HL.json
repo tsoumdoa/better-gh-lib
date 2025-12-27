@@ -1,16 +1,18 @@
 [
   {
     "params": {
-      "inputParams": {},
-      "outputParams": {
-        "Description": "The execution information, as output and error streams",
-        "InstanceGuid": "c7f5ed17-d480-45fd-9d3e-3633b525a034",
-        "Locked": true,
-        "Name": "out",
-        "NickName": "out",
-        "Optional": false,
-        "SourceCount": 0
-      }
+      "inputParams": [],
+      "outputParams": [
+        {
+          "Description": "The execution information, as output and error streams",
+          "InstanceGuid": "c7f5ed17-d480-45fd-9d3e-3633b525a034",
+          "Locked": true,
+          "Name": "out",
+          "NickName": "out",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ]
     },
     "bounds": {
       "input": [],

@@ -1,28 +1,9 @@
 {
   "GhVersion": "0.2.2",
-  "componenentCount": 1,
+  "componentsCount": 1,
   "uniqueCount": 1,
-  "identifiers": [
-    {
-      "guid": "b6ba1144-02d6-4a2d-b53c-ec62e290eeb7",
-      "name": "C# Script"
-    }
-  ],
-  "pivots": [
-    {
-      "x": 226,
-      "y": 136
-    }
-  ],
-  "bounds": [
-    {
-      "x": 212,
-      "y": 36,
-      "width": 57,
-      "height": 200
-    }
-  ],
-  "instanceIdentifiers": [
+  "ghLibs": [],
+  "ghs": [
     {
       "GraftStandardOutputLines": true,
       "InstanceGuid": "71b7b0fc-9229-49e0-b395-19ed6bc207d1",
@@ -36,57 +17,70 @@
       "UsingLibraryInputParam": false,
       "UsingScriptInputParam": false,
       "UsingScriptOutputParam": false,
-      "UsingStandardOutputParam": true
-    }
-  ],
-  "ios": [
-    {
-      "params": {
-        "inputParams": {},
-        "outputParams": {
-          "Description": "The execution information, as output and error streams",
-          "InstanceGuid": "c7f5ed17-d480-45fd-9d3e-3633b525a034",
-          "Locked": true,
-          "Name": "out",
-          "NickName": "out",
-          "Optional": false,
-          "SourceCount": 0
-        }
+      "UsingStandardOutputParam": true,
+      "identifier": {
+        "guid": "b6ba1144-02d6-4a2d-b53c-ec62e290eeb7",
+        "name": "C# Script"
+      },
+      "pivot": {
+        "x": 226,
+        "y": 136
       },
       "bounds": {
-        "input": [],
-        "output": [
+        "x": 212,
+        "y": 36,
+        "width": 57,
+        "height": 200
+      },
+      "in": {
+        "inputParams": [],
+        "inputParamsZui": [],
+        "inputBounds": [],
+        "inputPivots": []
+      },
+      "out": {
+        "outputParams": [
+          {
+            "Description": "The execution information, as output and error streams",
+            "InstanceGuid": "c7f5ed17-d480-45fd-9d3e-3633b525a034",
+            "Locked": true,
+            "Name": "out",
+            "NickName": "out",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "outputParamsZui": [
+          {
+            "guid": "3ede854e-c753-40eb-84cb-b48008f14fd4",
+            "typeCode": 9
+          }
+        ],
+        "outputBounds": [
           {
             "x": 241,
             "y": 38,
             "width": 26,
             "height": 196
           }
-        ]
-      },
-      "pivots": {
-        "input": [],
-        "output": [
+        ],
+        "outputPivots": [
           {
             "x": 254,
             "y": 136
           }
         ]
-      },
-      "zuiDescriptor": {
-        "inputCount": 0,
-        "outputCount": 1,
-        "inputIdentifiers": [],
-        "outputIdentifiers": [
-          {
-            "guid": "3ede854e-c753-40eb-84cb-b48008f14fd4",
-            "typeCode": 9
-          }
-        ]
-      },
-      "isZui": true
+      }
     }
   ],
-  "ghLibs": [],
-  "isAllVanilla": true
+  "scripts": [
+    {
+      "taxon": "*.*.csharp",
+      "MarshGuids": false,
+      "MarshInputs": false,
+      "MarshOutputs": false,
+      "Title": "dangerouslyRandomizeColor",
+      "script": "using Grasshopper.Kernel;\r\nusing Rhino.Collections;\r\nusing Rhino.DocObjects;\r\nusing System;\r\nusing System.Collections.Generic;\r\nusing System.Drawing;\r\n\r\npublic class Script_Instance : GH_ScriptInstance\r\n{\r\n    private void RunScript()\r\n    {\r\n        // Get the current active document\r\n        var doc = Rhino.RhinoDoc.ActiveDoc;\r\n\r\n        // Get layers in the current doc\r\n        var layers = doc.Layers;\r\n\r\n        // Randomize all layer colors\r\n        var random = new Random();\r\n        for (int i = 0; i < layers.Count; i++)\r\n        {\r\n            var newColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));\r\n            layers[i].Color = newColor;\r\n        }\r\n\r\n\r\n       \r\n    }\r\n}"
+    }
+  ]
 }

@@ -1,15 +1,30 @@
 [
   {
     "params": {
-      "inputParams": {},
-      "outputParams": {
-        "Description": "The execution information, as output and error streams",
-        "InstanceGuid": "6751fa3c-62ca-4668-8bd8-303f4876bb82",
-        "Name": "out",
-        "NickName": "out",
-        "Optional": false,
-        "SourceCount": 0
-      }
+      "inputParams": [],
+      "outputParams": [
+        {
+          "Description": "The execution information, as output and error streams",
+          "InstanceGuid": "6751fa3c-62ca-4668-8bd8-303f4876bb82",
+          "Name": "out",
+          "NickName": "out",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "AllowTreeAccess": false,
+          "Description": "No conversion",
+          "InstanceGuid": "71698d5a-49fb-4995-bbc4-8fa9e908b17d",
+          "Name": "a",
+          "NickName": "a",
+          "Optional": false,
+          "ScriptParamAccess": 0,
+          "ScriptParameterVersion": 2,
+          "ShowTypeHints": true,
+          "SourceCount": 0,
+          "TypeHintID": "6a184b65-baa3-42d1-a548-3915b401de53"
+        }
+      ]
     },
     "bounds": {
       "input": [],

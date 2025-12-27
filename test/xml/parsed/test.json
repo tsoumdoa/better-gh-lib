@@ -1,28 +1,9 @@
 {
   "GhVersion": "0.2.2",
-  "componenentCount": 1,
+  "componentsCount": 1,
   "uniqueCount": 1,
-  "identifiers": [
-    {
-      "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
-      "name": "Panel"
-    }
-  ],
-  "pivots": [
-    {
-      "x": 487.99176,
-      "y": 143.4917
-    }
-  ],
-  "bounds": [
-    {
-      "x": 487,
-      "y": 143,
-      "width": 160,
-      "height": 100
-    }
-  ],
-  "instanceIdentifiers": [
+  "ghLibs": [],
+  "ghs": [
     {
       "Description": "A panel for custom notes and text values",
       "InstanceGuid": "fbb386c0-7f2a-474b-b0a2-18df7a0ff03f",
@@ -30,26 +11,34 @@
       "Optional": false,
       "ScrollRatio": 0,
       "SourceCount": 0,
-      "UserText": "fa"
-    }
-  ],
-  "ios": [
-    {
-      "params": {
-        "inputParams": [],
-        "outputParams": []
+      "UserText": "fa",
+      "identifier": {
+        "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+        "name": "Panel"
+      },
+      "pivot": {
+        "x": 487.99176,
+        "y": 143.4917
       },
       "bounds": {
-        "input": [],
-        "output": []
+        "x": 487,
+        "y": 143,
+        "width": 160,
+        "height": 100
       },
-      "pivots": {
-        "input": [],
-        "output": []
+      "in": {
+        "inputParams": [],
+        "inputBounds": [],
+        "inputPivots": []
       },
-      "isZui": false
+      "out": {
+        "outputParams": [],
+        "outputBounds": [],
+        "outputPivots": []
+      }
     }
   ],
-  "ghLibs": [],
-  "isAllVanilla": true
+  "scripts": [
+    {}
+  ]
 }

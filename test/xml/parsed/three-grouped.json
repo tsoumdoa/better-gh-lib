@@ -1,102 +1,43 @@
 {
   "GhVersion": "0.2.2",
-  "componenentCount": 4,
+  "componentsCount": 4,
   "uniqueCount": 4,
-  "identifiers": [
+  "ghLibs": [
     {
-      "guid": "d4ffcfd6-0d9d-407d-9789-ccefb6bafe0f",
-      "name": "Iso Edges",
-      "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
-    },
-    {
-      "guid": "539f5564-4fc0-4fc1-a7d3-b802fa2ef072",
-      "name": "Bend Deform"
-    },
-    {
-      "guid": "89bc7614-a135-4d75-8a6d-9d784b1d4d4f",
-      "name": "Sdca Regression",
+      "name": "LunchBoxML",
+      "author": "",
+      "version": "2024.2.11.0",
       "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
     },
     {
-      "guid": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
-      "name": "Group"
+      "name": "PTComponentLibrary",
+      "author": "",
+      "version": "2021.4.1.0",
+      "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
     }
   ],
-  "pivots": [
-    {
-      "x": 514,
-      "y": 233
-    },
-    {
-      "x": 379,
-      "y": 148
-    },
-    {
-      "x": 537,
-      "y": 126
-    },
-    {
-      "x": -1,
-      "y": -1
-    }
-  ],
-  "bounds": [
-    {
-      "x": 488,
-      "y": 209,
-      "width": 56,
-      "height": 48
-    },
-    {
-      "x": 352,
-      "y": 126,
-      "width": 57,
-      "height": 44
-    },
-    {
-      "x": 434,
-      "y": 94,
-      "width": 185,
-      "height": 64
-    },
-    {
-      "x": -1,
-      "y": -1,
-      "width": -1,
-      "height": -1
-    }
-  ],
-  "instanceIdentifiers": [
+  "ghs": [
     {
       "Description": "Extract iso-edges on surface from linear edges",
       "InstanceGuid": "db9dff29-7343-463f-89bd-8f4c60adc6ed",
       "Name": "Iso Edges",
-      "NickName": "ptIsoE"
-    },
-    {
-      "Description": "Deform a shape by bending it",
-      "InstanceGuid": "114fbc1d-e109-4089-bb49-26dcaf5d500a",
-      "Name": "Bend Deform",
-      "NickName": "Bend"
-    },
-    {
-      "Description": "The Sdca trainer is used to train a regression model using the stochastic dual coordinate ascent method.",
-      "InstanceGuid": "f6de3eff-2546-4ece-b6ac-fb09ec46d258",
-      "Name": "Sdca Regression",
-      "NickName": "Sdca"
-    },
-    {
-      "Border": 1,
-      "Description": "A group of Grasshopper objects",
-      "ID": "f6de3eff-2546-4ece-b6ac-fb09ec46d258",
-      "ID_Count": 3,
-      "InstanceGuid": "4b47f2c5-b060-4270-95cc-150501d0b58e",
-      "Name": "Group"
-    }
-  ],
-  "ios": [
-    {
-      "params": {
+      "NickName": "ptIsoE",
+      "identifier": {
+        "guid": "d4ffcfd6-0d9d-407d-9789-ccefb6bafe0f",
+        "name": "Iso Edges",
+        "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
+      },
+      "pivot": {
+        "x": 514,
+        "y": 233
+      },
+      "bounds": {
+        "x": 488,
+        "y": 209,
+        "width": 56,
+        "height": 48
+      },
+      "in": {
         "inputParams": [
           {
             "Description": "Iso curve segments",
@@ -107,6 +48,22 @@
             "SourceCount": 0
           }
         ],
+        "inputBounds": [
+          {
+            "x": 529,
+            "y": 211,
+            "width": 13,
+            "height": 44
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 535.5,
+            "y": 233
+          }
+        ]
+      },
+      "out": {
         "outputParams": [
           {
             "Access": 1,
@@ -125,18 +82,8 @@
             "Optional": false,
             "SourceCount": 0
           }
-        ]
-      },
-      "bounds": {
-        "input": [
-          {
-            "x": 529,
-            "y": 211,
-            "width": 13,
-            "height": 44
-          }
         ],
-        "output": [
+        "outputBounds": [
           {
             "x": 490,
             "y": 211,
@@ -149,16 +96,8 @@
             "width": 9,
             "height": 22
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 535.5,
-            "y": 233
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 496,
             "y": 222
@@ -168,11 +107,28 @@
             "y": 244
           }
         ]
-      },
-      "isZui": false
+      }
     },
     {
-      "params": {
+      "Description": "Deform a shape by bending it",
+      "InstanceGuid": "114fbc1d-e109-4089-bb49-26dcaf5d500a",
+      "Name": "Bend Deform",
+      "NickName": "Bend",
+      "identifier": {
+        "guid": "539f5564-4fc0-4fc1-a7d3-b802fa2ef072",
+        "name": "Bend Deform"
+      },
+      "pivot": {
+        "x": 379,
+        "y": 148
+      },
+      "bounds": {
+        "x": 352,
+        "y": 126,
+        "width": 57,
+        "height": 44
+      },
+      "in": {
         "inputParams": [
           {
             "Description": "Deformed geometry",
@@ -183,6 +139,22 @@
             "SourceCount": 0
           }
         ],
+        "inputBounds": [
+          {
+            "x": 394,
+            "y": 128,
+            "width": 13,
+            "height": 40
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 400.5,
+            "y": 148
+          }
+        ]
+      },
+      "out": {
         "outputParams": [
           {
             "Description": "Geometry to deform",
@@ -200,18 +172,8 @@
             "Optional": false,
             "SourceCount": 0
           }
-        ]
-      },
-      "bounds": {
-        "input": [
-          {
-            "x": 394,
-            "y": 128,
-            "width": 13,
-            "height": 40
-          }
         ],
-        "output": [
+        "outputBounds": [
           {
             "x": 354,
             "y": 128,
@@ -224,16 +186,8 @@
             "width": 10,
             "height": 20
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 400.5,
-            "y": 148
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 360.5,
             "y": 138
@@ -243,11 +197,29 @@
             "y": 158
           }
         ]
-      },
-      "isZui": false
+      }
     },
     {
-      "params": {
+      "Description": "The Sdca trainer is used to train a regression model using the stochastic dual coordinate ascent method.",
+      "InstanceGuid": "f6de3eff-2546-4ece-b6ac-fb09ec46d258",
+      "Name": "Sdca Regression",
+      "NickName": "Sdca",
+      "identifier": {
+        "guid": "89bc7614-a135-4d75-8a6d-9d784b1d4d4f",
+        "name": "Sdca Regression",
+        "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
+      },
+      "pivot": {
+        "x": 537,
+        "y": 126
+      },
+      "bounds": {
+        "x": 434,
+        "y": 94,
+        "width": 185,
+        "height": 64
+      },
+      "in": {
         "inputParams": [
           {
             "Description": "The trainer used for machine learning problems.",
@@ -258,6 +230,22 @@
             "SourceCount": 0
           }
         ],
+        "inputBounds": [
+          {
+            "x": 552,
+            "y": 96,
+            "width": 65,
+            "height": 60
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 584.5,
+            "y": 126
+          }
+        ]
+      },
+      "out": {
         "outputParams": [
           {
             "Description": "The L1 regularization weight.",
@@ -283,18 +271,8 @@
             "Optional": false,
             "SourceCount": 0
           }
-        ]
-      },
-      "bounds": {
-        "input": [
-          {
-            "x": 552,
-            "y": 96,
-            "width": 65,
-            "height": 60
-          }
         ],
-        "output": [
+        "outputBounds": [
           {
             "x": 436,
             "y": 96,
@@ -313,16 +291,8 @@
             "width": 86,
             "height": 20
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 584.5,
-            "y": 126
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 480.5,
             "y": 106
@@ -336,38 +306,45 @@
             "y": 146
           }
         ]
-      },
-      "isZui": false
+      }
     },
     {
-      "params": {
-        "inputParams": [],
-        "outputParams": []
+      "Border": 1,
+      "Description": "A group of Grasshopper objects",
+      "ID": "f6de3eff-2546-4ece-b6ac-fb09ec46d258",
+      "ID_Count": 3,
+      "InstanceGuid": "4b47f2c5-b060-4270-95cc-150501d0b58e",
+      "Name": "Group",
+      "identifier": {
+        "guid": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
+        "name": "Group"
+      },
+      "pivot": {
+        "x": -1,
+        "y": -1
       },
       "bounds": {
-        "input": [],
-        "output": []
+        "x": -1,
+        "y": -1,
+        "width": -1,
+        "height": -1
       },
-      "pivots": {
-        "input": [],
-        "output": []
+      "in": {
+        "inputParams": [],
+        "inputBounds": [],
+        "inputPivots": []
       },
-      "isZui": false
+      "out": {
+        "outputParams": [],
+        "outputBounds": [],
+        "outputPivots": []
+      }
     }
   ],
-  "ghLibs": [
-    {
-      "name": "LunchBoxML",
-      "author": "",
-      "version": "2024.2.11.0",
-      "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
-    },
-    {
-      "name": "PTComponentLibrary",
-      "author": "",
-      "version": "2021.4.1.0",
-      "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
-    }
-  ],
-  "isAllVanilla": false
+  "scripts": [
+    {},
+    {},
+    {},
+    {}
+  ]
 }

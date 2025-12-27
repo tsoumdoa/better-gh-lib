@@ -1,24 +1,28 @@
 [
   {
     "params": {
-      "inputParams": {
-        "ComparisonMode": 1,
-        "Description": "Name filter. Right-click on this parameter to set the matching method.",
-        "InstanceGuid": "9f8d333f-fde4-4289-aa02-5817f254f618",
-        "Name": "Name",
-        "NickName": "N",
-        "Optional": true,
-        "SourceCount": 0
-      },
-      "outputParams": {
-        "Access": 1,
-        "Description": "The resultant list of available environments in the model.",
-        "InstanceGuid": "ab2fb9dc-2112-499a-a0c8-59dfced848c5",
-        "Name": "Environments",
-        "NickName": "E",
-        "Optional": false,
-        "SourceCount": 0
-      }
+      "inputParams": [
+        {
+          "ComparisonMode": 1,
+          "Description": "Name filter. Right-click on this parameter to set the matching method.",
+          "InstanceGuid": "9f8d333f-fde4-4289-aa02-5817f254f618",
+          "Name": "Name",
+          "NickName": "N",
+          "Optional": true,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Access": 1,
+          "Description": "The resultant list of available environments in the model.",
+          "InstanceGuid": "ab2fb9dc-2112-499a-a0c8-59dfced848c5",
+          "Name": "Environments",
+          "NickName": "E",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ]
     },
     "bounds": {
       "input": [

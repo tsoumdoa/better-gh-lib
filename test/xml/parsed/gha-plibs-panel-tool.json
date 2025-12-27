@@ -1,39 +1,37 @@
 {
   "GhVersion": "0.2.2",
-  "componenentCount": 1,
+  "componentsCount": 1,
   "uniqueCount": 1,
-  "identifiers": [
+  "ghLibs": [
     {
-      "guid": "d4ffcfd6-0d9d-407d-9789-ccefb6bafe0f",
-      "name": "Iso Edges",
+      "name": "PTComponentLibrary",
+      "author": "",
+      "version": "2021.4.1.0",
       "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
     }
   ],
-  "pivots": [
-    {
-      "x": 514,
-      "y": 233
-    }
-  ],
-  "bounds": [
-    {
-      "x": 488,
-      "y": 209,
-      "width": 56,
-      "height": 48
-    }
-  ],
-  "instanceIdentifiers": [
+  "ghs": [
     {
       "Description": "Extract iso-edges on surface from linear edges",
       "InstanceGuid": "db9dff29-7343-463f-89bd-8f4c60adc6ed",
       "Name": "Iso Edges",
-      "NickName": "ptIsoE"
-    }
-  ],
-  "ios": [
-    {
-      "params": {
+      "NickName": "ptIsoE",
+      "identifier": {
+        "guid": "d4ffcfd6-0d9d-407d-9789-ccefb6bafe0f",
+        "name": "Iso Edges",
+        "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
+      },
+      "pivot": {
+        "x": 514,
+        "y": 233
+      },
+      "bounds": {
+        "x": 488,
+        "y": 209,
+        "width": 56,
+        "height": 48
+      },
+      "in": {
         "inputParams": [
           {
             "Description": "Iso curve segments",
@@ -44,6 +42,22 @@
             "SourceCount": 0
           }
         ],
+        "inputBounds": [
+          {
+            "x": 529,
+            "y": 211,
+            "width": 13,
+            "height": 44
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 535.5,
+            "y": 233
+          }
+        ]
+      },
+      "out": {
         "outputParams": [
           {
             "Access": 1,
@@ -62,18 +76,8 @@
             "Optional": false,
             "SourceCount": 0
           }
-        ]
-      },
-      "bounds": {
-        "input": [
-          {
-            "x": 529,
-            "y": 211,
-            "width": 13,
-            "height": 44
-          }
         ],
-        "output": [
+        "outputBounds": [
           {
             "x": 490,
             "y": 211,
@@ -86,16 +90,8 @@
             "width": 9,
             "height": 22
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 535.5,
-            "y": 233
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 496,
             "y": 222
@@ -105,17 +101,10 @@
             "y": 244
           }
         ]
-      },
-      "isZui": false
+      }
     }
   ],
-  "ghLibs": [
-    {
-      "name": "PTComponentLibrary",
-      "author": "",
-      "version": "2021.4.1.0",
-      "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
-    }
-  ],
-  "isAllVanilla": false
+  "scripts": [
+    {}
+  ]
 }

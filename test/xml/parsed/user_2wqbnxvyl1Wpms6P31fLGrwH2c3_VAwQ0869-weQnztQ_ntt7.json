@@ -1,112 +1,37 @@
 {
   "GhVersion": "0.2.2",
-  "componenentCount": 4,
+  "componentsCount": 4,
   "uniqueCount": 4,
-  "identifiers": [
+  "ghLibs": [
     {
-      "guid": "f9c90ac2-4669-44f3-a76b-f6cf743d4b4c",
-      "name": "Connection Service Runner",
+      "name": "IDEAStatiCa",
+      "author": "IDEA StatiCa s.r.o",
+      "version": "0.2.0",
       "libId": "0729affd-7a74-48ca-b210-519b87461343"
-    },
-    {
-      "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
-      "name": "Panel"
-    },
-    {
-      "guid": "06953bda-1d37-4d58-9b38-4b3c74e54c8f",
-      "name": "File Path"
-    },
-    {
-      "guid": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
-      "name": "Group"
     }
   ],
-  "pivots": [
-    {
-      "x": 559,
-      "y": 131
-    },
-    {
-      "x": 121.76581,
-      "y": 111.42615
-    },
-    {
-      "x": 474.5636,
-      "y": 121.372795
-    },
-    {
-      "x": -1,
-      "y": -1
-    }
-  ],
-  "bounds": [
-    {
-      "x": 527,
-      "y": 109,
-      "width": 66,
-      "height": 66
-    },
-    {
-      "x": 121,
-      "y": 111,
-      "width": 300,
-      "height": 21
-    },
-    {
-      "x": 449,
-      "y": 111,
-      "width": 50,
-      "height": 20
-    },
-    {
-      "x": -1,
-      "y": -1,
-      "width": -1,
-      "height": -1
-    }
-  ],
-  "instanceIdentifiers": [
+  "ghs": [
     {
       "Description": "Run Idea StatiCa Connection API Service",
       "InstanceGuid": "dd394a47-b7de-4f1a-840e-2039b9d95bea",
       "Name": "Connection Service Runner",
-      "NickName": "SR"
-    },
-    {
-      "Description": "A panel for custom notes and text values",
-      "InstanceGuid": "ed0605be-d1c5-48b5-9129-0188a391cbd1",
-      "Name": "Panel",
-      "Optional": false,
-      "ScrollRatio": 0,
-      "SourceCount": 0,
-      "UserText": "C:\\Program Files\\IDEA StatiCa\\StatiCa 24.1"
-    },
-    {
-      "Description": "Contains a collection of file paths",
-      "ExpireOnFileEvent": false,
-      "FileFilter": "All files|*.*",
-      "InstanceGuid": "db19b4f3-ccf1-48b6-94b5-eb3398b18d1e",
-      "Name": "File Path",
-      "NickName": "Path",
-      "Optional": false,
-      "Source": [
-        "ed0605be-d1c5-48b5-9129-0188a391cbd1"
-      ],
-      "SourceCount": 1
-    },
-    {
-      "Border": 1,
-      "Description": "A group of Grasshopper objects",
-      "ID": "db19b4f3-ccf1-48b6-94b5-eb3398b18d1e",
-      "ID_Count": 3,
-      "InstanceGuid": "47a82ede-78ac-4255-b9da-e81db379fd4d",
-      "Name": "Group",
-      "NickName": "click Run"
-    }
-  ],
-  "ios": [
-    {
-      "params": {
+      "NickName": "SR",
+      "identifier": {
+        "guid": "f9c90ac2-4669-44f3-a76b-f6cf743d4b4c",
+        "name": "Connection Service Runner",
+        "libId": "0729affd-7a74-48ca-b210-519b87461343"
+      },
+      "pivot": {
+        "x": 559,
+        "y": 131
+      },
+      "bounds": {
+        "x": 527,
+        "y": 109,
+        "width": 66,
+        "height": 66
+      },
+      "in": {
         "inputParams": [
           {
             "Description": "Connected to the Idea StatiCa API Service",
@@ -125,6 +50,32 @@
             "SourceCount": 0
           }
         ],
+        "inputBounds": [
+          {
+            "x": 574,
+            "y": 111,
+            "width": 17,
+            "height": 20
+          },
+          {
+            "x": 574,
+            "y": 131,
+            "width": 17,
+            "height": 20
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 582.5,
+            "y": 121
+          },
+          {
+            "x": 582.5,
+            "y": 141
+          }
+        ]
+      },
+      "out": {
         "outputParams": [
           {
             "Description": "Path to directory where ConnectionRestApi.exe is saved. Directory where IdeaStatiCa was installed is used by default if no path provided.",
@@ -145,24 +96,8 @@
             "Optional": false,
             "SourceCount": 0
           }
-        ]
-      },
-      "bounds": {
-        "input": [
-          {
-            "x": 574,
-            "y": 111,
-            "width": 17,
-            "height": 20
-          },
-          {
-            "x": 574,
-            "y": 131,
-            "width": 17,
-            "height": 20
-          }
         ],
-        "output": [
+        "outputBounds": [
           {
             "x": 529,
             "y": 111,
@@ -175,20 +110,8 @@
             "width": 15,
             "height": 20
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 582.5,
-            "y": 121
-          },
-          {
-            "x": 582.5,
-            "y": 141
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 538,
             "y": 121
@@ -198,62 +121,116 @@
             "y": 141
           }
         ]
-      },
-      "isZui": false
+      }
     },
     {
-      "params": {
-        "inputParams": [],
-        "outputParams": []
+      "Description": "A panel for custom notes and text values",
+      "InstanceGuid": "ed0605be-d1c5-48b5-9129-0188a391cbd1",
+      "Name": "Panel",
+      "Optional": false,
+      "ScrollRatio": 0,
+      "SourceCount": 0,
+      "UserText": "C:\\Program Files\\IDEA StatiCa\\StatiCa 24.1",
+      "identifier": {
+        "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+        "name": "Panel"
+      },
+      "pivot": {
+        "x": 121.76581,
+        "y": 111.42615
       },
       "bounds": {
-        "input": [],
-        "output": []
+        "x": 121,
+        "y": 111,
+        "width": 300,
+        "height": 21
       },
-      "pivots": {
-        "input": [],
-        "output": []
+      "in": {
+        "inputParams": [],
+        "inputBounds": [],
+        "inputPivots": []
       },
-      "isZui": false
+      "out": {
+        "outputParams": [],
+        "outputBounds": [],
+        "outputPivots": []
+      }
     },
     {
-      "params": {
-        "inputParams": [],
-        "outputParams": []
+      "Description": "Contains a collection of file paths",
+      "ExpireOnFileEvent": false,
+      "FileFilter": "All files|*.*",
+      "InstanceGuid": "db19b4f3-ccf1-48b6-94b5-eb3398b18d1e",
+      "Name": "File Path",
+      "NickName": "Path",
+      "Optional": false,
+      "Source": [
+        "ed0605be-d1c5-48b5-9129-0188a391cbd1"
+      ],
+      "SourceCount": 1,
+      "identifier": {
+        "guid": "06953bda-1d37-4d58-9b38-4b3c74e54c8f",
+        "name": "File Path"
+      },
+      "pivot": {
+        "x": 474.5636,
+        "y": 121.372795
       },
       "bounds": {
-        "input": [],
-        "output": []
+        "x": 449,
+        "y": 111,
+        "width": 50,
+        "height": 20
       },
-      "pivots": {
-        "input": [],
-        "output": []
+      "in": {
+        "inputParams": [],
+        "inputBounds": [],
+        "inputPivots": []
       },
-      "isZui": false
+      "out": {
+        "outputParams": [],
+        "outputBounds": [],
+        "outputPivots": []
+      }
     },
     {
-      "params": {
-        "inputParams": [],
-        "outputParams": []
+      "Border": 1,
+      "Description": "A group of Grasshopper objects",
+      "ID": "db19b4f3-ccf1-48b6-94b5-eb3398b18d1e",
+      "ID_Count": 3,
+      "InstanceGuid": "47a82ede-78ac-4255-b9da-e81db379fd4d",
+      "Name": "Group",
+      "NickName": "click Run",
+      "identifier": {
+        "guid": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
+        "name": "Group"
+      },
+      "pivot": {
+        "x": -1,
+        "y": -1
       },
       "bounds": {
-        "input": [],
-        "output": []
+        "x": -1,
+        "y": -1,
+        "width": -1,
+        "height": -1
       },
-      "pivots": {
-        "input": [],
-        "output": []
+      "in": {
+        "inputParams": [],
+        "inputBounds": [],
+        "inputPivots": []
       },
-      "isZui": false
+      "out": {
+        "outputParams": [],
+        "outputBounds": [],
+        "outputPivots": []
+      }
     }
   ],
-  "ghLibs": [
-    {
-      "name": "IDEAStatiCa",
-      "author": "IDEA StatiCa s.r.o",
-      "version": "0.2.0",
-      "libId": "0729affd-7a74-48ca-b210-519b87461343"
-    }
-  ],
-  "isAllVanilla": false
+  "scripts": [
+    {},
+    {},
+    {},
+    {}
+  ]
 }

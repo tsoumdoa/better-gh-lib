@@ -1,30 +1,60 @@
 [
   {
     "params": {
-      "inputParams": {
-        "AllowTreeAccess": true,
-        "Description": "No conversion",
-        "InstanceGuid": "6ce93bd5-881c-4959-a771-83d703e8c8e8",
-        "Name": "x",
-        "NickName": "x",
-        "Optional": true,
-        "ScriptParamAccess": 0,
-        "ScriptParameterVersion": 2,
-        "ShowTypeHints": true,
-        "Source": [
-          "5a8743f0-83e4-4e17-becf-05bca54d0601"
-        ],
-        "SourceCount": 1,
-        "TypeHintID": "6a184b65-baa3-42d1-a548-3915b401de53"
-      },
-      "outputParams": {
-        "Description": "Standard output and error contents collected during script run",
-        "InstanceGuid": "2850bd9a-619b-4450-9b50-6e96c8a81a38",
-        "Name": "out",
-        "NickName": "out",
-        "Optional": false,
-        "SourceCount": 0
-      }
+      "inputParams": [
+        {
+          "AllowTreeAccess": true,
+          "Description": "No conversion",
+          "InstanceGuid": "6ce93bd5-881c-4959-a771-83d703e8c8e8",
+          "Name": "x",
+          "NickName": "x",
+          "Optional": true,
+          "ScriptParamAccess": 0,
+          "ScriptParameterVersion": 2,
+          "ShowTypeHints": true,
+          "Source": [
+            "5a8743f0-83e4-4e17-becf-05bca54d0601"
+          ],
+          "SourceCount": 1,
+          "TypeHintID": "6a184b65-baa3-42d1-a548-3915b401de53"
+        },
+        {
+          "AllowTreeAccess": true,
+          "Description": "No conversion",
+          "InstanceGuid": "355d7cf1-b08f-48bb-8359-fe9dce6491ec",
+          "Name": "y",
+          "NickName": "y",
+          "Optional": true,
+          "ScriptParamAccess": 0,
+          "ScriptParameterVersion": 2,
+          "ShowTypeHints": true,
+          "SourceCount": 0,
+          "TypeHintID": "6a184b65-baa3-42d1-a548-3915b401de53"
+        }
+      ],
+      "outputParams": [
+        {
+          "Description": "Standard output and error contents collected during script run",
+          "InstanceGuid": "2850bd9a-619b-4450-9b50-6e96c8a81a38",
+          "Name": "out",
+          "NickName": "out",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "AllowTreeAccess": false,
+          "Description": "No conversion",
+          "InstanceGuid": "820b8f14-d113-4a29-9411-bf15b91744be",
+          "Name": "a",
+          "NickName": "a",
+          "Optional": false,
+          "ScriptParamAccess": 0,
+          "ScriptParameterVersion": 2,
+          "ShowTypeHints": true,
+          "SourceCount": 0,
+          "TypeHintID": "6a184b65-baa3-42d1-a548-3915b401de53"
+        }
+      ]
     },
     "bounds": {
       "input": [

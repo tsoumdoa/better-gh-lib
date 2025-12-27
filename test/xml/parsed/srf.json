@@ -1,38 +1,29 @@
 {
   "GhVersion": "0.2.2",
-  "componenentCount": 1,
+  "componentsCount": 1,
   "uniqueCount": 1,
-  "identifiers": [
-    {
-      "guid": "439a55a5-2f9e-4f66-9de2-32f24fec2ef5",
-      "name": "Plane Surface"
-    }
-  ],
-  "pivots": [
-    {
-      "x": 265,
-      "y": 230
-    }
-  ],
-  "bounds": [
-    {
-      "x": 239,
-      "y": 198,
-      "width": 55,
-      "height": 64
-    }
-  ],
-  "instanceIdentifiers": [
+  "ghLibs": [],
+  "ghs": [
     {
       "Description": "Create a plane surface",
       "InstanceGuid": "4b95b58a-690b-46e5-bb2c-920d2d0c65c8",
       "Name": "Plane Surface",
-      "NickName": "PlaneSrf"
-    }
-  ],
-  "ios": [
-    {
-      "params": {
+      "NickName": "PlaneSrf",
+      "identifier": {
+        "guid": "439a55a5-2f9e-4f66-9de2-32f24fec2ef5",
+        "name": "Plane Surface"
+      },
+      "pivot": {
+        "x": 265,
+        "y": 230
+      },
+      "bounds": {
+        "x": 239,
+        "y": 198,
+        "width": 55,
+        "height": 64
+      },
+      "in": {
         "inputParams": [
           {
             "Description": "Resulting plane surface",
@@ -43,6 +34,22 @@
             "SourceCount": 0
           }
         ],
+        "inputBounds": [
+          {
+            "x": 280,
+            "y": 200,
+            "width": 12,
+            "height": 60
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 286,
+            "y": 230
+          }
+        ]
+      },
+      "out": {
         "outputParams": [
           {
             "Description": "Surface base plane",
@@ -71,18 +78,8 @@
             "Optional": false,
             "SourceCount": 0
           }
-        ]
-      },
-      "bounds": {
-        "input": [
-          {
-            "x": 280,
-            "y": 200,
-            "width": 12,
-            "height": 60
-          }
         ],
-        "output": [
+        "outputBounds": [
           {
             "x": 241,
             "y": 200,
@@ -101,16 +98,8 @@
             "width": 9,
             "height": 20
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 286,
-            "y": 230
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 247,
             "y": 210
@@ -124,10 +113,10 @@
             "y": 250
           }
         ]
-      },
-      "isZui": false
+      }
     }
   ],
-  "ghLibs": [],
-  "isAllVanilla": true
+  "scripts": [
+    {}
+  ]
 }

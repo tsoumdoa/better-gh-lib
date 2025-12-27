@@ -1,137 +1,61 @@
 {
   "GhVersion": "0.2.2",
-  "componenentCount": 5,
+  "componentsCount": 5,
   "uniqueCount": 5,
-  "identifiers": [
-    {
-      "guid": "d5967b9f-e8ee-436b-a8ad-29fdcecf32d5",
-      "name": "Curve"
-    },
-    {
-      "guid": "ccc7b468-e743-4049-891f-299432545898",
-      "name": "Curve Middle"
-    },
-    {
-      "guid": "6f93d366-919f-4dda-a35e-ba03dd62799b",
-      "name": "Sort List"
-    },
-    {
-      "guid": "9abae6b7-fa1d-448c-9209-4a8155345841",
-      "name": "Deconstruct"
-    },
-    {
-      "guid": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
-      "name": "Group"
-    }
-  ],
-  "pivots": [
-    {
-      "x": 1140.3226,
-      "y": 600.29395
-    },
-    {
-      "x": 1218,
-      "y": 649
-    },
-    {
-      "x": 1402,
-      "y": 610
-    },
-    {
-      "x": 1302,
-      "y": 648
-    },
-    {
-      "x": -1,
-      "y": -1
-    }
-  ],
-  "bounds": [
-    {
-      "x": 1115,
-      "y": 590,
-      "width": 50,
-      "height": 20
-    },
-    {
-      "x": 1187,
-      "y": 622,
-      "width": 68,
-      "height": 53
-    },
-    {
-      "x": 1371,
-      "y": 588,
-      "width": 65,
-      "height": 44
-    },
-    {
-      "x": 1272,
-      "y": 616,
-      "width": 64,
-      "height": 64
-    },
-    {
-      "x": -1,
-      "y": -1,
-      "width": -1,
-      "height": -1
-    }
-  ],
-  "instanceIdentifiers": [
+  "ghLibs": [],
+  "ghs": [
     {
       "Description": "Contains a collection of generic curves",
       "InstanceGuid": "1d6217a3-3d5c-45f6-bac5-441c742698f3",
       "Name": "Curve",
       "NickName": "Crv",
       "Optional": false,
-      "SourceCount": 0
+      "SourceCount": 0,
+      "identifier": {
+        "guid": "d5967b9f-e8ee-436b-a8ad-29fdcecf32d5",
+        "name": "Curve"
+      },
+      "pivot": {
+        "x": 1140.3226,
+        "y": 600.29395
+      },
+      "bounds": {
+        "x": 1115,
+        "y": 590,
+        "width": 50,
+        "height": 20
+      },
+      "in": {
+        "inputParams": [],
+        "inputBounds": [],
+        "inputPivots": []
+      },
+      "out": {
+        "outputParams": [],
+        "outputBounds": [],
+        "outputPivots": []
+      }
     },
     {
       "Description": "Get the point in the middle of a curve",
       "InstanceGuid": "b795b005-9364-4247-bdd1-86376eed18bb",
       "Name": "Curve Middle",
-      "NickName": "MidPt"
-    },
-    {
-      "Description": "Sort a list of numeric keys.",
-      "InstanceGuid": "8d4128ef-5f18-4fc6-b0f9-cc9b6484b5de",
-      "Name": "Sort List",
-      "NickName": "Sort"
-    },
-    {
-      "Description": "Deconstruct a point into its component parts.",
-      "InstanceGuid": "21f2b697-a418-488f-9a05-f28412e7606a",
-      "Name": "Deconstruct",
-      "NickName": "pDecon"
-    },
-    {
-      "Border": 1,
-      "Description": "A group of Grasshopper objects",
-      "ID": "21f2b697-a418-488f-9a05-f28412e7606a",
-      "ID_Count": 4,
-      "InstanceGuid": "d2658477-1b3b-4513-90aa-e3e81d8ad229",
-      "Name": "Group"
-    }
-  ],
-  "ios": [
-    {
-      "params": {
-        "inputParams": [],
-        "outputParams": []
+      "NickName": "MidPt",
+      "identifier": {
+        "guid": "ccc7b468-e743-4049-891f-299432545898",
+        "name": "Curve Middle"
+      },
+      "pivot": {
+        "x": 1218,
+        "y": 649
       },
       "bounds": {
-        "input": [],
-        "output": []
+        "x": 1187,
+        "y": 622,
+        "width": 68,
+        "height": 53
       },
-      "pivots": {
-        "input": [],
-        "output": []
-      },
-      "isZui": false
-    },
-    {
-      "params": {
+      "in": {
         "inputParams": [
           {
             "Description": "Point in the middle of the curve",
@@ -142,6 +66,22 @@
             "SourceCount": 0
           }
         ],
+        "inputBounds": [
+          {
+            "x": 1233,
+            "y": 624,
+            "width": 20,
+            "height": 49
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 1243,
+            "y": 648.5
+          }
+        ]
+      },
+      "out": {
         "outputParams": [
           {
             "Description": "Curve for mid-point.",
@@ -154,68 +94,80 @@
             ],
             "SourceCount": 1
           }
-        ]
-      },
-      "bounds": {
-        "input": [
-          {
-            "x": 1233,
-            "y": 624,
-            "width": 20,
-            "height": 49
-          }
         ],
-        "output": [
+        "outputBounds": [
           {
             "x": 1189,
             "y": 624,
             "width": 14,
             "height": 49
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 1243,
-            "y": 648.5
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 1197.5,
             "y": 648.5
           }
         ]
-      },
-      "isZui": false
+      }
     },
     {
-      "params": {
-        "inputParams": {
-          "Access": 1,
-          "Description": "List of sortable keys",
-          "InstanceGuid": "8786a6c5-6a48-4217-bbe5-5eb53e9b7c26",
-          "Name": "Keys",
-          "NickName": "K",
-          "Optional": false,
-          "Source": [
-            "1d6217a3-3d5c-45f6-bac5-441c742698f3"
-          ],
-          "SourceCount": 1
-        },
-        "outputParams": {
-          "Access": 1,
-          "Description": "Sorted keys",
-          "InstanceGuid": "deb559f5-a8e0-4c28-99c0-d9bffadd62f5",
-          "Name": "Keys",
-          "NickName": "K",
-          "Optional": false,
-          "SourceCount": 0
-        }
+      "Description": "Sort a list of numeric keys.",
+      "InstanceGuid": "8d4128ef-5f18-4fc6-b0f9-cc9b6484b5de",
+      "Name": "Sort List",
+      "NickName": "Sort",
+      "identifier": {
+        "guid": "6f93d366-919f-4dda-a35e-ba03dd62799b",
+        "name": "Sort List"
+      },
+      "pivot": {
+        "x": 1402,
+        "y": 610
       },
       "bounds": {
-        "input": [
+        "x": 1371,
+        "y": 588,
+        "width": 65,
+        "height": 44
+      },
+      "in": {
+        "inputParams": [
+          {
+            "Access": 1,
+            "Description": "List of sortable keys",
+            "InstanceGuid": "8786a6c5-6a48-4217-bbe5-5eb53e9b7c26",
+            "Name": "Keys",
+            "NickName": "K",
+            "Optional": false,
+            "Source": [
+              "1d6217a3-3d5c-45f6-bac5-441c742698f3"
+            ],
+            "SourceCount": 1
+          },
+          {
+            "Access": 1,
+            "Description": "Optional list of values to sort synchronously",
+            "InstanceGuid": "714a40b5-8170-4495-a09b-4cf2c6831ecc",
+            "Name": "Values A",
+            "NickName": "A",
+            "Optional": true,
+            "Source": [
+              "80f2a282-5182-4437-9ee3-601e75a9b1b4"
+            ],
+            "SourceCount": 1
+          }
+        ],
+        "inputParamsZui": [
+          {
+            "guid": "3e8ca6be-fda8-4aaf-b5c0-3c54c8bb7312",
+            "typeCode": 9
+          },
+          {
+            "guid": "8ec86459-bf01-4409-baee-174d0d2b13d0",
+            "typeCode": 9
+          }
+        ],
+        "inputBounds": [
           {
             "x": 1373,
             "y": 590,
@@ -229,7 +181,49 @@
             "height": 20
           }
         ],
-        "output": [
+        "inputPivots": [
+          {
+            "x": 1381.5,
+            "y": 600
+          },
+          {
+            "x": 1381.5,
+            "y": 620
+          }
+        ]
+      },
+      "out": {
+        "outputParams": [
+          {
+            "Access": 1,
+            "Description": "Sorted keys",
+            "InstanceGuid": "deb559f5-a8e0-4c28-99c0-d9bffadd62f5",
+            "Name": "Keys",
+            "NickName": "K",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Access": 1,
+            "Description": "Synchronous values in A",
+            "InstanceGuid": "81417df4-adc6-491f-9540-5c676856812d",
+            "Name": "Values A",
+            "NickName": "A",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "outputParamsZui": [
+          {
+            "guid": "3e8ca6be-fda8-4aaf-b5c0-3c54c8bb7312",
+            "typeCode": 9
+          },
+          {
+            "guid": "8ec86459-bf01-4409-baee-174d0d2b13d0",
+            "typeCode": 9
+          }
+        ],
+        "outputBounds": [
           {
             "x": 1417,
             "y": 590,
@@ -242,20 +236,8 @@
             "width": 17,
             "height": 20
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 1381.5,
-            "y": 600
-          },
-          {
-            "x": 1381.5,
-            "y": 620
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 1425.5,
             "y": 600
@@ -265,35 +247,28 @@
             "y": 620
           }
         ]
-      },
-      "zuiDescriptor": {
-        "inputCount": 2,
-        "outputCount": 2,
-        "inputIdentifiers": [
-          {
-            "guid": "3e8ca6be-fda8-4aaf-b5c0-3c54c8bb7312",
-            "typeCode": 9
-          },
-          {
-            "guid": "8ec86459-bf01-4409-baee-174d0d2b13d0",
-            "typeCode": 9
-          }
-        ],
-        "outputIdentifiers": [
-          {
-            "guid": "3e8ca6be-fda8-4aaf-b5c0-3c54c8bb7312",
-            "typeCode": 9
-          },
-          {
-            "guid": "8ec86459-bf01-4409-baee-174d0d2b13d0",
-            "typeCode": 9
-          }
-        ]
-      },
-      "isZui": true
+      }
     },
     {
-      "params": {
+      "Description": "Deconstruct a point into its component parts.",
+      "InstanceGuid": "21f2b697-a418-488f-9a05-f28412e7606a",
+      "Name": "Deconstruct",
+      "NickName": "pDecon",
+      "identifier": {
+        "guid": "9abae6b7-fa1d-448c-9209-4a8155345841",
+        "name": "Deconstruct"
+      },
+      "pivot": {
+        "x": 1302,
+        "y": 648
+      },
+      "bounds": {
+        "x": 1272,
+        "y": 616,
+        "width": 64,
+        "height": 64
+      },
+      "in": {
         "inputParams": [
           {
             "Description": "Point {x} component",
@@ -320,22 +295,7 @@
             "SourceCount": 0
           }
         ],
-        "outputParams": [
-          {
-            "Description": "Input point",
-            "InstanceGuid": "6c2ef317-0c4c-418c-a9bc-76367a5c6071",
-            "Name": "Point",
-            "NickName": "P",
-            "Optional": false,
-            "Source": [
-              "af54ded6-6ace-4fd3-9a60-9a0f28d7f482"
-            ],
-            "SourceCount": 1
-          }
-        ]
-      },
-      "bounds": {
-        "input": [
+        "inputBounds": [
           {
             "x": 1317,
             "y": 618,
@@ -355,17 +315,7 @@
             "height": 20
           }
         ],
-        "output": [
-          {
-            "x": 1274,
-            "y": 618,
-            "width": 13,
-            "height": 60
-          }
-        ]
-      },
-      "pivots": {
-        "input": [
+        "inputPivots": [
           {
             "x": 1325.5,
             "y": 628
@@ -378,32 +328,76 @@
             "x": 1325.5,
             "y": 668
           }
+        ]
+      },
+      "out": {
+        "outputParams": [
+          {
+            "Description": "Input point",
+            "InstanceGuid": "6c2ef317-0c4c-418c-a9bc-76367a5c6071",
+            "Name": "Point",
+            "NickName": "P",
+            "Optional": false,
+            "Source": [
+              "af54ded6-6ace-4fd3-9a60-9a0f28d7f482"
+            ],
+            "SourceCount": 1
+          }
         ],
-        "output": [
+        "outputBounds": [
+          {
+            "x": 1274,
+            "y": 618,
+            "width": 13,
+            "height": 60
+          }
+        ],
+        "outputPivots": [
           {
             "x": 1282,
             "y": 648
           }
         ]
-      },
-      "isZui": false
+      }
     },
     {
-      "params": {
-        "inputParams": [],
-        "outputParams": []
+      "Border": 1,
+      "Description": "A group of Grasshopper objects",
+      "ID": "21f2b697-a418-488f-9a05-f28412e7606a",
+      "ID_Count": 4,
+      "InstanceGuid": "d2658477-1b3b-4513-90aa-e3e81d8ad229",
+      "Name": "Group",
+      "identifier": {
+        "guid": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
+        "name": "Group"
+      },
+      "pivot": {
+        "x": -1,
+        "y": -1
       },
       "bounds": {
-        "input": [],
-        "output": []
+        "x": -1,
+        "y": -1,
+        "width": -1,
+        "height": -1
       },
-      "pivots": {
-        "input": [],
-        "output": []
+      "in": {
+        "inputParams": [],
+        "inputBounds": [],
+        "inputPivots": []
       },
-      "isZui": false
+      "out": {
+        "outputParams": [],
+        "outputBounds": [],
+        "outputPivots": []
+      }
     }
   ],
-  "ghLibs": [],
-  "isAllVanilla": true
+  "scripts": [
+    {},
+    {},
+    {},
+    {},
+    {}
+  ]
 }

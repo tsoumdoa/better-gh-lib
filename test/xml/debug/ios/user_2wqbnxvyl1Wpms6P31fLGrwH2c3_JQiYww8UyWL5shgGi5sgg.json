@@ -76,27 +76,52 @@
   },
   {
     "params": {
-      "inputParams": {
-        "Access": 1,
-        "Description": "List of sortable keys",
-        "InstanceGuid": "8786a6c5-6a48-4217-bbe5-5eb53e9b7c26",
-        "Name": "Keys",
-        "NickName": "K",
-        "Optional": false,
-        "Source": [
-          "1d6217a3-3d5c-45f6-bac5-441c742698f3"
-        ],
-        "SourceCount": 1
-      },
-      "outputParams": {
-        "Access": 1,
-        "Description": "Sorted keys",
-        "InstanceGuid": "deb559f5-a8e0-4c28-99c0-d9bffadd62f5",
-        "Name": "Keys",
-        "NickName": "K",
-        "Optional": false,
-        "SourceCount": 0
-      }
+      "inputParams": [
+        {
+          "Access": 1,
+          "Description": "List of sortable keys",
+          "InstanceGuid": "8786a6c5-6a48-4217-bbe5-5eb53e9b7c26",
+          "Name": "Keys",
+          "NickName": "K",
+          "Optional": false,
+          "Source": [
+            "1d6217a3-3d5c-45f6-bac5-441c742698f3"
+          ],
+          "SourceCount": 1
+        },
+        {
+          "Access": 1,
+          "Description": "Optional list of values to sort synchronously",
+          "InstanceGuid": "714a40b5-8170-4495-a09b-4cf2c6831ecc",
+          "Name": "Values A",
+          "NickName": "A",
+          "Optional": true,
+          "Source": [
+            "80f2a282-5182-4437-9ee3-601e75a9b1b4"
+          ],
+          "SourceCount": 1
+        }
+      ],
+      "outputParams": [
+        {
+          "Access": 1,
+          "Description": "Sorted keys",
+          "InstanceGuid": "deb559f5-a8e0-4c28-99c0-d9bffadd62f5",
+          "Name": "Keys",
+          "NickName": "K",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Access": 1,
+          "Description": "Synchronous values in A",
+          "InstanceGuid": "81417df4-adc6-491f-9540-5c676856812d",
+          "Name": "Values A",
+          "NickName": "A",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ]
     },
     "bounds": {
       "input": [

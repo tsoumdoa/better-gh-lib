@@ -1,27 +1,44 @@
 [
   {
     "params": {
-      "inputParams": {
-        "Access": 1,
-        "Description": "child",
-        "InstanceGuid": "ee75fe63-994f-45a9-b262-ebf2e1409d1f",
-        "Name": "child",
-        "NickName": "child",
-        "Optional": false,
-        "Source": [
-          "f5bcbe4a-9481-4774-b5b9-b43b6c288e0a"
-        ],
-        "SourceCount": 1
-      },
-      "outputParams": {
-        "Access": 2,
-        "Description": "Contains a collection of generic data",
-        "InstanceGuid": "c1bc66ac-940c-4811-81cd-d11e33a17e99",
-        "Name": "Content",
-        "NickName": "Content",
-        "Optional": false,
-        "SourceCount": 0
-      }
+      "inputParams": [
+        {
+          "Access": 1,
+          "Description": "child",
+          "InstanceGuid": "ee75fe63-994f-45a9-b262-ebf2e1409d1f",
+          "Name": "child",
+          "NickName": "child",
+          "Optional": false,
+          "Source": [
+            "f5bcbe4a-9481-4774-b5b9-b43b6c288e0a"
+          ],
+          "SourceCount": 1
+        },
+        {
+          "Access": 1,
+          "Description": "cutters",
+          "InstanceGuid": "adda4a6c-127e-47f6-a5e0-7e827441e24c",
+          "Name": "cutters",
+          "NickName": "cutters",
+          "Optional": false,
+          "Source": [
+            "a61e2035-336b-493b-bb48-21861575510f"
+          ],
+          "SourceCount": 1,
+          "WireDisplay": 1
+        }
+      ],
+      "outputParams": [
+        {
+          "Access": 2,
+          "Description": "Contains a collection of generic data",
+          "InstanceGuid": "c1bc66ac-940c-4811-81cd-d11e33a17e99",
+          "Name": "Content",
+          "NickName": "Content",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ]
     },
     "bounds": {
       "input": [

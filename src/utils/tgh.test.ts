@@ -65,5 +65,13 @@ function testGetGhaLibraries(jsonXml: any, file: string) {
 function testGetDefObject(jsonXml: any, file: string) {
 	const r = getDefObj(jsonXml);
 
+	const identifierLength = r.identifiers.length;
+
+	expect(identifierLength).toBe(r.componenentCount);
+	expect(identifierLength).toBe(r.bounds.length);
+	expect(identifierLength).toBe(r.pivots.length);
+	expect(identifierLength).toBe(r.instanceIdentifiers.length);
+	expect(identifierLength).toBe(r.ios.length);
+
 	writeDefObjTofiles(r, file, xmlFolder);
 }

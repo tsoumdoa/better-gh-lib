@@ -1,22 +1,34 @@
 [
   {
     "params": {
-      "inputParams": {
-        "Description": "Brep, mesh or planar closed curve for area computation",
-        "InstanceGuid": "3a6e01b6-1fbd-4fd4-a8c1-ccdbbdc197d1",
-        "Name": "Geometry",
-        "NickName": "G",
-        "Optional": false,
-        "SourceCount": 0
-      },
-      "outputParams": {
-        "Description": "Area of geometry",
-        "InstanceGuid": "90103901-cd88-4eaf-af07-834c472aaea5",
-        "Name": "Area",
-        "NickName": "A",
-        "Optional": true,
-        "SourceCount": 0
-      }
+      "inputParams": [
+        {
+          "Description": "Brep, mesh or planar closed curve for area computation",
+          "InstanceGuid": "3a6e01b6-1fbd-4fd4-a8c1-ccdbbdc197d1",
+          "Name": "Geometry",
+          "NickName": "G",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Description": "Area of geometry",
+          "InstanceGuid": "90103901-cd88-4eaf-af07-834c472aaea5",
+          "Name": "Area",
+          "NickName": "A",
+          "Optional": true,
+          "SourceCount": 0
+        },
+        {
+          "Description": "Area centroid of geometry",
+          "InstanceGuid": "4e935ac2-07d0-4918-b11c-9a11fe045cff",
+          "Name": "Centroid",
+          "NickName": "C",
+          "Optional": true,
+          "SourceCount": 0
+        }
+      ]
     },
     "bounds": {
       "input": [

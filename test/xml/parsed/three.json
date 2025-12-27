@@ -1,56 +1,9 @@
 {
   "GhVersion": "0.2.2",
-  "componenentCount": 3,
+  "componentsCount": 3,
   "uniqueCount": 3,
-  "identifiers": [
-    {
-      "guid": "00c2fe26-2082-44e4-a4ff-9460e8cecbd2",
-      "name": "Query Model Environments"
-    },
-    {
-      "guid": "0b3b7956-f88b-4ca3-99f6-b6508a8dac3f",
-      "name": "Support"
-    },
-    {
-      "guid": "14cf43b6-5eb9-460f-899c-bdece732213a",
-      "name": "Blend Curve Pt"
-    }
-  ],
-  "pivots": [
-    {
-      "x": 355,
-      "y": 92
-    },
-    {
-      "x": 355,
-      "y": 172
-    },
-    {
-      "x": 355,
-      "y": 252
-    }
-  ],
-  "bounds": [
-    {
-      "x": 312,
-      "y": 46,
-      "width": 72,
-      "height": 92
-    },
-    {
-      "x": 294,
-      "y": 80,
-      "width": 90,
-      "height": 184
-    },
-    {
-      "x": 328,
-      "y": 210,
-      "width": 56,
-      "height": 84
-    }
-  ],
-  "instanceIdentifiers": [
+  "ghLibs": [],
+  "ghs": [
     {
       "AutoUpdateState": true,
       "Description": "Query a Rhino document for all available render environments",
@@ -58,47 +11,40 @@
       "InstanceGuid": "e6e6637e-b1aa-4e4d-853d-b665fe5b295f",
       "Name": "Query Model Environments",
       "NickName": "Environments",
-      "VariableParameterScheme": "IOComponents, Version=8.19.25132.1002"
-    },
-    {
-      "Description": "Set support conditions for a beam end or rigid body",
-      "Hidden": true,
-      "InstanceGuid": "d6945b3c-d4f7-4877-831f-592ffe224eb7",
-      "Name": "Support",
-      "NickName": "Support"
-    },
-    {
-      "Description": "Create a blend curve between two curves that intersects a point.",
-      "Hidden": true,
-      "InstanceGuid": "3b59e3a7-bd7d-45a3-95d0-5979573cac74",
-      "Name": "Blend Curve Pt",
-      "NickName": "BlendCPt"
-    }
-  ],
-  "ios": [
-    {
-      "params": {
-        "inputParams": {
-          "ComparisonMode": 1,
-          "Description": "Name filter. Right-click on this parameter to set the matching method.",
-          "InstanceGuid": "9f8d333f-fde4-4289-aa02-5817f254f618",
-          "Name": "Name",
-          "NickName": "N",
-          "Optional": true,
-          "SourceCount": 0
-        },
-        "outputParams": {
-          "Access": 1,
-          "Description": "The resultant list of available environments in the model.",
-          "InstanceGuid": "ab2fb9dc-2112-499a-a0c8-59dfced848c5",
-          "Name": "Environments",
-          "NickName": "E",
-          "Optional": false,
-          "SourceCount": 0
-        }
+      "VariableParameterScheme": "IOComponents, Version=8.19.25132.1002",
+      "identifier": {
+        "guid": "00c2fe26-2082-44e4-a4ff-9460e8cecbd2",
+        "name": "Query Model Environments"
+      },
+      "pivot": {
+        "x": 355,
+        "y": 92
       },
       "bounds": {
-        "input": [
+        "x": 312,
+        "y": 46,
+        "width": 72,
+        "height": 92
+      },
+      "in": {
+        "inputParams": [
+          {
+            "ComparisonMode": 1,
+            "Description": "Name filter. Right-click on this parameter to set the matching method.",
+            "InstanceGuid": "9f8d333f-fde4-4289-aa02-5817f254f618",
+            "Name": "Name",
+            "NickName": "N",
+            "Optional": true,
+            "SourceCount": 0
+          }
+        ],
+        "inputParamsZui": [
+          {
+            "guid": "d0abb9f4-6c6b-47d3-993b-58507ed13071",
+            "typeCode": 9
+          }
+        ],
+        "inputBounds": [
           {
             "x": 314,
             "y": 48,
@@ -106,49 +52,68 @@
             "height": 88
           }
         ],
-        "output": [
+        "inputPivots": [
+          {
+            "x": 336.5,
+            "y": 92
+          }
+        ]
+      },
+      "out": {
+        "outputParams": [
+          {
+            "Access": 1,
+            "Description": "The resultant list of available environments in the model.",
+            "InstanceGuid": "ab2fb9dc-2112-499a-a0c8-59dfced848c5",
+            "Name": "Environments",
+            "NickName": "E",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "outputParamsZui": [
+          {
+            "guid": "f0de0cc5-4178-4f6d-b804-cc1c4c8c8f1a",
+            "typeCode": 9
+          }
+        ],
+        "outputBounds": [
           {
             "x": 370,
             "y": 48,
             "width": 12,
             "height": 88
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 336.5,
-            "y": 92
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 376,
             "y": 92
           }
         ]
-      },
-      "zuiDescriptor": {
-        "inputCount": 1,
-        "outputCount": 1,
-        "inputIdentifiers": [
-          {
-            "guid": "d0abb9f4-6c6b-47d3-993b-58507ed13071",
-            "typeCode": 9
-          }
-        ],
-        "outputIdentifiers": [
-          {
-            "guid": "f0de0cc5-4178-4f6d-b804-cc1c4c8c8f1a",
-            "typeCode": 9
-          }
-        ]
-      },
-      "isZui": true
+      }
     },
     {
-      "params": {
+      "Description": "Set support conditions for a beam end or rigid body",
+      "Hidden": true,
+      "InstanceGuid": "d6945b3c-d4f7-4877-831f-592ffe224eb7",
+      "Name": "Support",
+      "NickName": "Support",
+      "identifier": {
+        "guid": "0b3b7956-f88b-4ca3-99f6-b6508a8dac3f",
+        "name": "Support"
+      },
+      "pivot": {
+        "x": 355,
+        "y": 172
+      },
+      "bounds": {
+        "x": 294,
+        "y": 80,
+        "width": 90,
+        "height": 184
+      },
+      "in": {
         "inputParams": [
           {
             "Description": "S",
@@ -159,6 +124,22 @@
             "SourceCount": 0
           }
         ],
+        "inputBounds": [
+          {
+            "x": 370,
+            "y": 82,
+            "width": 12,
+            "height": 180
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 376,
+            "y": 172
+          }
+        ]
+      },
+      "out": {
         "outputParams": [
           {
             "Description": "The plane to restrain",
@@ -232,18 +213,8 @@
             "Optional": false,
             "SourceCount": 0
           }
-        ]
-      },
-      "bounds": {
-        "input": [
-          {
-            "x": 370,
-            "y": 82,
-            "width": 12,
-            "height": 180
-          }
         ],
-        "output": [
+        "outputBounds": [
           {
             "x": 296,
             "y": 82,
@@ -298,16 +269,8 @@
             "width": 44,
             "height": 20
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 376,
-            "y": 172
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 319.5,
             "y": 92
@@ -345,11 +308,29 @@
             "y": 252
           }
         ]
-      },
-      "isZui": false
+      }
     },
     {
-      "params": {
+      "Description": "Create a blend curve between two curves that intersects a point.",
+      "Hidden": true,
+      "InstanceGuid": "3b59e3a7-bd7d-45a3-95d0-5979573cac74",
+      "Name": "Blend Curve Pt",
+      "NickName": "BlendCPt",
+      "identifier": {
+        "guid": "14cf43b6-5eb9-460f-899c-bdece732213a",
+        "name": "Blend Curve Pt"
+      },
+      "pivot": {
+        "x": 355,
+        "y": 252
+      },
+      "bounds": {
+        "x": 328,
+        "y": 210,
+        "width": 56,
+        "height": 84
+      },
+      "in": {
         "inputParams": [
           {
             "Description": "Blend curve connecting the end of A to the start of B, ideally coincident with P",
@@ -360,6 +341,22 @@
             "SourceCount": 0
           }
         ],
+        "inputBounds": [
+          {
+            "x": 370,
+            "y": 212,
+            "width": 12,
+            "height": 80
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 376,
+            "y": 252
+          }
+        ]
+      },
+      "out": {
         "outputParams": [
           {
             "Description": "First curve for blend",
@@ -393,18 +390,8 @@
             "Optional": false,
             "SourceCount": 0
           }
-        ]
-      },
-      "bounds": {
-        "input": [
-          {
-            "x": 370,
-            "y": 212,
-            "width": 12,
-            "height": 80
-          }
         ],
-        "output": [
+        "outputBounds": [
           {
             "x": 330,
             "y": 212,
@@ -429,16 +416,8 @@
             "width": 10,
             "height": 20
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 376,
-            "y": 252
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 336.5,
             "y": 222
@@ -456,10 +435,12 @@
             "y": 282
           }
         ]
-      },
-      "isZui": false
+      }
     }
   ],
-  "ghLibs": [],
-  "isAllVanilla": true
+  "scripts": [
+    {},
+    {},
+    {}
+  ]
 }

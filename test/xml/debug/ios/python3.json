@@ -1,0 +1,258 @@
+[
+  {
+    "params": {
+      "inputParams": [
+        {
+          "AllowTreeAccess": true,
+          "Description": "Script Variable x",
+          "InstanceGuid": "574036e1-06a3-4181-943a-dbe74528a17c",
+          "Name": "x",
+          "NickName": "x",
+          "Optional": true,
+          "ScriptParamAccess": 0,
+          "ShowTypeHints": true,
+          "SourceCount": 0
+        },
+        {
+          "AllowTreeAccess": true,
+          "Description": "Script Variable y",
+          "InstanceGuid": "5a2ca6eb-632d-4d0f-b4b4-801c6f30b84d",
+          "Name": "y",
+          "NickName": "y",
+          "Optional": true,
+          "ScriptParamAccess": 0,
+          "ShowTypeHints": true,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Access": 1,
+          "Description": "Print, Reflect and Error streams",
+          "InstanceGuid": "459fdd20-f683-439f-8d1a-6e8ca1d0eb31",
+          "Name": "out",
+          "NickName": "out",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "Output parameter A",
+          "InstanceGuid": "fbc29c86-07a0-4ada-91df-e1ecf75eea3c",
+          "Name": "A",
+          "NickName": "A",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 63,
+          "y": 346,
+          "width": 9,
+          "height": 20
+        },
+        {
+          "x": 63,
+          "y": 366,
+          "width": 9,
+          "height": 20
+        }
+      ],
+      "output": [
+        {
+          "x": 102,
+          "y": 346,
+          "width": 21,
+          "height": 20
+        },
+        {
+          "x": 102,
+          "y": 366,
+          "width": 21,
+          "height": 20
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 69,
+          "y": 356
+        },
+        {
+          "x": 69,
+          "y": 376
+        }
+      ],
+      "output": [
+        {
+          "x": 112.5,
+          "y": 356
+        },
+        {
+          "x": 112.5,
+          "y": 376
+        }
+      ]
+    },
+    "zuiDescriptor": {
+      "inputCount": 2,
+      "outputCount": 2,
+      "inputIdentifiers": [
+        {
+          "guid": "84fa917c-1ed8-4db3-8be1-7bdc4a6495a2",
+          "typeCode": 9
+        },
+        {
+          "guid": "84fa917c-1ed8-4db3-8be1-7bdc4a6495a2",
+          "typeCode": 9
+        }
+      ],
+      "outputIdentifiers": [
+        {
+          "guid": "3ede854e-c753-40eb-84cb-b48008f14fd4",
+          "typeCode": 9
+        },
+        {
+          "guid": "8ec86459-bf01-4409-baee-174d0d2b13d0",
+          "typeCode": 9
+        }
+      ]
+    },
+    "isZui": true
+  },
+  {
+    "params": {
+      "inputParams": [
+        {
+          "AllowTreeAccess": true,
+          "Description": "rhinoscriptsyntax geometry",
+          "InstanceGuid": "245f618e-1b71-42f0-a817-1d950ab594e7",
+          "Name": "x",
+          "NickName": "x",
+          "Optional": true,
+          "ScriptParamAccess": 0,
+          "ScriptParameterVersion": 2,
+          "ShowTypeHints": true,
+          "SourceCount": 0,
+          "TypeHintID": "1c282eeb-dd16-439f-94e4-7d92b542fe8b"
+        },
+        {
+          "AllowTreeAccess": true,
+          "Description": "rhinoscriptsyntax geometry",
+          "InstanceGuid": "fd3a3927-6591-4d39-842d-1bb6f38bd15d",
+          "Name": "y",
+          "NickName": "y",
+          "Optional": true,
+          "ScriptParamAccess": 0,
+          "ScriptParameterVersion": 2,
+          "ShowTypeHints": true,
+          "SourceCount": 0,
+          "TypeHintID": "1c282eeb-dd16-439f-94e4-7d92b542fe8b"
+        }
+      ],
+      "outputParams": [
+        {
+          "Description": "Standard output and error contents collected during script run",
+          "InstanceGuid": "a9699d06-960d-4e7d-9b9d-1487f3294e02",
+          "Name": "out",
+          "NickName": "out",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "AllowTreeAccess": false,
+          "Description": "rhinoscriptsyntax geometry",
+          "InstanceGuid": "99734d04-d818-43b5-bebc-9a451cb41b82",
+          "Name": "a",
+          "NickName": "a",
+          "Optional": false,
+          "ScriptParamAccess": 0,
+          "ScriptParameterVersion": 2,
+          "ShowTypeHints": true,
+          "SourceCount": 0,
+          "TypeHintID": "1c282eeb-dd16-439f-94e4-7d92b542fe8b"
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 279,
+          "y": 478,
+          "width": 9,
+          "height": 20
+        },
+        {
+          "x": 279,
+          "y": 498,
+          "width": 9,
+          "height": 20
+        }
+      ],
+      "output": [
+        {
+          "x": 318,
+          "y": 478,
+          "width": 21,
+          "height": 20
+        },
+        {
+          "x": 318,
+          "y": 498,
+          "width": 21,
+          "height": 20
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 285,
+          "y": 488
+        },
+        {
+          "x": 285,
+          "y": 508
+        }
+      ],
+      "output": [
+        {
+          "x": 328.5,
+          "y": 488
+        },
+        {
+          "x": 328.5,
+          "y": 508
+        }
+      ]
+    },
+    "zuiDescriptor": {
+      "inputCount": 2,
+      "outputCount": 2,
+      "inputIdentifiers": [
+        {
+          "guid": "08908df5-fa14-4982-9ab2-1aa0927566aa",
+          "typeCode": 9
+        },
+        {
+          "guid": "08908df5-fa14-4982-9ab2-1aa0927566aa",
+          "typeCode": 9
+        }
+      ],
+      "outputIdentifiers": [
+        {
+          "guid": "3ede854e-c753-40eb-84cb-b48008f14fd4",
+          "typeCode": 9
+        },
+        {
+          "guid": "08908df5-fa14-4982-9ab2-1aa0927566aa",
+          "typeCode": 9
+        }
+      ]
+    },
+    "isZui": true
+  }
+]

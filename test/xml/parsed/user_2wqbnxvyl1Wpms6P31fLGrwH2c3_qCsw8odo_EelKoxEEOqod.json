@@ -1,159 +1,81 @@
 {
   "GhVersion": "0.2.2",
-  "componenentCount": 5,
+  "componentsCount": 5,
   "uniqueCount": 5,
-  "identifiers": [
-    {
-      "guid": "deaf8653-5528-4286-807c-3de8b8dad781",
-      "name": "Surface"
-    },
-    {
-      "guid": "86b28a7e-94d9-4791-8306-e13e10d5f8d5",
-      "name": "Area"
-    },
-    {
-      "guid": "353b206e-bde5-4f02-a913-b3b8a977d4b9",
-      "name": "Evaluate Surface"
-    },
-    {
-      "guid": "4a9e9a8e-0943-4438-b360-129c30f2bb0f",
-      "name": "Surface Closest Point"
-    },
-    {
-      "guid": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
-      "name": "Group"
-    }
-  ],
-  "pivots": [
-    {
-      "x": 849.8335,
-      "y": 315.33334
-    },
-    {
-      "x": 927,
-      "y": 374
-    },
-    {
-      "x": 1138,
-      "y": 340
-    },
-    {
-      "x": 1028,
-      "y": 365
-    },
-    {
-      "x": -1,
-      "y": -1
-    }
-  ],
-  "bounds": [
-    {
-      "x": 824,
-      "y": 305,
-      "width": 50,
-      "height": 20
-    },
-    {
-      "x": 895,
-      "y": 352,
-      "width": 66,
-      "height": 44
-    },
-    {
-      "x": 1102,
-      "y": 288,
-      "width": 71,
-      "height": 104
-    },
-    {
-      "x": 998,
-      "y": 333,
-      "width": 75,
-      "height": 64
-    },
-    {
-      "x": -1,
-      "y": -1,
-      "width": -1,
-      "height": -1
-    }
-  ],
-  "instanceIdentifiers": [
+  "ghLibs": [],
+  "ghs": [
     {
       "Description": "Contains a collection of generic surfaces",
       "InstanceGuid": "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9",
       "Name": "Surface",
       "NickName": "Srf",
       "Optional": false,
-      "SourceCount": 0
+      "SourceCount": 0,
+      "identifier": {
+        "guid": "deaf8653-5528-4286-807c-3de8b8dad781",
+        "name": "Surface"
+      },
+      "pivot": {
+        "x": 849.8335,
+        "y": 315.33334
+      },
+      "bounds": {
+        "x": 824,
+        "y": 305,
+        "width": 50,
+        "height": 20
+      },
+      "in": {
+        "inputParams": [],
+        "inputBounds": [],
+        "inputPivots": []
+      },
+      "out": {
+        "outputParams": [],
+        "outputBounds": [],
+        "outputPivots": []
+      }
     },
     {
       "Description": "Solve area properties for breps, meshes and planar closed curves.",
       "InstanceGuid": "3a34a54f-431f-4260-9706-364b3e6ff8ab",
       "Name": "Area",
-      "NickName": "Area"
-    },
-    {
-      "Description": "Evaluate local surface properties at a {uv} coordinate.",
-      "InstanceGuid": "99d28540-7f1e-4c39-9c56-16373445ed5f",
-      "Name": "Evaluate Surface",
-      "NickName": "EvalSrf"
-    },
-    {
-      "Description": "Find the closest point on a surface.",
-      "InstanceGuid": "9ea37707-5302-4d6c-ba38-65d5dd54e3ac",
-      "Name": "Surface Closest Point",
-      "NickName": "Srf CP"
-    },
-    {
-      "Border": 1,
-      "Description": "A group of Grasshopper objects",
-      "ID": "9ea37707-5302-4d6c-ba38-65d5dd54e3ac",
-      "ID_Count": 4,
-      "InstanceGuid": "5493eb71-1c24-4364-b077-14808540269b",
-      "Name": "Group"
-    }
-  ],
-  "ios": [
-    {
-      "params": {
-        "inputParams": [],
-        "outputParams": []
+      "NickName": "Area",
+      "identifier": {
+        "guid": "86b28a7e-94d9-4791-8306-e13e10d5f8d5",
+        "name": "Area"
+      },
+      "pivot": {
+        "x": 927,
+        "y": 374
       },
       "bounds": {
-        "input": [],
-        "output": []
+        "x": 895,
+        "y": 352,
+        "width": 66,
+        "height": 44
       },
-      "pivots": {
-        "input": [],
-        "output": []
-      },
-      "isZui": false
-    },
-    {
-      "params": {
-        "inputParams": {
-          "Description": "Brep, mesh or planar closed curve for area computation",
-          "InstanceGuid": "8f996d6f-16b6-4185-afb1-1d7dd9642f56",
-          "Name": "Geometry",
-          "NickName": "G",
-          "Optional": false,
-          "Source": [
-            "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9"
-          ],
-          "SourceCount": 1
-        },
-        "outputParams": {
-          "Description": "Area of geometry",
-          "InstanceGuid": "bcbc03c6-98af-4d43-a355-32308e7608e1",
-          "Name": "Area",
-          "NickName": "A",
-          "Optional": true,
-          "SourceCount": 0
-        }
-      },
-      "bounds": {
-        "input": [
+      "in": {
+        "inputParams": [
+          {
+            "Description": "Brep, mesh or planar closed curve for area computation",
+            "InstanceGuid": "8f996d6f-16b6-4185-afb1-1d7dd9642f56",
+            "Name": "Geometry",
+            "NickName": "G",
+            "Optional": false,
+            "Source": [
+              "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9"
+            ],
+            "SourceCount": 1
+          }
+        ],
+        "inputParamsZui": [
+          {
+            "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+            "typeCode": 9
+          }
+        ],
+        "inputBounds": [
           {
             "x": 897,
             "y": 354,
@@ -161,7 +83,43 @@
             "height": 40
           }
         ],
-        "output": [
+        "inputPivots": [
+          {
+            "x": 906,
+            "y": 374
+          }
+        ]
+      },
+      "out": {
+        "outputParams": [
+          {
+            "Description": "Area of geometry",
+            "InstanceGuid": "bcbc03c6-98af-4d43-a355-32308e7608e1",
+            "Name": "Area",
+            "NickName": "A",
+            "Optional": true,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Area centroid of geometry",
+            "InstanceGuid": "558b7bf7-4590-447b-a7f0-196b4d03acc8",
+            "Name": "Centroid",
+            "NickName": "C",
+            "Optional": true,
+            "SourceCount": 0
+          }
+        ],
+        "outputParamsZui": [
+          {
+            "guid": "3e8ca6be-fda8-4aaf-b5c0-3c54c8bb7312",
+            "typeCode": 9
+          },
+          {
+            "guid": "fbac3e32-f100-4292-8692-77240a42fd1a",
+            "typeCode": 9
+          }
+        ],
+        "outputBounds": [
           {
             "x": 942,
             "y": 354,
@@ -174,16 +132,8 @@
             "width": 17,
             "height": 20
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 906,
-            "y": 374
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 950.5,
             "y": 364
@@ -193,31 +143,28 @@
             "y": 384
           }
         ]
-      },
-      "zuiDescriptor": {
-        "inputCount": 1,
-        "outputCount": 2,
-        "inputIdentifiers": [
-          {
-            "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
-            "typeCode": 9
-          }
-        ],
-        "outputIdentifiers": [
-          {
-            "guid": "3e8ca6be-fda8-4aaf-b5c0-3c54c8bb7312",
-            "typeCode": 9
-          },
-          {
-            "guid": "fbac3e32-f100-4292-8692-77240a42fd1a",
-            "typeCode": 9
-          }
-        ]
-      },
-      "isZui": true
+      }
     },
     {
-      "params": {
+      "Description": "Evaluate local surface properties at a {uv} coordinate.",
+      "InstanceGuid": "99d28540-7f1e-4c39-9c56-16373445ed5f",
+      "Name": "Evaluate Surface",
+      "NickName": "EvalSrf",
+      "identifier": {
+        "guid": "353b206e-bde5-4f02-a913-b3b8a977d4b9",
+        "name": "Evaluate Surface"
+      },
+      "pivot": {
+        "x": 1138,
+        "y": 340
+      },
+      "bounds": {
+        "x": 1102,
+        "y": 288,
+        "width": 71,
+        "height": 104
+      },
+      "in": {
         "inputParams": [
           {
             "Description": "Point at {uv}",
@@ -260,34 +207,7 @@
             "SourceCount": 0
           }
         ],
-        "outputParams": [
-          {
-            "Description": "Base surface",
-            "InstanceGuid": "d36e017c-a92d-497e-88c8-e4eb86823880",
-            "Name": "Surface",
-            "NickName": "S",
-            "Optional": false,
-            "Source": [
-              "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9"
-            ],
-            "SourceCount": 1
-          },
-          {
-            "Description": "{uv} coordinate to evaluate",
-            "Hidden": true,
-            "InstanceGuid": "72e87fe8-0da9-485d-9d42-02297198a12a",
-            "Name": "Point",
-            "NickName": "uv",
-            "Optional": false,
-            "Source": [
-              "4996710a-b78e-4ad4-96aa-c6d1d83ce2fb"
-            ],
-            "SourceCount": 1
-          }
-        ]
-      },
-      "bounds": {
-        "input": [
+        "inputBounds": [
           {
             "x": 1153,
             "y": 290,
@@ -319,23 +239,7 @@
             "height": 20
           }
         ],
-        "output": [
-          {
-            "x": 1104,
-            "y": 290,
-            "width": 19,
-            "height": 50
-          },
-          {
-            "x": 1104,
-            "y": 340,
-            "width": 19,
-            "height": 50
-          }
-        ]
-      },
-      "pivots": {
-        "input": [
+        "inputPivots": [
           {
             "x": 1162,
             "y": 300
@@ -356,8 +260,49 @@
             "x": 1162,
             "y": 380
           }
+        ]
+      },
+      "out": {
+        "outputParams": [
+          {
+            "Description": "Base surface",
+            "InstanceGuid": "d36e017c-a92d-497e-88c8-e4eb86823880",
+            "Name": "Surface",
+            "NickName": "S",
+            "Optional": false,
+            "Source": [
+              "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9"
+            ],
+            "SourceCount": 1
+          },
+          {
+            "Description": "{uv} coordinate to evaluate",
+            "Hidden": true,
+            "InstanceGuid": "72e87fe8-0da9-485d-9d42-02297198a12a",
+            "Name": "Point",
+            "NickName": "uv",
+            "Optional": false,
+            "Source": [
+              "4996710a-b78e-4ad4-96aa-c6d1d83ce2fb"
+            ],
+            "SourceCount": 1
+          }
         ],
-        "output": [
+        "outputBounds": [
+          {
+            "x": 1104,
+            "y": 290,
+            "width": 19,
+            "height": 50
+          },
+          {
+            "x": 1104,
+            "y": 340,
+            "width": 19,
+            "height": 50
+          }
+        ],
+        "outputPivots": [
           {
             "x": 1115,
             "y": 315
@@ -367,11 +312,28 @@
             "y": 365
           }
         ]
-      },
-      "isZui": false
+      }
     },
     {
-      "params": {
+      "Description": "Find the closest point on a surface.",
+      "InstanceGuid": "9ea37707-5302-4d6c-ba38-65d5dd54e3ac",
+      "Name": "Surface Closest Point",
+      "NickName": "Srf CP",
+      "identifier": {
+        "guid": "4a9e9a8e-0943-4438-b360-129c30f2bb0f",
+        "name": "Surface Closest Point"
+      },
+      "pivot": {
+        "x": 1028,
+        "y": 365
+      },
+      "bounds": {
+        "x": 998,
+        "y": 333,
+        "width": 75,
+        "height": 64
+      },
+      "in": {
         "inputParams": [
           {
             "Description": "Closest point",
@@ -399,6 +361,42 @@
             "SourceCount": 0
           }
         ],
+        "inputBounds": [
+          {
+            "x": 1043,
+            "y": 335,
+            "width": 28,
+            "height": 20
+          },
+          {
+            "x": 1043,
+            "y": 355,
+            "width": 28,
+            "height": 20
+          },
+          {
+            "x": 1043,
+            "y": 375,
+            "width": 28,
+            "height": 20
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 1057,
+            "y": 345
+          },
+          {
+            "x": 1057,
+            "y": 365
+          },
+          {
+            "x": 1057,
+            "y": 385
+          }
+        ]
+      },
+      "out": {
         "outputParams": [
           {
             "Description": "Sample point",
@@ -422,30 +420,8 @@
             ],
             "SourceCount": 1
           }
-        ]
-      },
-      "bounds": {
-        "input": [
-          {
-            "x": 1043,
-            "y": 335,
-            "width": 28,
-            "height": 20
-          },
-          {
-            "x": 1043,
-            "y": 355,
-            "width": 28,
-            "height": 20
-          },
-          {
-            "x": 1043,
-            "y": 375,
-            "width": 28,
-            "height": 20
-          }
         ],
-        "output": [
+        "outputBounds": [
           {
             "x": 1000,
             "y": 335,
@@ -458,24 +434,8 @@
             "width": 13,
             "height": 30
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 1057,
-            "y": 345
-          },
-          {
-            "x": 1057,
-            "y": 365
-          },
-          {
-            "x": 1057,
-            "y": 385
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 1008,
             "y": 350
@@ -485,25 +445,46 @@
             "y": 380
           }
         ]
-      },
-      "isZui": false
+      }
     },
     {
-      "params": {
-        "inputParams": [],
-        "outputParams": []
+      "Border": 1,
+      "Description": "A group of Grasshopper objects",
+      "ID": "9ea37707-5302-4d6c-ba38-65d5dd54e3ac",
+      "ID_Count": 4,
+      "InstanceGuid": "5493eb71-1c24-4364-b077-14808540269b",
+      "Name": "Group",
+      "identifier": {
+        "guid": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
+        "name": "Group"
+      },
+      "pivot": {
+        "x": -1,
+        "y": -1
       },
       "bounds": {
-        "input": [],
-        "output": []
+        "x": -1,
+        "y": -1,
+        "width": -1,
+        "height": -1
       },
-      "pivots": {
-        "input": [],
-        "output": []
+      "in": {
+        "inputParams": [],
+        "inputBounds": [],
+        "inputPivots": []
       },
-      "isZui": false
+      "out": {
+        "outputParams": [],
+        "outputBounds": [],
+        "outputPivots": []
+      }
     }
   ],
-  "ghLibs": [],
-  "isAllVanilla": true
+  "scripts": [
+    {},
+    {},
+    {},
+    {},
+    {}
+  ]
 }

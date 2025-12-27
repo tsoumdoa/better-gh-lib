@@ -1,0 +1,97 @@
+[
+  {
+    "params": {
+      "inputParams": [
+        {
+          "Description": "'x' value used to evaluate ''",
+          "InstanceGuid": "855880ca-8a2d-4ca4-b3b1-0fec07e30467",
+          "Name": "x",
+          "NickName": "x",
+          "Optional": true,
+          "SourceCount": 0
+        },
+        {
+          "Description": "'y' value used to evaluate ''",
+          "InstanceGuid": "8fece0ce-86fd-4c3a-9cac-7fa625a1a5aa",
+          "Name": "y",
+          "NickName": "y",
+          "Optional": true,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Description": "Result of expression",
+          "InstanceGuid": "29d772fc-9323-4943-a115-1c33afacc07a",
+          "Name": "Result",
+          "NickName": "R",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 344,
+          "y": 203,
+          "width": 9,
+          "height": 20
+        },
+        {
+          "x": 344,
+          "y": 223,
+          "width": 9,
+          "height": 20
+        }
+      ],
+      "output": [
+        {
+          "x": 548,
+          "y": 203,
+          "width": 12,
+          "height": 40
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 350,
+          "y": 213
+        },
+        {
+          "x": 350,
+          "y": 233
+        }
+      ],
+      "output": [
+        {
+          "x": 554,
+          "y": 223
+        }
+      ]
+    },
+    "zuiDescriptor": {
+      "inputCount": 2,
+      "outputCount": 1,
+      "inputIdentifiers": [
+        {
+          "guid": "ba80fd98-91a1-4958-b6a7-a94e40e52bdb",
+          "typeCode": 9
+        },
+        {
+          "guid": "ba80fd98-91a1-4958-b6a7-a94e40e52bdb",
+          "typeCode": 9
+        }
+      ],
+      "outputIdentifiers": [
+        {
+          "guid": "8ec86459-bf01-4409-baee-174d0d2b13d0",
+          "typeCode": 9
+        }
+      ]
+    },
+    "isZui": true
+  }
+]

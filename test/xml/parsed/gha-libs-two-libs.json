@@ -1,59 +1,37 @@
 {
   "GhVersion": "0.2.2",
-  "componenentCount": 2,
+  "componentsCount": 2,
   "uniqueCount": 2,
-  "identifiers": [
+  "ghLibs": [
     {
-      "guid": "d4ffcfd6-0d9d-407d-9789-ccefb6bafe0f",
-      "name": "Iso Edges",
+      "name": "PTComponentLibrary",
+      "author": "",
+      "version": "2021.4.1.0",
       "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
-    },
-    {
-      "guid": "539f5564-4fc0-4fc1-a7d3-b802fa2ef072",
-      "name": "Bend Deform"
     }
   ],
-  "pivots": [
-    {
-      "x": 514,
-      "y": 233
-    },
-    {
-      "x": 379,
-      "y": 148
-    }
-  ],
-  "bounds": [
-    {
-      "x": 488,
-      "y": 209,
-      "width": 56,
-      "height": 48
-    },
-    {
-      "x": 352,
-      "y": 126,
-      "width": 57,
-      "height": 44
-    }
-  ],
-  "instanceIdentifiers": [
+  "ghs": [
     {
       "Description": "Extract iso-edges on surface from linear edges",
       "InstanceGuid": "db9dff29-7343-463f-89bd-8f4c60adc6ed",
       "Name": "Iso Edges",
-      "NickName": "ptIsoE"
-    },
-    {
-      "Description": "Deform a shape by bending it",
-      "InstanceGuid": "114fbc1d-e109-4089-bb49-26dcaf5d500a",
-      "Name": "Bend Deform",
-      "NickName": "Bend"
-    }
-  ],
-  "ios": [
-    {
-      "params": {
+      "NickName": "ptIsoE",
+      "identifier": {
+        "guid": "d4ffcfd6-0d9d-407d-9789-ccefb6bafe0f",
+        "name": "Iso Edges",
+        "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
+      },
+      "pivot": {
+        "x": 514,
+        "y": 233
+      },
+      "bounds": {
+        "x": 488,
+        "y": 209,
+        "width": 56,
+        "height": 48
+      },
+      "in": {
         "inputParams": [
           {
             "Description": "Iso curve segments",
@@ -64,6 +42,22 @@
             "SourceCount": 0
           }
         ],
+        "inputBounds": [
+          {
+            "x": 529,
+            "y": 211,
+            "width": 13,
+            "height": 44
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 535.5,
+            "y": 233
+          }
+        ]
+      },
+      "out": {
         "outputParams": [
           {
             "Access": 1,
@@ -82,18 +76,8 @@
             "Optional": false,
             "SourceCount": 0
           }
-        ]
-      },
-      "bounds": {
-        "input": [
-          {
-            "x": 529,
-            "y": 211,
-            "width": 13,
-            "height": 44
-          }
         ],
-        "output": [
+        "outputBounds": [
           {
             "x": 490,
             "y": 211,
@@ -106,16 +90,8 @@
             "width": 9,
             "height": 22
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 535.5,
-            "y": 233
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 496,
             "y": 222
@@ -125,11 +101,28 @@
             "y": 244
           }
         ]
-      },
-      "isZui": false
+      }
     },
     {
-      "params": {
+      "Description": "Deform a shape by bending it",
+      "InstanceGuid": "114fbc1d-e109-4089-bb49-26dcaf5d500a",
+      "Name": "Bend Deform",
+      "NickName": "Bend",
+      "identifier": {
+        "guid": "539f5564-4fc0-4fc1-a7d3-b802fa2ef072",
+        "name": "Bend Deform"
+      },
+      "pivot": {
+        "x": 379,
+        "y": 148
+      },
+      "bounds": {
+        "x": 352,
+        "y": 126,
+        "width": 57,
+        "height": 44
+      },
+      "in": {
         "inputParams": [
           {
             "Description": "Deformed geometry",
@@ -140,6 +133,22 @@
             "SourceCount": 0
           }
         ],
+        "inputBounds": [
+          {
+            "x": 394,
+            "y": 128,
+            "width": 13,
+            "height": 40
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 400.5,
+            "y": 148
+          }
+        ]
+      },
+      "out": {
         "outputParams": [
           {
             "Description": "Geometry to deform",
@@ -157,18 +166,8 @@
             "Optional": false,
             "SourceCount": 0
           }
-        ]
-      },
-      "bounds": {
-        "input": [
-          {
-            "x": 394,
-            "y": 128,
-            "width": 13,
-            "height": 40
-          }
         ],
-        "output": [
+        "outputBounds": [
           {
             "x": 354,
             "y": 128,
@@ -181,16 +180,8 @@
             "width": 10,
             "height": 20
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 400.5,
-            "y": 148
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 360.5,
             "y": 138
@@ -200,17 +191,11 @@
             "y": 158
           }
         ]
-      },
-      "isZui": false
+      }
     }
   ],
-  "ghLibs": [
-    {
-      "name": "PTComponentLibrary",
-      "author": "",
-      "version": "2021.4.1.0",
-      "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
-    }
-  ],
-  "isAllVanilla": false
+  "scripts": [
+    {},
+    {}
+  ]
 }

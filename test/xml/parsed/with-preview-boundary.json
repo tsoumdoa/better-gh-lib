@@ -1,38 +1,29 @@
 {
   "GhVersion": "0.2.2",
-  "componenentCount": 1,
+  "componentsCount": 1,
   "uniqueCount": 1,
-  "identifiers": [
-    {
-      "guid": "42ad8dc1-b0c0-40df-91f5-2c46e589e6c2",
-      "name": "Seam"
-    }
-  ],
-  "pivots": [
-    {
-      "x": 634,
-      "y": 103
-    }
-  ],
-  "bounds": [
-    {
-      "x": 607,
-      "y": 81,
-      "width": 57,
-      "height": 44
-    }
-  ],
-  "instanceIdentifiers": [
+  "ghLibs": [],
+  "ghs": [
     {
       "Description": "Adjust the seam of a closed curve.",
       "InstanceGuid": "dd56fda8-9276-40b5-be7f-10538926dd33",
       "Name": "Seam",
-      "NickName": "Seam"
-    }
-  ],
-  "ios": [
-    {
-      "params": {
+      "NickName": "Seam",
+      "identifier": {
+        "guid": "42ad8dc1-b0c0-40df-91f5-2c46e589e6c2",
+        "name": "Seam"
+      },
+      "pivot": {
+        "x": 634,
+        "y": 103
+      },
+      "bounds": {
+        "x": 607,
+        "y": 81,
+        "width": 57,
+        "height": 44
+      },
+      "in": {
         "inputParams": [
           {
             "Description": "Adjusted curve",
@@ -43,6 +34,22 @@
             "SourceCount": 0
           }
         ],
+        "inputBounds": [
+          {
+            "x": 649,
+            "y": 83,
+            "width": 13,
+            "height": 40
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 655.5,
+            "y": 103
+          }
+        ]
+      },
+      "out": {
         "outputParams": [
           {
             "Description": "Curve to adjust",
@@ -60,18 +67,8 @@
             "Optional": false,
             "SourceCount": 0
           }
-        ]
-      },
-      "bounds": {
-        "input": [
-          {
-            "x": 649,
-            "y": 83,
-            "width": 13,
-            "height": 40
-          }
         ],
-        "output": [
+        "outputBounds": [
           {
             "x": 609,
             "y": 83,
@@ -84,16 +81,8 @@
             "width": 10,
             "height": 20
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 655.5,
-            "y": 103
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 615.5,
             "y": 93
@@ -103,10 +92,10 @@
             "y": 113
           }
         ]
-      },
-      "isZui": false
+      }
     }
   ],
-  "ghLibs": [],
-  "isAllVanilla": true
+  "scripts": [
+    {}
+  ]
 }

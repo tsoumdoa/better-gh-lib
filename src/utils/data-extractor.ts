@@ -4,6 +4,8 @@ import {
 	getInstanceIdentifier,
 	getComponentPivot,
 	parseIOs,
+	IOS,
+	getScripts,
 } from "./helper";
 import {
 	Bound,
@@ -71,7 +73,8 @@ export function getDefObj(ghJson: any) {
 	const bounds: Bound[] = [];
 	const pivots: CanvasPoint[] = [];
 	const instanceIdentifiers: InstanceIdentifier[] = [];
-	const ios: any[] = [];
+	const ios: IOS[] = [];
+	const scripts: any[] = [];
 
 	for (const obj of defObj.main) {
 		identifiers.push(getIdentifier(obj));
@@ -79,6 +82,7 @@ export function getDefObj(ghJson: any) {
 		pivots.push(getComponentPivot(obj));
 		instanceIdentifiers.push(getInstanceIdentifier(obj) as any);
 		ios.push(parseIOs(obj));
+		scripts.push(getScripts(obj));
 	}
 	const allGuids = identifiers.map((c) => c.guid);
 	const uniqueGuids = new Set(allGuids);
@@ -92,6 +96,7 @@ export function getDefObj(ghJson: any) {
 		bounds: bounds,
 		instanceIdentifiers: instanceIdentifiers,
 		ios: ios,
+		scripts: scripts,
 	};
 }
 export type DefinitionObjectResult = ReturnType<typeof getDefObj>;

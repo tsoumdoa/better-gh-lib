@@ -1,39 +1,30 @@
 {
   "GhVersion": "0.2.2",
-  "componenentCount": 1,
+  "componentsCount": 1,
   "uniqueCount": 1,
-  "identifiers": [
-    {
-      "guid": "c277f778-6fdf-4890-8f78-347efb23c406",
-      "name": "Pipe"
-    }
-  ],
-  "pivots": [
-    {
-      "x": 268,
-      "y": 174
-    }
-  ],
-  "bounds": [
-    {
-      "x": 241,
-      "y": 142,
-      "width": 56,
-      "height": 64
-    }
-  ],
-  "instanceIdentifiers": [
+  "ghLibs": [],
+  "ghs": [
     {
       "Description": "Create a pipe surface around a rail curve.",
       "InstanceGuid": "75a80b18-f8dd-420e-b1df-ada58c037b7e",
       "Locked": true,
       "Name": "Pipe",
-      "NickName": "Pipe"
-    }
-  ],
-  "ios": [
-    {
-      "params": {
+      "NickName": "Pipe",
+      "identifier": {
+        "guid": "c277f778-6fdf-4890-8f78-347efb23c406",
+        "name": "Pipe"
+      },
+      "pivot": {
+        "x": 268,
+        "y": 174
+      },
+      "bounds": {
+        "x": 241,
+        "y": 142,
+        "width": 56,
+        "height": 64
+      },
+      "in": {
         "inputParams": [
           {
             "Access": 1,
@@ -46,6 +37,22 @@
             "SourceCount": 0
           }
         ],
+        "inputBounds": [
+          {
+            "x": 283,
+            "y": 144,
+            "width": 12,
+            "height": 60
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 289,
+            "y": 174
+          }
+        ]
+      },
+      "out": {
         "outputParams": [
           {
             "Description": "Base curve",
@@ -77,18 +84,8 @@
             "Optional": false,
             "SourceCount": 0
           }
-        ]
-      },
-      "bounds": {
-        "input": [
-          {
-            "x": 283,
-            "y": 144,
-            "width": 12,
-            "height": 60
-          }
         ],
-        "output": [
+        "outputBounds": [
           {
             "x": 243,
             "y": 144,
@@ -107,16 +104,8 @@
             "width": 10,
             "height": 20
           }
-        ]
-      },
-      "pivots": {
-        "input": [
-          {
-            "x": 289,
-            "y": 174
-          }
         ],
-        "output": [
+        "outputPivots": [
           {
             "x": 249.5,
             "y": 154
@@ -130,10 +119,10 @@
             "y": 194
           }
         ]
-      },
-      "isZui": false
+      }
     }
   ],
-  "ghLibs": [],
-  "isAllVanilla": true
+  "scripts": [
+    {}
+  ]
 }

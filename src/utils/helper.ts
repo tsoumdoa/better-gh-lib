@@ -3,6 +3,7 @@ import {
 	handleBounds,
 	handleZuiIoAttrs,
 	handlePivot,
+	parseZuiIOs,
 } from "./handler";
 import { Bound, CanvasPoint, NodeIdentifier } from "./tgh";
 
@@ -46,6 +47,27 @@ export function getIdentifier(obj: any): NodeIdentifier {
 	};
 }
 
+export function transformParams(params: Record<string, any>[]) {
+	return params.reduce((acc, param) => {
+		const key = param["@_name"];
+		const value = param["#text"];
+
+		if (key === "Source") {
+			if (!acc[key]) {
+				acc[key] = [];
+			}
+			acc[key].push(value);
+		} else if (key === "ClusterDocument") {
+			const encoded = param.stream["#text"]; //base64 encoded binary data;
+			acc[key] = encoded;
+		} else {
+			acc[key] = value;
+		}
+
+		return acc;
+	}, {});
+}
+
 export function getInstanceIdentifier(obj: any) {
 	const ii: Record<string, any>[] = obj.chunks.chunk[0].items.item;
 	const parsed = transformParams(ii);
@@ -54,43 +76,14 @@ export function getInstanceIdentifier(obj: any) {
 
 export function parseIOs(obj: any) {
 	const zuiBody = obj.chunks.chunk[0].chunks.chunk.find(
-		//@ts-ignore
-		(i) => i["@_name"] === "ParameterData"
+		(i: Record<string, unknown>) => i["@_name"] === "ParameterData"
 	);
 	if (zuiBody) {
 		return handleZuiIOs(obj);
 	}
 	return handleStandardIOs(obj);
 }
-
-function parseZuiIOs(zuiBody: any) {
-	const chunks = zuiBody.chunks;
-
-	if (!chunks)
-		return {
-			inputParams: [],
-			outputParams: [],
-			inputBounds: [],
-			outputBounds: [],
-			inputPivots: [],
-			outputPivots: [],
-		};
-	const chunk: Record<string, any>[] = chunks.chunk;
-	const parsedAttrs = handleZuiIoAttrs(chunk);
-
-	const inputAttrItems = findObjByAtName(chunk, "InputParam")?.items.item ?? [];
-	const outputAttrItems =
-		findObjByAtName(chunk, "OutputParam")?.items.item ?? [];
-
-	return {
-		inputParams: transformParams(inputAttrItems),
-		outputParams: transformParams(outputAttrItems),
-		inputBounds: parsedAttrs.inputBounds,
-		outputBounds: parsedAttrs.outputBounds,
-		inputPivots: parsedAttrs.inputPivots,
-		outputPivots: parsedAttrs.outputPivots,
-	};
-}
+export type IOS = ReturnType<typeof parseIOs>;
 
 function handleZuiIOs(obj: any) {
 	const attr = obj.chunks.chunk[0].chunks.chunk.find(
@@ -174,20 +167,27 @@ function handleStandardIOs(obj: any) {
 	};
 }
 
-function transformParams(params: Record<string, any>[]) {
-	return params.reduce((acc, param) => {
-		const key = param["@_name"];
-		const value = param["#text"];
+export function getScripts(obj: any) {
+	const scripts = obj.chunks.chunk[0].chunks.chunk.find(
+		(i: Record<string, unknown>) => i["@_name"] === "Script"
+	);
+	if (!scripts) return {};
 
-		if (key === "Source") {
-			if (!acc[key]) {
-				acc[key] = [];
-			}
-			acc[key].push(value);
-		} else {
-			acc[key] = value;
-		}
+	const languageSpec = scripts.chunks.chunk[0].items.item;
+	const taxon = findObjByAtName(languageSpec, "Taxon")["#text"];
 
-		return acc;
-	}, {});
+	const item = scripts.items.item;
+	const objs = transformParams(item);
+	const scriptTextEncoded = findObjByAtName(item, "Text")?.["#text"];
+	const decoded = new TextDecoder().decode(
+		Buffer.from(scriptTextEncoded, "base64")
+	);
+
+	delete objs["Text"];
+
+	return {
+		taxon: taxon,
+		...objs,
+		script: decoded,
+	};
 }
