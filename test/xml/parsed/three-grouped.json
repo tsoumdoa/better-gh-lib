@@ -1,0 +1,350 @@
+{
+  "GhVersion": "0.2.2",
+  "componentsCount": 4,
+  "uniqueCount": 4,
+  "ghLibs": [
+    {
+      "name": "LunchBoxML",
+      "author": "",
+      "version": "2024.2.11.0",
+      "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
+    },
+    {
+      "name": "PTComponentLibrary",
+      "author": "",
+      "version": "2021.4.1.0",
+      "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
+    }
+  ],
+  "ghs": [
+    {
+      "Description": "Extract iso-edges on surface from linear edges",
+      "InstanceGuid": "db9dff29-7343-463f-89bd-8f4c60adc6ed",
+      "Name": "Iso Edges",
+      "NickName": "ptIsoE",
+      "identifier": {
+        "guid": "d4ffcfd6-0d9d-407d-9789-ccefb6bafe0f",
+        "name": "Iso Edges",
+        "libId": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de"
+      },
+      "pivot": {
+        "x": 514,
+        "y": 233
+      },
+      "bounds": {
+        "x": 488,
+        "y": 209,
+        "width": 56,
+        "height": 48
+      },
+      "in": {
+        "inputParams": [
+          {
+            "Description": "Iso curve segments",
+            "InstanceGuid": "9078adcb-786e-414b-b434-8a337c76f26e",
+            "Name": "Curves",
+            "NickName": "C",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "inputBounds": [
+          {
+            "x": 529,
+            "y": 211,
+            "width": 13,
+            "height": 44
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 535.5,
+            "y": 233
+          }
+        ]
+      },
+      "out": {
+        "outputParams": [
+          {
+            "Access": 1,
+            "Description": "Lines to extract their iso",
+            "InstanceGuid": "c54955ad-d52f-438d-b2f5-b0f424ae4ed0",
+            "Name": "Lines",
+            "NickName": "L",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Surface",
+            "InstanceGuid": "840c735e-b4b6-4614-b037-788cdef437d1",
+            "Name": "BRep",
+            "NickName": "S",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "outputBounds": [
+          {
+            "x": 490,
+            "y": 211,
+            "width": 9,
+            "height": 22
+          },
+          {
+            "x": 490,
+            "y": 233,
+            "width": 9,
+            "height": 22
+          }
+        ],
+        "outputPivots": [
+          {
+            "x": 496,
+            "y": 222
+          },
+          {
+            "x": 496,
+            "y": 244
+          }
+        ]
+      }
+    },
+    {
+      "Description": "Deform a shape by bending it",
+      "InstanceGuid": "114fbc1d-e109-4089-bb49-26dcaf5d500a",
+      "Name": "Bend Deform",
+      "NickName": "Bend",
+      "identifier": {
+        "guid": "539f5564-4fc0-4fc1-a7d3-b802fa2ef072",
+        "name": "Bend Deform"
+      },
+      "pivot": {
+        "x": 379,
+        "y": 148
+      },
+      "bounds": {
+        "x": 352,
+        "y": 126,
+        "width": 57,
+        "height": 44
+      },
+      "in": {
+        "inputParams": [
+          {
+            "Description": "Deformed geometry",
+            "InstanceGuid": "b3588b9a-082e-44a3-a7db-219098b47d3a",
+            "Name": "Geometry",
+            "NickName": "G",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "inputBounds": [
+          {
+            "x": 394,
+            "y": 128,
+            "width": 13,
+            "height": 40
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 400.5,
+            "y": 148
+          }
+        ]
+      },
+      "out": {
+        "outputParams": [
+          {
+            "Description": "Geometry to deform",
+            "InstanceGuid": "6902fb24-d44e-4636-9627-3c19481478c3",
+            "Name": "Geometry",
+            "NickName": "G",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Bending arc segment",
+            "InstanceGuid": "429d23ff-cff1-4ff8-94f6-2a5a33f76fd6",
+            "Name": "Bending Arc",
+            "NickName": "B",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "outputBounds": [
+          {
+            "x": 354,
+            "y": 128,
+            "width": 10,
+            "height": 20
+          },
+          {
+            "x": 354,
+            "y": 148,
+            "width": 10,
+            "height": 20
+          }
+        ],
+        "outputPivots": [
+          {
+            "x": 360.5,
+            "y": 138
+          },
+          {
+            "x": 360.5,
+            "y": 158
+          }
+        ]
+      }
+    },
+    {
+      "Description": "The Sdca trainer is used to train a regression model using the stochastic dual coordinate ascent method.",
+      "InstanceGuid": "f6de3eff-2546-4ece-b6ac-fb09ec46d258",
+      "Name": "Sdca Regression",
+      "NickName": "Sdca",
+      "identifier": {
+        "guid": "89bc7614-a135-4d75-8a6d-9d784b1d4d4f",
+        "name": "Sdca Regression",
+        "libId": "673aef27-e9ad-b083-2332-b4d742f80fb9"
+      },
+      "pivot": {
+        "x": 537,
+        "y": 126
+      },
+      "bounds": {
+        "x": 434,
+        "y": 94,
+        "width": 185,
+        "height": 64
+      },
+      "in": {
+        "inputParams": [
+          {
+            "Description": "The trainer used for machine learning problems.",
+            "InstanceGuid": "ad0c5efb-f804-49da-92e9-e15066b0b1d9",
+            "Name": "Trainer Type",
+            "NickName": "Trainer Type",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "inputBounds": [
+          {
+            "x": 552,
+            "y": 96,
+            "width": 65,
+            "height": 60
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 584.5,
+            "y": 126
+          }
+        ]
+      },
+      "out": {
+        "outputParams": [
+          {
+            "Description": "The L1 regularization weight.",
+            "InstanceGuid": "b1361413-650e-4009-8f93-8e5e60e4d765",
+            "Name": "L1 Regularization",
+            "NickName": "L1 Regularization",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "The L2 regularization weight.",
+            "InstanceGuid": "1c500746-6c0a-4390-90b4-90dc6ac457bf",
+            "Name": "L2 Regularization",
+            "NickName": "L2 Regularization",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "The maximum number of passes to perform over the data.",
+            "InstanceGuid": "7785e9a6-8c87-40bc-91f8-b71ae0dcd13c",
+            "Name": "Maximum Number of Iterations",
+            "NickName": "Iterations",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "outputBounds": [
+          {
+            "x": 436,
+            "y": 96,
+            "width": 86,
+            "height": 20
+          },
+          {
+            "x": 436,
+            "y": 116,
+            "width": 86,
+            "height": 20
+          },
+          {
+            "x": 436,
+            "y": 136,
+            "width": 86,
+            "height": 20
+          }
+        ],
+        "outputPivots": [
+          {
+            "x": 480.5,
+            "y": 106
+          },
+          {
+            "x": 480.5,
+            "y": 126
+          },
+          {
+            "x": 480.5,
+            "y": 146
+          }
+        ]
+      }
+    },
+    {
+      "Border": 1,
+      "Description": "A group of Grasshopper objects",
+      "ID": "f6de3eff-2546-4ece-b6ac-fb09ec46d258",
+      "ID_Count": 3,
+      "InstanceGuid": "4b47f2c5-b060-4270-95cc-150501d0b58e",
+      "Name": "Group",
+      "identifier": {
+        "guid": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
+        "name": "Group"
+      },
+      "pivot": {
+        "x": -1,
+        "y": -1
+      },
+      "bounds": {
+        "x": -1,
+        "y": -1,
+        "width": -1,
+        "height": -1
+      },
+      "in": {
+        "inputParams": [],
+        "inputBounds": [],
+        "inputPivots": []
+      },
+      "out": {
+        "outputParams": [],
+        "outputBounds": [],
+        "outputPivots": []
+      }
+    }
+  ],
+  "scripts": [
+    {},
+    {},
+    {},
+    {}
+  ]
+}

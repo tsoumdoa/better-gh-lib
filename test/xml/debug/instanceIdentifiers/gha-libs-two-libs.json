@@ -1,0 +1,14 @@
+[
+  {
+    "Description": "Extract iso-edges on surface from linear edges",
+    "InstanceGuid": "db9dff29-7343-463f-89bd-8f4c60adc6ed",
+    "Name": "Iso Edges",
+    "NickName": "ptIsoE"
+  },
+  {
+    "Description": "Deform a shape by bending it",
+    "InstanceGuid": "114fbc1d-e109-4089-bb49-26dcaf5d500a",
+    "Name": "Bend Deform",
+    "NickName": "Bend"
+  }
+]

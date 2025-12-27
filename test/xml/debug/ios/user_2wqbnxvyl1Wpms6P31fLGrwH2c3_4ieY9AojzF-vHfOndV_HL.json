@@ -1,0 +1,50 @@
+[
+  {
+    "params": {
+      "inputParams": [],
+      "outputParams": [
+        {
+          "Description": "The execution information, as output and error streams",
+          "InstanceGuid": "c7f5ed17-d480-45fd-9d3e-3633b525a034",
+          "Locked": true,
+          "Name": "out",
+          "NickName": "out",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ]
+    },
+    "bounds": {
+      "input": [],
+      "output": [
+        {
+          "x": 241,
+          "y": 38,
+          "width": 26,
+          "height": 196
+        }
+      ]
+    },
+    "pivots": {
+      "input": [],
+      "output": [
+        {
+          "x": 254,
+          "y": 136
+        }
+      ]
+    },
+    "zuiDescriptor": {
+      "inputCount": 0,
+      "outputCount": 1,
+      "inputIdentifiers": [],
+      "outputIdentifiers": [
+        {
+          "guid": "3ede854e-c753-40eb-84cb-b48008f14fd4",
+          "typeCode": 9
+        }
+      ]
+    },
+    "isZui": true
+  }
+]

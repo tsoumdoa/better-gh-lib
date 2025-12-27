@@ -145,3 +145,8 @@ The application should now be accessible in your web browser at \(http://localho
 - [ ] add concept of versions
 - [ ] fetch and have freqquently and last created tags in the suggestions
 - [ ] improve validator
+
+## Limitation of GhJson util
+
+- Doesn't parse data from slider and other type of inputs
+- Potetntially inefficient data parsing as it creates array of objects

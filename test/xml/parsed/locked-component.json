@@ -1,0 +1,128 @@
+{
+  "GhVersion": "0.2.2",
+  "componentsCount": 1,
+  "uniqueCount": 1,
+  "ghLibs": [],
+  "ghs": [
+    {
+      "Description": "Create a pipe surface around a rail curve.",
+      "InstanceGuid": "75a80b18-f8dd-420e-b1df-ada58c037b7e",
+      "Locked": true,
+      "Name": "Pipe",
+      "NickName": "Pipe",
+      "identifier": {
+        "guid": "c277f778-6fdf-4890-8f78-347efb23c406",
+        "name": "Pipe"
+      },
+      "pivot": {
+        "x": 268,
+        "y": 174
+      },
+      "bounds": {
+        "x": 241,
+        "y": 142,
+        "width": 56,
+        "height": 64
+      },
+      "in": {
+        "inputParams": [
+          {
+            "Access": 1,
+            "Description": "Resulting Pipe",
+            "InstanceGuid": "15ef3307-4b35-4b98-9927-cd0738b28402",
+            "Locked": true,
+            "Name": "Pipe",
+            "NickName": "P",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "inputBounds": [
+          {
+            "x": 283,
+            "y": 144,
+            "width": 12,
+            "height": 60
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 289,
+            "y": 174
+          }
+        ]
+      },
+      "out": {
+        "outputParams": [
+          {
+            "Description": "Base curve",
+            "InstanceGuid": "0c7dd691-f42b-48cc-8fd4-40880918b4f7",
+            "Locked": true,
+            "Name": "Curve",
+            "NickName": "C",
+            "Optional": false,
+            "Source": [
+              "987173a6-3b32-4cf0-81b7-3252208270e2"
+            ],
+            "SourceCount": 1
+          },
+          {
+            "Description": "Pipe radius",
+            "InstanceGuid": "602e6f24-fd8b-4b2e-ad9f-e38c3342e829",
+            "Locked": true,
+            "Name": "Radius",
+            "NickName": "R",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Specifies the type of caps (0=None, 1=Flat, 2=Round)",
+            "InstanceGuid": "0a1ab0d2-003d-4112-bf97-c2a682d1b62c",
+            "Locked": true,
+            "Name": "Caps",
+            "NickName": "E",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "outputBounds": [
+          {
+            "x": 243,
+            "y": 144,
+            "width": 10,
+            "height": 20
+          },
+          {
+            "x": 243,
+            "y": 164,
+            "width": 10,
+            "height": 20
+          },
+          {
+            "x": 243,
+            "y": 184,
+            "width": 10,
+            "height": 20
+          }
+        ],
+        "outputPivots": [
+          {
+            "x": 249.5,
+            "y": 154
+          },
+          {
+            "x": 249.5,
+            "y": 174
+          },
+          {
+            "x": 249.5,
+            "y": 194
+          }
+        ]
+      }
+    }
+  ],
+  "scripts": [
+    {}
+  ]
+}

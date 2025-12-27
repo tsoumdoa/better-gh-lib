@@ -1,0 +1,8 @@
+[
+  {
+    "Description": "Extract iso-edges on surface from linear edges",
+    "InstanceGuid": "db9dff29-7343-463f-89bd-8f4c60adc6ed",
+    "Name": "Iso Edges",
+    "NickName": "ptIsoE"
+  }
+]

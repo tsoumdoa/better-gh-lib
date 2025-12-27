@@ -1,0 +1,62 @@
+[
+  {
+    "CacheResultsInMemory": false,
+    "CacheSolveResults": false,
+    "Description": "Solve an external definition using Rhino Compute",
+    "Hidden": true,
+    "InstanceGuid": "0c35f6a1-079c-463c-870f-97158525a1f9",
+    "Name": "Hops",
+    "NickName": ".01ChildCutter",
+    "ShowInput_Enabled": false,
+    "ShowInput_Path": false,
+    "SynchronousSolve": false
+  },
+  {
+    "Description": "Partition a list into sub-lists",
+    "Hidden": true,
+    "InstanceGuid": "6007b696-f304-4310-9f11-4c91472c00b4",
+    "Name": "Partition List",
+    "NickName": "Partition"
+  },
+  {
+    "Description": "Group a geometry set",
+    "Hidden": true,
+    "InstanceGuid": "e206325e-dd81-4a2d-aff9-6be0037cee9d",
+    "Name": "Group",
+    "NickName": "Group"
+  },
+  {
+    "Description": "Reduce the complexity of a tree by merging the outermost branches.",
+    "Hidden": true,
+    "InstanceGuid": "e27326d2-a417-40fd-9679-810a49c12f82",
+    "Name": "Trim Tree",
+    "NickName": "Trim"
+  },
+  {
+    "Access": 2,
+    "Description": "Perform lexical operations on data trees.",
+    "InstanceGuid": "d03c5214-d019-4550-ba1f-40f61cd401b7",
+    "Name": "Path Mapper",
+    "NickName": "Path Mapper",
+    "Optional": true,
+    "Source": [
+      "4ad876e5-2893-4618-9151-94ee58ded32b"
+    ],
+    "SourceCount": 1
+  },
+  {
+    "Description": "Get some statistics regarding a data tree.",
+    "Hidden": true,
+    "InstanceGuid": "07c7d2c2-6f65-4bb3-b9e5-1d090e3eae99",
+    "Name": "Tree Statistics",
+    "NickName": "TStat"
+  },
+  {
+    "Border": 1,
+    "Description": "A group of Grasshopper objects",
+    "ID": "07c7d2c2-6f65-4bb3-b9e5-1d090e3eae99",
+    "ID_Count": 6,
+    "InstanceGuid": "e3824912-1b44-4637-b7a4-9726014c1546",
+    "Name": "Group"
+  }
+]

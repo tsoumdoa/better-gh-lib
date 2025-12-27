@@ -1,0 +1,22 @@
+[
+  {
+    "guid": "d5967b9f-e8ee-436b-a8ad-29fdcecf32d5",
+    "name": "Curve"
+  },
+  {
+    "guid": "ccc7b468-e743-4049-891f-299432545898",
+    "name": "Curve Middle"
+  },
+  {
+    "guid": "6f93d366-919f-4dda-a35e-ba03dd62799b",
+    "name": "Sort List"
+  },
+  {
+    "guid": "9abae6b7-fa1d-448c-9209-4a8155345841",
+    "name": "Deconstruct"
+  },
+  {
+    "guid": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
+    "name": "Group"
+  }
+]

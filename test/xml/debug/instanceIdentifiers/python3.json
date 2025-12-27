@@ -1,0 +1,25 @@
+[
+  {
+    "CustomUsing": true,
+    "Description": "A VB.NET scriptable component",
+    "InstanceGuid": "8a4d4f7b-3b40-4ebf-9a8c-8c08b36c4bb7",
+    "Name": "VB Script",
+    "NickName": "VB",
+    "OutParameter": true,
+    "ReferenceCount": 0
+  },
+  {
+    "GraftStandardOutputLines": true,
+    "InstanceGuid": "55d419a2-a62c-4dfd-8ce3-7899806dbbe5",
+    "MarshGuids": true,
+    "MarshInputs": true,
+    "MarshOutputs": true,
+    "Name": "IronPython 2 Script",
+    "NickName": "IPy2",
+    "ScriptComponentVersion": 3,
+    "UsingLibraryInputParam": false,
+    "UsingScriptInputParam": false,
+    "UsingScriptOutputParam": false,
+    "UsingStandardOutputParam": true
+  }
+]

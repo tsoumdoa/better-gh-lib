@@ -1,0 +1,31 @@
+[
+  {
+    "guid": "c69bb52c-88ba-4640-b69f-188d111029e8",
+    "name": "Hops",
+    "libId": "82cb7266-a8bc-4d3e-99f6-b91504c7117f"
+  },
+  {
+    "guid": "5a93246d-2595-4c28-bc2d-90657634f92a",
+    "name": "Partition List"
+  },
+  {
+    "guid": "874eebe7-835b-4f4f-9811-97e031c41597",
+    "name": "Group"
+  },
+  {
+    "guid": "1177d6ee-3993-4226-9558-52b7fd63e1e3",
+    "name": "Trim Tree"
+  },
+  {
+    "guid": "f9b89a46-bc5d-4f7a-9a6f-134f93ac3af9",
+    "name": "Path Mapper"
+  },
+  {
+    "guid": "99bee19d-588c-41a0-b9b9-1d00fb03ea1a",
+    "name": "Tree Statistics"
+  },
+  {
+    "guid": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
+    "name": "Group"
+  }
+]

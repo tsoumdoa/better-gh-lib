@@ -1,0 +1,98 @@
+[
+  {
+    "params": {
+      "inputParams": [
+        {
+          "Description": "Resulting plane surface",
+          "InstanceGuid": "5b6f0593-d445-4506-ac96-c564ba89e0e9",
+          "Name": "Plane",
+          "NickName": "P",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ],
+      "outputParams": [
+        {
+          "Description": "Surface base plane",
+          "InstanceGuid": "2ce00add-efaf-490b-98d5-a6e387552f9c",
+          "Name": "Plane",
+          "NickName": "P",
+          "Optional": false,
+          "Source": [
+            "7100986d-a381-44a7-a723-933eb8b98fd3"
+          ],
+          "SourceCount": 1
+        },
+        {
+          "Description": "Dimensions in X direction",
+          "InstanceGuid": "fce2b5ba-9fa3-4838-885e-7feb0a09078f",
+          "Name": "X Size",
+          "NickName": "X",
+          "Optional": false,
+          "SourceCount": 0
+        },
+        {
+          "Description": "Dimensions in Y direction",
+          "InstanceGuid": "ad2a85a5-ee60-4493-968f-7fa987712f2f",
+          "Name": "Y Size",
+          "NickName": "Y",
+          "Optional": false,
+          "SourceCount": 0
+        }
+      ]
+    },
+    "bounds": {
+      "input": [
+        {
+          "x": 280,
+          "y": 200,
+          "width": 12,
+          "height": 60
+        }
+      ],
+      "output": [
+        {
+          "x": 241,
+          "y": 200,
+          "width": 9,
+          "height": 20
+        },
+        {
+          "x": 241,
+          "y": 220,
+          "width": 9,
+          "height": 20
+        },
+        {
+          "x": 241,
+          "y": 240,
+          "width": 9,
+          "height": 20
+        }
+      ]
+    },
+    "pivots": {
+      "input": [
+        {
+          "x": 286,
+          "y": 230
+        }
+      ],
+      "output": [
+        {
+          "x": 247,
+          "y": 210
+        },
+        {
+          "x": 247,
+          "y": 230
+        },
+        {
+          "x": 247,
+          "y": 250
+        }
+      ]
+    },
+    "isZui": false
+  }
+]

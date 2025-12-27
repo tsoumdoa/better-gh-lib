@@ -1,0 +1,46 @@
+[
+  {
+    "items": {
+      "item": [
+        {
+          "#text": "PTComponentLibrary, Version=2021.4.1.0, Culture=neutral, PublicKeyToken=null",
+          "@_name": "AssemblyFullName",
+          "@_type_name": "gh_string",
+          "@_type_code": 10
+        },
+        {
+          "#text": "2021.4.1.0",
+          "@_name": "AssemblyVersion",
+          "@_type_name": "gh_string",
+          "@_type_code": 10
+        },
+        {
+          "@_name": "Author",
+          "@_type_name": "gh_string",
+          "@_type_code": 10
+        },
+        {
+          "#text": "80efd3b9-ebf8-1d80-5cf4-7eb27ed377de",
+          "@_name": "Id",
+          "@_type_name": "gh_guid",
+          "@_type_code": 9
+        },
+        {
+          "#text": "PTComponentLibrary",
+          "@_name": "Name",
+          "@_type_name": "gh_string",
+          "@_type_code": 10
+        },
+        {
+          "#text": "2021.4.1.0",
+          "@_name": "Version",
+          "@_type_name": "gh_string",
+          "@_type_code": 10
+        }
+      ],
+      "@_count": 6
+    },
+    "@_name": "Library",
+    "@_index": 0
+  }
+]

@@ -1,0 +1,603 @@
+{
+  "GhVersion": "0.2.2",
+  "componentsCount": 7,
+  "uniqueCount": 7,
+  "ghLibs": [
+    {
+      "name": "Hops",
+      "author": "Robert McNeel & Associates",
+      "version": "0.16.23",
+      "libId": "82cb7266-a8bc-4d3e-99f6-b91504c7117f"
+    }
+  ],
+  "ghs": [
+    {
+      "CacheResultsInMemory": false,
+      "CacheSolveResults": false,
+      "Description": "Solve an external definition using Rhino Compute",
+      "Hidden": true,
+      "InstanceGuid": "0c35f6a1-079c-463c-870f-97158525a1f9",
+      "Name": "Hops",
+      "NickName": ".01ChildCutter",
+      "ShowInput_Enabled": false,
+      "ShowInput_Path": false,
+      "SynchronousSolve": false,
+      "identifier": {
+        "guid": "c69bb52c-88ba-4640-b69f-188d111029e8",
+        "name": "Hops",
+        "libId": "82cb7266-a8bc-4d3e-99f6-b91504c7117f"
+      },
+      "pivot": {
+        "x": 5645,
+        "y": 1987
+      },
+      "bounds": {
+        "x": 5588,
+        "y": 1933,
+        "width": 123,
+        "height": 107
+      },
+      "in": {
+        "inputParams": [
+          {
+            "Access": 1,
+            "Description": "child",
+            "InstanceGuid": "ee75fe63-994f-45a9-b262-ebf2e1409d1f",
+            "Name": "child",
+            "NickName": "child",
+            "Optional": false,
+            "Source": [
+              "f5bcbe4a-9481-4774-b5b9-b43b6c288e0a"
+            ],
+            "SourceCount": 1
+          },
+          {
+            "Access": 1,
+            "Description": "cutters",
+            "InstanceGuid": "adda4a6c-127e-47f6-a5e0-7e827441e24c",
+            "Name": "cutters",
+            "NickName": "cutters",
+            "Optional": false,
+            "Source": [
+              "a61e2035-336b-493b-bb48-21861575510f"
+            ],
+            "SourceCount": 1,
+            "WireDisplay": 1
+          }
+        ],
+        "inputParamsZui": [
+          {
+            "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+            "typeCode": 9
+          },
+          {
+            "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+            "typeCode": 9
+          }
+        ],
+        "inputBounds": [
+          {
+            "x": 5590,
+            "y": 1935,
+            "width": 40,
+            "height": 51
+          },
+          {
+            "x": 5590,
+            "y": 1986,
+            "width": 40,
+            "height": 52
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 5611.5,
+            "y": 1960.75
+          },
+          {
+            "x": 5611.5,
+            "y": 2012.25
+          }
+        ]
+      },
+      "out": {
+        "outputParams": [
+          {
+            "Access": 2,
+            "Description": "Contains a collection of generic data",
+            "InstanceGuid": "c1bc66ac-940c-4811-81cd-d11e33a17e99",
+            "Name": "Content",
+            "NickName": "Content",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "outputParamsZui": [
+          {
+            "guid": "8ec86459-bf01-4409-baee-174d0d2b13d0",
+            "typeCode": 9
+          }
+        ],
+        "outputBounds": [
+          {
+            "x": 5660,
+            "y": 1935,
+            "width": 49,
+            "height": 103
+          }
+        ],
+        "outputPivots": [
+          {
+            "x": 5684.5,
+            "y": 1986.5
+          }
+        ]
+      }
+    },
+    {
+      "Description": "Partition a list into sub-lists",
+      "Hidden": true,
+      "InstanceGuid": "6007b696-f304-4310-9f11-4c91472c00b4",
+      "Name": "Partition List",
+      "NickName": "Partition",
+      "identifier": {
+        "guid": "5a93246d-2595-4c28-bc2d-90657634f92a",
+        "name": "Partition List"
+      },
+      "pivot": {
+        "x": 5775,
+        "y": 2021
+      },
+      "bounds": {
+        "x": 5745,
+        "y": 1986,
+        "width": 64,
+        "height": 70
+      },
+      "in": {
+        "inputParams": [
+          {
+            "Access": 2,
+            "Description": "List chunks",
+            "InstanceGuid": "4ad876e5-2893-4618-9151-94ee58ded32b",
+            "Name": "Chunks",
+            "NickName": "C",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "inputBounds": [
+          {
+            "x": 5790,
+            "y": 1988,
+            "width": 17,
+            "height": 66
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 5798.5,
+            "y": 2021
+          }
+        ]
+      },
+      "out": {
+        "outputParams": [
+          {
+            "Access": 1,
+            "Description": "List to partition",
+            "InstanceGuid": "d1f1b78b-f95f-4574-829d-db7d78805bb5",
+            "Name": "List",
+            "NickName": "L",
+            "Optional": false,
+            "Source": [
+              "c1bc66ac-940c-4811-81cd-d11e33a17e99"
+            ],
+            "SourceCount": 1
+          },
+          {
+            "Access": 1,
+            "Description": "Size of partitions",
+            "InstanceGuid": "5d99363e-0b87-4c86-a765-c8a1aa007f20",
+            "Name": "Size",
+            "NickName": "S",
+            "Optional": false,
+            "Source": [
+              "83ea1506-17c0-480c-a9cd-be9c4b606d79"
+            ],
+            "SourceCount": 1
+          }
+        ],
+        "outputBounds": [
+          {
+            "x": 5747,
+            "y": 1988,
+            "width": 13,
+            "height": 33
+          },
+          {
+            "x": 5747,
+            "y": 2021,
+            "width": 13,
+            "height": 33
+          }
+        ],
+        "outputPivots": [
+          {
+            "x": 5755,
+            "y": 2004.5
+          },
+          {
+            "x": 5755,
+            "y": 2037.5
+          }
+        ]
+      }
+    },
+    {
+      "Description": "Group a geometry set",
+      "Hidden": true,
+      "InstanceGuid": "e206325e-dd81-4a2d-aff9-6be0037cee9d",
+      "Name": "Group",
+      "NickName": "Group",
+      "identifier": {
+        "guid": "874eebe7-835b-4f4f-9811-97e031c41597",
+        "name": "Group"
+      },
+      "pivot": {
+        "x": 6012,
+        "y": 2028
+      },
+      "bounds": {
+        "x": 5980,
+        "y": 2001,
+        "width": 67,
+        "height": 54
+      },
+      "in": {
+        "inputParams": [
+          {
+            "Description": "Grouped objects",
+            "InstanceGuid": "44b0f181-75fd-451f-975e-b267388e180f",
+            "Name": "Group",
+            "NickName": "G",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "inputBounds": [
+          {
+            "x": 6027,
+            "y": 2003,
+            "width": 18,
+            "height": 50
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 6036,
+            "y": 2028
+          }
+        ]
+      },
+      "out": {
+        "outputParams": [
+          {
+            "Access": 1,
+            "Description": "Geometry to group",
+            "InstanceGuid": "cf3f9e22-353a-47e3-83be-7d5654b2bb2b",
+            "Name": "Geometry",
+            "NickName": "G",
+            "Optional": false,
+            "Source": [
+              "d03c5214-d019-4550-ba1f-40f61cd401b7"
+            ],
+            "SourceCount": 1
+          }
+        ],
+        "outputBounds": [
+          {
+            "x": 5982,
+            "y": 2003,
+            "width": 15,
+            "height": 50
+          }
+        ],
+        "outputPivots": [
+          {
+            "x": 5991,
+            "y": 2028
+          }
+        ]
+      }
+    },
+    {
+      "Description": "Reduce the complexity of a tree by merging the outermost branches.",
+      "Hidden": true,
+      "InstanceGuid": "e27326d2-a417-40fd-9679-810a49c12f82",
+      "Name": "Trim Tree",
+      "NickName": "Trim",
+      "identifier": {
+        "guid": "1177d6ee-3993-4226-9558-52b7fd63e1e3",
+        "name": "Trim Tree"
+      },
+      "pivot": {
+        "x": 6090,
+        "y": 2029
+      },
+      "bounds": {
+        "x": 6058,
+        "y": 2007,
+        "width": 65,
+        "height": 44
+      },
+      "in": {
+        "inputParams": [
+          {
+            "Access": 2,
+            "Description": "Trimmed data tree",
+            "InstanceGuid": "53c32eb3-5d9f-41a3-a3e1-4dc5a1b21bb7",
+            "Name": "Tree",
+            "NickName": "T",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "inputBounds": [
+          {
+            "x": 6105,
+            "y": 2009,
+            "width": 16,
+            "height": 40
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 6113,
+            "y": 2029
+          }
+        ]
+      },
+      "out": {
+        "outputParams": [
+          {
+            "Access": 2,
+            "Description": "Data tree to flatten",
+            "InstanceGuid": "c90c0722-ead6-4a21-8545-643aae29c6c4",
+            "Name": "Tree",
+            "NickName": "T",
+            "Optional": false,
+            "Source": [
+              "44b0f181-75fd-451f-975e-b267388e180f"
+            ],
+            "SourceCount": 1
+          },
+          {
+            "Description": "Number of outermost branches to merge",
+            "InstanceGuid": "1b894f1e-9cfd-44cd-aa05-fac769e68fcb",
+            "Name": "Depth",
+            "NickName": "D",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "outputBounds": [
+          {
+            "x": 6060,
+            "y": 2009,
+            "width": 15,
+            "height": 20
+          },
+          {
+            "x": 6060,
+            "y": 2029,
+            "width": 15,
+            "height": 20
+          }
+        ],
+        "outputPivots": [
+          {
+            "x": 6069,
+            "y": 2019
+          },
+          {
+            "x": 6069,
+            "y": 2039
+          }
+        ]
+      }
+    },
+    {
+      "Access": 2,
+      "Description": "Perform lexical operations on data trees.",
+      "InstanceGuid": "d03c5214-d019-4550-ba1f-40f61cd401b7",
+      "Name": "Path Mapper",
+      "NickName": "Path Mapper",
+      "Optional": true,
+      "Source": [
+        "4ad876e5-2893-4618-9151-94ee58ded32b"
+      ],
+      "SourceCount": 1,
+      "identifier": {
+        "guid": "f9b89a46-bc5d-4f7a-9a6f-134f93ac3af9",
+        "name": "Path Mapper"
+      },
+      "pivot": {
+        "x": -1,
+        "y": -1
+      },
+      "bounds": {
+        "x": 5833.2524,
+        "y": 2006.8865,
+        "width": 125,
+        "height": 40
+      },
+      "in": {
+        "inputParams": [],
+        "inputBounds": [],
+        "inputPivots": []
+      },
+      "out": {
+        "outputParams": [],
+        "outputBounds": [],
+        "outputPivots": []
+      }
+    },
+    {
+      "Description": "Get some statistics regarding a data tree.",
+      "Hidden": true,
+      "InstanceGuid": "07c7d2c2-6f65-4bb3-b9e5-1d090e3eae99",
+      "Name": "Tree Statistics",
+      "NickName": "TStat",
+      "identifier": {
+        "guid": "99bee19d-588c-41a0-b9b9-1d00fb03ea1a",
+        "name": "Tree Statistics"
+      },
+      "pivot": {
+        "x": 5651,
+        "y": 2116
+      },
+      "bounds": {
+        "x": 5621,
+        "y": 2084,
+        "width": 64,
+        "height": 64
+      },
+      "in": {
+        "inputParams": [
+          {
+            "Access": 1,
+            "Description": "All the paths of the tree",
+            "InstanceGuid": "fe264566-f5fe-489b-a62f-da09189990da",
+            "Name": "Paths",
+            "NickName": "P",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Access": 1,
+            "Description": "The length of each branch in the tree",
+            "InstanceGuid": "83ea1506-17c0-480c-a9cd-be9c4b606d79",
+            "Name": "Length",
+            "NickName": "L",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Number of paths and branches in the tree",
+            "InstanceGuid": "7842c82e-43d0-4008-b864-44b2438a355d",
+            "Name": "Count",
+            "NickName": "C",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "inputBounds": [
+          {
+            "x": 5666,
+            "y": 2086,
+            "width": 17,
+            "height": 20
+          },
+          {
+            "x": 5666,
+            "y": 2106,
+            "width": 17,
+            "height": 20
+          },
+          {
+            "x": 5666,
+            "y": 2126,
+            "width": 17,
+            "height": 20
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 5674.5,
+            "y": 2096
+          },
+          {
+            "x": 5674.5,
+            "y": 2116
+          },
+          {
+            "x": 5674.5,
+            "y": 2136
+          }
+        ]
+      },
+      "out": {
+        "outputParams": [
+          {
+            "Access": 2,
+            "Description": "Data Tree to analyze",
+            "InstanceGuid": "1c96a0ad-fe2f-493b-b607-209f929d286e",
+            "Name": "Tree",
+            "NickName": "T",
+            "Optional": false,
+            "Source": [
+              "56f936fc-b71e-47fd-84e1-a93174c5ea2b"
+            ],
+            "SourceCount": 1
+          }
+        ],
+        "outputBounds": [
+          {
+            "x": 5623,
+            "y": 2086,
+            "width": 13,
+            "height": 60
+          }
+        ],
+        "outputPivots": [
+          {
+            "x": 5631,
+            "y": 2116
+          }
+        ]
+      }
+    },
+    {
+      "Border": 1,
+      "Description": "A group of Grasshopper objects",
+      "ID": "07c7d2c2-6f65-4bb3-b9e5-1d090e3eae99",
+      "ID_Count": 6,
+      "InstanceGuid": "e3824912-1b44-4637-b7a4-9726014c1546",
+      "Name": "Group",
+      "identifier": {
+        "guid": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
+        "name": "Group"
+      },
+      "pivot": {
+        "x": -1,
+        "y": -1
+      },
+      "bounds": {
+        "x": -1,
+        "y": -1,
+        "width": -1,
+        "height": -1
+      },
+      "in": {
+        "inputParams": [],
+        "inputBounds": [],
+        "inputPivots": []
+      },
+      "out": {
+        "outputParams": [],
+        "outputBounds": [],
+        "outputPivots": []
+      }
+    }
+  ],
+  "scripts": [
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ]
+}

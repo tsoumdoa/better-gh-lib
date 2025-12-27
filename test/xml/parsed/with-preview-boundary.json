@@ -1,0 +1,101 @@
+{
+  "GhVersion": "0.2.2",
+  "componentsCount": 1,
+  "uniqueCount": 1,
+  "ghLibs": [],
+  "ghs": [
+    {
+      "Description": "Adjust the seam of a closed curve.",
+      "InstanceGuid": "dd56fda8-9276-40b5-be7f-10538926dd33",
+      "Name": "Seam",
+      "NickName": "Seam",
+      "identifier": {
+        "guid": "42ad8dc1-b0c0-40df-91f5-2c46e589e6c2",
+        "name": "Seam"
+      },
+      "pivot": {
+        "x": 634,
+        "y": 103
+      },
+      "bounds": {
+        "x": 607,
+        "y": 81,
+        "width": 57,
+        "height": 44
+      },
+      "in": {
+        "inputParams": [
+          {
+            "Description": "Adjusted curve",
+            "InstanceGuid": "864d141b-c843-42dc-8bd5-36b9960be699",
+            "Name": "Curve",
+            "NickName": "C",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "inputBounds": [
+          {
+            "x": 649,
+            "y": 83,
+            "width": 13,
+            "height": 40
+          }
+        ],
+        "inputPivots": [
+          {
+            "x": 655.5,
+            "y": 103
+          }
+        ]
+      },
+      "out": {
+        "outputParams": [
+          {
+            "Description": "Curve to adjust",
+            "InstanceGuid": "7d6361f2-0cfc-425a-8b99-2f9bb04be2fb",
+            "Name": "Curve",
+            "NickName": "C",
+            "Optional": false,
+            "SourceCount": 0
+          },
+          {
+            "Description": "Parameter of new seam",
+            "InstanceGuid": "0d3e8817-ac98-42c8-85c4-7191d9ccbfdc",
+            "Name": "Seam",
+            "NickName": "t",
+            "Optional": false,
+            "SourceCount": 0
+          }
+        ],
+        "outputBounds": [
+          {
+            "x": 609,
+            "y": 83,
+            "width": 10,
+            "height": 20
+          },
+          {
+            "x": 609,
+            "y": 103,
+            "width": 10,
+            "height": 20
+          }
+        ],
+        "outputPivots": [
+          {
+            "x": 615.5,
+            "y": 93
+          },
+          {
+            "x": 615.5,
+            "y": 113
+          }
+        ]
+      }
+    }
+  ],
+  "scripts": [
+    {}
+  ]
+}
