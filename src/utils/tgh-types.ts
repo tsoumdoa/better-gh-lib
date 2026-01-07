@@ -1,4 +1,4 @@
-import { GhXmlType } from "../types/types";
+import { parseIOs } from "./handler";
 
 export type CanvasPoint = {
 	x: number;
@@ -115,3 +115,5 @@ export type InterfaceIdentifier = {
 	guid: string;
 	typeCode: number;
 };
+
+export type IOS = ReturnType<typeof parseIOs>;

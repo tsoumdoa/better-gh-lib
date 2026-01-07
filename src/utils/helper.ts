@@ -1,20 +1,4 @@
-import {
-	extractInterfaceDescriptor,
-	handleBounds,
-	handleZuiIoAttrs,
-	handlePivot,
-	parseZuiIOs,
-} from "./handler";
-import { Bound, CanvasPoint, NodeIdentifier } from "./tgh";
-
-export function getComponentBounds(obj: any): Bound {
-	const p = getComponentAttribute(obj, "Bounds");
-	return handleBounds(p);
-}
-export function getComponentPivot(obj: any): CanvasPoint {
-	const p = getComponentAttribute(obj, "Pivot");
-	return handlePivot(p);
-}
+import { Bound, CanvasPoint, InterfaceDescriptor, InterfaceIdentifier } from "./tgh-types";
 
 export function findObjByAtName(obj: any, atName: string) {
 	return obj.find((i: Record<string, unknown>) => i["@_name"] === atName);
@@ -24,7 +8,61 @@ export function filterObjByAtName(obj: any, atName: string) {
 	return obj.filter((i: Record<string, unknown>) => i["@_name"] === atName);
 }
 
-function getComponentAttribute(obj: any, name: "Bounds" | "Pivot") {
+export function extractBounds(p: any): Bound {
+	if (!p) {
+		return { x: -1, y: -1, width: -1, height: -1 };
+	}
+	return { x: p.X, y: p.Y, width: p.W, height: p.H };
+}
+
+export function extractPivot(p: any): CanvasPoint {
+	if (!p) {
+		return { x: -1, y: -1 };
+	}
+	return { x: p.X, y: p.Y };
+}
+
+export function extractInterfaceDescriptor(
+	attr: Record<string, any>
+): InterfaceDescriptor {
+	const items: Record<string, any>[] = attr.items.item;
+	const inputCount = findObjByAtName(items, "InputCount")?.["#text"];
+	const outputCount = findObjByAtName(items, "OutputCount")?.["#text"];
+
+	const inputIdentifiers: InterfaceIdentifier[] = [];
+	const outputIdentifiers: InterfaceIdentifier[] = [];
+
+	for (const item of items) {
+		const name = item["@_name"];
+		const guid = item["#text"];
+		const typeCode = item["@_type_code"];
+		const identifier: InterfaceIdentifier = {
+			guid: guid,
+			typeCode: typeCode,
+		};
+		if (name === "InputId") inputIdentifiers.push(identifier);
+		if (name === "OutputId") outputIdentifiers.push(identifier);
+	}
+
+	return {
+		inputCount: inputCount,
+		outputCount: outputCount,
+		inputIdentifiers: inputIdentifiers ?? [],
+		outputIdentifiers: outputIdentifiers ?? [],
+	};
+}
+
+export function extractComponentBounds(obj: any): Bound {
+	const p = extractComponentAttribute(obj, "Bounds");
+	return extractBounds(p);
+}
+export function extractComponentPivot(obj: any): CanvasPoint {
+	const p = extractComponentAttribute(obj, "Pivot");
+	return extractPivot(p);
+}
+
+
+function extractComponentAttribute(obj: any, name: "Bounds" | "Pivot") {
 	const attr = findObjByAtName(
 		obj.chunks.chunk[0].chunks.chunk,
 		"Attributes"
@@ -37,14 +75,10 @@ function getComponentAttribute(obj: any, name: "Bounds" | "Pivot") {
 	return attr.item.find((i: Record<string, unknown>) => i["@_name"] === name);
 }
 
-export function getIdentifier(obj: any): NodeIdentifier {
-	const identifier: Record<string, any>[] = obj.items.item;
-
-	return {
-		guid: findObjByAtName(identifier, "GUID")?.["#text"],
-		name: findObjByAtName(identifier, "Name")?.["#text"],
-		libId: findObjByAtName(identifier, "Lib")?.["#text"],
-	};
+export function extractInstanceIdentifier(obj: any) {
+	const ii: Record<string, any>[] = obj.chunks.chunk[0].items.item;
+	const parsed = transformParams(ii);
+	return parsed;
 }
 
 export function transformParams(params: Record<string, any>[]) {
@@ -66,128 +100,4 @@ export function transformParams(params: Record<string, any>[]) {
 
 		return acc;
 	}, {});
-}
-
-export function getInstanceIdentifier(obj: any) {
-	const ii: Record<string, any>[] = obj.chunks.chunk[0].items.item;
-	const parsed = transformParams(ii);
-	return parsed;
-}
-
-export function parseIOs(obj: any) {
-	const zuiBody = obj.chunks.chunk[0].chunks.chunk.find(
-		(i: Record<string, unknown>) => i["@_name"] === "ParameterData"
-	);
-	if (zuiBody) {
-		return handleZuiIOs(obj);
-	}
-	return handleStandardIOs(obj);
-}
-export type IOS = ReturnType<typeof parseIOs>;
-
-function handleZuiIOs(obj: any) {
-	const attr = obj.chunks.chunk[0].chunks.chunk.find(
-		(i: Record<string, unknown>) => i["@_name"] === "ParameterData"
-	);
-	const ios = parseZuiIOs(attr);
-	const intDesc = extractInterfaceDescriptor(attr);
-
-	return {
-		params: {
-			inputParams: ios.inputParams,
-			outputParams: ios.outputParams,
-		},
-		bounds: {
-			input: ios.inputBounds,
-			output: ios.outputBounds,
-		},
-		pivots: {
-			input: ios.inputPivots,
-			output: ios.outputPivots,
-		},
-		zuiDescriptor: intDesc,
-		isZui: true,
-	};
-}
-
-function handleStandardIOs(obj: any) {
-	const chunk: Record<string, unknown>[] = obj.chunks.chunk[0].chunks.chunk;
-
-	const inputParams = chunk.filter((i) => i["@_name"] === "param_output");
-	const outputParams = chunk.filter((i) => i["@_name"] === "param_input");
-
-	var inputBounds: Bound[] = [];
-	var outputBounds: Bound[] = [];
-	var inputPivots: CanvasPoint[] = [];
-	var outputPivots: CanvasPoint[] = [];
-
-	for (const inputParam of inputParams) {
-		// @ts-ignore
-		const chunk = inputParam.chunks.chunk;
-		const inputParamAttrItems = findObjByAtName(chunk, "Attributes").items.item;
-		const bounds = findObjByAtName(inputParamAttrItems, "Bounds");
-		const pivots = findObjByAtName(inputParamAttrItems, "Pivot");
-
-		inputBounds.push(handleBounds(bounds));
-		inputPivots.push(handlePivot(pivots));
-	}
-
-	for (const outputParam of outputParams) {
-		//@ts-ignore
-		const chunk = outputParam.chunks.chunk;
-		const outputParamAttrItems = findObjByAtName(chunk, "Attributes").items
-			.item;
-		const bounds = findObjByAtName(outputParamAttrItems, "Bounds");
-
-		const pivots = findObjByAtName(outputParamAttrItems, "Pivot");
-
-		outputBounds.push(handleBounds(bounds));
-		outputPivots.push(handlePivot(pivots));
-	}
-
-	//@ts-ignore
-	const ioParamsIn = inputParams.map((i) => transformParams(i.items.item));
-	//@ts-ignore
-	const ioParamsOut = outputParams.map((i) => transformParams(i.items.item));
-
-	return {
-		params: {
-			inputParams: ioParamsIn,
-			outputParams: ioParamsOut,
-		},
-		bounds: {
-			input: inputBounds,
-			output: outputBounds,
-		},
-		pivots: {
-			input: inputPivots,
-			output: outputPivots,
-		},
-		isZui: false,
-	};
-}
-
-export function getScripts(obj: any) {
-	const scripts = obj.chunks.chunk[0].chunks.chunk.find(
-		(i: Record<string, unknown>) => i["@_name"] === "Script"
-	);
-	if (!scripts) return {};
-
-	const languageSpec = scripts.chunks.chunk[0].items.item;
-	const taxon = findObjByAtName(languageSpec, "Taxon")["#text"];
-
-	const item = scripts.items.item;
-	const objs = transformParams(item);
-	const scriptTextEncoded = findObjByAtName(item, "Text")?.["#text"];
-	const decoded = new TextDecoder().decode(
-		Buffer.from(scriptTextEncoded, "base64")
-	);
-
-	delete objs["Text"];
-
-	return {
-		taxon: taxon,
-		...objs,
-		script: decoded,
-	};
 }

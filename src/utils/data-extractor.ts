@@ -1,20 +1,17 @@
 import {
-	getComponentBounds,
-	getIdentifier,
-	getInstanceIdentifier,
-	getComponentPivot,
+	handleIdentifier,
 	parseIOs,
-	IOS,
 	getScripts,
-} from "./helper";
+} from "./handler";
+import { extractComponentBounds, extractComponentPivot, extractInstanceIdentifier, findObjByAtName } from "./helper";
 import {
 	Bound,
 	CanvasPoint,
 	GhaLibDiscripor,
 	InstanceIdentifier,
 	NodeIdentifier,
-} from "./tgh";
-import { findObjByAtName } from "./helper";
+	IOS,
+} from "./tgh-types";
 
 export const SchemaNames = [
 	"Docum:ntHeader", // not so important
@@ -77,10 +74,10 @@ export function getDefObj(ghJson: any) {
 	const scripts: any[] = [];
 
 	for (const obj of defObj.main) {
-		identifiers.push(getIdentifier(obj));
-		bounds.push(getComponentBounds(obj));
-		pivots.push(getComponentPivot(obj));
-		instanceIdentifiers.push(getInstanceIdentifier(obj) as any);
+		identifiers.push(handleIdentifier(obj));
+		bounds.push(extractComponentBounds(obj));
+		pivots.push(extractComponentPivot(obj));
+		instanceIdentifiers.push(extractInstanceIdentifier(obj) as any);
 		ios.push(parseIOs(obj));
 		scripts.push(getScripts(obj));
 	}
