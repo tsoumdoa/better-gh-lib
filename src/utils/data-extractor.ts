@@ -32,19 +32,10 @@ export function getVersion(ghJson: any) {
 	};
 }
 
-export function getObjectCount(ghJson: any) {
-	return {
-		componentCount: ghJson.DefinitionObjects.items.item[0]
-			.ObjectCount as number,
-		sourceCount: ghJson.DefinitionObjects.items.item[0].SourceCount as number,
-	};
-}
-
 export function getMainChunkObj(ghJson: any, chunkObjName: SchemaNameLiteral) {
 	const mainChunks = ghJson.Archive.chunks.chunk[0].chunks.chunk;
 	const objChunk = mainChunks.filter(
-		// @ts-ignore
-		(c) => c["@_name"] === chunkObjName
+		(c: any) => c["@_name"] === chunkObjName
 	)[0].chunks;
 
 	return {
