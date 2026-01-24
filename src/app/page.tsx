@@ -1,9 +1,17 @@
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import { ArrowRight } from "lucide-react";
 import { SignUpButton } from "@clerk/nextjs";
 
 export default async function Home() {
+	const { userId } = await auth();
+
+	if (userId) {
+		redirect("/ghcards");
+	}
+
 	return (
 		<div className="min-h-screen bg-black font-sans text-white">
 			<div className="mx-auto flex min-h-screen max-w-400 flex-col p-4 md:px-6 md:pt-6 md:pb-2">
