@@ -16,9 +16,7 @@ export default async function Home() {
 		<div className="min-h-screen bg-black font-sans text-white">
 			<div className="mx-auto flex min-h-screen max-w-400 flex-col p-4 md:px-6 md:pt-6 md:pb-2">
 				<Header />
-				<div className="flex-1">
-					<LandingPageContent />
-				</div>
+				<LandingPageContent />
 				<Footer />
 			</div>
 		</div>
@@ -27,7 +25,7 @@ export default async function Home() {
 
 function LandingPageContent() {
 	return (
-		<div className="flex w-full max-w-4xl flex-col items-center justify-center py-12 md:py-20">
+		<div className="mx-auto flex w-full max-w-4xl flex-col items-center justify-center py-12 md:py-20">
 			<div className="flex flex-col items-center gap-8 text-center">
 				<h1 className="text-4xl font-bold md:text-6xl">
 					GitHub Gist for Grasshopper Scripts
