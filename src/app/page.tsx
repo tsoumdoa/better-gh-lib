@@ -1,70 +1,63 @@
-import { ChevronDown } from "lucide-react";
 import Header from "./components/header";
-import { HydrateClient } from "@/trpc/server";
-import Link from "next/link";
 import Footer from "./components/footer";
-
-function FeatureCard(props: {
-	title: string;
-	description: string;
-	go: string;
-	href: string;
-}) {
-	return (
-		<Link
-			href={props.href}
-			className="flex flex-col justify-between rounded-md bg-neutral-900 p-6 ring-1 ring-neutral-500 transition-all hover:bg-neutral-800"
-		>
-			<div>
-				<h2 className="pb-2 text-xl font-bold">{props.title}</h2>
-				<p className="text-neutral-400">{props.description}</p>
-			</div>
-			<div className="flex items-center pt-4 text-sm text-neutral-400">
-				<span>Get started - {props.go}</span>
-				<ChevronDown className="ml-1 h-4 w-4 rotate-[-90deg]" />
-			</div>
-		</Link>
-	);
-}
+import { ArrowRight } from "lucide-react";
+import { SignUpButton } from "@clerk/nextjs";
 
 export default async function Home() {
 	return (
-		<HydrateClient>
-			<div className="min-h-screen bg-black font-sans text-white">
-				<div className="mx-auto flex min-h-screen max-w-[100rem] flex-col items-end p-4 md:px-6 md:pt-6 md:pb-2">
-					<div>
-						<Header />
-						<LandingPageCards />
-					</div>
-					<Footer />
+		<div className="min-h-screen bg-black font-sans text-white">
+			<div className="mx-auto flex min-h-screen max-w-400 flex-col p-4 md:px-6 md:pt-6 md:pb-2">
+				<Header />
+				<div className="flex-1">
+					<LandingPageContent />
 				</div>
+				<Footer />
 			</div>
-		</HydrateClient>
+		</div>
 	);
 }
 
-function LandingPageCards() {
+function LandingPageContent() {
 	return (
-		<div className="flex flex-col gap-y-3">
-			<h1 className="text-center text-2xl font-bold">
-				GitHub Gist-like platform for your Grasshopper Scripts
-				<br />
-				<Link
-					href="https://landing.hopperclip.com/"
-					prefetch={true}
-					className="text-orange-500 underline"
-				>
-					DEMO
-				</Link>
-			</h1>
-			<div className="mx-auto grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-				<FeatureCard
-					title="GhCard"
-					description="Explore and manage your script library by copy & paste your GhScript. Currently open beta and max 50 cards, use it with caution."
-					href="/ghcards"
-					go="signup required"
-				/>
+		<div className="flex w-full max-w-4xl flex-col items-center justify-center py-12 md:py-20">
+			<div className="flex flex-col items-center gap-8 text-center">
+				<h1 className="text-4xl font-bold md:text-6xl">
+					GitHub Gist for Grasshopper Scripts
+				</h1>
+				<p className="text-lg text-neutral-400 md:text-xl">
+					Your personal library for organizing and sharing Grasshopper scripts.
+					Copy, paste, and manage your GhScripts with ease.
+				</p>
+				<SignUpButton>
+					<button className="flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-all hover:bg-neutral-200 md:text-base">
+						Get Started Free
+						<ArrowRight className="h-4 w-4" />
+					</button>
+				</SignUpButton>
+				<div className="grid w-full grid-cols-1 gap-6 pt-8 md:grid-cols-3">
+					<FeatureCard
+						title="Organize"
+						description="Keep your Grasshopper scripts organized in one place. Tag, categorize, and find them instantly."
+					/>
+					<FeatureCard
+						title="Share"
+						description="Share your scripts with others. Generate shareable links with optional expiration dates."
+					/>
+					<FeatureCard
+						title="Access Anywhere"
+						description="Access your script library from any device. Your scripts are always just a click away."
+					/>
+				</div>
 			</div>
+		</div>
+	);
+}
+
+function FeatureCard(props: { title: string; description: string }) {
+	return (
+		<div className="flex flex-col rounded-md bg-neutral-900 p-6 ring-1 ring-neutral-500">
+			<h2 className="pb-2 text-xl font-bold">{props.title}</h2>
+			<p className="text-neutral-400">{props.description}</p>
 		</div>
 	);
 }
