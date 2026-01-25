@@ -28,11 +28,11 @@ function LandingPageContent() {
 		<div className="mx-auto flex w-full max-w-4xl flex-col items-center justify-center py-12 md:py-20">
 			<div className="flex flex-col items-center gap-8 text-center">
 				<h1 className="text-4xl font-bold md:text-6xl">
-					GitHub Gist for Grasshopper Scripts
+					A lightning-fast pastebin for your Grasshopper logic
 				</h1>
 				<p className="text-lg text-neutral-400 md:text-xl">
-					Your personal library for organizing and sharing Grasshopper scripts.
-					Copy, paste, and manage your GhScripts with ease.
+					The quiet, ever-ready shelf for your Grasshopper ideas. Drop a script,
+					grab a link, share the magic—no clutter, no fuss.
 				</p>
 				<SignUpButton>
 					<button className="flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-all hover:bg-neutral-200 md:text-base">
