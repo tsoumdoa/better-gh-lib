@@ -3,7 +3,7 @@ import { v } from "convex/values";
 
 export default defineSchema({
   posts: defineTable({
-    name: v.string(),
+    name: v.optional(v.string()),
     description: v.optional(v.string()),
     dateCreated: v.string(),
     dateUpdated: v.string(),
@@ -15,6 +15,7 @@ export default defineSchema({
   })
     .index("by_clerkUserId", ["clerkUserId"])
     .index("by_dateUpdated", ["dateUpdated"])
-    .index("by_dateCreated", ["dateCreated"]),
+    .index("by_dateCreated", ["dateCreated"])
+    .index("by_name", ["name"]),
 });
 
