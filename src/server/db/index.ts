@@ -10,27 +10,27 @@ import * as schema from "./schema";
  * update.
  */
 const globalForDb = globalThis as unknown as {
-  client: Client | undefined;
-  upstashRedis: Redis | undefined;
+	client: Client | undefined;
+	upstashRedis: Redis | undefined;
 };
 
 const client =
-  globalForDb.client ??
-  createClient({
-    url: env.DATABASE_URL,
-    authToken: env.DATABASE_AUTH_TOKEN,
-  });
+	globalForDb.client ??
+	createClient({
+		url: env.DATABASE_URL,
+		authToken: env.DATABASE_AUTH_TOKEN,
+	});
 
 export const redis =
-  globalForDb.upstashRedis ??
-  new Redis({
-    url: env.UPSTASH_REDIS_REST_URL,
-    token: env.UPSTASH_REDIS_REST_TOKEN,
-  });
+	globalForDb.upstashRedis ??
+	new Redis({
+		url: env.UPSTASH_REDIS_REST_URL,
+		token: env.UPSTASH_REDIS_REST_TOKEN,
+	});
 
 if (env.NODE_ENV !== "production") {
-  globalForDb.client = client;
-  globalForDb.upstashRedis = redis;
+	globalForDb.client = client;
+	globalForDb.upstashRedis = redis;
 }
 
 export const db = drizzle(client, { schema });
