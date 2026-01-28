@@ -150,3 +150,7 @@ The application should now be accessible in your web browser at \(http://localho
 
 - Doesn't parse data from slider and other type of inputs
 - Potetntially inefficient data parsing as it creates array of objects
+
+## Convex Migration
+
+- [ ] Change clerk compoent to convex one for auth state etc

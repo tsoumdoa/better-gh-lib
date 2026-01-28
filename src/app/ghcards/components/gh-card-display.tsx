@@ -4,18 +4,21 @@ import { Posts } from "@/server/db/schema";
 import useFilter from "../hooks/use-filter";
 import Filter from "./filter";
 import { X } from "lucide-react";
+import { api as convex } from "../../../../convex/_generated/api";
+import { useQuery } from "convex/react";
 
 export default function GHCardDisplay(props: {
   ghCards: Posts[];
   tagFilters?: string[];
 }) {
+  const ghCards = useQuery(convex.ghCard.getAll, {});
   const {
     filteredCards,
     showFilter,
     handleFilter,
     filterKeyword,
     clearFilter,
-  } = useFilter(props.ghCards);
+  } = useFilter(ghCards || []);
 
   return (
     <>

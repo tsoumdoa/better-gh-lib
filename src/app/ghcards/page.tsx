@@ -15,7 +15,7 @@ async function MainCard(props: { sortKey: SortOrder; tagFilters: string[] }) {
   try {
     const ghCards = await api.post.getAll({ sortOrder: props.sortKey });
     if (props.tagFilters.length > 0) {
-      const filtered = ghCards.filter((card) => {
+      const filtered = ghCards?.filter((card) => {
         for (const tag of props.tagFilters) {
           if (card.tags?.includes(tag)) {
             return true;

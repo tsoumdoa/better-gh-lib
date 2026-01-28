@@ -4,6 +4,10 @@ import { GhCardSchema } from "@/types/types";
 import { addNanoId } from "@/server/api/routers/util/ensureUniqueName";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Posts } from "@/server/db/schema";
+import { useMutation as convexUseMutation } from "convex/react";
+import { useMutation } from "@tanstack/react-query";
+import { api as convex } from "../../../convex/_generated/api";
+import { Id } from "../../../convex/_generated/dataModel";
 
 export default function useGhCardControl(cardInfo: Posts, id: number) {
   const router = useRouter();
@@ -38,6 +42,8 @@ export default function useGhCardControl(cardInfo: Posts, id: number) {
       }
     },
   });
+
+  const deletePostConvex = convexUseMutation(convex.ghCard.deletePost);
 
   const publicShareExpiryDate = cardInfo.publicShareExpiryDate ?? "";
   const isShared = cardInfo.isPublicShared ?? false;
@@ -132,6 +138,10 @@ export default function useGhCardControl(cardInfo: Posts, id: number) {
   };
 
   const deletePost = () => {
+    deletePostConvex({
+      id: cardInfo["_id"], // WARNING: Ignored for now
+    });
+
     setTag("");
     deleteData.mutate({
       id: id,

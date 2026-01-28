@@ -4,6 +4,7 @@ import "./globals.css";
 import { TRPCReactProvider } from "@/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { PostHogProvider } from "./providers/PostHogProvider";
+import ConvexClientProvider from "@/components/convex-client-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +33,9 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <PostHogProvider>
-            <TRPCReactProvider>{children}</TRPCReactProvider>
+            <TRPCReactProvider>
+              <ConvexClientProvider>{children}</ConvexClientProvider>
+            </TRPCReactProvider>
           </PostHogProvider>
         </body>
       </html>

@@ -2,7 +2,7 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
-  posts: defineTable({
+  post: defineTable({
     name: v.optional(v.string()),
     description: v.optional(v.string()),
     dateCreated: v.string(),
@@ -18,4 +18,3 @@ export default defineSchema({
     .index("by_dateCreated", ["dateCreated"])
     .index("by_name", ["name"]),
 });
-

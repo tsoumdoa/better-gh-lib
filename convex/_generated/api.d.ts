@@ -8,13 +8,17 @@
  * @module
  */
 
+import type * as ghCard from "../ghCard.js";
+
 import type {
   ApiFromModules,
   FilterApi,
   FunctionReference,
 } from "convex/server";
 
-declare const fullApi: ApiFromModules<{}>;
+declare const fullApi: ApiFromModules<{
+  ghCard: typeof ghCard;
+}>;
 
 /**
  * A utility for referencing Convex functions in your app's public API.

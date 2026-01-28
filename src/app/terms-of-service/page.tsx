@@ -225,9 +225,7 @@ export default function PrivacyPolicy() {
               <li className="pb-2">
                 Cloudflare R2 (for blob storage - snippet content)
               </li>
-              <li className="pb-2">
-                Cloudflare Worker (for reverse proxy)
-              </li>
+              <li className="pb-2">Cloudflare Worker (for reverse proxy)</li>
               <li className="pb-2">PostHog (for basic web analytics)</li>
             </ul>
             <p className="pb-6 leading-relaxed">
