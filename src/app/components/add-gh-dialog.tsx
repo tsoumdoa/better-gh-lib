@@ -19,9 +19,9 @@ import AddXml from "./add-xml";
 import { Button } from "@/components/ui/button";
 import AddGhTagDisplay, { AvailableGhTagDisplay } from "./add-gh-tag-display";
 import { api } from "@/trpc/react";
-import { useUploadGhCard } from "../hooks/use-upload-gh-card";
 import { useMutation } from "convex/react";
 import { api as convex } from "../../../convex/_generated/api";
+import { nanoid } from "nanoid";
 
 export function AddGhDialog(props: {
 	open: boolean;
@@ -48,12 +48,6 @@ export function AddGhDialog(props: {
 	} = useValidateNameDescriptionAndTags(setAddError, userTags ?? []);
 	const addGhCard = useMutation(convex.ghCard.addPost);
 
-	const { uploadGhCard } = useUploadGhCard(
-		setAddError,
-		props.setAdding,
-		props.setOpen
-	);
-
 	const { xmlData, setXmlData, isValidXml, handlePasteFromClipboard } =
 		useXmlPaste(setAddError, props.setAdding);
 
@@ -61,8 +55,17 @@ export function AddGhDialog(props: {
 		if (isValidXml && isValid && xmlData) {
 			setAddError("");
 			props.setAdding(true);
-			uploadGhCard(name, description, tags, xmlData);
-			addGhCard({ name: name, description: description, tags: tags });
+			const nanoId = nanoid();
+			await addGhCard({
+				name: name,
+				description: description,
+				tags: tags,
+				uid: nanoId,
+			});
+
+			props.setAdding(false);
+			props.setOpen(false);
+
 			setXmlData(undefined);
 			setTags([]);
 		}

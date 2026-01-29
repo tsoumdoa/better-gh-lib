@@ -6,6 +6,7 @@ export const addPost = mutation({
 		name: v.string(),
 		description: v.string(),
 		tags: v.array(v.string()),
+		uid: v.string(),
 	},
 	handler: async (ctx, args) => {
 		const identity = await ctx.auth.getUserIdentity();
@@ -18,7 +19,7 @@ export const addPost = mutation({
 			tags: args.tags,
 			clerkUserId: identity.id as string,
 			publicShareExpiryDate: undefined,
-			bucketUrl: "",
+			bucketUrl: args.uid,
 			isPublicShared: false,
 			dateCreated: new Date().toISOString(),
 			dateUpdated: new Date().toISOString(),
@@ -74,5 +75,34 @@ export const getAll = query({
 			)
 			.take(10);
 		return post;
+	},
+});
+
+export const getUserTags = query({
+	args: {},
+	handler: async (ctx, _) => {
+		const identity = await ctx.auth.getUserIdentity();
+		if (identity === null) {
+			throw new Error("Not authenticated");
+		}
+		const posts = await ctx.db
+			.query("post")
+			.withIndex("by_clerkUserId", (q) =>
+				q.eq("clerkUserId", identity.id as string)
+			)
+			.collect();
+
+		const counts = posts
+			.flatMap((p) => p.tags ?? [])
+			.reduce<Record<string, number>>((acc, tag) => {
+				acc[tag] = (acc[tag] ?? 0) + 1;
+				return acc;
+			}, {});
+
+		const userTags: UserTag[] = Object.entries(counts).map(([tag, count]) => ({
+			tag,
+			count,
+		}));
+		return [...new Set(tags)];
 	},
 });

@@ -1,13 +1,13 @@
 "use client";
-import { api } from "@/trpc/react";
 import FilterTagDisplay from "./user-tag-display";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import useTagFilters from "../hooks/use-tag-filters";
 import { LoadingSpinner } from "./loading-spinner";
+import { useQuery } from "convex/react";
+import { api as convex } from "../../../../convex/_generated/api";
 
 export default function UserTags(props: { tagFilters: string[] }) {
-	const { data, refetch } = api.post.getUserTags.useQuery();
 	const [hideFilter, setHideFilter] = useState(false);
 
 	const {
@@ -40,13 +40,14 @@ export default function UserTags(props: { tagFilters: string[] }) {
 			newParams.delete("tagFilterIsStale");
 			startTransition(() => {
 				replace(`${pathname}?${newParams.toString()}`);
-				refetch();
 			});
 		}
-	}, [pathname, replace, params, refetch, props.tagFilters]);
+	}, [pathname, replace, params, props.tagFilters]);
+
+	const userTags = useQuery(convex.ghCard.getUserTags, {});
 
 	if (hideFilter) return null;
-	if (!data)
+	if (!userTags)
 		return (
 			<FilterTagDisplay
 				userTag={{ tag: "Loading...", count: 0 }}
@@ -57,9 +58,9 @@ export default function UserTags(props: { tagFilters: string[] }) {
 		);
 	return (
 		<div className={`flex w-full flex-wrap items-center gap-2`}>
-			{data?.map((t, i) => (
+			{userTags.map((t, i) => (
 				<FilterTagDisplay
-					key={`tag-${i}-${t.tag}`}
+					key={`tag-${i}-${t}`}
 					tagFilters={tagFilters}
 					userTag={t}
 					setTagFilters={setTagFilters}

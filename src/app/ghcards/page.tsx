@@ -11,29 +11,6 @@ import { SortOrder, SORT_ORDERS } from "@/types/types";
 import UserTags from "./components/user-tags";
 import { FilterHint } from "./components/filter-hint";
 
-async function MainCard(props: { sortKey: SortOrder; tagFilters: string[] }) {
-	try {
-		const ghCards = await api.post.getAll({ sortOrder: props.sortKey });
-		if (props.tagFilters.length > 0) {
-			const filtered = ghCards?.filter((card) => {
-				for (const tag of props.tagFilters) {
-					if (card.tags?.includes(tag)) {
-						return true;
-					}
-				}
-			});
-			return <GhCardDisplay ghCards={filtered} tagFilters={props.tagFilters} />;
-		}
-		return <GhCardDisplay ghCards={ghCards} />;
-	} catch (err: unknown) {
-		if (err instanceof Error) {
-			if (err.message === "UNAUTHORIZED") {
-				redirect("/");
-			}
-		}
-	}
-}
-
 function MainCardSkeleton() {
 	return (
 		<div className="h-ful mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
@@ -92,7 +69,7 @@ export default async function Home(props: {
 	return (
 		<HydrateClient>
 			<div className="min-h-screen bg-black p-4 font-sans text-white md:p-6">
-				<div className="mx-auto max-w-[100rem]">
+				<div className="mx-auto max-w-400">
 					<Header />
 					<div className="flex flex-col items-start justify-between gap-2 pb-4 sm:flex-row sm:items-center sm:gap-4">
 						<div className="flex items-center gap-2 text-lg font-medium">
@@ -108,7 +85,7 @@ export default async function Home(props: {
 						<UserTags tagFilters={sanitizedTagFilter} />
 					</div>
 					<Suspense fallback={<MainCardSkeleton />}>
-						<MainCard sortKey={sortKey} tagFilters={sanitizedTagFilter} />
+						<GhCardDisplay tagFilters={sanitizedTagFilter} />
 					</Suspense>
 				</div>
 			</div>
