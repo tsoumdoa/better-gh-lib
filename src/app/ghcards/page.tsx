@@ -85,7 +85,10 @@ export default async function Home(props: {
 						<UserTags tagFilters={sanitizedTagFilter} />
 					</div>
 					<Suspense fallback={<MainCardSkeleton />}>
-						<GhCardDisplay tagFilters={sanitizedTagFilter} />
+						<GhCardDisplay
+							tagFilters={sanitizedTagFilter}
+							sortOrder={sortKey}
+						/>
 					</Suspense>
 				</div>
 			</div>

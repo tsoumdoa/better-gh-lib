@@ -58,9 +58,9 @@ export default function UserTags(props: { tagFilters: string[] }) {
 		);
 	return (
 		<div className={`flex w-full flex-wrap items-center gap-2`}>
-			{userTags.map((t, i) => (
+			{userTags?.map((t, i) => (
 				<FilterTagDisplay
-					key={`tag-${i}-${t}`}
+					key={`tag-${i}-${t.tag}`}
 					tagFilters={tagFilters}
 					userTag={t}
 					setTagFilters={setTagFilters}

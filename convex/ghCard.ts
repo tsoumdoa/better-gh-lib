@@ -1,5 +1,6 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
+import { UserTag, SortOrder } from "../src/types/types";
 
 export const addPost = mutation({
 	args: {
@@ -62,19 +63,110 @@ export const updatePost = mutation({
 });
 
 export const getAll = query({
-	args: {},
-	handler: async (ctx, _) => {
+	args: {
+		tags: v.optional(v.array(v.string())),
+		sortOrder: v.optional(v.string()),
+	},
+	handler: async (ctx, args) => {
 		const identity = await ctx.auth.getUserIdentity();
 		if (identity === null) {
 			throw new Error("Not authenticated");
 		}
-		const post = await ctx.db
-			.query("post")
-			.withIndex("by_clerkUserId", (q) =>
-				q.eq("clerkUserId", identity.id as string)
-			)
-			.take(10);
-		return post;
+
+		const tags = args.tags ?? [];
+		const sortOrder = args.sortOrder || "ascLastEdited";
+
+		if (tags.length === 0 && sortOrder === "ascLastEdited") {
+			return await ctx.db
+				.query("post")
+				.withIndex("by_clerkUserId", (q) =>
+					q.eq("clerkUserId", identity.id as string)
+				)
+				.collect();
+		}
+
+		let posts;
+		switch (sortOrder as SortOrder) {
+			case "ascAZ":
+				posts = await ctx.db
+					.query("post")
+					.withIndex("by_user_name", (q) =>
+						q.eq("clerkUserId", identity.id as string)
+					)
+					.order("asc")
+					.collect();
+				break;
+
+			case "descZA":
+				posts = await ctx.db
+					.query("post")
+					.withIndex("by_user_name", (q) =>
+						q.eq("clerkUserId", identity.id as string)
+					)
+					.order("desc")
+					.collect();
+				break;
+
+			case "ascLastEdited":
+				posts = await ctx.db
+					.query("post")
+					.withIndex("by_user_dateUpdated", (q) =>
+						q.eq("clerkUserId", identity.id as string)
+					)
+					.order("asc")
+					.collect();
+				break;
+
+			case "descLastEdited":
+				posts = await ctx.db
+					.query("post")
+					.withIndex("by_user_dateUpdated", (q) =>
+						q.eq("clerkUserId", identity.id as string)
+					)
+					.order("desc")
+					.collect();
+				break;
+
+			case "ascCreated":
+				posts = await ctx.db
+					.query("post")
+					.withIndex("by_user_dateCreated", (q) =>
+						q.eq("clerkUserId", identity.id as string)
+					)
+					.order("asc")
+					.collect();
+				break;
+
+			case "descCreated":
+				posts = await ctx.db
+					.query("post")
+					.withIndex("by_user_dateCreated", (q) =>
+						q.eq("clerkUserId", identity.id as string)
+					)
+					.order("desc")
+					.collect();
+				break;
+
+			default:
+				posts = await ctx.db
+					.query("post")
+					.withIndex("by_user_name", (q) =>
+						q.eq("clerkUserId", identity.id as string)
+					)
+					.order("asc")
+					.collect();
+				break;
+		}
+
+		if (tags.length === 0) return posts;
+
+		return posts.filter((post) => {
+			for (const tag of tags) {
+				if (post.tags?.includes(tag)) {
+					return true;
+				}
+			}
+		});
 	},
 });
 
@@ -103,6 +195,11 @@ export const getUserTags = query({
 			tag,
 			count,
 		}));
-		return [...new Set(tags)];
+		userTags.sort((a, b) => {
+			if (a.tag < b.tag) return -1;
+			if (a.tag > b.tag) return 1;
+			return 0;
+		});
+		return userTags;
 	},
 });

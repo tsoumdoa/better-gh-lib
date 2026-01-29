@@ -5,9 +5,17 @@ import Filter from "./filter";
 import { X } from "lucide-react";
 import { api as convex } from "../../../../convex/_generated/api";
 import { useQuery } from "convex/react";
+import { SortOrder } from "@/types/types";
 
-export default function GHCardDisplay(props: { tagFilters?: string[] }) {
-	const ghCards = useQuery(convex.ghCard.getAll, {});
+export default function GHCardDisplay(props: {
+	tagFilters?: string[];
+	sortOrder: SortOrder;
+}) {
+	const ghCards = useQuery(convex.ghCard.getAll, {
+		tags: props.tagFilters,
+		sortOrder: props.sortOrder,
+	});
+
 	const {
 		filteredCards,
 		showFilter,
