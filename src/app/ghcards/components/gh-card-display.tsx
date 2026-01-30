@@ -45,7 +45,6 @@ export default function GHCardDisplay(props: {
 				{filteredCards.map((item) => (
 					<GHCard
 						key={item.bucketUrl}
-						id={item.id!}
 						cardInfo={item}
 						tagFilters={props.tagFilters}
 					/>

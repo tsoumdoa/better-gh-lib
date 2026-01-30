@@ -1,6 +1,5 @@
 "use client";
 import { InvalidValueDialog } from "./gh-card-dialog";
-import { Posts } from "@/server/db/schema";
 import { NormalButtons } from "./gh-card-normal-buttons";
 import { EditButtons } from "./gh-card-edit-buttons";
 import { NameDescriptionAndTags } from "./gh-card-body";
@@ -11,10 +10,10 @@ import { useDownloadPresignedUrl } from "../hooks/use-download-presigned-url";
 import { useFetchGhXml } from "../hooks/use-fetch-gh-xml";
 import { buildGhJson } from "@/utils/gh-json-builder";
 import { useState } from "react";
+import { GhPost } from "@/types/types";
 
 export default function GHCard(props: {
-	id: number;
-	cardInfo: Posts;
+	cardInfo: GhPost;
 	tagFilters?: string[];
 }) {
 	const {
@@ -36,7 +35,7 @@ export default function GHCard(props: {
 		setTag: setInputTag,
 		reset,
 		setReset,
-	} = useGhCardControl(props.cardInfo, props.id);
+	} = useGhCardControl(props.cardInfo);
 
 	const [openSharedDialog, setOpenSharedDialog] = useState(false);
 	const [openMetricsDialog, setOpenMetricsDialog] = useState(false);
@@ -175,7 +174,7 @@ export default function GHCard(props: {
 						<NormalButtons
 							editMode={editMode}
 							bucketId={props.cardInfo.bucketUrl}
-							setEditMode={() => setEditMode(!editMode)}
+							setEditMode={() => setEditMode(true)}
 							handleEdit={(b) => handleEdit(b)}
 							openSharedDialog={openSharedDialog}
 							setOpenSharedDialog={setOpenSharedDialog}

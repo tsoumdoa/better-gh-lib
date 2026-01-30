@@ -1,23 +1,14 @@
-import { useState, useEffect, useRef, startTransition, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import { api } from "@/trpc/react";
-import { GhCardSchema } from "@/types/types";
-import { addNanoId } from "@/server/api/routers/util/ensureUniqueName";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Posts } from "@/server/db/schema";
-import { useMutation as convexUseMutation } from "convex/react";
-import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { useMutation } from "convex/react";
 import { api as convex } from "../../../convex/_generated/api";
-import { Id } from "../../../convex/_generated/dataModel";
+import { GhPost } from "@/types/types";
 
-export default function useGhCardControl(cardInfo: Posts, id: number) {
+export default function useGhCardControl(cardInfo: GhPost) {
 	const router = useRouter();
-	const searchParams = useSearchParams();
-	const params = useMemo(
-		() => new URLSearchParams(searchParams),
-		[searchParams]
-	);
-	const pathname = usePathname();
-	const { replace } = useRouter();
+	const deletePostConvex = useMutation(convex.ghCard.deletePost);
+	const updatePost = useMutation(convex.ghCard.updatePost);
 
 	const [tag, setTag] = useState<string>("");
 	const [editMode, setEditMode] = useState(false);
@@ -43,8 +34,6 @@ export default function useGhCardControl(cardInfo: Posts, id: number) {
 		},
 	});
 
-	const deletePostConvex = convexUseMutation(convex.ghCard.deletePost);
-
 	const publicShareExpiryDate = cardInfo.publicShareExpiryDate ?? "";
 	const isShared = cardInfo.isPublicShared ?? false;
 	const bucketId = cardInfo.bucketUrl ?? "";
@@ -61,71 +50,6 @@ export default function useGhCardControl(cardInfo: Posts, id: number) {
 		}
 	}, [publicShareExpiryDate, isShared, bucketId, revokeLink]);
 
-	const updateData = api.post.edit.useMutation({
-		onSuccess: async (ctx) => {
-			setUpdating(false);
-			//this is kinda bad, tags are from client, while the name and description are from the server
-			setGhInfo({
-				...ctx,
-				tags: newTags.current,
-			});
-			setTag("");
-			router.refresh();
-		},
-		onMutate: async () => {
-			setTag("");
-			setUpdating(true);
-		},
-		onError: async (err) => {
-			setTag("");
-			console.log("hey", err.message);
-			if (err.message === "AUTH_FAILED") {
-				router.push("/");
-			}
-			setGhInfo({
-				name: cardInfo.name,
-				description: cardInfo.description,
-				tags: cardInfo.tags ?? [],
-			});
-			if (err.message === "DUPLICATED_NAME") {
-				const newName = addNanoId(ghInfo.name ?? "");
-				setGhInfo({ ...ghInfo, name: newName });
-			}
-			setUpdating(false);
-			setEditMode(true);
-		},
-	});
-
-	const deleteData = api.post.delete.useMutation({
-		onSuccess: async () => {
-			setUpdating(false);
-			setDeleted(true);
-			setEditMode(false);
-			setUpdating(false);
-		},
-		onMutate: async () => {
-			setUpdating(true);
-		},
-		onError: async () => {
-			//todo let user know the delete failed better...
-			setUpdating(false);
-			setEditMode(false);
-			setGhInfo({
-				name: "Failed to delete",
-				description:
-					"Failed to delete. Try again, or cancel and try again later",
-				tags: cardInfo.tags ?? [],
-			});
-
-			await new Promise((r) => setTimeout(r, 1200));
-			setGhInfo({
-				name: cardInfo.name,
-				description: cardInfo.description,
-				tags: cardInfo.tags ?? [],
-			});
-		},
-	});
-
 	const handleCancelEditMode = () => {
 		setReset(true);
 		setEditMode(false);
@@ -139,62 +63,30 @@ export default function useGhCardControl(cardInfo: Posts, id: number) {
 
 	const deletePost = () => {
 		deletePostConvex({
-			id: cardInfo["_id"], // WARNING: Ignored for now
+			id: cardInfo["_id"],
 		});
+		//TODO: Handle delete from R2 too
 
 		setTag("");
-		deleteData.mutate({
-			id: id,
-			name: cardInfo.name!,
-			bucketId: cardInfo.bucketUrl!,
-		});
-		params.set("tagFilterIsStale", "true");
-		startTransition(() => {
-			replace(`${pathname}?${params.toString()}`);
-		});
 	};
 
 	const handleEdit = (submit: boolean) => {
 		setReset(true);
-		if (editMode) {
-			try {
-				GhCardSchema.parse(ghInfo);
-			} catch (err) {
-				console.log(err);
-				setInvalidInput(true);
-				return;
-			}
-
-			//don't run if the data are all the same
-			if (
-				ghInfo.name === cardInfo.name &&
-				ghInfo.description === cardInfo.description &&
-				newTags.current === prevTags.current
-			) {
-				setEditMode(false);
-				return;
-			}
+		if (
+			ghInfo.name === cardInfo.name &&
+			ghInfo.description === cardInfo.description &&
+			newTags.current === prevTags.current
+		) {
+			setEditMode(false);
+			return;
 		}
+		if (!submit) return;
 		if (submit) {
-			if (newTags.current === prevTags.current) {
-				updateData.mutate({
-					id: id,
-					name: ghInfo.name!,
-					prevName: cardInfo.name!,
-					description: ghInfo.description!,
-				});
-			} else {
-				updateData.mutate({
-					id: id,
-					name: ghInfo.name!,
-					prevName: cardInfo.name!,
-					description: ghInfo.description!,
-					tags: newTags.current,
-				});
-			}
-			params.set("tagFilterIsStale", "true");
-			startTransition(() => {
-				replace(`${pathname}?${params.toString()}`);
+			updatePost({
+				id: cardInfo["_id"],
+				name: ghInfo.name!,
+				description: ghInfo.description!,
+				tags: newTags.current,
 			});
 		}
 		setEditMode(!editMode);

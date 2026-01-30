@@ -9,10 +9,11 @@ import {
 	ValueTableSchema,
 	VersionSchema,
 } from "./gh-xml-schema";
-import { PluginLibraryType } from "./subs/library-type-schema";
 import { ParamItemType, PivotAttributeType } from "./subs/param-object-schema";
-import { PropertyType } from "./subs/definition-objects-schema";
 import { ListBucketResultSchema, XmlSchema } from "./s3-bucket-list-schema";
+import type { Doc } from "../../convex/_generated/dataModel";
+
+export type GhPost = Doc<"post">; // includes _id, _creationTime, fields
 
 export const GhCardSchema = z.object({
 	name: z.string().min(3).max(30),

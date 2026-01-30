@@ -1,7 +1,7 @@
-import { Posts } from "@/server/db/schema";
 import { useEffect, useState, useRef, useMemo } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import Fuse from "fuse.js";
+import { GhPost } from "@/types/types";
 
 const fuseOptions = {
 	keys: [],
@@ -11,7 +11,7 @@ const fuseOptions = {
 	ignoreCase: true,
 };
 
-export default function useFilter(ghCards: Posts[]) {
+export default function useFilter(ghCards: GhPost[]) {
 	const [filteredCards, setFilteredCards] = useState(ghCards);
 	const [showFilterInput, setShowFilterInput] = useState(false);
 	const filterKeyword = useRef<string>("");

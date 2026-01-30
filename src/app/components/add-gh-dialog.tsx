@@ -18,8 +18,7 @@ import { useXmlPaste } from "../hooks/use-xml-paste";
 import AddXml from "./add-xml";
 import { Button } from "@/components/ui/button";
 import AddGhTagDisplay, { AvailableGhTagDisplay } from "./add-gh-tag-display";
-import { api } from "@/trpc/react";
-import { useMutation } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { api as convex } from "../../../convex/_generated/api";
 import { nanoid } from "nanoid";
 
@@ -29,8 +28,9 @@ export function AddGhDialog(props: {
 	adding: boolean;
 	setAdding: (b: boolean) => void;
 }) {
+	const userTags = useQuery(convex.ghCard.getUserTags, {});
+	const addGhCard = useMutation(convex.ghCard.addPost);
 	const [addError, setAddError] = useState("");
-	const { data: userTags } = api.post.getUserTags.useQuery();
 	const {
 		name,
 		setName,
@@ -46,7 +46,6 @@ export function AddGhDialog(props: {
 		onTagValueChange,
 		availableTags,
 	} = useValidateNameDescriptionAndTags(setAddError, userTags ?? []);
-	const addGhCard = useMutation(convex.ghCard.addPost);
 
 	const { xmlData, setXmlData, isValidXml, handlePasteFromClipboard } =
 		useXmlPaste(setAddError, props.setAdding);

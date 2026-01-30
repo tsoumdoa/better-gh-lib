@@ -65,7 +65,7 @@ export function NormalButtons(props: {
 			</button>
 			<button
 				className={`px-2 font-bold hover:text-neutral-50`}
-				onClick={() => props.handleEdit(false)}
+				onClick={() => props.setEditMode()}
 			>
 				edit
 			</button>

@@ -17,8 +17,9 @@ function MainCardSkeleton() {
 			{Array.from({ length: 12 }).map((_, i) => (
 				<GHCard
 					key={i}
-					id={0}
 					cardInfo={{
+						_id: "" as any,
+						_creationTime: 0,
 						name: "Loading...",
 						description: "Loading...",
 						bucketUrl: "",
