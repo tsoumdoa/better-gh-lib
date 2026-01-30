@@ -1,4 +1,3 @@
-import { api, HydrateClient } from "@/trpc/server";
 import { Suspense } from "react";
 import GHCard from "../components/gh-card";
 import Header from "../components/header";
@@ -68,31 +67,26 @@ export default async function Home(props: {
 	const username = user?.username || user?.firstName || "User";
 
 	return (
-		<HydrateClient>
-			<div className="min-h-screen bg-black p-4 font-sans text-white md:p-6">
-				<div className="mx-auto max-w-400">
-					<Header />
-					<div className="flex flex-col items-start justify-between gap-2 pb-4 sm:flex-row sm:items-center sm:gap-4">
-						<div className="flex items-center gap-2 text-lg font-medium">
-							<span>{`${username}'s Fav`}</span>
-						</div>
-						<div className="flex items-center gap-4">
-							<FilterHint />
-							<SortDropDown />
-							<AddGHCard />
-						</div>
+		<div className="min-h-screen bg-black p-4 font-sans text-white md:p-6">
+			<div className="mx-auto max-w-400">
+				<Header />
+				<div className="flex flex-col items-start justify-between gap-2 pb-4 sm:flex-row sm:items-center sm:gap-4">
+					<div className="flex items-center gap-2 text-lg font-medium">
+						<span>{`${username}'s Fav`}</span>
 					</div>
-					<div className="flex flex-row flex-wrap items-start justify-start gap-2 pb-4">
-						<UserTags tagFilters={sanitizedTagFilter} />
+					<div className="flex items-center gap-4">
+						<FilterHint />
+						<SortDropDown />
+						<AddGHCard />
 					</div>
-					<Suspense fallback={<MainCardSkeleton />}>
-						<GhCardDisplay
-							tagFilters={sanitizedTagFilter}
-							sortOrder={sortKey}
-						/>
-					</Suspense>
 				</div>
+				<div className="flex flex-row flex-wrap items-start justify-start gap-2 pb-4">
+					<UserTags tagFilters={sanitizedTagFilter} />
+				</div>
+				<Suspense fallback={<MainCardSkeleton />}>
+					<GhCardDisplay tagFilters={sanitizedTagFilter} sortOrder={sortKey} />
+				</Suspense>
 			</div>
-		</HydrateClient>
+		</div>
 	);
 }

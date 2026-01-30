@@ -1,12 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import { api } from "@/trpc/react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "convex/react";
 import { api as convex } from "../../../convex/_generated/api";
 import { GhPost } from "@/types/types";
 
 export default function useGhCardControl(cardInfo: GhPost) {
-	const router = useRouter();
 	const deletePostConvex = useMutation(convex.ghCard.deletePost);
 	const updatePost = useMutation(convex.ghCard.updatePost);
 
@@ -25,15 +23,6 @@ export default function useGhCardControl(cardInfo: GhPost) {
 	const prevTags = useRef(cardInfo.tags ?? []);
 	const newTags = useRef(cardInfo.tags ?? []);
 
-	const { mutate: revokeLink } = api.post.revokeSharablePublicLink.useMutation({
-		onSuccess: (data) => {
-			if (data.success) {
-				setShareExpired(false);
-				router.refresh();
-			}
-		},
-	});
-
 	const publicShareExpiryDate = cardInfo.publicShareExpiryDate ?? "";
 	const isShared = cardInfo.isPublicShared ?? false;
 	const bucketId = cardInfo.bucketUrl ?? "";
@@ -42,13 +31,13 @@ export default function useGhCardControl(cardInfo: GhPost) {
 		setShareExpired(false);
 		const expiryDate = new Date(publicShareExpiryDate);
 		if (isShared && new Date() > expiryDate && publicShareExpiryDate !== null) {
-			revokeLink({ bucketId: bucketId });
+			// revokeLink({ bucketId: bucketId }); /TODO:
 		} else {
 			if (isShared) {
 				setShareExpired(true);
 			}
 		}
-	}, [publicShareExpiryDate, isShared, bucketId, revokeLink]);
+	}, [publicShareExpiryDate, isShared, bucketId /* , revokeLink */]);
 
 	const handleCancelEditMode = () => {
 		setReset(true);

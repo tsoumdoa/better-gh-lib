@@ -10,10 +10,8 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { api } from "@/trpc/react";
 import { env } from "@/env";
-import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRef, useState } from "react";
 
 export function InvalidValueDialog(props: {
 	open: boolean;
@@ -92,46 +90,12 @@ export function ShareDialog(props: {
 		return `${env.NEXT_PUBLIC_HOSTING_DOMAIN}/share?uid=${id}`;
 	};
 
-	const { mutate: generateLink, isSuccess: isGenerated } =
-		api.post.generateSharablePublicLink.useMutation({
-			onSuccess: (data) => {
-				const url = format(data);
-				shareLinkRef.current = url;
-				setShareLink(url);
-				router.refresh();
-			},
-		});
-
-	const router = useRouter();
-	const {
-		mutate: revokeLink,
-		isSuccess: revoked,
-		reset,
-	} = api.post.revokeSharablePublicLink.useMutation({
-		onSuccess: (data) => {
-			if (data.success) {
-				shareLinkRef.current = "";
-				setShareLink("Revoked successfully!");
-			} else {
-				setShareLink("failed to revoke - " + shareLinkRef.current);
-				setRevoking(false);
-			}
-			props.setOpen();
-			router.refresh();
-		},
-		onSettled: () => {
-			setRevoking(false);
-		},
-		onError: () => {
-			setRevoking(false);
-			setShareLink("failed to revoke for unknown reason, close and try again");
-		},
-	});
-
 	const [shareLink, setShareLink] = useState("generating...");
 	const shareLinkRef = useRef(shareLink);
 	const [copied, setCopied] = useState(false);
 	const [revoking, setRevoking] = useState(false);
+	const [isRevoked, setIsRevoked] = useState(false);
+	const [isGenerated, setIsGenerated] = useState(false);
 
 	const handleCopyClick = () => {
 		navigator.clipboard.writeText(shareLinkRef.current);
@@ -141,17 +105,7 @@ export function ShareDialog(props: {
 
 	const handleRevokeClick = () => {
 		setShareLink("revoking...");
-		revokeLink({ bucketId: props.bucketId });
 	};
-
-	useEffect(() => {
-		if (props.open) {
-			reset(); //reset the sate from the previous run
-			setRevoking(false);
-			setShareLink("generating...");
-			generateLink({ bucketId: props.bucketId });
-		}
-	}, [props.open, generateLink, props.bucketId, reset]);
 
 	return (
 		<AlertDialog open={props.open} onOpenChange={props.setOpen}>
@@ -162,7 +116,7 @@ export function ShareDialog(props: {
 				<AlertDialogDescription>
 					<a className="flex items-center space-x-2 pb-2">
 						<Input className="truncate" value={shareLink} readOnly />
-						{!revoked && (
+						{!isRevoked && (
 							<Button
 								variant="outline"
 								size="sm"
@@ -173,12 +127,12 @@ export function ShareDialog(props: {
 							</Button>
 						)}
 					</a>
-					{revoked
+					{isRevoked
 						? "You can now close"
 						: "Copy the link to this card and share it with your friends!"}
 				</AlertDialogDescription>
 				<AlertDialogFooter>
-					{isGenerated && !revoked && (
+					{isGenerated && !isRevoked && (
 						<Button
 							className="bg-pink-500 hover:bg-pink-600"
 							onClick={handleRevokeClick}

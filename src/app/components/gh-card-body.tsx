@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useValidateNameDescriptionAndTags } from "../hooks/use-validate-name-and-description";
 import { AvailableGhTagDisplay } from "./add-gh-tag-display";
-import { api } from "@/trpc/react";
+import { useQuery } from "convex/react";
+import { api as convex } from "../../../convex/_generated/api";
 
 export function NameDescriptionAndTags(props: {
 	editMode: boolean;
@@ -24,7 +25,7 @@ export function NameDescriptionAndTags(props: {
 	reset: boolean;
 	setReset: (b: boolean) => void;
 }) {
-	const { data: userTags, refetch } = api.post.getUserTags.useQuery();
+	const userTags = useQuery(convex.ghCard.getUserTags, {});
 	const [addError, setAddError] = useState("");
 	const {
 		onTagValueChange,
@@ -40,13 +41,12 @@ export function NameDescriptionAndTags(props: {
 
 	useEffect(() => {
 		if (props.reset) {
-			refetch();
 			props.setReset(false);
 			setAddError("");
 			setAvailableTags([]);
 			setAvailableTagsDisplay([]);
 		}
-	}, [props.reset, refetch, setAvailableTags, setAvailableTagsDisplay, props]);
+	}, [props.reset, setAvailableTags, setAvailableTagsDisplay, props]);
 
 	return (
 		<div className="w-full">

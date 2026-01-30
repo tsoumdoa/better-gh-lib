@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useDownloadPresignedUrl } from "../hooks/use-download-presigned-url";
 import { useFetchGhXml } from "../hooks/use-fetch-gh-xml";
 import { CopiedDialog, ShareDialog } from "./gh-card-dialog";
+import { generatePresigneDownloadUrl } from "@/server/r2-storage";
 
 export function NormalButtons(props: {
 	editMode: boolean;
@@ -15,25 +15,14 @@ export function NormalButtons(props: {
 	const [openCopyDialog, setOpenCopyDialog] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isCopied, setIsCopied] = useState(false);
-	const { refetch: getPresignedUrl } = useDownloadPresignedUrl(props.bucketId);
 	const { downloadData, decoded } = useFetchGhXml();
 
+	//TODO:
 	const handleCopy = async () => {
+		const preSignedUrl = await generatePresigneDownloadUrl(props.bucketId);
+		console.log(preSignedUrl);
+
 		setIsLoading(true);
-		const res = await getPresignedUrl();
-		if (res.isSuccess) {
-			const decoded = await downloadData(res.data);
-			try {
-				await navigator.clipboard.writeText(decoded);
-				setOpenCopyDialog(true);
-				setIsLoading(false);
-				setIsCopied(true);
-			} catch {
-				setOpenCopyDialog(true);
-				setIsLoading(false);
-				setIsCopied(false);
-			}
-		}
 	};
 
 	return (

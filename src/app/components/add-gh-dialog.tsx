@@ -21,6 +21,8 @@ import AddGhTagDisplay, { AvailableGhTagDisplay } from "./add-gh-tag-display";
 import { useMutation, useQuery } from "convex/react";
 import { api as convex } from "../../../convex/_generated/api";
 import { nanoid } from "nanoid";
+import { uploadToBucket } from "@/server/r2-storage";
+import { compress } from "../utils/gzip";
 
 export function AddGhDialog(props: {
 	open: boolean;
@@ -61,6 +63,10 @@ export function AddGhDialog(props: {
 				tags: tags,
 				uid: nanoId,
 			});
+
+			const ghXmlZipped = compress(xmlData);
+
+			uploadToBucket(nanoId, ghXmlZipped);
 
 			props.setAdding(false);
 			props.setOpen(false);

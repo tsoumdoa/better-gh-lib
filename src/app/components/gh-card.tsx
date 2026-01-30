@@ -6,7 +6,6 @@ import { NameDescriptionAndTags } from "./gh-card-body";
 import useGhCardControl from "../hooks/use-gh-card-control";
 import GhCardTags from "./gh-card-tags";
 import { MetricsDialog } from "./metrics-dialog";
-import { useDownloadPresignedUrl } from "../hooks/use-download-presigned-url";
 import { useFetchGhXml } from "../hooks/use-fetch-gh-xml";
 import { buildGhJson } from "@/utils/gh-json-builder";
 import { useState } from "react";
@@ -47,9 +46,9 @@ export default function GHCard(props: {
 	} | null>(null);
 	const [loadingMetrics, setLoadingMetrics] = useState(false);
 
-	const { refetch: getPresignedUrl } = useDownloadPresignedUrl(
-		props.cardInfo.bucketUrl ?? ""
-	);
+	// const { refetch: getPresignedUrl } = useDownloadPresignedUrl(
+	// 	props.cardInfo.bucketUrl ?? ""
+	// );
 	const { downloadData } = useFetchGhXml();
 
 	const handleShare = () => {
@@ -61,23 +60,23 @@ export default function GHCard(props: {
 		setLoadingMetrics(true);
 		setOpenMetricsDialog(true);
 
-		try {
-			const res = await getPresignedUrl();
-			if (res.isSuccess && res.data) {
-				const decoded = await downloadData(res.data);
-				const parsedMetrics = buildGhJson(decoded);
-				setMetrics({
-					GhVersion: parsedMetrics.GhVersion,
-					componentsCount: parsedMetrics.componentsCount,
-					uniqueCount: parsedMetrics.uniqueCount,
-					ghLibs: parsedMetrics.ghLibs,
-				});
-			}
-		} catch (error) {
-			console.error("Failed to load metrics:", error);
-		} finally {
-			setLoadingMetrics(false);
-		}
+		// try {
+		// 	const res = await getPresignedUrl();
+		// 	if (res.isSuccess && res.data) {
+		// 		const decoded = await downloadData(res.data);
+		// 		const parsedMetrics = buildGhJson(decoded);
+		// 		setMetrics({
+		// 			GhVersion: parsedMetrics.GhVersion,
+		// 			componentsCount: parsedMetrics.componentsCount,
+		// 			uniqueCount: parsedMetrics.uniqueCount,
+		// 			ghLibs: parsedMetrics.ghLibs,
+		// 		});
+		// 	}
+		// } catch (error) {
+		// 	console.error("Failed to load metrics:", error);
+		// } finally {
+		// 	setLoadingMetrics(false);
+		// }
 	};
 
 	if (deleted) {

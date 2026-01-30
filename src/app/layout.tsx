@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+"use client";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { TRPCReactProvider } from "@/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { PostHogProvider } from "./providers/PostHogProvider";
 import ConvexClientProvider from "@/components/convex-client-provider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -16,16 +16,12 @@ const geistMono = Geist_Mono({
 	subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-	title: "HopperClip",
-	description: "Better way to share your GH script",
-};
-
 export default function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const queryClient = new QueryClient();
 	return (
 		<ClerkProvider>
 			<html lang="en">
@@ -33,9 +29,9 @@ export default function RootLayout({
 					className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 				>
 					<PostHogProvider>
-						<TRPCReactProvider>
+						<QueryClientProvider client={queryClient}>
 							<ConvexClientProvider>{children}</ConvexClientProvider>
-						</TRPCReactProvider>
+						</QueryClientProvider>
 					</PostHogProvider>
 				</body>
 			</html>
