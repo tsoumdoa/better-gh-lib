@@ -153,11 +153,12 @@ The application should now be accessible in your web browser at \(http://localho
 
 ## Convex Migration
 
-- [ ] Add uploadGhXml route
-- [ ] Generate uid from client side, and pass it to the trpc backend to upload
-      as well as to convex backend for the record
-- [ ] Implement get all tags equivalent on convex
+- [ ] simple CRUD working with the card
 - [ ] Thinking abt what to do for the shareable link
 - [ ] implement order query on convex...
 - [ ] Change clerk compoent to convex one for auth state etc
 - [ ] check the tag suggestions...
+
+## Bugs
+
+- [ ] esc pressed clear all cards....

@@ -1,4 +1,6 @@
+import { generatePresigneDownloadUrl } from "@/server/r2-storage";
 import { useMutation } from "@tanstack/react-query";
+import { useRef } from "react";
 
 const decompress = async (data: ArrayBuffer): Promise<Uint8Array> => {
 	//check if it's already decompressed
@@ -16,9 +18,11 @@ const decompress = async (data: ArrayBuffer): Promise<Uint8Array> => {
 };
 
 export function useFetchGhXml() {
-	const { mutateAsync: downloadData, data: decoded } = useMutation({
-		mutationFn: async (url: string) => {
-			const res = await fetch(url, {
+	const decodedRef = useRef<string | undefined>(undefined);
+	const { mutateAsync: downloadData } = useMutation({
+		mutationFn: async (bucketId: string) => {
+			const presignedUrl = await generatePresigneDownloadUrl(bucketId);
+			const res = await fetch(presignedUrl, {
 				cache: "no-store",
 				headers: {
 					"Content-Encoding": "gzip",
@@ -34,5 +38,5 @@ export function useFetchGhXml() {
 			return decoded;
 		},
 	});
-	return { downloadData, decoded };
+	return { downloadData, decodedRef };
 }

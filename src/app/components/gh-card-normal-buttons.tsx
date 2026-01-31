@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useFetchGhXml } from "../hooks/use-fetch-gh-xml";
 import { CopiedDialog, ShareDialog } from "./gh-card-dialog";
-import { generatePresigneDownloadUrl } from "@/server/r2-storage";
 
 export function NormalButtons(props: {
 	editMode: boolean;
@@ -15,14 +14,21 @@ export function NormalButtons(props: {
 	const [openCopyDialog, setOpenCopyDialog] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isCopied, setIsCopied] = useState(false);
-	const { downloadData, decoded } = useFetchGhXml();
+	const { downloadData, decodedRef } = useFetchGhXml();
 
-	//TODO:
 	const handleCopy = async () => {
-		const preSignedUrl = await generatePresigneDownloadUrl(props.bucketId);
-		console.log(preSignedUrl);
-
 		setIsLoading(true);
+		const decoded = await downloadData(props.bucketId);
+		try {
+			await navigator.clipboard.writeText(decoded);
+			setOpenCopyDialog(true);
+			setIsLoading(false);
+			setIsCopied(true);
+		} catch {
+			setOpenCopyDialog(true);
+			setIsLoading(false);
+			setIsCopied(false);
+		}
 	};
 
 	return (
@@ -32,7 +38,7 @@ export function NormalButtons(props: {
 				setOpen={() => setOpenCopyDialog(!openCopyDialog)}
 				setIsCopied={(b) => setIsCopied(b)}
 				isCopied={isCopied}
-				decoded={decoded}
+				decoded={decodedRef.current}
 			/>
 			<ShareDialog
 				open={props.openSharedDialog}

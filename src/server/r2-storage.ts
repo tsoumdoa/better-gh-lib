@@ -53,14 +53,20 @@ export const generatePresigneDownloadUrl = async (nanoId: string) => {
 		throw new Error("You must be signed in to use this feature");
 	}
 	const userId = user?.id as string;
-	const res = await r2Client.fetch(
+	const presigned = await r2Client.sign(
 		new Request(bucketUrl(userId, nanoId), {
 			method: "GET",
-		})
+		}),
+		{
+			aws: { signQuery: true },
+			headers: {
+				"Content-Encoding": "gzip",
+				"Content-Type": "application/gzip",
+			},
+		}
 	);
-	// if (!res.ok) {
-	// 	throw new Error("Failed to generate download url");
-	// }
-	const json = await res.json();
-	return json.url;
+	if (!presigned) {
+		throw new Error("Failed to generate download url");
+	}
+	return presigned.url;
 };
