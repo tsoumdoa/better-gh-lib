@@ -14,7 +14,7 @@ import { useAction } from "convex/react";
 import { useState } from "react";
 import { useFetchGhXmlPublic } from "@/app/hooks/use-fetch-gh-xml-public";
 import { GetSharedPost } from "@/types/types";
-import { api } from "@/_generated/api";
+import { api } from "@convex/_generated/api";
 
 export default function GhShareCard(props: { sharedPost: GetSharedPost }) {
 	const getPresignedUrl = useAction(api.ghPublicAction.generateShareableLink); //TODO: this is not working...

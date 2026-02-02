@@ -1,8 +1,8 @@
 "use client";
+import { api } from "@convex/_generated/api";
 import { useValidateShareToken } from "../hooks/use-validate-uid";
 import GhShareCard from "./share-card";
 import { useQuery } from "convex/react";
-import { api } from "@/_generated/api";
 
 export default function ShareView() {
 	const { isValidToken, tokenRef } = useValidateShareToken();

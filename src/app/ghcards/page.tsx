@@ -23,8 +23,6 @@ function MainCardSkeleton() {
 						description: "Loading...",
 						bucketUrl: "",
 						clerkUserId: "",
-						isPublicShared: false,
-						publicShareExpiryDate: "",
 						dateCreated: "",
 						dateUpdated: "",
 					}}
