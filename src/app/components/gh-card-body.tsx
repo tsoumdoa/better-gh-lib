@@ -14,8 +14,10 @@ export function NameDescriptionAndTags(props: {
 	setEditMode: () => void;
 	setGhInfo: (ghInfo: GhCard) => void;
 	ghInfo: GhCard;
-	isShared: boolean;
-	expiryDate: string;
+	// DEPRECATED: Not used anymore, kept for compatibility
+	isShared?: boolean;
+	// DEPRECATED: Not used anymore, kept for compatibility
+	expiryDate?: string;
 	bucketId: string;
 	lastEdited: string | undefined;
 	created: string | undefined;

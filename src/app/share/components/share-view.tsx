@@ -1,19 +1,23 @@
 "use client";
-import { useValidateUid } from "../hooks/use-validate-uid";
+import { useValidateShareToken } from "../hooks/use-validate-uid";
 import GhShareCard from "./share-card";
+import { useQuery } from "convex/react";
+import { api } from "@/_generated/api";
 
 export default function ShareView() {
-	const { isValidUid, uidRef } = useValidateUid();
+	const { isValidToken, tokenRef } = useValidateShareToken();
 
-	if (!isValidUid) {
+	const sharedPost = useQuery(api.ghCard.getSharedPost, {
+		shareToken: tokenRef.current!,
+	});
+
+	if (!isValidToken || !sharedPost) {
 		return <div>Loading...</div>;
 	}
 
-	if (isValidUid) {
-		return (
-			<div className="flex w-full max-w-xl px-2">
-				{uidRef.current && <GhShareCard uid={uidRef.current} />}
-			</div>
-		);
-	}
+	return (
+		<div className="flex w-full max-w-xl px-2">
+			<GhShareCard sharedPost={sharedPost} />
+		</div>
+	);
 }

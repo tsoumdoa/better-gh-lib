@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useRef } from "react";
 import { useMutation } from "convex/react";
 import { api as convex } from "../../../convex/_generated/api";
 import { GhPost } from "@/types/types";
@@ -19,25 +18,8 @@ export default function useGhCardControl(cardInfo: GhPost) {
 		tags: cardInfo.tags ?? [],
 	});
 	const [reset, setReset] = useState(false);
-	const [shareExpired, setShareExpired] = useState(false);
 	const prevTags = useRef(cardInfo.tags ?? []);
 	const newTags = useRef(cardInfo.tags ?? []);
-
-	const publicShareExpiryDate = cardInfo.publicShareExpiryDate ?? "";
-	const isShared = cardInfo.isPublicShared ?? false;
-	const bucketId = cardInfo.bucketUrl ?? "";
-
-	useEffect(() => {
-		setShareExpired(false);
-		const expiryDate = new Date(publicShareExpiryDate);
-		if (isShared && new Date() > expiryDate && publicShareExpiryDate !== null) {
-			// revokeLink({ bucketId: bucketId }); /TODO:
-		} else {
-			if (isShared) {
-				setShareExpired(true);
-			}
-		}
-	}, [publicShareExpiryDate, isShared, bucketId /* , revokeLink */]);
 
 	const handleCancelEditMode = () => {
 		setReset(true);
@@ -111,8 +93,6 @@ export default function useGhCardControl(cardInfo: GhPost) {
 		setUpdating,
 		deleted,
 		setDeleted,
-		setShareExpired,
-		shareExpired,
 		removeTag,
 		addTag,
 		prevTags,

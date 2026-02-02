@@ -10,6 +10,8 @@ import { useFetchGhXml } from "../hooks/use-fetch-gh-xml";
 import { buildGhJson } from "@/utils/gh-json-builder";
 import { useState } from "react";
 import { GhPost } from "@/types/types";
+import { useQuery } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 
 export default function GHCard(props: {
 	cardInfo: GhPost;
@@ -25,7 +27,6 @@ export default function GHCard(props: {
 		updating,
 		deleted,
 		setEditMode,
-		shareExpired,
 		removeTag,
 		handleCancelEditMode,
 		ghInfo,
@@ -46,10 +47,13 @@ export default function GHCard(props: {
 	} | null>(null);
 	const [loadingMetrics, setLoadingMetrics] = useState(false);
 
-	// const { refetch: getPresignedUrl } = useDownloadPresignedUrl(
-	// 	props.cardInfo.bucketUrl ?? ""
-	// );
 	const { downloadData } = useFetchGhXml();
+
+	// Query for active shares to show "Shared" badge
+	const activeShares = useQuery(api.ghCard.getActiveSharesForPost, {
+		postId: props.cardInfo._id,
+	});
+	const hasActiveShare = activeShares && activeShares.length > 0;
 
 	const handleShare = () => {
 		setOpenSharedDialog(true);
@@ -108,7 +112,7 @@ export default function GHCard(props: {
 				className={`relative flex cursor-pointer flex-col justify-between rounded-md p-3 ring-1 ring-neutral-500 transition-all ${editMode || updating ? "bg-neutral-500" : "bg-neutral-900 hover:bg-neutral-800"}`}
 				onClick={handleCardClick}
 			>
-				{shareExpired && (
+				{hasActiveShare && (
 					<button
 						className={`absolute top-3 right-3 h-fit w-fit rounded-md bg-green-300 px-2 text-sm font-bold text-neutral-800 hover:cursor-pointer`}
 						onClick={(e) => {
@@ -127,7 +131,7 @@ export default function GHCard(props: {
 				{ghInfo.tags.length > 0 && (
 					<GhCardTags
 						tags={ghInfo.tags}
-						useNarrow={props.cardInfo.isPublicShared ?? false}
+						useNarrow={!!hasActiveShare}
 						tagFilters={props.tagFilters}
 						editMode={editMode}
 						removeTag={removeTag}
@@ -173,6 +177,7 @@ export default function GHCard(props: {
 						<NormalButtons
 							editMode={editMode}
 							bucketId={props.cardInfo.bucketUrl}
+							postId={props.cardInfo._id}
 							setEditMode={() => setEditMode(true)}
 							handleEdit={(b) => handleEdit(b)}
 							openSharedDialog={openSharedDialog}

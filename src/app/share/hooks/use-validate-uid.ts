@@ -5,28 +5,29 @@ import {
 	useSearchParams,
 } from "next/dist/client/components/navigation";
 
-export function useValidateUid() {
+export function useValidateShareToken() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
-	const uid = searchParams.get("uid");
-	const uidRef = useRef(uid);
-	const [isValidUid, setIsValidUid] = useState(false);
+	const token = searchParams.get("token");
+	const tokenRef = useRef(token);
+	const [isValidToken, setIsValidToken] = useState(false);
 
 	useEffect(() => {
-		if (!uid) {
+		if (!token) {
 			router.push("/");
+			return;
 		}
-		const isValid = ShareLinkUidSchema.safeParse(uid);
+		const isValid = ShareLinkUidSchema.safeParse(token);
 		if (!isValid.success) {
 			router.push("/");
 		} else {
-			setIsValidUid(true);
-			uidRef.current = uid as string;
+			setIsValidToken(true);
+			tokenRef.current = token as string;
 		}
-	}, [uid, router]);
+	}, [token, router]);
 
 	return {
-		isValidUid,
-		uidRef,
+		isValidToken,
+		tokenRef,
 	};
 }

@@ -1,10 +1,14 @@
+"use client";
+
 import { useState } from "react";
 import { useFetchGhXml } from "../hooks/use-fetch-gh-xml";
 import { CopiedDialog, ShareDialog } from "./gh-card-dialog";
+import { Id } from "../../../convex/_generated/dataModel";
 
 export function NormalButtons(props: {
 	editMode: boolean;
 	bucketId: string;
+	postId: Id<"post">;
 	setEditMode: () => void;
 	handleEdit: (b: boolean) => void;
 	openSharedDialog: boolean;
@@ -43,7 +47,7 @@ export function NormalButtons(props: {
 			<ShareDialog
 				open={props.openSharedDialog}
 				setOpen={() => props.setOpenSharedDialog(!props.openSharedDialog)}
-				bucketId={props.bucketId}
+				postId={props.postId}
 			/>
 			<button
 				className={`px-2 font-bold hover:text-neutral-50`}

@@ -11,7 +11,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { env } from "@/env";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { useMutation, useQuery } from "convex/react";
+import { api } from "@/_generated/api";
+import { Id } from "@/_generated/dataModel";
 
 export function InvalidValueDialog(props: {
 	open: boolean;
@@ -81,30 +84,98 @@ export function CopiedDialog(props: {
 export function ShareDialog(props: {
 	open: boolean;
 	setOpen: () => void;
-	bucketId: string;
+	postId: Id<"post">;
 }) {
-	const format = (id: string) => {
-		if (process.env.NODE_ENV === "development") {
-			return `http:localhost:3000/share?uid=${id}`;
-		}
-		return `${env.NEXT_PUBLIC_HOSTING_DOMAIN}/share?uid=${id}`;
-	};
+	const createShare = useMutation(api.ghCard.createShare);
+	const revokeShare = useMutation(api.ghCard.revokeShare);
+	const activeShares = useQuery(
+		api.ghCard.getActiveSharesForPost,
+		props.open ? { postId: props.postId } : "skip"
+	);
 
-	const [shareLink, setShareLink] = useState("generating...");
-	const shareLinkRef = useRef(shareLink);
+	const [shareLink, setShareLink] = useState<string | null>(null);
+	const [shareToken, setShareToken] = useState<string | null>(null);
 	const [copied, setCopied] = useState(false);
 	const [revoking, setRevoking] = useState(false);
 	const [isRevoked, setIsRevoked] = useState(false);
-	const [isGenerated, setIsGenerated] = useState(false);
+	const [isGenerating, setIsGenerating] = useState(false);
+	const [expiryDate, setExpiryDate] = useState<string | null>(null);
+
+	// Generate share link when dialog opens
+	useEffect(() => {
+		if (props.open && !isGenerating && !shareLink && !isRevoked) {
+			setIsGenerating(true);
+			createShare({ postId: props.postId, expiresInHours: 24 * 7 })
+				.then((result) => {
+					const baseUrl =
+						process.env.NODE_ENV === "development"
+							? "http://localhost:3000"
+							: env.NEXT_PUBLIC_HOSTING_DOMAIN;
+					const link = `${baseUrl}/share?token=${result.shareToken}`;
+					setShareLink(link);
+					setShareToken(result.shareToken);
+					setExpiryDate(result.expiryDate);
+					setIsGenerating(false);
+				})
+				.catch((err) => {
+					console.error("Failed to create share:", err);
+					setShareLink(null);
+					setIsGenerating(false);
+				});
+		}
+	}, [
+		props.open,
+		props.postId,
+		createShare,
+		isGenerating,
+		shareLink,
+		isRevoked,
+	]);
+
+	// Handle existing active shares
+	useEffect(() => {
+		if (activeShares && activeShares.length > 0 && !shareLink && !isRevoked) {
+			const share = activeShares[0];
+			const baseUrl =
+				process.env.NODE_ENV === "development"
+					? "http://localhost:3000"
+					: env.NEXT_PUBLIC_HOSTING_DOMAIN;
+			const link = `${baseUrl}/share?token=${share.shareToken}`;
+			setShareLink(link);
+			setShareToken(share.shareToken);
+			setExpiryDate(share.expiryDate);
+		}
+	}, [activeShares, shareLink, isRevoked]);
 
 	const handleCopyClick = () => {
-		navigator.clipboard.writeText(shareLinkRef.current);
-		setCopied(true);
-		alert("Link copied to clipboard!");
+		if (shareLink) {
+			navigator.clipboard.writeText(shareLink);
+			setCopied(true);
+			setTimeout(() => setCopied(false), 2000);
+		}
 	};
 
-	const handleRevokeClick = () => {
-		setShareLink("revoking...");
+	const handleRevokeClick = async () => {
+		if (!shareToken) return;
+		setRevoking(true);
+		try {
+			await revokeShare({ shareToken });
+			setIsRevoked(true);
+			setShareLink(null);
+		} catch (err) {
+			console.error("Failed to revoke share:", err);
+		} finally {
+			setRevoking(false);
+		}
+	};
+
+	const formatExpiry = (dateStr: string | null) => {
+		if (!dateStr) return "";
+		const date = new Date(dateStr);
+		const now = new Date();
+		const diffMs = date.getTime() - now.getTime();
+		const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+		return `Expires in ${diffDays} day${diffDays !== 1 ? "s" : ""}`;
 	};
 
 	return (
@@ -114,31 +185,47 @@ export function ShareDialog(props: {
 					<AlertDialogTitle>Share</AlertDialogTitle>
 				</AlertDialogHeader>
 				<AlertDialogDescription>
-					<a className="flex items-center space-x-2 pb-2">
-						<Input className="truncate" value={shareLink} readOnly />
-						{!isRevoked && (
+					<div className="flex items-center space-x-2 pb-2">
+						<Input
+							className="truncate"
+							value={shareLink ?? (isGenerating ? "Generating..." : "")}
+							readOnly
+							disabled={!shareLink || isRevoked}
+						/>
+						{!isRevoked && shareLink && (
 							<Button
 								variant="outline"
 								size="sm"
 								onClick={handleCopyClick}
-								disabled={revoking}
+								disabled={revoking || isGenerating}
 							>
 								{copied ? "Copied!" : "Copy"}
 							</Button>
 						)}
-					</a>
-					{isRevoked
-						? "You can now close"
-						: "Copy the link to this card and share it with your friends!"}
+					</div>
+					{isRevoked ? (
+						"Share link has been revoked. You can now close this dialog."
+					) : shareLink ? (
+						<>
+							<p>Copy the link to share this card with others!</p>
+							<p className="mt-1 text-xs text-neutral-400">
+								{formatExpiry(expiryDate)}
+							</p>
+						</>
+					) : isGenerating ? (
+						"Creating share link..."
+					) : (
+						"Failed to create share link. Please try again."
+					)}
 				</AlertDialogDescription>
 				<AlertDialogFooter>
-					{isGenerated && !isRevoked && (
+					{shareLink && !isRevoked && (
 						<Button
 							className="bg-pink-500 hover:bg-pink-600"
 							onClick={handleRevokeClick}
-							disabled={revoking}
+							disabled={revoking || isGenerating}
 						>
-							Revoke
+							{revoking ? "Revoking..." : "Revoke"}
 						</Button>
 					)}
 					<AlertDialogAction disabled={revoking}>Close</AlertDialogAction>

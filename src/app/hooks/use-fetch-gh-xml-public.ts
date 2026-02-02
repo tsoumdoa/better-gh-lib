@@ -1,13 +1,11 @@
-import { generatePresigneDownloadUrl } from "@/server/r2-storage";
 import { useMutation } from "@tanstack/react-query";
 import { useRef } from "react";
 import { decompress } from "../utils/gzip";
 
-export function useFetchGhXml() {
+export function useFetchGhXmlPublic() {
 	const decodedRef = useRef<string | undefined>(undefined);
-	const { mutateAsync: downloadData } = useMutation({
-		mutationFn: async (bucketId: string) => {
-			const presignedUrl = await generatePresigneDownloadUrl(bucketId);
+	const { mutateAsync: downloadDataPublic } = useMutation({
+		mutationFn: async (presignedUrl: string) => {
 			const res = await fetch(presignedUrl, {
 				cache: "no-store",
 				headers: {
@@ -24,5 +22,5 @@ export function useFetchGhXml() {
 			return decoded;
 		},
 	});
-	return { downloadData, decodedRef };
+	return { downloadDataPublic, decodedRef };
 }

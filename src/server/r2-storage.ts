@@ -1,10 +1,7 @@
 "use server";
 import { r2Client } from "./bucket";
-import { env } from "@/env";
+import { bucketUrl } from "@/utils/utils";
 import { auth, currentUser } from "@clerk/nextjs/server";
-
-const bucketUrl = (userId: string, bucketKey: string) =>
-	`${env.R2_URL}/${userId}/${bucketKey}`;
 
 export const uploadToBucket = async (
 	nanoId: string,

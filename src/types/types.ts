@@ -11,9 +11,13 @@ import {
 } from "./gh-xml-schema";
 import { ParamItemType, PivotAttributeType } from "./subs/param-object-schema";
 import { ListBucketResultSchema, XmlSchema } from "./s3-bucket-list-schema";
-import type { Doc } from "../../convex/_generated/dataModel";
+import type { FunctionReturnType } from "convex/server";
+import type { api } from "@/_generated/api";
+import { Doc } from "@/_generated/dataModel";
 
 export type GhPost = Doc<"post">; // includes _id, _creationTime, fields
+export type GhShares = Doc<"shares">; // includes _id, _creationTime, fields
+export type GetSharedPost = FunctionReturnType<typeof api.ghCard.getSharedPost>;
 
 export const GhCardSchema = z.object({
 	name: z.string().min(3).max(30),
