@@ -22,10 +22,13 @@
 				"name": "next"
 			}
 		],
+		"baseUrl": ".",
 		"paths": {
+			"@convex/*": [
+				"convex/*"
+			],
 			"@/*": [
-				"./src/*",
-				"./convex/*"
+				"src/*"
 			]
 		}
 	},
@@ -35,7 +38,8 @@
 		"**/*.tsx",
 		".next/types/**/*.ts",
 		".next/dev/types/**/*.ts",
-		"convex/**/*"
+		"src",
+		"convex"
 	],
 	"exclude": [
 		"node_modules"

@@ -20,17 +20,17 @@
 		"forceConsistentCasingInFileNames": true,
 		"module": "ESNext",
 		"isolatedModules": true,
-		"noEmit": true
+		"noEmit": true,
+		"baseUrl": "..",
+		"paths": {
+			"@convex/*": [
+				"convex/*"
+			],
+			"@/*": [
+				"src/*"
+			]
+		}
 	},
-	"paths": {
-		"@convex/*": [
-			"convex/*"
-		],
-		"@/*": [
-			"src/*"
-		]
-	},
-	"baseUrl": ".",
 	"include": [
 		"./**/*"
 	],
