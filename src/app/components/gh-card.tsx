@@ -65,9 +65,9 @@ export default function GHCard(props: {
 		setOpenMetricsDialog(true);
 
 		try {
-			await downloadData(props.cardInfo.bucketUrl!);
+			const decoded = await downloadData(props.cardInfo.bucketUrl!);
 
-			const parsedMetrics = buildGhJson(decodedRef.current);
+			const parsedMetrics = buildGhJson(decoded);
 			setMetrics({
 				GhVersion: parsedMetrics.GhVersion,
 				componentsCount: parsedMetrics.componentsCount,
