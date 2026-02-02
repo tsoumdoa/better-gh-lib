@@ -47,7 +47,7 @@ export default function GHCard(props: {
 	} | null>(null);
 	const [loadingMetrics, setLoadingMetrics] = useState(false);
 
-	const { downloadData } = useFetchGhXml();
+	const { downloadData, decodedRef } = useFetchGhXml();
 
 	// Query for active shares to show "Shared" badge
 	const activeShares = useQuery(api.ghCard.getActiveSharesForPost, {
@@ -64,23 +64,21 @@ export default function GHCard(props: {
 		setLoadingMetrics(true);
 		setOpenMetricsDialog(true);
 
-		// try {
-		// 	const res = await getPresignedUrl();
-		// 	if (res.isSuccess && res.data) {
-		// 		const decoded = await downloadData(res.data);
-		// 		const parsedMetrics = buildGhJson(decoded);
-		// 		setMetrics({
-		// 			GhVersion: parsedMetrics.GhVersion,
-		// 			componentsCount: parsedMetrics.componentsCount,
-		// 			uniqueCount: parsedMetrics.uniqueCount,
-		// 			ghLibs: parsedMetrics.ghLibs,
-		// 		});
-		// 	}
-		// } catch (error) {
-		// 	console.error("Failed to load metrics:", error);
-		// } finally {
-		// 	setLoadingMetrics(false);
-		// }
+		try {
+			await downloadData(props.cardInfo.bucketUrl!);
+
+			const parsedMetrics = buildGhJson(decodedRef.current);
+			setMetrics({
+				GhVersion: parsedMetrics.GhVersion,
+				componentsCount: parsedMetrics.componentsCount,
+				uniqueCount: parsedMetrics.uniqueCount,
+				ghLibs: parsedMetrics.ghLibs,
+			});
+		} catch (error) {
+			console.error("Failed to load metrics:", error);
+		} finally {
+			setLoadingMetrics(false);
+		}
 	};
 
 	if (deleted) {
@@ -147,8 +145,6 @@ export default function GHCard(props: {
 						description: props.cardInfo.description!,
 						tags: props.cardInfo.tags ?? [],
 					}}
-					isShared={props.cardInfo.isPublicShared ?? false}
-					expiryDate={props.cardInfo.publicShareExpiryDate ?? ""}
 					bucketId={props.cardInfo.bucketUrl ?? ""}
 					lastEdited={props.cardInfo.dateUpdated!}
 					created={props.cardInfo.dateCreated!}

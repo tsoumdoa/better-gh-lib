@@ -1,5 +1,4 @@
-import { useEffect, useState, useRef, useMemo } from "react";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useEffect, useState, useRef } from "react";
 import Fuse from "fuse.js";
 import { GhPost } from "@/types/types";
 
@@ -15,15 +14,6 @@ export default function useFilter(ghCards: GhPost[]) {
 	const [filteredCards, setFilteredCards] = useState(ghCards);
 	const [showFilterInput, setShowFilterInput] = useState(false);
 	const filterKeyword = useRef<string>("");
-	const searchParams = useSearchParams();
-	const params = useMemo(
-		() => new URLSearchParams(searchParams),
-		[searchParams]
-	);
-	const pathname = usePathname();
-	const paramName = "searchFilterOn";
-	const router = useRouter();
-
 	const nameFuse = new Fuse(
 		ghCards.map((card) => card.name ?? ""),
 		fuseOptions
@@ -39,14 +29,7 @@ export default function useFilter(ghCards: GhPost[]) {
 		fuseOptions
 	);
 
-	const updateSearchParam = (b: boolean) => {
-		const newParams = new URLSearchParams(params);
-		newParams.set(paramName, b.toString());
-		router.replace(`${pathname}?${newParams.toString()}`);
-	};
-
 	const clearFilter = () => {
-		updateSearchParam(false);
 		setFilteredCards(ghCards);
 		filterKeyword.current = "";
 		setShowFilterInput(false);
@@ -69,9 +52,6 @@ export default function useFilter(ghCards: GhPost[]) {
 			}
 			if (e.key === "Enter") {
 				setShowFilterInput(false);
-				if (filterKeyword.current === "") {
-					updateSearchParam(false);
-				}
 			}
 		};
 		window.addEventListener("keydown", handleKeyDown);
@@ -87,9 +67,7 @@ export default function useFilter(ghCards: GhPost[]) {
 	};
 
 	const updateFilter = (keyword: string) => {
-		if (keyword.length > 0) updateSearchParam(true);
 		if (keyword === "") {
-			updateSearchParam(false);
 			setFilteredCards(ghCards);
 			return;
 		}

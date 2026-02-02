@@ -13,8 +13,8 @@ import { Input } from "@/components/ui/input";
 import { env } from "@/env";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "convex/react";
-import { api } from "@/_generated/api";
-import { Id } from "@/_generated/dataModel";
+import { api } from "@convex/_generated/api";
+import { Id } from "@convex/_generated/dataModel";
 
 export function InvalidValueDialog(props: {
 	open: boolean;

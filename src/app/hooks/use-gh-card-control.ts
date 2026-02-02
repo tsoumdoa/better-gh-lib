@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { useMutation } from "convex/react";
 import { api as convex } from "../../../convex/_generated/api";
 import { GhPost } from "@/types/types";
+import { deleteFromBucket } from "@/server/r2-storage";
 
 export default function useGhCardControl(cardInfo: GhPost) {
 	const deletePostConvex = useMutation(convex.ghCard.deletePost);
@@ -36,8 +37,7 @@ export default function useGhCardControl(cardInfo: GhPost) {
 		deletePostConvex({
 			id: cardInfo["_id"],
 		});
-		//TODO: Handle delete from R2 too
-
+		deleteFromBucket(cardInfo.bucketUrl!);
 		setTag("");
 	};
 

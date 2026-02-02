@@ -37,6 +37,15 @@ export const deletePost = mutation({
 			throw new Error("Not authenticated");
 		}
 		await ctx.db.delete("post", args.id);
+
+		const sharedPost = await ctx.db
+			.query("shares")
+			.withIndex("by_postId", (q) => q.eq("postId", args.id))
+			.collect();
+
+		for (const share of sharedPost) {
+			await ctx.db.delete(share._id);
+		}
 	},
 });
 
