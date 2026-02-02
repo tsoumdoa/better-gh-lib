@@ -58,7 +58,7 @@ export default function useFilter(ghCards: GhPost[]) {
 		return () => {
 			window.removeEventListener("keydown", handleKeyDown);
 		};
-	}, []);
+	}, [ghCards]);
 
 	const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const keyword = e.target.value.toLowerCase();
