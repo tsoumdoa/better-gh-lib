@@ -13,15 +13,15 @@ import type * as ghInternalQuery from "../ghInternalQuery.js";
 import type * as ghPublicAction from "../ghPublicAction.js";
 
 import type {
-	ApiFromModules,
-	FilterApi,
-	FunctionReference,
+  ApiFromModules,
+  FilterApi,
+  FunctionReference,
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
-	ghCard: typeof ghCard;
-	ghInternalQuery: typeof ghInternalQuery;
-	ghPublicAction: typeof ghPublicAction;
+  ghCard: typeof ghCard;
+  ghInternalQuery: typeof ghInternalQuery;
+  ghPublicAction: typeof ghPublicAction;
 }>;
 
 /**
@@ -33,8 +33,8 @@ declare const fullApi: ApiFromModules<{
  * ```
  */
 export declare const api: FilterApi<
-	typeof fullApi,
-	FunctionReference<any, "public">
+  typeof fullApi,
+  FunctionReference<any, "public">
 >;
 
 /**
@@ -46,8 +46,8 @@ export declare const api: FilterApi<
  * ```
  */
 export declare const internal: FilterApi<
-	typeof fullApi,
-	FunctionReference<any, "internal">
+  typeof fullApi,
+  FunctionReference<any, "internal">
 >;
 
 export declare const components: {};
