@@ -1,4 +1,4 @@
-import { internalQuery, mutation, query } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { UserTag, SortOrder } from "../src/types/types";
 import { generateSharableLinkUid } from "../src/utils/generage-shareable-link-uid";
@@ -82,7 +82,7 @@ export const getAll = query({
 		}
 
 		const tags = args.tags ?? [];
-		const sortOrder = args.sortOrder || "ascLastEdited";
+		const sortOrder = args.sortOrder || "descLastEdited";
 
 		if (tags.length === 0 && sortOrder === "ascLastEdited") {
 			return await ctx.db
@@ -90,6 +90,7 @@ export const getAll = query({
 				.withIndex("by_clerkUserId", (q) =>
 					q.eq("clerkUserId", identity.id as string)
 				)
+				.order("desc")
 				.collect();
 		}
 

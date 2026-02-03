@@ -168,10 +168,10 @@ export type ExtractedParamInfo = {
 export const SORT_ORDERS = [
 	{ value: "ascAZ", label: "A-Z" },
 	{ value: "descZA", label: "Z-A" },
-	{ value: "ascLastEdited", label: "Last Edited Date (Newest)" },
-	{ value: "descLastEdited", label: "Last Edited Date (Oldest)" },
-	{ value: "ascCreated", label: "Creation Date (Newest)" },
-	{ value: "descCreated", label: "Creation Date (Oldest)" },
+	{ value: "descLastEdited", label: "Last Edited Date (Newest)" },
+	{ value: "ascLastEdited", label: "Last Edited Date (Oldest)" },
+	{ value: "descCreated", label: "Creation Date (Newest)" },
+	{ value: "ascCreated", label: "Creation Date (Oldest)" },
 ] as const;
 
 export const SortOrderZenum = z.enum([
