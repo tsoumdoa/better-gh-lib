@@ -82,7 +82,7 @@ export const getAll = query({
 		}
 
 		const tags = args.tags ?? [];
-		const sortOrder = args.sortOrder || "ascLastEdited";
+		const sortOrder = args.sortOrder || "descLastEdited";
 
 		if (tags.length === 0 && sortOrder === "ascLastEdited") {
 			return await ctx.db
