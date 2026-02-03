@@ -1,9 +1,10 @@
+import { handleIdentifier, parseIOs, getScripts } from "./handler";
 import {
-	handleIdentifier,
-	parseIOs,
-	getScripts,
-} from "./handler";
-import { extractComponentBounds, extractComponentPivot, extractInstanceIdentifier, findObjByAtName } from "./helper";
+	extractComponentBounds,
+	extractComponentPivot,
+	extractInstanceIdentifier,
+	findObjByAtName,
+} from "./helper";
 import {
 	Bound,
 	CanvasPoint,

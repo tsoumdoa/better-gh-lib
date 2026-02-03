@@ -7,49 +7,49 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { env } from "@/env";
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
-  useEffect(() => {
-    posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY!, {
-      api_host: "/ingest",
-      ui_host: "https://us.posthog.com",
-      capture_pageview: "history_change",
-      capture_pageleave: true,
-      capture_exceptions: true,
-      debug: false,
-      // debug: process.env.NODE_ENV === "development",
-    });
-  }, []);
+	useEffect(() => {
+		posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY!, {
+			api_host: "/ingest",
+			ui_host: "https://us.posthog.com",
+			capture_pageview: "history_change",
+			capture_pageleave: true,
+			capture_exceptions: true,
+			debug: false,
+			// debug: process.env.NODE_ENV === "development",
+		});
+	}, []);
 
-  return (
-    <PHProvider client={posthog}>
-      <SuspendedPostHogPageView />
-      {children}
-    </PHProvider>
-  );
+	return (
+		<PHProvider client={posthog}>
+			<SuspendedPostHogPageView />
+			{children}
+		</PHProvider>
+	);
 }
 
 function PostHogPageView() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const posthogClient = usePostHog();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+	const posthogClient = usePostHog();
 
-  useEffect(() => {
-    if (pathname && posthogClient) {
-      let url = window.origin + pathname;
-      const search = searchParams.toString();
-      if (search) {
-        url += "?" + search;
-      }
-      posthogClient.capture("$pageview", { $current_url: url });
-    }
-  }, [pathname, searchParams, posthogClient]);
+	useEffect(() => {
+		if (pathname && posthogClient) {
+			let url = window.origin + pathname;
+			const search = searchParams.toString();
+			if (search) {
+				url += "?" + search;
+			}
+			posthogClient.capture("$pageview", { $current_url: url });
+		}
+	}, [pathname, searchParams, posthogClient]);
 
-  return null;
+	return null;
 }
 
 function SuspendedPostHogPageView() {
-  return (
-    <Suspense fallback={null}>
-      <PostHogPageView />
-    </Suspense>
-  );
+	return (
+		<Suspense fallback={null}>
+			<PostHogPageView />
+		</Suspense>
+	);
 }

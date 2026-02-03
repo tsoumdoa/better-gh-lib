@@ -73,7 +73,6 @@ You will also need to provide the necessary API keys and environment variables, 
     cd hopperclip
     ```
 3.  **Create a `.env` file:**
-
     - Copy the `env.example` file to `.env`.
     - Fill in all the required environment variables.
 
@@ -150,3 +149,16 @@ The application should now be accessible in your web browser at \(http://localho
 
 - Doesn't parse data from slider and other type of inputs
 - Potetntially inefficient data parsing as it creates array of objects
+
+## Convex Migration
+
+- [x] simple CRUD working with the card
+- [x] Thinking abt what to do for the shareable link
+- [x] implement order query on convex...
+- [ ] Change clerk compoent to convex one for auth state etc
+- [x] check the tag suggestions...
+- [ ] migrate the data
+
+## Bugs
+
+- [x] esc pressed clear all cards....

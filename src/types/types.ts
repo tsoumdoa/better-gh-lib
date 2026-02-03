@@ -9,10 +9,15 @@ import {
 	ValueTableSchema,
 	VersionSchema,
 } from "./gh-xml-schema";
-import { PluginLibraryType } from "./subs/library-type-schema";
 import { ParamItemType, PivotAttributeType } from "./subs/param-object-schema";
-import { PropertyType } from "./subs/definition-objects-schema";
 import { ListBucketResultSchema, XmlSchema } from "./s3-bucket-list-schema";
+import type { FunctionReturnType } from "convex/server";
+import { Doc } from "@convex/_generated/dataModel";
+import { api } from "@convex/_generated/api";
+
+export type GhPost = Doc<"post">; // includes _id, _creationTime, fields
+export type GhShares = Doc<"shares">; // includes _id, _creationTime, fields
+export type GetSharedPost = FunctionReturnType<typeof api.ghCard.getSharedPost>;
 
 export const GhCardSchema = z.object({
 	name: z.string().min(3).max(30),

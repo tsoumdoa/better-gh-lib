@@ -1,9 +1,12 @@
-import { extractBounds, extractInterfaceDescriptor, extractPivot, filterObjByAtName, findObjByAtName, transformParams } from "./helper";
 import {
-	Bound,
-	CanvasPoint,
-	NodeIdentifier,
-} from "./tgh-types";
+	extractBounds,
+	extractInterfaceDescriptor,
+	extractPivot,
+	filterObjByAtName,
+	findObjByAtName,
+	transformParams,
+} from "./helper";
+import { Bound, CanvasPoint, NodeIdentifier } from "./tgh-types";
 
 export function handleZuiIoAttrs(chunk: Record<string, any>[]) {
 	const inputAttrInputParams = filterObjByAtName(chunk, "InputParam");
@@ -88,8 +91,6 @@ export function handleIdentifier(obj: any): NodeIdentifier {
 	};
 }
 
-
-
 export function parseIOs(obj: any) {
 	const zuiBody = obj.chunks.chunk[0].chunks.chunk.find(
 		(i: Record<string, unknown>) => i["@_name"] === "ParameterData"
@@ -161,7 +162,9 @@ function handleStandardIOs(obj: any) {
 	}
 
 	const ioParamsIn = inputParams.map((i: any) => transformParams(i.items.item));
-	const ioParamsOut = outputParams.map((i: any) => transformParams(i.items.item));
+	const ioParamsOut = outputParams.map((i: any) =>
+		transformParams(i.items.item)
+	);
 
 	return {
 		params: {

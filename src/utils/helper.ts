@@ -1,4 +1,9 @@
-import { Bound, CanvasPoint, InterfaceDescriptor, InterfaceIdentifier } from "./tgh-types";
+import {
+	Bound,
+	CanvasPoint,
+	InterfaceDescriptor,
+	InterfaceIdentifier,
+} from "./tgh-types";
 
 export function findObjByAtName(obj: any, atName: string) {
 	return obj.find((i: Record<string, unknown>) => i["@_name"] === atName);
@@ -60,7 +65,6 @@ export function extractComponentPivot(obj: any): CanvasPoint {
 	const p = extractComponentAttribute(obj, "Pivot");
 	return extractPivot(p);
 }
-
 
 function extractComponentAttribute(obj: any, name: "Bounds" | "Pivot") {
 	const attr = findObjByAtName(

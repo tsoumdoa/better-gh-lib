@@ -27,7 +27,7 @@ export function MetricsDialog(props: {
 					<AlertDialogDescription>
 						{props.loading ? (
 							<div className="flex items-center justify-center py-8">
-								<div className="text-neutral-400">Loading metrics...</div>
+								<a className="text-neutral-400">Loading metrics...</a>
 							</div>
 						) : props.metrics ? (
 							<div className="space-y-4 py-4">

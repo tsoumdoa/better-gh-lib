@@ -1,32 +1,33 @@
 import { ShareLinkUidSchema } from "@/types/types";
 import { useEffect, useRef, useState } from "react";
 import {
-  useRouter,
-  useSearchParams,
+	useRouter,
+	useSearchParams,
 } from "next/dist/client/components/navigation";
 
-export function useValidateUid() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const uid = searchParams.get("uid");
-  const uidRef = useRef(uid);
-  const [isValidUid, setIsValidUid] = useState(false);
+export function useValidateShareToken() {
+	const router = useRouter();
+	const searchParams = useSearchParams();
+	const token = searchParams.get("token");
+	const tokenRef = useRef(token);
+	const [isValidToken, setIsValidToken] = useState(false);
 
-  useEffect(() => {
-    if (!uid) {
-      router.push("/");
-    }
-    const isValid = ShareLinkUidSchema.safeParse(uid);
-    if (!isValid.success) {
-      router.push("/");
-    } else {
-      setIsValidUid(true);
-      uidRef.current = uid as string;
-    }
-  }, [uid, router]);
+	useEffect(() => {
+		if (!token) {
+			router.push("/");
+			return;
+		}
+		const isValid = ShareLinkUidSchema.safeParse(token);
+		if (!isValid.success) {
+			router.push("/");
+		} else {
+			setIsValidToken(true);
+			tokenRef.current = token as string;
+		}
+	}, [token, router]);
 
-  return {
-    isValidUid,
-    uidRef,
-  };
+	return {
+		isValidToken,
+		tokenRef,
+	};
 }
