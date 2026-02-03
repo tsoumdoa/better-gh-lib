@@ -16,7 +16,7 @@ import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { LoadingSpinner } from "./loading-spinner";
 
 export default function SortDropDown() {
-	const [position, setPosition] = useState<SortOrder>("ascLastEdited");
+	const [position, setPosition] = useState<SortOrder>("descLastEdited");
 	const [sortBy, setSortBy] = useState<SortOrderValue>();
 	const searchParams = useSearchParams();
 	const params = useMemo(
