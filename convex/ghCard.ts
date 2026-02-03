@@ -1,4 +1,4 @@
-import { internalQuery, mutation, query } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { UserTag, SortOrder } from "../src/types/types";
 import { generateSharableLinkUid } from "../src/utils/generage-shareable-link-uid";
@@ -90,6 +90,7 @@ export const getAll = query({
 				.withIndex("by_clerkUserId", (q) =>
 					q.eq("clerkUserId", identity.id as string)
 				)
+				.order("desc")
 				.collect();
 		}
 
@@ -121,7 +122,7 @@ export const getAll = query({
 					.withIndex("by_user_dateUpdated", (q) =>
 						q.eq("clerkUserId", identity.id as string)
 					)
-					.order("asc")
+					.order("desc")
 					.collect();
 				break;
 
@@ -131,7 +132,7 @@ export const getAll = query({
 					.withIndex("by_user_dateUpdated", (q) =>
 						q.eq("clerkUserId", identity.id as string)
 					)
-					.order("desc")
+					.order("asc")
 					.collect();
 				break;
 
@@ -141,7 +142,7 @@ export const getAll = query({
 					.withIndex("by_user_dateCreated", (q) =>
 						q.eq("clerkUserId", identity.id as string)
 					)
-					.order("asc")
+					.order("desc")
 					.collect();
 				break;
 
@@ -151,7 +152,7 @@ export const getAll = query({
 					.withIndex("by_user_dateCreated", (q) =>
 						q.eq("clerkUserId", identity.id as string)
 					)
-					.order("desc")
+					.order("asc")
 					.collect();
 				break;
 
