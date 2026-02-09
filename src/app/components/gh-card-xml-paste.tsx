@@ -32,14 +32,18 @@ export function GhCardXmlPaste(props: {
 					{props.isValidXml ? (
 						<div className="flex flex-row items-center gap-x-2">
 							<button
-								className="flex flex-row items-center gap-x-1 text-sm text-red-500"
+								className={`flex flex-row items-center gap-x-1 text-sm hover:cursor-pointer ${props.isEditMode ? "text-red-20" : "text-red-500"}`}
 								onClick={handleClear}
 							>
-								{props.isEditMode ? "Delete/Replace XML" : "Delete pasted XML"}
+								Delete pasted GhXml
 								<X size={16} />
 							</button>
-							<span className="text-sm text-green-600">
-								✓ XML pasted and validated
+							<span
+								className={`text-sm ${props.isEditMode ? "text-green-20" : "text-green-600"} font-bold hover:cursor-default`}
+							>
+								{props.isEditMode
+									? "✓ New GhXml validated"
+									: "✓ GhXml validated"}
 							</span>
 						</div>
 					) : (
@@ -48,7 +52,7 @@ export function GhCardXmlPaste(props: {
 								className="flex flex-row items-center gap-x-1 text-sm text-red-500"
 								onClick={handleClear}
 							>
-								Delete invalid XML
+								Delete invalid GhXml
 								<X size={16} />
 							</button>
 						</div>
@@ -61,12 +65,16 @@ export function GhCardXmlPaste(props: {
 					className="animate border-input rounded-md border bg-neutral-100 p-2 font-medium text-neutral-500 shadow-xs transition-all hover:text-neutral-700"
 				>
 					{props.isEditMode
-						? "Paste/Replace GH XML from Clipboard"
-						: "Paste GH XML from Clipboard"}
+						? "Replace GhXml from Clipboard"
+						: "Paste GhXml from Clipboard"}
 				</button>
 			)}
 			{props.xmlError.length > 0 && (
-				<div className="mt-2 text-sm text-red-500">{props.xmlError}</div>
+				<div
+					className={`${props.isEditMode ? "text-red-20" : "text-red-500"} mt-2 text-sm font-bold`}
+				>
+					{props.xmlError}
+				</div>
 			)}
 		</div>
 	);
@@ -98,7 +106,7 @@ export function useXmlPasteHandler(
 				setXmlData(text);
 			} else {
 				setIsValidXml(false);
-				setXmlError("XML is not valid: \n" + errorMsg);
+				setXmlError("Pasted GhXml is not valid: \n" + errorMsg);
 			}
 		} catch (err) {
 			setXmlError("Failed to read clipboard contents: \n" + String(err));

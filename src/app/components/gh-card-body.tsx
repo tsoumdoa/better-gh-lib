@@ -59,25 +59,6 @@ export function NameDescriptionAndTags(props: {
 
 	return (
 		<div className="w-full">
-			{props.editMode && (
-				<div className="mb-4">
-					<p className="text-neutral-900 pb-1">Grasshopper XML</p>
-					<GhCardXmlPaste
-						xmlData={props.newXmlData}
-						setXmlData={props.setNewXmlData}
-						isValidXml={props.isValidXml}
-						xmlError={props.xmlError}
-						setXmlError={props.setXmlError}
-						handlePasteFromClipboard={props.handlePasteFromClipboard}
-						isEditMode={true}
-					/>
-					{props.newXmlData && props.isValidXml && (
-						<span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800 mt-2">
-							XML Updated
-						</span>
-					)}
-				</div>
-			)}
 			<div className="items-top flex w-full flex-row justify-between gap-2">
 				<div className="text-truncate w-full">
 					<p
@@ -196,6 +177,19 @@ export function NameDescriptionAndTags(props: {
 						</div>
 					)}
 					{addError.length > 0 && <p className="text-red-800">{addError}</p>}
+				</div>
+			)}
+			{props.editMode && (
+				<div className="py-3">
+					<GhCardXmlPaste
+						xmlData={props.newXmlData}
+						setXmlData={props.setNewXmlData}
+						isValidXml={props.isValidXml}
+						xmlError={props.xmlError}
+						setXmlError={props.setXmlError}
+						handlePasteFromClipboard={props.handlePasteFromClipboard}
+						isEditMode={true}
+					/>
 				</div>
 			)}
 

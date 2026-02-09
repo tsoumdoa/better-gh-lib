@@ -99,13 +99,6 @@ export function AddGhDialog(props: {
 							? "Adding..."
 							: "Add a new card"}
 					</AlertDialogTitle>
-					{addError.length > 0 && (
-						<AlertDialogDescription>
-							<strong className="text-red-500">
-								Failed to add, try again. Cause: {addError}
-							</strong>
-						</AlertDialogDescription>
-					)}
 
 					<AlertDialog>
 						<div className="flex flex-col space-y-3">
