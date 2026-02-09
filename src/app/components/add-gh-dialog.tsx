@@ -14,8 +14,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useState } from "react";
 import { useValidateNameDescriptionAndTags } from "../hooks/use-validate-name-and-description";
-import { useXmlPaste } from "../hooks/use-xml-paste";
-import AddXml from "./add-xml";
+import { GhCardXmlPaste, useXmlPasteHandler } from "./gh-card-xml-paste";
 import { Button } from "@/components/ui/button";
 import AddGhTagDisplay, { AvailableGhTagDisplay } from "./add-gh-tag-display";
 import { useMutation, useQuery } from "convex/react";
@@ -33,6 +32,8 @@ export function AddGhDialog(props: {
 	const userTags = useQuery(convex.ghCard.getUserTags, {});
 	const addGhCard = useMutation(convex.ghCard.addPost);
 	const [addError, setAddError] = useState("");
+	const [xmlData, setXmlData] = useState<string>();
+	const [isValidXml, setIsValidXml] = useState(false);
 	const {
 		name,
 		setName,
@@ -49,8 +50,11 @@ export function AddGhDialog(props: {
 		availableTags,
 	} = useValidateNameDescriptionAndTags(setAddError, userTags ?? []);
 
-	const { xmlData, setXmlData, isValidXml, handlePasteFromClipboard } =
-		useXmlPaste(setAddError, props.setAdding);
+	const { handlePasteFromClipboard } = useXmlPasteHandler(
+		setXmlData,
+		setIsValidXml,
+		setAddError
+	);
 
 	const handleSubmit = async () => {
 		if (isValidXml && isValid && xmlData) {
@@ -105,11 +109,12 @@ export function AddGhDialog(props: {
 
 					<AlertDialog>
 						<div className="flex flex-col space-y-3">
-							<AddXml
-								setAddError={setAddError}
-								isValidXml={isValidXml}
-								xmlData={xmlData!}
+							<GhCardXmlPaste
+								xmlData={xmlData}
 								setXmlData={setXmlData}
+								isValidXml={isValidXml}
+								xmlError={addError}
+								setXmlError={setAddError}
 								handlePasteFromClipboard={handlePasteFromClipboard}
 							/>
 							<div className="flex flex-col gap-y-1.5">

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useValidateNameDescriptionAndTags } from "../hooks/use-validate-name-and-description";
 import { AvailableGhTagDisplay } from "./add-gh-tag-display";
+import { GhCardXmlPaste } from "./gh-card-xml-paste";
 import { useQuery } from "convex/react";
 import { api as convex } from "../../../convex/_generated/api";
 
@@ -26,6 +27,12 @@ export function NameDescriptionAndTags(props: {
 	setTag: (t: string) => void;
 	reset: boolean;
 	setReset: (b: boolean) => void;
+	newXmlData: string | undefined;
+	setNewXmlData: (data: string | undefined) => void;
+	isValidXml: boolean;
+	xmlError: string;
+	setXmlError: (error: string) => void;
+	handlePasteFromClipboard: () => void;
 }) {
 	const userTags = useQuery(convex.ghCard.getUserTags, {});
 	const [addError, setAddError] = useState("");
@@ -52,6 +59,25 @@ export function NameDescriptionAndTags(props: {
 
 	return (
 		<div className="w-full">
+			{props.editMode && (
+				<div className="mb-4">
+					<p className="text-neutral-900 pb-1">Grasshopper XML</p>
+					<GhCardXmlPaste
+						xmlData={props.newXmlData}
+						setXmlData={props.setNewXmlData}
+						isValidXml={props.isValidXml}
+						xmlError={props.xmlError}
+						setXmlError={props.setXmlError}
+						handlePasteFromClipboard={props.handlePasteFromClipboard}
+						isEditMode={true}
+					/>
+					{props.newXmlData && props.isValidXml && (
+						<span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800 mt-2">
+							XML Updated
+						</span>
+					)}
+				</div>
+			)}
 			<div className="items-top flex w-full flex-row justify-between gap-2">
 				<div className="text-truncate w-full">
 					<p
