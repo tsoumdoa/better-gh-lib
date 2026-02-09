@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useValidateNameDescriptionAndTags } from "../hooks/use-validate-name-and-description";
 import { AvailableGhTagDisplay } from "./add-gh-tag-display";
+import { GhCardXmlPaste } from "./gh-card-xml-paste";
 import { useQuery } from "convex/react";
 import { api as convex } from "../../../convex/_generated/api";
 
@@ -26,6 +27,12 @@ export function NameDescriptionAndTags(props: {
 	setTag: (t: string) => void;
 	reset: boolean;
 	setReset: (b: boolean) => void;
+	newXmlData: string | undefined;
+	setNewXmlData: (data: string | undefined) => void;
+	isValidXml: boolean;
+	xmlError: string;
+	setXmlError: (error: string) => void;
+	handlePasteFromClipboard: () => void;
 }) {
 	const userTags = useQuery(convex.ghCard.getUserTags, {});
 	const [addError, setAddError] = useState("");
@@ -170,6 +177,19 @@ export function NameDescriptionAndTags(props: {
 						</div>
 					)}
 					{addError.length > 0 && <p className="text-red-800">{addError}</p>}
+				</div>
+			)}
+			{props.editMode && (
+				<div className="py-3">
+					<GhCardXmlPaste
+						xmlData={props.newXmlData}
+						setXmlData={props.setNewXmlData}
+						isValidXml={props.isValidXml}
+						xmlError={props.xmlError}
+						setXmlError={props.setXmlError}
+						handlePasteFromClipboard={props.handlePasteFromClipboard}
+						isEditMode={true}
+					/>
 				</div>
 			)}
 

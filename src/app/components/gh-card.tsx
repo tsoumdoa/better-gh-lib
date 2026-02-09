@@ -35,6 +35,12 @@ export default function GHCard(props: {
 		setTag: setInputTag,
 		reset,
 		setReset,
+		newXmlData,
+		setNewXmlData,
+		isValidXml,
+		xmlError,
+		setXmlError,
+		handlePasteFromClipboard,
 	} = useGhCardControl(props.cardInfo);
 
 	const [openSharedDialog, setOpenSharedDialog] = useState(false);
@@ -99,6 +105,12 @@ export default function GHCard(props: {
 					setTag={setInputTag}
 					reset={reset}
 					setReset={setReset}
+					newXmlData={newXmlData}
+					setNewXmlData={setNewXmlData}
+					isValidXml={isValidXml}
+					xmlError={xmlError}
+					setXmlError={setXmlError}
+					handlePasteFromClipboard={handlePasteFromClipboard}
 				/>
 			</div>
 		);
@@ -153,6 +165,12 @@ export default function GHCard(props: {
 					setTag={setInputTag}
 					reset={reset}
 					setReset={setReset}
+					newXmlData={newXmlData}
+					setNewXmlData={setNewXmlData}
+					isValidXml={isValidXml}
+					xmlError={xmlError}
+					setXmlError={setXmlError}
+					handlePasteFromClipboard={handlePasteFromClipboard}
 				/>
 				<div onClick={(e) => e.stopPropagation()}>
 					{editMode ? (
