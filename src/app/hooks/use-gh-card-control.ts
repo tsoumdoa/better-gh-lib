@@ -5,6 +5,7 @@ import { GhPost } from "@/types/types";
 import { deleteFromBucket, uploadToBucket } from "@/server/r2-storage";
 import { compress } from "../utils/gzip";
 import { useXmlPasteHandler } from "../components/gh-card-xml-paste";
+import { nanoid } from "nanoid";
 
 export default function useGhCardControl(cardInfo: GhPost) {
 	const deletePostConvex = useMutation(convex.ghCard.deletePost);
@@ -57,7 +58,7 @@ export default function useGhCardControl(cardInfo: GhPost) {
 
 	const handleEdit = async (submit: boolean) => {
 		setReset(true);
-		
+
 		const metadataChanged =
 			ghInfo.name !== cardInfo.name ||
 			ghInfo.description !== cardInfo.description ||
@@ -76,14 +77,39 @@ export default function useGhCardControl(cardInfo: GhPost) {
 		}
 
 		if (xmlChanged && isValidXml) {
+			const newBucketUrl = nanoid();
 			try {
-				await deleteFromBucket(cardInfo.bucketUrl!);
+				const deleteRes = deleteFromBucket(cardInfo.bucketUrl!);
 				const compressed = compress(newXmlData);
-				await uploadToBucket(cardInfo.bucketUrl!, compressed);
+				const uploadRes = await uploadToBucket(newBucketUrl, compressed);
+				const updateRes = await updatePost({
+					id: cardInfo["_id"],
+					name: ghInfo.name!,
+					description: ghInfo.description!,
+					tags: newTags.current,
+					uid: newBucketUrl,
+				});
+				const res = await Promise.allSettled([deleteRes, uploadRes, updateRes]);
+				if (res[0].status === "rejected") {
+					setXmlError("Failed to delete old XML: " + String(res[0].reason));
+					return;
+				}
+				if (res[1].status === "rejected") {
+					setXmlError("Failed to upload new XML: " + String(res[1].reason));
+					return;
+				}
+				if (res[2].status === "rejected") {
+					setXmlError("Failed to update post: " + String(res[2].reason));
+					return;
+				}
 			} catch (error) {
 				setXmlError("Failed to update XML: " + String(error));
 				return;
+			} finally {
+				setIsValidXml(false);
+				setXmlError("");
 			}
+			return;
 		}
 
 		if (metadataChanged || xmlChanged) {

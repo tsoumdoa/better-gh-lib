@@ -55,18 +55,29 @@ export const updatePost = mutation({
 		name: v.optional(v.string()),
 		description: v.optional(v.string()),
 		tags: v.optional(v.array(v.string())),
+		uid: v.optional(v.string()),
 	},
 	handler: async (ctx, args) => {
 		const identity = await ctx.auth.getUserIdentity();
 		if (identity === null) {
 			throw new Error("Not authenticated");
 		}
-		await ctx.db.patch("post", args.id, {
-			name: args.name,
-			description: args.description,
-			tags: args.tags,
-			dateUpdated: new Date().toISOString(),
-		});
+		if (args.uid !== undefined && args.uid !== null) {
+			await ctx.db.patch("post", args.id, {
+				name: args.name,
+				description: args.description,
+				tags: args.tags,
+				dateUpdated: new Date().toISOString(),
+				bucketUrl: args.uid,
+			});
+		} else {
+			await ctx.db.patch("post", args.id, {
+				name: args.name,
+				description: args.description,
+				tags: args.tags,
+				dateUpdated: new Date().toISOString(),
+			});
+		}
 	},
 });
 
