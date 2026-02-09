@@ -54,6 +54,7 @@ export default function useGhCardControl(cardInfo: GhPost) {
 		});
 		deleteFromBucket(cardInfo.bucketUrl!);
 		setTag("");
+		setEditMode(false);
 	};
 
 	const handleEdit = async (submit: boolean) => {

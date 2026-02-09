@@ -140,6 +140,5 @@ The application should now be accessible in your web browser at \(http://localho
 
 ## TODO
 
-- [ ] delete and edit button feels junkey...
 - [ ] add concept of collections
 - [ ] add concept of versions
