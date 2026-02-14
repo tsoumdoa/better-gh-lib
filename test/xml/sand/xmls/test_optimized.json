@@ -1,0 +1,25 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "Panel": {
+      "id": "Panel",
+      "type": "Panel",
+      "guid": "fbb386c0-7f2a-474b-b0a2-18df7a0ff03f",
+      "description": "A panel for custom notes and text values",
+      "nickName": "Panel",
+      "inputs": {},
+      "outputs": {}
+    }
+  },
+  "wires": [],
+  "metadata": {
+    "documentId": "3ebfb37e-5b76-4065-8bb2-c0895373f49c",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.15.25019.13002",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}

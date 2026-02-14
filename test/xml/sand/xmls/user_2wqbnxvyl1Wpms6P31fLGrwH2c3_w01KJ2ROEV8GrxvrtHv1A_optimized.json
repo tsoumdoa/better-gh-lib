@@ -1,0 +1,137 @@
+{
+  "version": "0.2.2",
+  "components": {
+    ".01ChildCutter": {
+      "id": ".01ChildCutter",
+      "type": "Hops",
+      "guid": "0c35f6a1-079c-463c-870f-97158525a1f9",
+      "description": "Solve an external definition using Rhino Compute",
+      "nickName": ".01ChildCutter",
+      "inputs": {
+        "child": {
+          "description": "child",
+          "nick": "child",
+          "optional": false,
+          "source": "f5bcbe4a-9481-4774-b5b9-b43b6c288e0a"
+        },
+        "cutters": {
+          "description": "cutters",
+          "nick": "cutters",
+          "optional": false,
+          "source": "a61e2035-336b-493b-bb48-21861575510f"
+        }
+      },
+      "outputs": {
+        "content": {
+          "description": "Contains a collection of generic data",
+          "nick": "Content",
+          "optional": false
+        }
+      }
+    },
+    "Partition": {
+      "id": "Partition",
+      "type": "Partition List",
+      "guid": "6007b696-f304-4310-9f11-4c91472c00b4",
+      "description": "Partition a list into sub-lists",
+      "nickName": "Partition",
+      "inputs": {},
+      "outputs": {}
+    },
+    "Group": {
+      "id": "Group",
+      "type": "Group",
+      "guid": "e206325e-dd81-4a2d-aff9-6be0037cee9d",
+      "description": "Group a geometry set",
+      "nickName": "Group",
+      "inputs": {},
+      "outputs": {},
+      "members": []
+    },
+    "Trim": {
+      "id": "Trim",
+      "type": "Trim Tree",
+      "guid": "e27326d2-a417-40fd-9679-810a49c12f82",
+      "description": "Reduce the complexity of a tree by merging the outermost branches.",
+      "nickName": "Trim",
+      "inputs": {},
+      "outputs": {}
+    },
+    "Path Mapper": {
+      "id": "Path Mapper",
+      "type": "Path Mapper",
+      "guid": "d03c5214-d019-4550-ba1f-40f61cd401b7",
+      "description": "Perform lexical operations on data trees.",
+      "nickName": "Path Mapper",
+      "inputs": {
+        "value": {
+          "description": "Input value",
+          "nick": "V",
+          "optional": true,
+          "source": "4ad876e5-2893-4618-9151-94ee58ded32b"
+        }
+      },
+      "outputs": {}
+    },
+    "TStat": {
+      "id": "TStat",
+      "type": "Tree Statistics",
+      "guid": "07c7d2c2-6f65-4bb3-b9e5-1d090e3eae99",
+      "description": "Get some statistics regarding a data tree.",
+      "nickName": "TStat",
+      "inputs": {},
+      "outputs": {}
+    },
+    "Group_2": {
+      "id": "Group_2",
+      "type": "Group",
+      "guid": "e3824912-1b44-4637-b7a4-9726014c1546",
+      "description": "A group of Grasshopper objects",
+      "nickName": "Group",
+      "inputs": {},
+      "outputs": {},
+      "members": [
+        ".01ChildCutter",
+        "Partition",
+        "Group",
+        "Trim",
+        "Path Mapper",
+        "TStat"
+      ]
+    }
+  },
+  "wires": [
+    {
+      "from": "f5bcbe4a-9481-4774-b5b9-b43b6c288e0a",
+      "to": ".01ChildCutter.child"
+    },
+    {
+      "from": "a61e2035-336b-493b-bb48-21861575510f",
+      "to": ".01ChildCutter.cutters"
+    },
+    {
+      "from": "4ad876e5-2893-4618-9151-94ee58ded32b",
+      "to": "Path Mapper.value"
+    }
+  ],
+  "metadata": {
+    "documentId": "7aabba24-eb8f-481f-83c1-229ebf5ecd01",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.17.25066.7001",
+        "author": "Robert McNeel & Associates"
+      },
+      {
+        "name": "Grasshopper",
+        "version": "8.17.25066.7001",
+        "author": "Robert McNeel & Associates"
+      },
+      {
+        "name": "Hops",
+        "version": "0.16.23",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}

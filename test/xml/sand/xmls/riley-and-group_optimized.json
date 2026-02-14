@@ -1,0 +1,59 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "Txt": {
+      "id": "Txt",
+      "type": "Text",
+      "guid": "a6300f0a-18bc-4ccf-8108-8ed80f944ca2",
+      "description": "Contains a collection of text fragments",
+      "nickName": "Txt",
+      "inputs": {},
+      "outputs": {}
+    },
+    "Txt_2": {
+      "id": "Txt_2",
+      "type": "Text",
+      "guid": "411d643a-a343-4890-bd83-1d1393bb8379",
+      "description": "Contains a collection of text fragments",
+      "nickName": "Txt",
+      "inputs": {
+        "value": {
+          "description": "Input value",
+          "nick": "V",
+          "optional": true,
+          "source": "Txt"
+        }
+      },
+      "outputs": {}
+    },
+    "Group": {
+      "id": "Group",
+      "type": "Group",
+      "guid": "8cb402ab-34f4-4473-8225-bf6f3ee262cf",
+      "description": "A group of Grasshopper objects",
+      "nickName": "Group",
+      "inputs": {},
+      "outputs": {},
+      "members": [
+        "Txt",
+        "Txt_2"
+      ]
+    }
+  },
+  "wires": [
+    {
+      "from": "Txt",
+      "to": "Txt_2.value"
+    }
+  ],
+  "metadata": {
+    "documentId": "b81adce6-bbd0-433e-ae56-1204ead97c82",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.27.26019.16022",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}

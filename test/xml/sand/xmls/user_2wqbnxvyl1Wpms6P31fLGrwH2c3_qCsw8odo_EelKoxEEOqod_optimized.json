@@ -1,0 +1,95 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "Srf": {
+      "id": "Srf",
+      "type": "Surface",
+      "guid": "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9",
+      "description": "Contains a collection of generic surfaces",
+      "nickName": "Srf",
+      "inputs": {},
+      "outputs": {}
+    },
+    "Area": {
+      "id": "Area",
+      "type": "Area",
+      "guid": "3a34a54f-431f-4260-9706-364b3e6ff8ab",
+      "description": "Solve area properties for breps, meshes and planar closed curves.",
+      "nickName": "Area",
+      "inputs": {
+        "g": {
+          "description": "Brep, mesh or planar closed curve for area computation",
+          "nick": "G",
+          "optional": false,
+          "source": "Srf"
+        }
+      },
+      "outputs": {
+        "a": {
+          "description": "Area of geometry",
+          "nick": "A",
+          "optional": true
+        },
+        "c": {
+          "description": "Area centroid of geometry",
+          "nick": "C",
+          "optional": true
+        }
+      }
+    },
+    "EvalSrf": {
+      "id": "EvalSrf",
+      "type": "Evaluate Surface",
+      "guid": "99d28540-7f1e-4c39-9c56-16373445ed5f",
+      "description": "Evaluate local surface properties at a {uv} coordinate.",
+      "nickName": "EvalSrf",
+      "inputs": {},
+      "outputs": {}
+    },
+    "Srf CP": {
+      "id": "Srf CP",
+      "type": "Surface Closest Point",
+      "guid": "9ea37707-5302-4d6c-ba38-65d5dd54e3ac",
+      "description": "Find the closest point on a surface.",
+      "nickName": "Srf CP",
+      "inputs": {},
+      "outputs": {}
+    },
+    "Group": {
+      "id": "Group",
+      "type": "Group",
+      "guid": "5493eb71-1c24-4364-b077-14808540269b",
+      "description": "A group of Grasshopper objects",
+      "nickName": "Group",
+      "inputs": {},
+      "outputs": {},
+      "members": [
+        "Srf",
+        "Area",
+        "EvalSrf",
+        "Srf CP"
+      ]
+    }
+  },
+  "wires": [
+    {
+      "from": "Srf",
+      "to": "Area.g"
+    }
+  ],
+  "metadata": {
+    "documentId": "9ccf3e65-b505-4af4-87ff-dcecae8746d0",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.17.25066.7001",
+        "author": "Robert McNeel & Associates"
+      },
+      {
+        "name": "Grasshopper",
+        "version": "8.17.25066.7001",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}

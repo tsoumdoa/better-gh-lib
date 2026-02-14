@@ -1,0 +1,70 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "ptIsoE": {
+      "id": "ptIsoE",
+      "type": "Iso Edges",
+      "guid": "db9dff29-7343-463f-89bd-8f4c60adc6ed",
+      "description": "Extract iso-edges on surface from linear edges",
+      "nickName": "ptIsoE",
+      "inputs": {},
+      "outputs": {}
+    },
+    "Bend": {
+      "id": "Bend",
+      "type": "Bend Deform",
+      "guid": "114fbc1d-e109-4089-bb49-26dcaf5d500a",
+      "description": "Deform a shape by bending it",
+      "nickName": "Bend",
+      "inputs": {},
+      "outputs": {}
+    },
+    "Sdca": {
+      "id": "Sdca",
+      "type": "Sdca Regression",
+      "guid": "f6de3eff-2546-4ece-b6ac-fb09ec46d258",
+      "description": "The Sdca trainer is used to train a regression model using the stochastic dual coordinate ascent method.",
+      "nickName": "Sdca",
+      "inputs": {},
+      "outputs": {}
+    },
+    "Group": {
+      "id": "Group",
+      "type": "Group",
+      "guid": "4b47f2c5-b060-4270-95cc-150501d0b58e",
+      "description": "A group of Grasshopper objects",
+      "nickName": "Group",
+      "inputs": {},
+      "outputs": {},
+      "members": [
+        "ptIsoE",
+        "Bend",
+        "Sdca"
+      ]
+    }
+  },
+  "wires": [],
+  "metadata": {
+    "documentId": "b880c073-5685-4488-ba9c-d699084249bd",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.26.25349.19002",
+        "author": "Robert McNeel & Associates"
+      },
+      {
+        "name": "Grasshopper",
+        "version": "8.26.25349.19002",
+        "author": "Robert McNeel & Associates"
+      },
+      {
+        "name": "LunchBoxML",
+        "version": "2024.2.11.0"
+      },
+      {
+        "name": "PTComponentLibrary",
+        "version": "2021.4.1.0"
+      }
+    ]
+  }
+}

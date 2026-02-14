@@ -1,0 +1,24 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "ptIsoE": {
+      "id": "ptIsoE",
+      "type": "Iso Edges",
+      "guid": "db9dff29-7343-463f-89bd-8f4c60adc6ed",
+      "description": "Extract iso-edges on surface from linear edges",
+      "nickName": "ptIsoE",
+      "inputs": {},
+      "outputs": {}
+    }
+  },
+  "wires": [],
+  "metadata": {
+    "documentId": "b880c073-5685-4488-ba9c-d699084249bd",
+    "libraries": [
+      {
+        "name": "PTComponentLibrary",
+        "version": "2021.4.1.0"
+      }
+    ]
+  }
+}

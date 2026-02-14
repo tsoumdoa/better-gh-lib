@@ -1,0 +1,115 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "Crv": {
+      "id": "Crv",
+      "type": "Curve",
+      "guid": "1d6217a3-3d5c-45f6-bac5-441c742698f3",
+      "description": "Contains a collection of generic curves",
+      "nickName": "Crv",
+      "inputs": {},
+      "outputs": {}
+    },
+    "MidPt": {
+      "id": "MidPt",
+      "type": "Curve Middle",
+      "guid": "b795b005-9364-4247-bdd1-86376eed18bb",
+      "description": "Get the point in the middle of a curve",
+      "nickName": "MidPt",
+      "inputs": {},
+      "outputs": {}
+    },
+    "Sort": {
+      "id": "Sort",
+      "type": "Sort List",
+      "guid": "8d4128ef-5f18-4fc6-b0f9-cc9b6484b5de",
+      "description": "Sort a list of numeric keys.",
+      "nickName": "Sort",
+      "inputs": {
+        "k": {
+          "description": "List of sortable keys",
+          "nick": "K",
+          "optional": false,
+          "source": "Crv"
+        },
+        "a": {
+          "description": "Optional list of values to sort synchronously",
+          "nick": "A",
+          "optional": true,
+          "source": "80f2a282-5182-4437-9ee3-601e75a9b1b4"
+        }
+      },
+      "outputs": {
+        "k": {
+          "description": "Sorted keys",
+          "nick": "K",
+          "optional": false
+        },
+        "a": {
+          "description": "Synchronous values in A",
+          "nick": "A",
+          "optional": false
+        }
+      }
+    },
+    "pDecon": {
+      "id": "pDecon",
+      "type": "Deconstruct",
+      "guid": "21f2b697-a418-488f-9a05-f28412e7606a",
+      "description": "Deconstruct a point into its component parts.",
+      "nickName": "pDecon",
+      "inputs": {},
+      "outputs": {}
+    },
+    "Group": {
+      "id": "Group",
+      "type": "Group",
+      "guid": "d2658477-1b3b-4513-90aa-e3e81d8ad229",
+      "description": "A group of Grasshopper objects",
+      "nickName": "Group",
+      "inputs": {},
+      "outputs": {},
+      "members": [
+        "Crv",
+        "MidPt",
+        "Sort",
+        "pDecon"
+      ]
+    }
+  },
+  "wires": [
+    {
+      "from": "Crv",
+      "to": "Sort.k"
+    },
+    {
+      "from": "80f2a282-5182-4437-9ee3-601e75a9b1b4",
+      "to": "Sort.a"
+    }
+  ],
+  "metadata": {
+    "documentId": "9ccf3e65-b505-4af4-87ff-dcecae8746d0",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.17.25066.7001",
+        "author": "Robert McNeel & Associates"
+      },
+      {
+        "name": "Grasshopper",
+        "version": "8.17.25066.7001",
+        "author": "Robert McNeel & Associates"
+      },
+      {
+        "name": "Grasshopper",
+        "version": "8.17.25066.7001",
+        "author": "Robert McNeel & Associates"
+      },
+      {
+        "name": "Grasshopper",
+        "version": "8.17.25066.7001",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}

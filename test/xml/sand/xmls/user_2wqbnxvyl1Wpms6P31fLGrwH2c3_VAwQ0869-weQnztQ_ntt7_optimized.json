@@ -1,0 +1,74 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "SR": {
+      "id": "SR",
+      "type": "Connection Service Runner",
+      "guid": "dd394a47-b7de-4f1a-840e-2039b9d95bea",
+      "description": "Run Idea StatiCa Connection API Service",
+      "nickName": "SR",
+      "inputs": {},
+      "outputs": {}
+    },
+    "Panel": {
+      "id": "Panel",
+      "type": "Panel",
+      "guid": "ed0605be-d1c5-48b5-9129-0188a391cbd1",
+      "description": "A panel for custom notes and text values",
+      "nickName": "Panel",
+      "inputs": {},
+      "outputs": {}
+    },
+    "Path": {
+      "id": "Path",
+      "type": "File Path",
+      "guid": "db19b4f3-ccf1-48b6-94b5-eb3398b18d1e",
+      "description": "Contains a collection of file paths",
+      "nickName": "Path",
+      "inputs": {
+        "value": {
+          "description": "Input value",
+          "nick": "V",
+          "optional": true,
+          "source": "Panel"
+        }
+      },
+      "outputs": {}
+    },
+    "click Run": {
+      "id": "click Run",
+      "type": "Group",
+      "guid": "47a82ede-78ac-4255-b9da-e81db379fd4d",
+      "description": "A group of Grasshopper objects",
+      "nickName": "click Run",
+      "inputs": {},
+      "outputs": {},
+      "members": [
+        "SR",
+        "Panel",
+        "Path"
+      ]
+    }
+  },
+  "wires": [
+    {
+      "from": "Panel",
+      "to": "Path.value"
+    }
+  ],
+  "metadata": {
+    "documentId": "1ddd60a0-86d6-43bf-8f3b-6e9cf88aa4de",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.17.25066.7001",
+        "author": "Robert McNeel & Associates"
+      },
+      {
+        "name": "IDEAStatiCa",
+        "version": "0.2.0",
+        "author": "IDEA StatiCa s.r.o"
+      }
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "Environments": {
+      "id": "Environments",
+      "type": "Query Model Environments",
+      "guid": "e6e6637e-b1aa-4e4d-853d-b665fe5b295f",
+      "description": "Query a Rhino document for all available render environments",
+      "nickName": "Environments",
+      "inputs": {
+        "n": {
+          "description": "Name filter. Right-click on this parameter to set the matching method.",
+          "nick": "N",
+          "optional": true
+        }
+      },
+      "outputs": {
+        "e": {
+          "description": "The resultant list of available environments in the model.",
+          "nick": "E",
+          "optional": false
+        }
+      }
+    },
+    "Support": {
+      "id": "Support",
+      "type": "Support",
+      "guid": "d6945b3c-d4f7-4877-831f-592ffe224eb7",
+      "description": "Set support conditions for a beam end or rigid body",
+      "nickName": "Support",
+      "inputs": {},
+      "outputs": {}
+    },
+    "BlendCPt": {
+      "id": "BlendCPt",
+      "type": "Blend Curve Pt",
+      "guid": "3b59e3a7-bd7d-45a3-95d0-5979573cac74",
+      "description": "Create a blend curve between two curves that intersects a point.",
+      "nickName": "BlendCPt",
+      "inputs": {},
+      "outputs": {}
+    }
+  },
+  "wires": [],
+  "metadata": {
+    "documentId": "4e3452ae-5944-40e1-81ff-7eac5574a03c",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.19.25132.1002",
+        "author": "Robert McNeel & Associates"
+      },
+      {
+        "name": "Grasshopper",
+        "version": "8.19.25132.1002",
+        "author": "Robert McNeel & Associates"
+      },
+      {
+        "name": "Grasshopper",
+        "version": "8.19.25132.1002",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}

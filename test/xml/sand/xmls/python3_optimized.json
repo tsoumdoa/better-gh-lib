@@ -1,0 +1,87 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "VB": {
+      "id": "VB",
+      "type": "VB Script",
+      "guid": "8a4d4f7b-3b40-4ebf-9a8c-8c08b36c4bb7",
+      "description": "A VB.NET scriptable component",
+      "nickName": "VB",
+      "inputs": {
+        "x": {
+          "description": "Script Variable x",
+          "nick": "x",
+          "optional": true
+        },
+        "y": {
+          "description": "Script Variable y",
+          "nick": "y",
+          "optional": true
+        }
+      },
+      "outputs": {
+        "out": {
+          "description": "Print, Reflect and Error streams",
+          "nick": "out",
+          "optional": false
+        },
+        "a": {
+          "description": "Output parameter A",
+          "nick": "A",
+          "optional": false
+        }
+      }
+    },
+    "IPy2": {
+      "id": "IPy2",
+      "type": "IronPython 2 Script",
+      "guid": "55d419a2-a62c-4dfd-8ce3-7899806dbbe5",
+      "nickName": "IPy2",
+      "inputs": {
+        "x": {
+          "description": "rhinoscriptsyntax geometry",
+          "nick": "x",
+          "optional": true
+        },
+        "y": {
+          "description": "rhinoscriptsyntax geometry",
+          "nick": "y",
+          "optional": true
+        }
+      },
+      "outputs": {
+        "out": {
+          "description": "Standard output and error contents collected during script run",
+          "nick": "out",
+          "optional": false
+        },
+        "a": {
+          "description": "rhinoscriptsyntax geometry",
+          "nick": "a",
+          "optional": false
+        }
+      },
+      "script": {
+        "language": "python",
+        "code": "\"\"\"Grasshopper Script\"\"\"\na = \"Hello IronPython 2 in Grasshopper!\"\nprint(a)\n",
+        "title": "IPy2"
+      }
+    }
+  },
+  "wires": [],
+  "metadata": {
+    "documentId": "a97bf5ff-b299-4e58-add1-bfb1a1f05ada",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.26.25349.19002",
+        "author": "Robert McNeel & Associates"
+      },
+      {
+        "name": "Grasshopper",
+        "version": "8.26.25349.19002",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}

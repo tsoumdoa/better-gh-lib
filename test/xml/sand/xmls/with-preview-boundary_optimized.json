@@ -1,0 +1,25 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "Seam": {
+      "id": "Seam",
+      "type": "Seam",
+      "guid": "dd56fda8-9276-40b5-be7f-10538926dd33",
+      "description": "Adjust the seam of a closed curve.",
+      "nickName": "Seam",
+      "inputs": {},
+      "outputs": {}
+    }
+  },
+  "wires": [],
+  "metadata": {
+    "documentId": "4f90cb60-f9b4-4530-bb25-a95e57f2804b",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.18.25100.11002",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}

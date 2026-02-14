@@ -1,0 +1,35 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "dangerouslyRandomizeColor": {
+      "id": "dangerouslyRandomizeColor",
+      "type": "C# Script",
+      "guid": "71b7b0fc-9229-49e0-b395-19ed6bc207d1",
+      "nickName": "dangerouslyRandomizeColor",
+      "inputs": {},
+      "outputs": {
+        "out": {
+          "description": "The execution information, as output and error streams",
+          "nick": "out",
+          "optional": false
+        }
+      },
+      "script": {
+        "language": "csharp",
+        "code": "using Grasshopper.Kernel;\r\nusing Rhino.Collections;\r\nusing Rhino.DocObjects;\r\nusing System;\r\nusing System.Collections.Generic;\r\nusing System.Drawing;\r\n\r\npublic class Script_Instance : GH_ScriptInstance\r\n{\r\n    private void RunScript()\r\n    {\r\n        // Get the current active document\r\n        var doc = Rhino.RhinoDoc.ActiveDoc;\r\n\r\n        // Get layers in the current doc\r\n        var layers = doc.Layers;\r\n\r\n        // Randomize all layer colors\r\n        var random = new Random();\r\n        for (int i = 0; i < layers.Count; i++)\r\n        {\r\n            var newColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));\r\n            layers[i].Color = newColor;\r\n        }\r\n\r\n\r\n       \r\n    }\r\n}",
+        "title": "dangerouslyRandomizeColor"
+      }
+    }
+  },
+  "wires": [],
+  "metadata": {
+    "documentId": "c677e019-e3b5-43f2-b2f7-b6d5bf0b4695",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.17.25066.7001",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}

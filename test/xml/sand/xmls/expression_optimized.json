@@ -1,0 +1,42 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "Expression": {
+      "id": "Expression",
+      "type": "Expression",
+      "guid": "8164cdef-d24c-48a8-855a-dc973c8385e6",
+      "description": "Evaluate an expression",
+      "nickName": "Expression",
+      "inputs": {
+        "x": {
+          "description": "'x' value used to evaluate ''",
+          "nick": "x",
+          "optional": true
+        },
+        "y": {
+          "description": "'y' value used to evaluate ''",
+          "nick": "y",
+          "optional": true
+        }
+      },
+      "outputs": {
+        "r": {
+          "description": "Result of expression",
+          "nick": "R",
+          "optional": false
+        }
+      }
+    }
+  },
+  "wires": [],
+  "metadata": {
+    "documentId": "a97bf5ff-b299-4e58-add1-bfb1a1f05ada",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.26.25349.19002",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}

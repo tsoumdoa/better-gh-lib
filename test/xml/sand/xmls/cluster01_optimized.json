@@ -1,0 +1,37 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "Cluster": {
+      "id": "Cluster",
+      "type": "Cluster",
+      "guid": "dc49083d-1af0-40f8-896d-81e3774609fc",
+      "description": "Contains a cluster of Grasshopper components",
+      "nickName": "Cluster",
+      "inputs": {
+        "c": {
+          "description": "Base curve",
+          "nick": "C",
+          "optional": true
+        }
+      },
+      "outputs": {
+        "p": {
+          "description": "Resulting Pipe",
+          "nick": "P",
+          "optional": false
+        }
+      }
+    }
+  },
+  "wires": [],
+  "metadata": {
+    "documentId": "efce4b62-4e86-4607-8caa-e87b84ab6490",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.19.25132.1002",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}

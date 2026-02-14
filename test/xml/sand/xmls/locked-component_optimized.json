@@ -1,0 +1,25 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "Pipe": {
+      "id": "Pipe",
+      "type": "Pipe",
+      "guid": "75a80b18-f8dd-420e-b1df-ada58c037b7e",
+      "description": "Create a pipe surface around a rail curve.",
+      "nickName": "Pipe",
+      "inputs": {},
+      "outputs": {}
+    }
+  },
+  "wires": [],
+  "metadata": {
+    "documentId": "efce4b62-4e86-4607-8caa-e87b84ab6490",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.19.25132.1002",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}

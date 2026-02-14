@@ -1,0 +1,430 @@
+import type { 
+  ParsedGrasshopper, 
+  Component, 
+  InputPort, 
+  OutputPort, 
+  Wire 
+} from "./types.js";
+
+interface XmlItem {
+  name?: string;
+  type_name?: string;
+  type_code?: string;
+  "#text"?: string | number | boolean;
+  [key: string]: unknown;
+}
+
+interface XmlChunk {
+  name?: string;
+  index?: string;
+  items?: {
+    item?: XmlItem[];
+    count?: string;
+  };
+  chunks?: {
+    chunk?: XmlChunk[];
+    count?: string;
+  };
+}
+
+export interface ParsedXml {
+  Archive?: {
+    name?: string;
+    items?: {
+      item?: XmlItem[];
+      count?: string;
+    };
+    chunks?: {
+      chunk?: XmlChunk[];
+      count?: string;
+    };
+  };
+}
+
+function normalizeArray<T>(item: T | T[] | undefined): T[] {
+  if (item === undefined) return [];
+  return Array.isArray(item) ? item : [item];
+}
+
+function extractItems(chunk: XmlChunk): Record<string, unknown> {
+  const result: Record<string, unknown> = {};
+  const items = normalizeArray(chunk.items?.item);
+  
+  for (const item of items) {
+    const name = item.name;
+    if (!name) continue;
+    
+    const typeName = item.type_name;
+    const text = item["#text"];
+    const index = item.index;
+    
+    if (text !== undefined) {
+      // Handle indexed items (e.g., ID_0, ID_1 for groups)
+      const key = index !== undefined ? `${name}_${index}` : name;
+      
+      // Try to parse as number or boolean
+      if (text === "true") {
+        result[key] = true;
+      } else if (text === "false") {
+        result[key] = false;
+      } else if (typeof text === "string" && !isNaN(Number(text)) && text !== "") {
+        result[key] = Number(text);
+      } else {
+        result[key] = text;
+      }
+    } else if (typeName === "gh_drawing_rectanglef") {
+      result[name] = {
+        x: Number(item.X),
+        y: Number(item.Y),
+        width: Number(item.W),
+        height: Number(item.H)
+      };
+    } else if (typeName === "gh_drawing_pointf" || typeName === "gh_drawing_point") {
+      result[name] = {
+        x: Number(item.X),
+        y: Number(item.Y)
+      };
+    } else if (typeName === "gh_drawing_color") {
+      result[name] = item.ARGB;
+    }
+  }
+  
+  return result;
+}
+
+function extractIndexedItems(chunk: XmlChunk, itemName: string): string[] {
+  const result: string[] = [];
+  const items = normalizeArray(chunk.items?.item);
+
+  for (const item of items) {
+    if (item.name === itemName && item["#text"] !== undefined) {
+      const index = item.index !== undefined ? Number(item.index) : 0;
+      if (!isNaN(index)) {
+        result[index] = String(item["#text"]);
+      }
+    }
+  }
+
+  // Filter out any undefined slots and return
+  return result.filter((x): x is string => x !== undefined);
+}
+
+function findChunk(parent: XmlChunk, name: string): XmlChunk | undefined {
+  const chunks = normalizeArray(parent.chunks?.chunk);
+  return chunks.find(c => c.name === name);
+}
+
+function findAllChunks(parent: XmlChunk, name: string): XmlChunk[] {
+  const chunks = normalizeArray(parent.chunks?.chunk);
+  return chunks.filter(c => c.name === name);
+}
+
+function parseParamChunk(paramChunk: XmlChunk, type: 'input' | 'output'): InputPort | OutputPort | null {
+  const items = extractItems(paramChunk);
+
+  const nickName = items.NickName;
+  if (!nickName || typeof nickName !== 'string') return null;
+
+  const port: InputPort | OutputPort = {
+    description: items.Description as string,
+    nick: nickName,
+    optional: items.Optional as boolean ?? false
+  };
+
+  if (type === 'input') {
+    // Source is an indexed item (Source_0, Source_1, etc.)
+    const sources = extractIndexedItems(paramChunk, "Source");
+    if (sources.length > 0) {
+      (port as InputPort).source = sources[0];
+    }
+  }
+
+  return port;
+}
+
+function decodeBase64(encoded: string): string {
+  try {
+    return Buffer.from(encoded, 'base64').toString('utf-8');
+  } catch {
+    return encoded;
+  }
+}
+
+function detectScriptLanguage(componentType: string, scriptChunk: XmlChunk): string {
+  // Check LanguageSpec chunk if available
+  const languageSpecChunk = findChunk(scriptChunk, "LanguageSpec");
+  if (languageSpecChunk) {
+    const items = extractItems(languageSpecChunk);
+    const name = items.Name as string;
+    if (name) {
+      if (name.toLowerCase().includes("python")) return "python";
+      if (name.toLowerCase().includes("csharp") || name.toLowerCase().includes("c#")) return "csharp";
+      return name.toLowerCase();
+    }
+  }
+
+  // Fallback to component type detection
+  const type = componentType.toLowerCase();
+  if (type.includes("python")) return "python";
+  if (type.includes("csharp") || type.includes("c#")) return "csharp";
+  if (type.includes("vb")) return "vb";
+
+  return "unknown";
+}
+
+function parseScript(containerChunk: XmlChunk, componentType: string): Component["script"] | undefined {
+  const scriptChunk = findChunk(containerChunk, "Script");
+  if (!scriptChunk) return undefined;
+
+  const scriptItems = extractItems(scriptChunk);
+  const encodedCode = scriptItems.Text as string;
+  const title = scriptItems.Title as string;
+
+  if (!encodedCode) return undefined;
+
+  const language = detectScriptLanguage(componentType, scriptChunk);
+  const code = decodeBase64(encodedCode);
+
+  return {
+    language,
+    code,
+    title
+  };
+}
+
+interface ParsedComponent {
+  component: Component;
+  guid: string;
+  objectChunk: XmlChunk;
+}
+
+function parseComponent(objectChunk: XmlChunk): ParsedComponent | null {
+  const items = extractItems(objectChunk);
+  const guid = items.GUID as string;
+  const name = items.Name as string;
+
+  if (!guid || !name) {
+    return null;
+  }
+
+  const containerChunk = findChunk(objectChunk, "Container");
+  if (!containerChunk) {
+    return null;
+  }
+
+  const containerItems = extractItems(containerChunk);
+  const instanceGuid = containerItems.InstanceGuid as string || guid;
+  const nickName = containerItems.NickName as string || name;
+
+  const component: Component = {
+    id: "", // Will be set by caller
+    type: name,
+    guid: instanceGuid,
+    description: containerItems.Description as string,
+    nickName: nickName,
+    inputs: {},
+    outputs: {}
+  };
+
+  // Find ParameterData chunk
+  const paramDataChunk = findChunk(containerChunk, "ParameterData");
+  if (paramDataChunk) {
+    const paramDataItems = extractItems(paramDataChunk);
+
+    // Parse input params
+    const inputCount = (paramDataItems.InputCount as number) || 0;
+    const inputParams = findAllChunks(paramDataChunk, "InputParam");
+
+    for (let i = 0; i < inputCount && i < inputParams.length; i++) {
+      const param = parseParamChunk(inputParams[i], 'input');
+      if (param && param.nick) {
+        const key = String(param.nick).toLowerCase();
+        component.inputs[key] = param;
+      }
+    }
+
+    // Parse output params
+    const outputCount = (paramDataItems.OutputCount as number) || 0;
+    const outputParams = findAllChunks(paramDataChunk, "OutputParam");
+
+    for (let i = 0; i < outputCount && i < outputParams.length; i++) {
+      const param = parseParamChunk(outputParams[i], 'output');
+      if (param && param.nick) {
+        const key = String(param.nick).toLowerCase();
+        component.outputs[key] = param;
+      }
+    }
+  }
+
+  // Handle container-level sources for primitive components (e.g., Text, Number Slider)
+  // These don't have ParameterData but have Source directly in Container
+  const sourceGuids = extractIndexedItems(containerChunk, "Source");
+  if (sourceGuids.length > 0 && Object.keys(component.inputs).length === 0) {
+    // Create a default input for components with container-level sources
+    component.inputs["value"] = {
+      description: "Input value",
+      nick: "V",
+      optional: true,
+      source: sourceGuids[0] // Use first source
+    };
+  }
+
+  // Parse script if present
+  const script = parseScript(containerChunk, name);
+  if (script) {
+    component.script = script;
+  }
+
+  return { component, guid: instanceGuid, objectChunk };
+}
+
+export function parseGrasshopper(xmlData: ParsedXml): ParsedGrasshopper {
+  const archive = xmlData.Archive;
+  if (!archive) {
+    throw new Error("Invalid XML: Missing Archive root");
+  }
+  
+  // Extract version
+  const items = normalizeArray(archive.items?.item);
+  const versionItem = items.find(i => i.name === "ArchiveVersion");
+  const version = versionItem 
+    ? `${versionItem.Major}.${versionItem.Minor}.${versionItem.Revision}`
+    : "0.0.0";
+  
+  // Navigate to DefinitionObjects
+  const chunks = normalizeArray(archive.chunks?.chunk);
+  const clipboardChunk = chunks.find(c => c.name === "Clipboard");
+  
+  if (!clipboardChunk) {
+    return {
+      version,
+      components: {},
+      wires: []
+    };
+  }
+
+  const clipboardChunks = normalizeArray(clipboardChunk.chunks?.chunk);
+  const definitionObjectsChunk = clipboardChunks.find(c => c.name === "DefinitionObjects");
+
+  if (!definitionObjectsChunk) {
+    return {
+      version,
+      components: {},
+      wires: []
+    };
+  }
+
+  // Parse components with unique IDs
+  const objectChunks = findAllChunks(definitionObjectsChunk, "Object");
+
+  const components: Record<string, Component> = {};
+  const guidToId: Map<string, string> = new Map();
+  const nickNameCounts: Map<string, number> = new Map();
+
+  // First pass: generate unique IDs and build GUID mapping
+  const parsedComponents: Array<{ parsed: ParsedComponent; id: string }> = [];
+
+  for (const objectChunk of objectChunks) {
+    const parsed = parseComponent(objectChunk);
+    if (!parsed) continue;
+
+    const baseNick = parsed.component.nickName || parsed.component.type;
+    const count = (nickNameCounts.get(baseNick) || 0) + 1;
+    nickNameCounts.set(baseNick, count);
+
+    const uniqueId = count === 1 ? baseNick : `${baseNick}_${count}`;
+    parsed.component.id = uniqueId;
+
+    components[uniqueId] = parsed.component;
+    guidToId.set(parsed.guid, uniqueId);
+
+    // Also map InstanceGuid if it exists and is different
+    const containerChunk = findChunk(objectChunk, "Container");
+    if (containerChunk) {
+      const containerItems = extractItems(containerChunk);
+      const instanceGuid = containerItems.InstanceGuid as string;
+      if (instanceGuid && instanceGuid !== parsed.guid) {
+        guidToId.set(instanceGuid, uniqueId);
+      }
+    }
+
+    parsedComponents.push({ parsed, id: uniqueId });
+  }
+
+  // Build wires from input sources
+  const wires: Wire[] = [];
+
+  for (const { id: compId, parsed } of parsedComponents) {
+    const component = parsed.component;
+    for (const [inputName, input] of Object.entries(component.inputs)) {
+      if (input.source) {
+        const sourceComponentId = guidToId.get(input.source);
+
+        if (sourceComponentId) {
+          wires.push({
+            from: sourceComponentId,
+            to: `${compId}.${inputName}`
+          });
+          // Update the input source to reference the component ID instead of GUID
+          input.source = sourceComponentId;
+        } else {
+          wires.push({
+            from: input.source,
+            to: `${compId}.${inputName}`
+          });
+        }
+      }
+    }
+  }
+
+  // Resolve group members
+  for (const { id: compId, parsed } of parsedComponents) {
+    const component = parsed.component;
+    if (component.type === "Group") {
+      const containerChunk = findChunk(parsed.objectChunk, "Container");
+      if (containerChunk) {
+        const memberGuids = extractIndexedItems(containerChunk, "ID");
+        component.members = memberGuids
+          .map(guid => guidToId.get(guid))
+          .filter((id): id is string => id !== undefined);
+      }
+    }
+  }
+
+  // Extract metadata
+  const metadata: ParsedGrasshopper["metadata"] = {};
+  
+  const pluginVersionItem = clipboardChunks
+    .flatMap(c => normalizeArray(c.items?.item))
+    .find(i => i.name === "plugin_version");
+  
+  if (pluginVersionItem) {
+    metadata.pluginVersion = `${pluginVersionItem.Major}.${pluginVersionItem.Minor}.${pluginVersionItem.Revision}`;
+  }
+  
+  const documentHeaderChunk = clipboardChunks.find(c => c.name === "DocumentHeader");
+  if (documentHeaderChunk) {
+    const docItems = extractItems(documentHeaderChunk);
+    metadata.documentId = docItems.DocumentID as string;
+  }
+  
+  const ghaLibsChunk = clipboardChunks.find(c => c.name === "GHALibraries");
+  if (ghaLibsChunk) {
+    const libChunks = findAllChunks(ghaLibsChunk, "Library");
+    metadata.libraries = libChunks.map(lib => {
+      const libItems = extractItems(lib);
+      return {
+        name: libItems.Name as string,
+        version: libItems.Version as string,
+        author: libItems.Author as string
+      };
+    });
+  }
+  
+  return {
+    version,
+    components,
+    wires,
+    metadata
+  };
+}

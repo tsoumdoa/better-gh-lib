@@ -1,0 +1,25 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "Stretch": {
+      "id": "Stretch",
+      "type": "Stretch",
+      "guid": "ef64a7fd-a71d-4000-9ed5-8dbff36770a8",
+      "description": "Deforms objects by\n\t\t\t\t\t\t\t\t\t\t\tstretching them along a finite axis.",
+      "nickName": "Stretch",
+      "inputs": {},
+      "outputs": {}
+    }
+  },
+  "wires": [],
+  "metadata": {
+    "documentId": "5f2be168-fd19-4192-a32d-420283fa9b39",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.26.25349.19002",
+        "author": "Robert McNeel &\n\t\t\t\t\t\t\t\t\tAssociates"
+      }
+    ]
+  }
+}

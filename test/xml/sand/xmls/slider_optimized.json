@@ -1,0 +1,39 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "Number Slider": {
+      "id": "Number Slider",
+      "type": "Number Slider",
+      "guid": "fbe9a838-5173-40be-944f-4af700c06b49",
+      "description": "Numeric slider for single values",
+      "nickName": "Number Slider",
+      "inputs": {},
+      "outputs": {}
+    },
+    "Sqr": {
+      "id": "Sqr",
+      "type": "Square",
+      "guid": "b825c75c-d8ab-4770-84da-5e921e584f74",
+      "description": "Compute the square of a value",
+      "nickName": "Sqr",
+      "inputs": {},
+      "outputs": {}
+    }
+  },
+  "wires": [],
+  "metadata": {
+    "documentId": "a97bf5ff-b299-4e58-add1-bfb1a1f05ada",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.26.25349.19002",
+        "author": "Robert McNeel & Associates"
+      },
+      {
+        "name": "Grasshopper",
+        "version": "8.26.25349.19002",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}
