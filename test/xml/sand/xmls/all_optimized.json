@@ -50,7 +50,11 @@
       "description": "A panel for custom notes and text values",
       "nickName": "Panel",
       "inputs": {},
-      "outputs": {}
+      "outputs": {},
+      "value": {
+        "type": "panel",
+        "text": 0
+      }
     },
     "Toggle": {
       "id": "Toggle",
@@ -68,7 +72,33 @@
       "description": "Provides a list of preset values to choose from",
       "nickName": "List",
       "inputs": {},
-      "outputs": {}
+      "outputs": {},
+      "value": {
+        "type": "valueList",
+        "items": [
+          {
+            "name": "One",
+            "expression": 1,
+            "selected": true
+          },
+          {
+            "name": "Two",
+            "expression": 2,
+            "selected": false
+          },
+          {
+            "name": "Three",
+            "expression": "2² - 1",
+            "selected": false
+          },
+          {
+            "name": "Four",
+            "expression": "Sqrt(16)",
+            "selected": false
+          }
+        ],
+        "selectedIndex": 0
+      }
     },
     "Cull": {
       "id": "Cull",
@@ -6172,7 +6202,15 @@
       "description": "Numeric slider for single values",
       "nickName": "Number Slider",
       "inputs": {},
-      "outputs": {}
+      "outputs": {},
+      "value": {
+        "type": "slider",
+        "min": 0,
+        "max": 1,
+        "current": 0.25,
+        "digits": 3,
+        "interval": 0
+      }
     },
     "NBlur": {
       "id": "NBlur",
@@ -6311,7 +6349,11 @@
       "description": "A panel for custom notes and text values",
       "nickName": "Panel",
       "inputs": {},
-      "outputs": {}
+      "outputs": {},
+      "value": {
+        "type": "panel",
+        "text": "Double click to edit panel content…"
+      }
     },
     "PCen": {
       "id": "PCen",
@@ -8589,7 +8631,12 @@
       "description": "Contextual numeric input.",
       "nickName": "Get Number",
       "inputs": {},
-      "outputs": {}
+      "outputs": {},
+      "value": {
+        "type": "number",
+        "min": -1.7976931348623157e+308,
+        "max": 1.7976931348623157e+308
+      }
     },
     "Atom": {
       "id": "Atom",
@@ -11530,7 +11577,12 @@
       "description": "Contextual integer input.",
       "nickName": "Get Integer",
       "inputs": {},
-      "outputs": {}
+      "outputs": {},
+      "value": {
+        "type": "number",
+        "min": -2147483648,
+        "max": 2147483647
+      }
     },
     "LS": {
       "id": "LS",

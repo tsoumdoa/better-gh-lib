@@ -8,7 +8,11 @@
       "description": "A panel for custom notes and text values",
       "nickName": "Panel",
       "inputs": {},
-      "outputs": {}
+      "outputs": {},
+      "value": {
+        "type": "panel",
+        "text": "fa"
+      }
     }
   },
   "wires": [],

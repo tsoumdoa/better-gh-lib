@@ -17,7 +17,11 @@
       "description": "A panel for custom notes and text values",
       "nickName": "Panel",
       "inputs": {},
-      "outputs": {}
+      "outputs": {},
+      "value": {
+        "type": "panel",
+        "text": "C:\\Program Files\\IDEA StatiCa\\StatiCa 24.1"
+      }
     },
     "Path": {
       "id": "Path",

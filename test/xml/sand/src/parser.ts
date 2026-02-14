@@ -192,6 +192,80 @@ function parseScript(containerChunk: XmlChunk, componentType: string): Component
   };
 }
 
+function parseComponentValue(containerChunk: XmlChunk, componentType: string, containerItems: Record<string, unknown>): Component["value"] | undefined {
+  const type = componentType.toLowerCase();
+
+  // Parse Slider values
+  if (type.includes("slider")) {
+    const sliderChunk = findChunk(containerChunk, "Slider");
+    if (sliderChunk) {
+      const sliderItems = extractItems(sliderChunk);
+      return {
+        type: 'slider',
+        min: sliderItems.Min as number,
+        max: sliderItems.Max as number,
+        current: sliderItems.Value as number,
+        digits: sliderItems.Digits as number,
+        interval: sliderItems.Interval as number
+      };
+    }
+  }
+
+  // Parse Panel text
+  if (type.includes("panel")) {
+    const text = containerItems.UserText as string;
+    if (text !== undefined) {
+      return {
+        type: 'panel',
+        text
+      };
+    }
+  }
+
+  // Parse Value List
+  if (type.includes("value list")) {
+    const listItems = findAllChunks(containerChunk, "ListItem");
+    if (listItems.length > 0) {
+      const items = listItems.map(item => {
+        const itemData = extractItems(item);
+        return {
+          name: itemData.Name as string,
+          expression: itemData.Expression as string,
+          selected: itemData.Selected === true
+        };
+      });
+
+      const selectedIndex = items.findIndex(item => item.selected);
+
+      return {
+        type: 'valueList',
+        items,
+        selectedIndex: selectedIndex >= 0 ? selectedIndex : undefined
+      };
+    }
+  }
+
+  // Parse Get Number / other numeric inputs
+  if (containerItems.Minimum !== undefined && containerItems.Maximum !== undefined) {
+    return {
+      type: 'number',
+      min: containerItems.Minimum as number,
+      max: containerItems.Maximum as number,
+      current: containerItems.Value as number
+    };
+  }
+
+  // Parse generic text value
+  if (containerItems.Value !== undefined && typeof containerItems.Value === 'string') {
+    return {
+      type: 'text',
+      text: containerItems.Value
+    };
+  }
+
+  return undefined;
+}
+
 interface ParsedComponent {
   component: Component;
   guid: string;
@@ -278,6 +352,12 @@ function parseComponent(objectChunk: XmlChunk): ParsedComponent | null {
   // Parse expression if present (for Expression components)
   if (containerItems.Expression) {
     component.expression = String(containerItems.Expression);
+  }
+
+  // Parse component value (for sliders, panels, value lists, etc.)
+  const value = parseComponentValue(containerChunk, name, containerItems);
+  if (value) {
+    component.value = value;
   }
 
   return { component, guid: instanceGuid, objectChunk };

@@ -31,6 +31,26 @@ export interface Component {
   };
   members?: string[];   // For Group components: list of component IDs in the group
   expression?: string;  // For Expression components: the expression formula
+  value?: ComponentValue; // For input components: slider values, panel text, value list items, etc.
+}
+
+export interface ComponentValue {
+  type: 'slider' | 'panel' | 'valueList' | 'number' | 'text';
+  // Slider specific
+  min?: number;
+  max?: number;
+  current?: number;
+  digits?: number;
+  interval?: number;
+  // Panel/Text specific
+  text?: string;
+  // Value List specific
+  items?: Array<{
+    name: string;
+    expression: string;
+    selected: boolean;
+  }>;
+  selectedIndex?: number;
 }
 
 export interface ParsedGrasshopper {
