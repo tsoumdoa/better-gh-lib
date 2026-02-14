@@ -30,6 +30,7 @@ export interface Component {
     title?: string;      // Script title/name
   };
   members?: string[];   // For Group components: list of component IDs in the group
+  expression?: string;  // For Expression components: the expression formula
 }
 
 export interface ParsedGrasshopper {

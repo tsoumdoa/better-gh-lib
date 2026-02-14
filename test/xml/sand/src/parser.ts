@@ -275,6 +275,11 @@ function parseComponent(objectChunk: XmlChunk): ParsedComponent | null {
     component.script = script;
   }
 
+  // Parse expression if present (for Expression components)
+  if (containerItems.Expression) {
+    component.expression = String(containerItems.Expression);
+  }
+
   return { component, guid: instanceGuid, objectChunk };
 }
 

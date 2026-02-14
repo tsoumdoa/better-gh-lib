@@ -25,7 +25,8 @@
           "nick": "R",
           "optional": false
         }
-      }
+      },
+      "expression": "Format(\"{0}, {1}\", x, y)"
     }
   },
   "wires": [],

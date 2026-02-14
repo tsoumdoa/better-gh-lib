@@ -79,4 +79,6 @@ The parser produces a clean, semantic JSON structure:
 ## Capabilities to be added
 - Parse compoennt location and size
 - Parse component parameter's pivot point
+- Number
+- Expression
 
