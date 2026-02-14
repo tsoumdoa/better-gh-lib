@@ -17,6 +17,10 @@ bun run parse <input.xml> [output.json]
 # Example
 bun run parse brep-area-Wire_1.xml
 bun run parse brep-area-Wire_1.xml my-output.json
+
+# Parse multiple files
+bun run src/batch-parse.ts "xmls/*.xml"
+bun run src/batch-parse.ts "xmls/*.xml" --visuals
 ```
 
 ## Output Format

@@ -3,7 +3,13 @@ import type {
   Component, 
   InputPort, 
   OutputPort, 
-  Wire 
+  Wire,
+  ParseOptions,
+  Visuals,
+  ComponentState,
+  WireStyle,
+  DataMapping,
+  PortOptions
 } from "./types.js";
 
 interface XmlItem {
@@ -128,6 +134,16 @@ function findAllChunks(parent: XmlChunk, name: string): XmlChunk[] {
   return chunks.filter(c => c.name === name);
 }
 
+function parseMapping(mappingValue: number): DataMapping {
+  // Mapping values: 0=None, 1=Flatten, 2=Graft, 3=Reparametrize
+  switch (mappingValue) {
+    case 1: return 'flatten';
+    case 2: return 'graft';
+    case 3: return 'reparametrize';
+    default: return 'none';
+  }
+}
+
 function parseParamChunk(paramChunk: XmlChunk, type: 'input' | 'output'): InputPort | OutputPort | null {
   const items = extractItems(paramChunk);
 
@@ -146,6 +162,38 @@ function parseParamChunk(paramChunk: XmlChunk, type: 'input' | 'output'): InputP
     if (sources.length > 0) {
       (port as InputPort).source = sources[0];
     }
+  }
+
+  // Parse parameter options (mapping, simplify, etc.)
+  const options: PortOptions = {};
+  let hasOptions = false;
+
+  // Mapping: 0=None, 1=Flatten, 2=Graft, 3=Reparametrize
+  if (items.Mapping !== undefined) {
+    options.mapping = parseMapping(items.Mapping as number);
+    hasOptions = true;
+  }
+
+  // Simplify data
+  if (items.SimplifyData === true) {
+    options.simplify = true;
+    hasOptions = true;
+  }
+
+  // Reverse
+  if (items.Reverse === true) {
+    options.reverse = true;
+    hasOptions = true;
+  }
+
+  // Expression applied to this parameter
+  if (items.Expression && typeof items.Expression === 'string') {
+    options.expression = items.Expression as string;
+    hasOptions = true;
+  }
+
+  if (hasOptions) {
+    port.options = options;
   }
 
   return port;
@@ -275,13 +323,73 @@ function parseComponentValue(containerChunk: XmlChunk, componentType: string, co
   return undefined;
 }
 
+function parseVisuals(containerChunk: XmlChunk, containerItems: Record<string, unknown>): Visuals | undefined {
+  const visuals: Visuals = {};
+  let hasVisuals = false;
+
+  // Parse bounds from Attributes chunk
+  const attributesChunk = findChunk(containerChunk, "Attributes");
+  if (attributesChunk) {
+    const attrItems = extractItems(attributesChunk);
+
+    if (attrItems.Bounds) {
+      const bounds = attrItems.Bounds as { x: number; y: number; width: number; height: number };
+      visuals.bounds = bounds;
+      hasVisuals = true;
+    }
+
+    if (attrItems.Pivot) {
+      const pivot = attrItems.Pivot as { x: number; y: number };
+      visuals.pivot = pivot;
+      hasVisuals = true;
+    }
+  }
+
+  // Parse color from container items (for groups)
+  if (containerItems.Colour) {
+    visuals.color = containerItems.Colour as string;
+    hasVisuals = true;
+  }
+
+  return hasVisuals ? visuals : undefined;
+}
+
+function parseComponentState(containerItems: Record<string, unknown>): ComponentState | undefined {
+  const state: ComponentState = {};
+  let hasState = false;
+
+  if (containerItems.Hidden !== undefined) {
+    state.hidden = containerItems.Hidden === true;
+    hasState = true;
+  }
+
+  if (containerItems.Locked !== undefined) {
+    state.locked = containerItems.Locked === true;
+    hasState = true;
+  }
+
+  // Frozen is typically in container items
+  if (containerItems.Frozen !== undefined) {
+    state.frozen = containerItems.Frozen === true;
+    hasState = true;
+  }
+
+  // Selected is typically in Attributes
+  if (containerItems.Selected !== undefined) {
+    state.selected = containerItems.Selected === true;
+    hasState = true;
+  }
+
+  return hasState ? state : undefined;
+}
+
 interface ParsedComponent {
   component: Component;
   guid: string;
   objectChunk: XmlChunk;
 }
 
-function parseComponent(objectChunk: XmlChunk): ParsedComponent | null {
+function parseComponent(objectChunk: XmlChunk, options?: ParseOptions): ParsedComponent | null {
   const items = extractItems(objectChunk);
   const guid = items.GUID as string;
   const name = items.Name as string;
@@ -339,6 +447,32 @@ function parseComponent(objectChunk: XmlChunk): ParsedComponent | null {
     }
   }
 
+  // Also check for param_input and param_output chunks directly in container
+  // (some components like Evaluate Surface use this format)
+  const paramInputs = findAllChunks(containerChunk, "param_input");
+  for (const paramChunk of paramInputs) {
+    const param = parseParamChunk(paramChunk, 'input');
+    if (param && param.nick) {
+      const key = String(param.nick).toLowerCase();
+      // Only add if not already present from ParameterData
+      if (!component.inputs[key]) {
+        component.inputs[key] = param;
+      }
+    }
+  }
+
+  const paramOutputs = findAllChunks(containerChunk, "param_output");
+  for (const paramChunk of paramOutputs) {
+    const param = parseParamChunk(paramChunk, 'output');
+    if (param && param.nick) {
+      const key = String(param.nick).toLowerCase();
+      // Only add if not already present from ParameterData
+      if (!component.outputs[key]) {
+        component.outputs[key] = param;
+      }
+    }
+  }
+
   // Handle container-level sources for primitive components (e.g., Text, Number Slider)
   // These don't have ParameterData but have Source directly in Container
   const sourceGuids = extractIndexedItems(containerChunk, "Source");
@@ -363,6 +497,11 @@ function parseComponent(objectChunk: XmlChunk): ParsedComponent | null {
     component.expression = String(containerItems.Expression);
   }
 
+  // Parse internal expression if present (e.g., Number component with x/2)
+  if (containerItems.InternalExpression) {
+    component.internalExpression = String(containerItems.InternalExpression);
+  }
+
   // Parse component value (for sliders, panels, value lists, etc.)
   const value = parseComponentValue(containerChunk, name, containerItems);
   if (value) {
@@ -378,10 +517,23 @@ function parseComponent(objectChunk: XmlChunk): ParsedComponent | null {
     };
   }
 
+  // Parse visuals if option is enabled
+  if (options?.includeVisuals) {
+    const visuals = parseVisuals(containerChunk, containerItems);
+    if (visuals) {
+      component.visuals = visuals;
+    }
+
+    const state = parseComponentState(containerItems);
+    if (state) {
+      component.state = state;
+    }
+  }
+
   return { component, guid: instanceGuid, objectChunk };
 }
 
-export function parseGrasshopper(xmlData: ParsedXml): ParsedGrasshopper {
+export function parseGrasshopper(xmlData: ParsedXml, options?: ParseOptions): ParsedGrasshopper {
   const archive = xmlData.Archive;
   if (!archive) {
     throw new Error("Invalid XML: Missing Archive root");
@@ -428,7 +580,7 @@ export function parseGrasshopper(xmlData: ParsedXml): ParsedGrasshopper {
   const parsedComponents: Array<{ parsed: ParsedComponent; id: string }> = [];
 
   for (const objectChunk of objectChunks) {
-    const parsed = parseComponent(objectChunk);
+    const parsed = parseComponent(objectChunk, options);
     if (!parsed) continue;
 
     const baseNick = parsed.component.nickName || parsed.component.type;

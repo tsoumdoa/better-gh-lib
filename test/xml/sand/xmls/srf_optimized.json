@@ -7,11 +7,51 @@
       "guid": "4b95b58a-690b-46e5-bb2c-920d2d0c65c8",
       "description": "Create a plane surface",
       "nickName": "PlaneSrf",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "p": {
+          "description": "Surface base plane",
+          "nick": "P",
+          "optional": false,
+          "source": "7100986d-a381-44a7-a723-933eb8b98fd3"
+        },
+        "x": {
+          "description": "Dimensions in X direction",
+          "nick": "X",
+          "optional": false
+        },
+        "y": {
+          "description": "Dimensions in Y direction",
+          "nick": "Y",
+          "optional": false
+        }
+      },
+      "outputs": {
+        "p": {
+          "description": "Resulting plane surface",
+          "nick": "P",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 239,
+          "y": 198,
+          "width": 55,
+          "height": 64
+        },
+        "pivot": {
+          "x": 265,
+          "y": 230
+        }
+      }
     }
   },
-  "wires": [],
+  "wires": [
+    {
+      "from": "7100986d-a381-44a7-a723-933eb8b98fd3",
+      "to": "PlaneSrf.p"
+    }
+  ],
   "metadata": {
     "documentId": "1f4f0f48-07e9-450b-b901-81ff24521174",
     "libraries": [

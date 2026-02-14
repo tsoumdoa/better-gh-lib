@@ -7,11 +7,54 @@
       "guid": "75a80b18-f8dd-420e-b1df-ada58c037b7e",
       "description": "Create a pipe surface around a rail curve.",
       "nickName": "Pipe",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "c": {
+          "description": "Base curve",
+          "nick": "C",
+          "optional": false,
+          "source": "987173a6-3b32-4cf0-81b7-3252208270e2"
+        },
+        "r": {
+          "description": "Pipe radius",
+          "nick": "R",
+          "optional": false
+        },
+        "e": {
+          "description": "Specifies the type of caps (0=None, 1=Flat, 2=Round)",
+          "nick": "E",
+          "optional": false
+        }
+      },
+      "outputs": {
+        "p": {
+          "description": "Resulting Pipe",
+          "nick": "P",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 241,
+          "y": 142,
+          "width": 56,
+          "height": 64
+        },
+        "pivot": {
+          "x": 268,
+          "y": 174
+        }
+      },
+      "state": {
+        "locked": true
+      }
     }
   },
-  "wires": [],
+  "wires": [
+    {
+      "from": "987173a6-3b32-4cf0-81b7-3252208270e2",
+      "to": "Pipe.c"
+    }
+  ],
   "metadata": {
     "documentId": "efce4b62-4e86-4607-8caa-e87b84ab6490",
     "libraries": [

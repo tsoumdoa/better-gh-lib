@@ -16,6 +16,18 @@
         "current": 8,
         "digits": 3,
         "interval": 1
+      },
+      "visuals": {
+        "bounds": {
+          "x": 93,
+          "y": 192,
+          "width": 177,
+          "height": 20
+        },
+        "pivot": {
+          "x": 93.5,
+          "y": 192
+        }
       }
     },
     "Sqr": {
@@ -24,11 +36,41 @@
       "guid": "b825c75c-d8ab-4770-84da-5e921e584f74",
       "description": "Compute the square of a value",
       "nickName": "Sqr",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "x": {
+          "description": "Input value",
+          "nick": "x",
+          "optional": false,
+          "source": "Number Slider"
+        }
+      },
+      "outputs": {
+        "y": {
+          "description": "Output value",
+          "nick": "y",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 317,
+          "y": 169,
+          "width": 55,
+          "height": 31
+        },
+        "pivot": {
+          "x": 343,
+          "y": 185
+        }
+      }
     }
   },
-  "wires": [],
+  "wires": [
+    {
+      "from": "Number Slider",
+      "to": "Sqr.x"
+    }
+  ],
   "metadata": {
     "documentId": "a97bf5ff-b299-4e58-add1-bfb1a1f05ada",
     "libraries": [

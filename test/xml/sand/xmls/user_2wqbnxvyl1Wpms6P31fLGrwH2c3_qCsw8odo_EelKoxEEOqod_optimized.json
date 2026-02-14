@@ -8,7 +8,19 @@
       "description": "Contains a collection of generic surfaces",
       "nickName": "Srf",
       "inputs": {},
-      "outputs": {}
+      "outputs": {},
+      "visuals": {
+        "bounds": {
+          "x": 824,
+          "y": 305,
+          "width": 50,
+          "height": 20
+        },
+        "pivot": {
+          "x": 849.8335,
+          "y": 315.33334
+        }
+      }
     },
     "Area": {
       "id": "Area",
@@ -35,6 +47,18 @@
           "nick": "C",
           "optional": true
         }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 895,
+          "y": 352,
+          "width": 66,
+          "height": 44
+        },
+        "pivot": {
+          "x": 927,
+          "y": 374
+        }
       }
     },
     "EvalSrf": {
@@ -43,8 +67,59 @@
       "guid": "99d28540-7f1e-4c39-9c56-16373445ed5f",
       "description": "Evaluate local surface properties at a {uv} coordinate.",
       "nickName": "EvalSrf",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "s": {
+          "description": "Base surface",
+          "nick": "S",
+          "optional": false,
+          "source": "Srf"
+        },
+        "uv": {
+          "description": "{uv} coordinate to evaluate",
+          "nick": "uv",
+          "optional": false,
+          "source": "4996710a-b78e-4ad4-96aa-c6d1d83ce2fb"
+        }
+      },
+      "outputs": {
+        "p": {
+          "description": "Point at {uv}",
+          "nick": "P",
+          "optional": false
+        },
+        "n": {
+          "description": "Normal at {uv}",
+          "nick": "N",
+          "optional": false
+        },
+        "u": {
+          "description": "U direction at {uv}",
+          "nick": "U",
+          "optional": false
+        },
+        "v": {
+          "description": "V direction at {uv}",
+          "nick": "V",
+          "optional": false
+        },
+        "f": {
+          "description": "Frame at {uv}",
+          "nick": "F",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 1102,
+          "y": 288,
+          "width": 71,
+          "height": 104
+        },
+        "pivot": {
+          "x": 1138,
+          "y": 340
+        }
+      }
     },
     "Srf CP": {
       "id": "Srf CP",
@@ -52,8 +127,49 @@
       "guid": "9ea37707-5302-4d6c-ba38-65d5dd54e3ac",
       "description": "Find the closest point on a surface.",
       "nickName": "Srf CP",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "p": {
+          "description": "Sample point",
+          "nick": "P",
+          "optional": false,
+          "source": "558b7bf7-4590-447b-a7f0-196b4d03acc8"
+        },
+        "s": {
+          "description": "Base surface",
+          "nick": "S",
+          "optional": false,
+          "source": "Srf"
+        }
+      },
+      "outputs": {
+        "p": {
+          "description": "Closest point",
+          "nick": "P",
+          "optional": false
+        },
+        "uvp": {
+          "description": "{uv} coordinates of closest point",
+          "nick": "uvP",
+          "optional": false
+        },
+        "d": {
+          "description": "Distance between sample point and surface",
+          "nick": "D",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 998,
+          "y": 333,
+          "width": 75,
+          "height": 64
+        },
+        "pivot": {
+          "x": 1028,
+          "y": 365
+        }
+      }
     },
     "Group": {
       "id": "Group",
@@ -63,6 +179,9 @@
       "nickName": "Group",
       "inputs": {},
       "outputs": {},
+      "visuals": {
+        "color": "150;255;255;255"
+      },
       "members": [
         "Srf",
         "Area",
@@ -75,6 +194,22 @@
     {
       "from": "Srf",
       "to": "Area.g"
+    },
+    {
+      "from": "Srf",
+      "to": "EvalSrf.s"
+    },
+    {
+      "from": "4996710a-b78e-4ad4-96aa-c6d1d83ce2fb",
+      "to": "EvalSrf.uv"
+    },
+    {
+      "from": "558b7bf7-4590-447b-a7f0-196b4d03acc8",
+      "to": "Srf CP.p"
+    },
+    {
+      "from": "Srf",
+      "to": "Srf CP.s"
     }
   ],
   "metadata": {

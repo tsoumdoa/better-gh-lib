@@ -1,6 +1,18 @@
 export interface Wire {
   from: string;
   to: string;
+  style?: WireStyle;  // Only included with --visuals flag
+}
+
+export type WireStyle = 'normal' | 'faint' | 'hidden';
+
+export type DataMapping = 'none' | 'flatten' | 'graft' | 'simplify' | 'reparametrize';
+
+export interface PortOptions {
+  mapping?: DataMapping;     // Tree mapping: flatten, graft, etc.
+  simplify?: boolean;        // Simplify data option
+  reverse?: boolean;         // Reverse list option
+  expression?: string;       // Expression applied to this port
 }
 
 export interface InputPort {
@@ -8,12 +20,36 @@ export interface InputPort {
   nick: string;
   source?: string;  // References component id
   optional?: boolean;
+  options?: PortOptions;  // Input parameter options (flatten, graft, etc.)
 }
 
 export interface OutputPort {
   description?: string;
   nick: string;
   optional?: boolean;
+  options?: PortOptions;  // Output parameter options (flatten, graft, etc.)
+}
+
+export interface Visuals {
+  bounds?: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  };
+  pivot?: {
+    x: number;
+    y: number;
+  };
+  color?: string;  // ARGB format: "255;255;38;0"
+  zIndex?: number;
+}
+
+export interface ComponentState {
+  hidden?: boolean;
+  locked?: boolean;
+  frozen?: boolean;
+  selected?: boolean;
 }
 
 export interface Component {
@@ -31,11 +67,14 @@ export interface Component {
   };
   members?: string[];   // For Group components: list of component IDs in the group
   expression?: string;  // For Expression components: the expression formula
+  internalExpression?: string; // For components with internal expressions (e.g., Number with x/2)
   value?: ComponentValue; // For input components: slider values, panel text, value list items, etc.
   cluster?: {
     data: string;        // Base64 encoded cluster content (compressed/binary)
     size: number;        // Original size in bytes
   };
+  visuals?: Visuals;    // Only included with --visuals flag
+  state?: ComponentState; // Only included with --visuals flag
 }
 
 export interface ComponentValue {
@@ -70,4 +109,8 @@ export interface ParsedGrasshopper {
       author?: string;
     }>;
   };
+}
+
+export interface ParseOptions {
+  includeVisuals: boolean;
 }

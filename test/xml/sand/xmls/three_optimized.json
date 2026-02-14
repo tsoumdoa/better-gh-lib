@@ -20,6 +20,21 @@
           "nick": "E",
           "optional": false
         }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 312,
+          "y": 46,
+          "width": 72,
+          "height": 92
+        },
+        "pivot": {
+          "x": 355,
+          "y": 92
+        }
+      },
+      "state": {
+        "hidden": true
       }
     },
     "Support": {
@@ -28,8 +43,75 @@
       "guid": "d6945b3c-d4f7-4877-831f-592ffe224eb7",
       "description": "Set support conditions for a beam end or rigid body",
       "nickName": "Support",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "frame": {
+          "description": "The plane to restrain",
+          "nick": "Frame",
+          "optional": true
+        },
+        "target": {
+          "description": "Target plane. If none supplied, the initial Frame will be used",
+          "nick": "Target",
+          "optional": true
+        },
+        "x": {
+          "description": "Translation in X",
+          "nick": "X",
+          "optional": false
+        },
+        "y": {
+          "description": "Translation in Y",
+          "nick": "Y",
+          "optional": false
+        },
+        "z": {
+          "description": "Translation in Z",
+          "nick": "Z",
+          "optional": false
+        },
+        "xx": {
+          "description": "Rotation about X",
+          "nick": "XX",
+          "optional": false
+        },
+        "yy": {
+          "description": "Rotation about Y",
+          "nick": "YY",
+          "optional": false
+        },
+        "zz": {
+          "description": "Rotation about Z",
+          "nick": "ZZ",
+          "optional": false
+        },
+        "strength": {
+          "description": "Strength",
+          "nick": "Strength",
+          "optional": false
+        }
+      },
+      "outputs": {
+        "s": {
+          "description": "S",
+          "nick": "S",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 294,
+          "y": 80,
+          "width": 90,
+          "height": 184
+        },
+        "pivot": {
+          "x": 355,
+          "y": 172
+        }
+      },
+      "state": {
+        "hidden": true
+      }
     },
     "BlendCPt": {
       "id": "BlendCPt",
@@ -37,8 +119,50 @@
       "guid": "3b59e3a7-bd7d-45a3-95d0-5979573cac74",
       "description": "Create a blend curve between two curves that intersects a point.",
       "nickName": "BlendCPt",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "a": {
+          "description": "First curve for blend",
+          "nick": "A",
+          "optional": false
+        },
+        "b": {
+          "description": "Second curve for blend",
+          "nick": "B",
+          "optional": false
+        },
+        "p": {
+          "description": "Point for blend intersection",
+          "nick": "P",
+          "optional": false
+        },
+        "c": {
+          "description": "Continuity of blend (1=tangency, 2=curvature)",
+          "nick": "C",
+          "optional": false
+        }
+      },
+      "outputs": {
+        "b": {
+          "description": "Blend curve connecting the end of A to the start of B, ideally coincident with P",
+          "nick": "B",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 328,
+          "y": 210,
+          "width": 56,
+          "height": 84
+        },
+        "pivot": {
+          "x": 355,
+          "y": 252
+        }
+      },
+      "state": {
+        "hidden": true
+      }
     }
   },
   "wires": [],

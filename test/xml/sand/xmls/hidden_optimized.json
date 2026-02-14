@@ -7,8 +7,50 @@
       "guid": "ef64a7fd-a71d-4000-9ed5-8dbff36770a8",
       "description": "Deforms objects by\n\t\t\t\t\t\t\t\t\t\t\tstretching them along a finite axis.",
       "nickName": "Stretch",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "g": {
+          "description": "Base geometry",
+          "nick": "G",
+          "optional": false
+        },
+        "x": {
+          "description": "Stretch axis",
+          "nick": "X",
+          "optional": false
+        },
+        "l": {
+          "description": "Length of new\n\t\t\t\t\t\t\t\t\t\t\t\t\tstretch axis.",
+          "nick": "L",
+          "optional": false
+        },
+        "r": {
+          "description": "Geometry will\n\t\t\t\t\t\t\t\t\t\t\t\t\tnot be deformed as it is transformed",
+          "nick": "R",
+          "optional": false
+        }
+      },
+      "outputs": {
+        "g": {
+          "description": "Morphed\n\t\t\t\t\t\t\t\t\t\t\t\t\tgeometry",
+          "nick": "G",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 364,
+          "y": 198,
+          "width": 57,
+          "height": 84
+        },
+        "pivot": {
+          "x": 391,
+          "y": 240
+        }
+      },
+      "state": {
+        "hidden": true
+      }
     }
   },
   "wires": [],

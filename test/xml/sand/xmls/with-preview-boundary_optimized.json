@@ -7,8 +7,37 @@
       "guid": "dd56fda8-9276-40b5-be7f-10538926dd33",
       "description": "Adjust the seam of a closed curve.",
       "nickName": "Seam",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "c": {
+          "description": "Curve to adjust",
+          "nick": "C",
+          "optional": false
+        },
+        "t": {
+          "description": "Parameter of new seam",
+          "nick": "t",
+          "optional": false
+        }
+      },
+      "outputs": {
+        "c": {
+          "description": "Adjusted curve",
+          "nick": "C",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 607,
+          "y": 81,
+          "width": 57,
+          "height": 44
+        },
+        "pivot": {
+          "x": 634,
+          "y": 103
+        }
+      }
     }
   },
   "wires": [],

@@ -7,8 +7,37 @@
       "guid": "db9dff29-7343-463f-89bd-8f4c60adc6ed",
       "description": "Extract iso-edges on surface from linear edges",
       "nickName": "ptIsoE",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "l": {
+          "description": "Lines to extract their iso",
+          "nick": "L",
+          "optional": false
+        },
+        "s": {
+          "description": "Surface",
+          "nick": "S",
+          "optional": false
+        }
+      },
+      "outputs": {
+        "c": {
+          "description": "Iso curve segments",
+          "nick": "C",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 488,
+          "y": 209,
+          "width": 56,
+          "height": 48
+        },
+        "pivot": {
+          "x": 514,
+          "y": 233
+        }
+      }
     }
   },
   "wires": [],

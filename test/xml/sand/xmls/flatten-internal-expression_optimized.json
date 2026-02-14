@@ -1,31 +1,51 @@
 {
   "version": "0.2.2",
   "components": {
+    "Group": {
+      "id": "Group",
+      "type": "Group",
+      "guid": "6474c9d1-f864-4e12-9fc2-143d2274c5a0",
+      "description": "A group of Grasshopper objects",
+      "nickName": "Group",
+      "inputs": {},
+      "outputs": {},
+      "visuals": {
+        "color": "150;170;135;255"
+      },
+      "members": [
+        "Srf",
+        "Area",
+        "EvalSrf",
+        "Srf CP",
+        "Group_2",
+        "Num"
+      ]
+    },
     "Srf": {
       "id": "Srf",
       "type": "Surface",
-      "guid": "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9",
+      "guid": "e995ec7a-7203-4f73-ba50-d86ae1387233",
       "description": "Contains a collection of generic surfaces",
       "nickName": "Srf",
       "inputs": {},
       "outputs": {},
       "visuals": {
         "bounds": {
-          "x": 824,
-          "y": 305,
-          "width": 50,
+          "x": 139,
+          "y": 856,
+          "width": 69,
           "height": 20
         },
         "pivot": {
-          "x": 849.8335,
-          "y": 315.33334
+          "x": 183.70828,
+          "y": 866.85254
         }
       }
     },
     "Area": {
       "id": "Area",
       "type": "Area",
-      "guid": "3a34a54f-431f-4260-9706-364b3e6ff8ab",
+      "guid": "fa40702d-c0bc-4aa5-bf77-87a35e688c6e",
       "description": "Solve area properties for breps, meshes and planar closed curves.",
       "nickName": "Area",
       "inputs": {
@@ -50,21 +70,21 @@
       },
       "visuals": {
         "bounds": {
-          "x": 895,
-          "y": 352,
-          "width": 66,
+          "x": 233,
+          "y": 902,
+          "width": 57,
           "height": 44
         },
         "pivot": {
-          "x": 927,
-          "y": 374
+          "x": 260,
+          "y": 924
         }
       }
     },
     "EvalSrf": {
       "id": "EvalSrf",
       "type": "Evaluate Surface",
-      "guid": "99d28540-7f1e-4c39-9c56-16373445ed5f",
+      "guid": "b333b8a1-6f3b-4966-af63-97333e2c8dde",
       "description": "Evaluate local surface properties at a {uv} coordinate.",
       "nickName": "EvalSrf",
       "inputs": {
@@ -72,13 +92,17 @@
           "description": "Base surface",
           "nick": "S",
           "optional": false,
-          "source": "Srf"
+          "source": "Srf",
+          "options": {
+            "mapping": "graft",
+            "simplify": true
+          }
         },
         "uv": {
           "description": "{uv} coordinate to evaluate",
           "nick": "uv",
           "optional": false,
-          "source": "4996710a-b78e-4ad4-96aa-c6d1d83ce2fb"
+          "source": "b3a2442b-3c47-464d-8dc3-25a960ff8e43"
         }
       },
       "outputs": {
@@ -110,21 +134,21 @@
       },
       "visuals": {
         "bounds": {
-          "x": 1102,
-          "y": 288,
-          "width": 71,
+          "x": 404,
+          "y": 838,
+          "width": 97,
           "height": 104
         },
         "pivot": {
-          "x": 1138,
-          "y": 340
+          "x": 471,
+          "y": 890
         }
       }
     },
     "Srf CP": {
       "id": "Srf CP",
       "type": "Surface Closest Point",
-      "guid": "9ea37707-5302-4d6c-ba38-65d5dd54e3ac",
+      "guid": "3b227dee-3ecb-4b9b-934f-cd9417adf17e",
       "description": "Find the closest point on a surface.",
       "nickName": "Srf CP",
       "inputs": {
@@ -132,7 +156,7 @@
           "description": "Sample point",
           "nick": "P",
           "optional": false,
-          "source": "558b7bf7-4590-447b-a7f0-196b4d03acc8"
+          "source": "75bce79b-a5fb-40ad-a1a5-2326373a0614"
         },
         "s": {
           "description": "Base surface",
@@ -160,21 +184,21 @@
       },
       "visuals": {
         "bounds": {
-          "x": 998,
-          "y": 333,
-          "width": 75,
+          "x": 335,
+          "y": 883,
+          "width": 66,
           "height": 64
         },
         "pivot": {
-          "x": 1028,
-          "y": 365
+          "x": 361,
+          "y": 915
         }
       }
     },
-    "Group": {
-      "id": "Group",
+    "Group_2": {
+      "id": "Group_2",
       "type": "Group",
-      "guid": "5493eb71-1c24-4364-b077-14808540269b",
+      "guid": "d8079aca-ca0f-4eb9-8073-e810bca9a355",
       "description": "A group of Grasshopper objects",
       "nickName": "Group",
       "inputs": {},
@@ -188,6 +212,35 @@
         "EvalSrf",
         "Srf CP"
       ]
+    },
+    "Num": {
+      "id": "Num",
+      "type": "Number",
+      "guid": "3351e93b-9500-4b97-9109-3eec86791653",
+      "description": "Contains a collection of floating point numbers",
+      "nickName": "Num",
+      "inputs": {
+        "value": {
+          "description": "Input value",
+          "nick": "V",
+          "optional": true,
+          "source": "215b7b7e-ad23-4c37-afae-9035e25fd59f"
+        }
+      },
+      "outputs": {},
+      "internalExpression": "x/2",
+      "visuals": {
+        "bounds": {
+          "x": 359,
+          "y": 1003,
+          "width": 69,
+          "height": 20
+        },
+        "pivot": {
+          "x": 403.13715,
+          "y": 1013.39056
+        }
+      }
     }
   },
   "wires": [
@@ -200,29 +253,33 @@
       "to": "EvalSrf.s"
     },
     {
-      "from": "4996710a-b78e-4ad4-96aa-c6d1d83ce2fb",
+      "from": "b3a2442b-3c47-464d-8dc3-25a960ff8e43",
       "to": "EvalSrf.uv"
     },
     {
-      "from": "558b7bf7-4590-447b-a7f0-196b4d03acc8",
+      "from": "75bce79b-a5fb-40ad-a1a5-2326373a0614",
       "to": "Srf CP.p"
     },
     {
       "from": "Srf",
       "to": "Srf CP.s"
+    },
+    {
+      "from": "215b7b7e-ad23-4c37-afae-9035e25fd59f",
+      "to": "Num.value"
     }
   ],
   "metadata": {
-    "documentId": "9ccf3e65-b505-4af4-87ff-dcecae8746d0",
+    "documentId": "b81adce6-bbd0-433e-ae56-1204ead97c82",
     "libraries": [
       {
         "name": "Grasshopper",
-        "version": "8.17.25066.7001",
+        "version": "8.27.26019.16022",
         "author": "Robert McNeel & Associates"
       },
       {
         "name": "Grasshopper",
-        "version": "8.17.25066.7001",
+        "version": "8.27.26019.16022",
         "author": "Robert McNeel & Associates"
       }
     ]

@@ -8,7 +8,19 @@
       "description": "Contains a collection of Breps (Boundary REPresentations)",
       "nickName": "Brep",
       "inputs": {},
-      "outputs": {}
+      "outputs": {},
+      "visuals": {
+        "bounds": {
+          "x": 445,
+          "y": 351,
+          "width": 50,
+          "height": 20
+        },
+        "pivot": {
+          "x": 470.7053,
+          "y": 361.23895
+        }
+      }
     },
     "Area": {
       "id": "Area",
@@ -35,6 +47,18 @@
           "nick": "C",
           "optional": true
         }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 606,
+          "y": 332,
+          "width": 57,
+          "height": 44
+        },
+        "pivot": {
+          "x": 633,
+          "y": 354
+        }
       }
     },
     "Pt": {
@@ -51,7 +75,19 @@
           "source": "0fa0dd03-ebab-4bf9-84bd-a62cee6a2371"
         }
       },
-      "outputs": {}
+      "outputs": {},
+      "visuals": {
+        "bounds": {
+          "x": 747,
+          "y": 351,
+          "width": 50,
+          "height": 20
+        },
+        "pivot": {
+          "x": 772.83246,
+          "y": 361.23895
+        }
+      }
     },
     "Area_2": {
       "id": "Area_2",
@@ -77,6 +113,18 @@
           "description": "Area centroid of geometry",
           "nick": "C",
           "optional": true
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 616,
+          "y": 386,
+          "width": 57,
+          "height": 44
+        },
+        "pivot": {
+          "x": 643,
+          "y": 408
         }
       }
     }

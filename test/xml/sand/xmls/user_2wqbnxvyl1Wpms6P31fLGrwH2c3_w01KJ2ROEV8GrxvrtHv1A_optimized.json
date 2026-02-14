@@ -27,6 +27,21 @@
           "nick": "Content",
           "optional": false
         }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 5588,
+          "y": 1933,
+          "width": 123,
+          "height": 107
+        },
+        "pivot": {
+          "x": 5645,
+          "y": 1987
+        }
+      },
+      "state": {
+        "hidden": true
       }
     },
     "Partition": {
@@ -35,8 +50,42 @@
       "guid": "6007b696-f304-4310-9f11-4c91472c00b4",
       "description": "Partition a list into sub-lists",
       "nickName": "Partition",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "l": {
+          "description": "List to partition",
+          "nick": "L",
+          "optional": false,
+          "source": "c1bc66ac-940c-4811-81cd-d11e33a17e99"
+        },
+        "s": {
+          "description": "Size of partitions",
+          "nick": "S",
+          "optional": false,
+          "source": "83ea1506-17c0-480c-a9cd-be9c4b606d79"
+        }
+      },
+      "outputs": {
+        "c": {
+          "description": "List chunks",
+          "nick": "C",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 5745,
+          "y": 1986,
+          "width": 64,
+          "height": 70
+        },
+        "pivot": {
+          "x": 5775,
+          "y": 2021
+        }
+      },
+      "state": {
+        "hidden": true
+      }
     },
     "Group": {
       "id": "Group",
@@ -44,8 +93,36 @@
       "guid": "e206325e-dd81-4a2d-aff9-6be0037cee9d",
       "description": "Group a geometry set",
       "nickName": "Group",
-      "inputs": {},
-      "outputs": {},
+      "inputs": {
+        "g": {
+          "description": "Geometry to group",
+          "nick": "G",
+          "optional": false,
+          "source": "Path Mapper"
+        }
+      },
+      "outputs": {
+        "g": {
+          "description": "Grouped objects",
+          "nick": "G",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 5980,
+          "y": 2001,
+          "width": 67,
+          "height": 54
+        },
+        "pivot": {
+          "x": 6012,
+          "y": 2028
+        }
+      },
+      "state": {
+        "hidden": true
+      },
       "members": []
     },
     "Trim": {
@@ -54,8 +131,41 @@
       "guid": "e27326d2-a417-40fd-9679-810a49c12f82",
       "description": "Reduce the complexity of a tree by merging the outermost branches.",
       "nickName": "Trim",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "t": {
+          "description": "Data tree to flatten",
+          "nick": "T",
+          "optional": false,
+          "source": "44b0f181-75fd-451f-975e-b267388e180f"
+        },
+        "d": {
+          "description": "Number of outermost branches to merge",
+          "nick": "D",
+          "optional": false
+        }
+      },
+      "outputs": {
+        "t": {
+          "description": "Trimmed data tree",
+          "nick": "T",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 6058,
+          "y": 2007,
+          "width": 65,
+          "height": 44
+        },
+        "pivot": {
+          "x": 6090,
+          "y": 2029
+        }
+      },
+      "state": {
+        "hidden": true
+      }
     },
     "Path Mapper": {
       "id": "Path Mapper",
@@ -71,7 +181,15 @@
           "source": "4ad876e5-2893-4618-9151-94ee58ded32b"
         }
       },
-      "outputs": {}
+      "outputs": {},
+      "visuals": {
+        "bounds": {
+          "x": 5833.2524,
+          "y": 2006.8865,
+          "width": 125,
+          "height": 40
+        }
+      }
     },
     "TStat": {
       "id": "TStat",
@@ -79,8 +197,46 @@
       "guid": "07c7d2c2-6f65-4bb3-b9e5-1d090e3eae99",
       "description": "Get some statistics regarding a data tree.",
       "nickName": "TStat",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "t": {
+          "description": "Data Tree to analyze",
+          "nick": "T",
+          "optional": false,
+          "source": "56f936fc-b71e-47fd-84e1-a93174c5ea2b"
+        }
+      },
+      "outputs": {
+        "p": {
+          "description": "All the paths of the tree",
+          "nick": "P",
+          "optional": false
+        },
+        "l": {
+          "description": "The length of each branch in the tree",
+          "nick": "L",
+          "optional": false
+        },
+        "c": {
+          "description": "Number of paths and branches in the tree",
+          "nick": "C",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 5621,
+          "y": 2084,
+          "width": 64,
+          "height": 64
+        },
+        "pivot": {
+          "x": 5651,
+          "y": 2116
+        }
+      },
+      "state": {
+        "hidden": true
+      }
     },
     "Group_2": {
       "id": "Group_2",
@@ -90,6 +246,9 @@
       "nickName": "Group",
       "inputs": {},
       "outputs": {},
+      "visuals": {
+        "color": "150;255;255;82"
+      },
       "members": [
         ".01ChildCutter",
         "Partition",
@@ -110,8 +269,28 @@
       "to": ".01ChildCutter.cutters"
     },
     {
+      "from": "c1bc66ac-940c-4811-81cd-d11e33a17e99",
+      "to": "Partition.l"
+    },
+    {
+      "from": "83ea1506-17c0-480c-a9cd-be9c4b606d79",
+      "to": "Partition.s"
+    },
+    {
+      "from": "Path Mapper",
+      "to": "Group.g"
+    },
+    {
+      "from": "44b0f181-75fd-451f-975e-b267388e180f",
+      "to": "Trim.t"
+    },
+    {
       "from": "4ad876e5-2893-4618-9151-94ee58ded32b",
       "to": "Path Mapper.value"
+    },
+    {
+      "from": "56f936fc-b71e-47fd-84e1-a93174c5ea2b",
+      "to": "TStat.t"
     }
   ],
   "metadata": {

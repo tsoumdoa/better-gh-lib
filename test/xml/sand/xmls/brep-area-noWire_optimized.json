@@ -25,6 +25,18 @@
           "nick": "C",
           "optional": true
         }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 360,
+          "y": 128,
+          "width": 57,
+          "height": 44
+        },
+        "pivot": {
+          "x": 387,
+          "y": 150
+        }
       }
     },
     "Brep": {
@@ -34,7 +46,19 @@
       "description": "Contains a collection of Breps (Boundary REPresentations)",
       "nickName": "Brep",
       "inputs": {},
-      "outputs": {}
+      "outputs": {},
+      "visuals": {
+        "bounds": {
+          "x": 263,
+          "y": 142,
+          "width": 50,
+          "height": 20
+        },
+        "pivot": {
+          "x": 288,
+          "y": 152
+        }
+      }
     }
   },
   "wires": [],

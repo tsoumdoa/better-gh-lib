@@ -7,8 +7,37 @@
       "guid": "970803eb-b195-4352-b9ca-45b3c4d156f5",
       "description": "Extract iso-edges on surface from linear edges",
       "nickName": "ptIsoE",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "l": {
+          "description": "Lines to extract their iso",
+          "nick": "L",
+          "optional": false
+        },
+        "s": {
+          "description": "Surface",
+          "nick": "S",
+          "optional": false
+        }
+      },
+      "outputs": {
+        "c": {
+          "description": "Iso curve segments",
+          "nick": "C",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 518,
+          "y": 239,
+          "width": 56,
+          "height": 48
+        },
+        "pivot": {
+          "x": 544,
+          "y": 263
+        }
+      }
     },
     "Bend": {
       "id": "Bend",
@@ -16,8 +45,37 @@
       "guid": "84f9ae03-5251-4529-b86b-8a5f058cc0fc",
       "description": "Deform a shape by bending it",
       "nickName": "Bend",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "g": {
+          "description": "Geometry to deform",
+          "nick": "G",
+          "optional": false
+        },
+        "b": {
+          "description": "Bending arc segment",
+          "nick": "B",
+          "optional": false
+        }
+      },
+      "outputs": {
+        "g": {
+          "description": "Deformed geometry",
+          "nick": "G",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 382,
+          "y": 156,
+          "width": 57,
+          "height": 44
+        },
+        "pivot": {
+          "x": 409,
+          "y": 178
+        }
+      }
     },
     "Sdca": {
       "id": "Sdca",
@@ -25,8 +83,42 @@
       "guid": "1c48bcee-c477-47f4-8e87-ede70ae1a575",
       "description": "The Sdca trainer is used to train a regression model using the stochastic dual coordinate ascent method.",
       "nickName": "Sdca",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "l1 regularization": {
+          "description": "The L1 regularization weight.",
+          "nick": "L1 Regularization",
+          "optional": false
+        },
+        "l2 regularization": {
+          "description": "The L2 regularization weight.",
+          "nick": "L2 Regularization",
+          "optional": false
+        },
+        "iterations": {
+          "description": "The maximum number of passes to perform over the data.",
+          "nick": "Iterations",
+          "optional": false
+        }
+      },
+      "outputs": {
+        "trainer type": {
+          "description": "The trainer used for machine learning problems.",
+          "nick": "Trainer Type",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 464,
+          "y": 124,
+          "width": 185,
+          "height": 64
+        },
+        "pivot": {
+          "x": 567,
+          "y": 156
+        }
+      }
     },
     "whatAmI": {
       "id": "whatAmI",
@@ -36,6 +128,9 @@
       "nickName": "whatAmI",
       "inputs": {},
       "outputs": {},
+      "visuals": {
+        "color": "150;170;135;255"
+      },
       "members": [
         "ptIsoE",
         "Bend",

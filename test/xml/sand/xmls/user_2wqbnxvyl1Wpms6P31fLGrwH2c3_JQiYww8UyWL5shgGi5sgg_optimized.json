@@ -8,7 +8,19 @@
       "description": "Contains a collection of generic curves",
       "nickName": "Crv",
       "inputs": {},
-      "outputs": {}
+      "outputs": {},
+      "visuals": {
+        "bounds": {
+          "x": 1115,
+          "y": 590,
+          "width": 50,
+          "height": 20
+        },
+        "pivot": {
+          "x": 1140.3226,
+          "y": 600.29395
+        }
+      }
     },
     "MidPt": {
       "id": "MidPt",
@@ -16,8 +28,33 @@
       "guid": "b795b005-9364-4247-bdd1-86376eed18bb",
       "description": "Get the point in the middle of a curve",
       "nickName": "MidPt",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "c": {
+          "description": "Curve for mid-point.",
+          "nick": "C",
+          "optional": false,
+          "source": "Crv"
+        }
+      },
+      "outputs": {
+        "m": {
+          "description": "Point in the middle of the curve",
+          "nick": "M",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 1187,
+          "y": 622,
+          "width": 68,
+          "height": 53
+        },
+        "pivot": {
+          "x": 1218,
+          "y": 649
+        }
+      }
     },
     "Sort": {
       "id": "Sort",
@@ -50,6 +87,18 @@
           "nick": "A",
           "optional": false
         }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 1371,
+          "y": 588,
+          "width": 65,
+          "height": 44
+        },
+        "pivot": {
+          "x": 1402,
+          "y": 610
+        }
       }
     },
     "pDecon": {
@@ -58,8 +107,43 @@
       "guid": "21f2b697-a418-488f-9a05-f28412e7606a",
       "description": "Deconstruct a point into its component parts.",
       "nickName": "pDecon",
-      "inputs": {},
-      "outputs": {}
+      "inputs": {
+        "p": {
+          "description": "Input point",
+          "nick": "P",
+          "optional": false,
+          "source": "af54ded6-6ace-4fd3-9a60-9a0f28d7f482"
+        }
+      },
+      "outputs": {
+        "x": {
+          "description": "Point {x} component",
+          "nick": "X",
+          "optional": false
+        },
+        "y": {
+          "description": "Point {y} component",
+          "nick": "Y",
+          "optional": false
+        },
+        "z": {
+          "description": "Point {z} component",
+          "nick": "Z",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 1272,
+          "y": 616,
+          "width": 64,
+          "height": 64
+        },
+        "pivot": {
+          "x": 1302,
+          "y": 648
+        }
+      }
     },
     "Group": {
       "id": "Group",
@@ -69,6 +153,9 @@
       "nickName": "Group",
       "inputs": {},
       "outputs": {},
+      "visuals": {
+        "color": "150;255;255;255"
+      },
       "members": [
         "Crv",
         "MidPt",
@@ -80,11 +167,19 @@
   "wires": [
     {
       "from": "Crv",
+      "to": "MidPt.c"
+    },
+    {
+      "from": "Crv",
       "to": "Sort.k"
     },
     {
       "from": "80f2a282-5182-4437-9ee3-601e75a9b1b4",
       "to": "Sort.a"
+    },
+    {
+      "from": "af54ded6-6ace-4fd3-9a60-9a0f28d7f482",
+      "to": "pDecon.p"
     }
   ],
   "metadata": {
