@@ -32,6 +32,10 @@ export interface Component {
   members?: string[];   // For Group components: list of component IDs in the group
   expression?: string;  // For Expression components: the expression formula
   value?: ComponentValue; // For input components: slider values, panel text, value list items, etc.
+  cluster?: {
+    data: string;        // Base64 encoded cluster content (compressed/binary)
+    size: number;        // Original size in bytes
+  };
 }
 
 export interface ComponentValue {

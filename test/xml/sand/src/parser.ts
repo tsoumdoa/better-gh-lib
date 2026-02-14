@@ -49,19 +49,19 @@ function normalizeArray<T>(item: T | T[] | undefined): T[] {
 function extractItems(chunk: XmlChunk): Record<string, unknown> {
   const result: Record<string, unknown> = {};
   const items = normalizeArray(chunk.items?.item);
-  
+
   for (const item of items) {
     const name = item.name;
     if (!name) continue;
-    
+
     const typeName = item.type_name;
     const text = item["#text"];
     const index = item.index;
-    
+
     if (text !== undefined) {
       // Handle indexed items (e.g., ID_0, ID_1 for groups)
       const key = index !== undefined ? `${name}_${index}` : name;
-      
+
       // Try to parse as number or boolean
       if (text === "true") {
         result[key] = true;
@@ -86,9 +86,18 @@ function extractItems(chunk: XmlChunk): Record<string, unknown> {
       };
     } else if (typeName === "gh_drawing_color") {
       result[name] = item.ARGB;
+    } else if (typeName === "gh_bytearray") {
+      // Handle binary data streams (e.g., cluster content)
+      const stream = item.stream as { length?: string; [key: string]: unknown } | undefined;
+      if (stream && stream["#text"]) {
+        result[name] = {
+          data: String(stream["#text"]),
+          size: Number(stream.length) || 0
+        };
+      }
     }
   }
-  
+
   return result;
 }
 
@@ -358,6 +367,15 @@ function parseComponent(objectChunk: XmlChunk): ParsedComponent | null {
   const value = parseComponentValue(containerChunk, name, containerItems);
   if (value) {
     component.value = value;
+  }
+
+  // Parse cluster data if present (for Cluster components)
+  const clusterData = containerItems.ClusterDocument as { data: string; size: number } | undefined;
+  if (clusterData) {
+    component.cluster = {
+      data: clusterData.data,
+      size: clusterData.size
+    };
   }
 
   return { component, guid: instanceGuid, objectChunk };
