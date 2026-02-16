@@ -1,5 +1,5 @@
-import { GhXml, GhXmlType } from "../../types/types";
-import { XMLParser, XMLBuilder } from "fast-xml-parser";
+import { GhXml } from "../../types/types";
+import { XMLParser } from "fast-xml-parser";
 
 export function validateGhXml(xml: string) {
 	const parser = new XMLParser({
@@ -28,24 +28,5 @@ export function validateGhXml(xml: string) {
 
 	return {
 		isValid: true,
-		validatedJson: validatedXml.data,
-		parsedJson: parsedFromXml,
 	};
-}
-
-export function buildGhXml(parsedXml: GhXmlType) {
-	const builder = new XMLBuilder({
-		attributeNamePrefix: "@_",
-		ignoreAttributes: false,
-		commentPropName: "comments",
-		format: true,
-		indentBy: "  ",
-		suppressEmptyNode: false,
-	});
-
-	//manually add the xml header back
-	const xmlHeader = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
-
-	const xmlOutput = builder.build(parsedXml);
-	return xmlHeader + xmlOutput;
 }
