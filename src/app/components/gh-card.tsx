@@ -7,11 +7,11 @@ import useGhCardControl from "../hooks/use-gh-card-control";
 import GhCardTags from "./gh-card-tags";
 import { MetricsDialog } from "./metrics-dialog";
 import { useFetchGhXml } from "../hooks/use-fetch-gh-xml";
-import { buildGhJson } from "@/utils/gh-json-builder";
 import { useState } from "react";
 import { GhPost } from "@/types/types";
 import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
+import { buildGhJson } from "parser/sand/src/parser";
 
 export default function GHCard(props: {
 	cardInfo: GhPost;
@@ -49,7 +49,7 @@ export default function GHCard(props: {
 		GhVersion: string;
 		componentsCount: number;
 		uniqueCount: number;
-		ghLibs: Array<{ name: string; author: string; version: string }>;
+		ghLibs: Array<{ name: string; author?: string; version: string }>;
 	} | null>(null);
 	const [loadingMetrics, setLoadingMetrics] = useState(false);
 
@@ -73,12 +73,20 @@ export default function GHCard(props: {
 		try {
 			const decoded = await downloadData(props.cardInfo.bucketUrl!);
 
-			const parsedMetrics = buildGhJson(decoded);
+			const newParse = buildGhJson(decoded);
+			const componentsCount = Object.keys(newParse.components).length;
+			const ghLibs = newParse.metadata?.libraries;
+
+			const guidSet = new Set<string>();
+			for (const comp of Object.values(newParse.components)) {
+				guidSet.add(comp.guid);
+			}
+			const uniqueCount = guidSet.size;
 			setMetrics({
-				GhVersion: parsedMetrics.GhVersion,
-				componentsCount: parsedMetrics.componentsCount,
-				uniqueCount: parsedMetrics.uniqueCount,
-				ghLibs: parsedMetrics.ghLibs,
+				GhVersion: newParse.version,
+				componentsCount: componentsCount,
+				uniqueCount: uniqueCount,
+				ghLibs: ghLibs ?? [],
 			});
 		} catch (error) {
 			console.error("Failed to load metrics:", error);

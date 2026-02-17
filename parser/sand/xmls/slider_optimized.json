@@ -1,0 +1,84 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "Number Slider": {
+      "id": "Number Slider",
+      "type": "Number Slider",
+      "guid": "fbe9a838-5173-40be-944f-4af700c06b49",
+      "description": "Numeric slider for single values",
+      "nickName": "Number Slider",
+      "inputs": {},
+      "outputs": {},
+      "value": {
+        "type": "slider",
+        "min": 0,
+        "max": 11,
+        "current": 8,
+        "digits": 3,
+        "interval": 1
+      },
+      "visuals": {
+        "bounds": {
+          "x": 93,
+          "y": 192,
+          "width": 177,
+          "height": 20
+        },
+        "pivot": {
+          "x": 93.5,
+          "y": 192
+        }
+      }
+    },
+    "Sqr": {
+      "id": "Sqr",
+      "type": "Square",
+      "guid": "b825c75c-d8ab-4770-84da-5e921e584f74",
+      "description": "Compute the square of a value",
+      "nickName": "Sqr",
+      "inputs": {
+        "x": {
+          "description": "Input value",
+          "nick": "x",
+          "optional": false,
+          "source": "Number Slider"
+        }
+      },
+      "outputs": {
+        "y": {
+          "description": "Output value",
+          "nick": "y",
+          "optional": false
+        }
+      },
+      "visuals": {
+        "bounds": {
+          "x": 317,
+          "y": 169,
+          "width": 55,
+          "height": 31
+        },
+        "pivot": {
+          "x": 343,
+          "y": 185
+        }
+      }
+    }
+  },
+  "wires": [
+    {
+      "from": "Number Slider",
+      "to": "Sqr.x"
+    }
+  ],
+  "metadata": {
+    "documentId": "a97bf5ff-b299-4e58-add1-bfb1a1f05ada",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.26.25349.19002",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}

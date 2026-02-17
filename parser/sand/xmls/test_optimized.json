@@ -1,0 +1,41 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "Panel": {
+      "id": "Panel",
+      "type": "Panel",
+      "guid": "fbb386c0-7f2a-474b-b0a2-18df7a0ff03f",
+      "description": "A panel for custom notes and text values",
+      "nickName": "Panel",
+      "inputs": {},
+      "outputs": {},
+      "value": {
+        "type": "panel",
+        "text": "fa"
+      },
+      "visuals": {
+        "bounds": {
+          "x": 487,
+          "y": 143,
+          "width": 160,
+          "height": 100
+        },
+        "pivot": {
+          "x": 487.99176,
+          "y": 143.4917
+        }
+      }
+    }
+  },
+  "wires": [],
+  "metadata": {
+    "documentId": "3ebfb37e-5b76-4065-8bb2-c0895373f49c",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.15.25019.13002",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "Area": {
+      "id": "Area",
+      "type": "Area",
+      "guid": "bfd08430-973c-49e8-adab-04487445d763",
+      "description": "Solve area properties for breps, meshes and planar closed curves.",
+      "nickName": "Area",
+      "inputs": {
+        "g": {
+          "description": "Brep, mesh or planar closed curve for area computation",
+          "nick": "G",
+          "optional": false,
+          "source": "Brep"
+        }
+      },
+      "outputs": {
+        "a": {
+          "description": "Area of geometry",
+          "nick": "A",
+          "optional": true
+        },
+        "c": {
+          "description": "Area centroid of geometry",
+          "nick": "C",
+          "optional": true
+        }
+      }
+    },
+    "Brep": {
+      "id": "Brep",
+      "type": "Brep",
+      "guid": "fb6c9287-cd45-4367-b9ba-f7db4cadbbb8",
+      "description": "Contains a collection of Breps (Boundary REPresentations)",
+      "nickName": "Brep",
+      "inputs": {},
+      "outputs": {}
+    }
+  },
+  "wires": [
+    {
+      "from": "Brep",
+      "to": "Area.g"
+    }
+  ],
+  "metadata": {
+    "documentId": "58d3bae9-a249-4f42-bf8e-ac59687c19d8",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "8.26.25349.19002",
+        "author": "Robert McNeel & Associates"
+      },
+      {
+        "name": "Grasshopper",
+        "version": "8.26.25349.19002",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}
