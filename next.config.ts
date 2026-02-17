@@ -21,6 +21,9 @@ const nextConfig: NextConfig = {
 	},
 	// This is required to support PostHog trailing slash API requests
 	skipTrailingSlashRedirect: true,
+	outputFileTracingExcludes: {
+		parser: ["./parser/sand/src/parse.ts"],
+	},
 };
 
 export default nextConfig;
