@@ -86,6 +86,7 @@ export default function DuckerWebPage() {
 		setXmlError("");
 		setXmlData("");
 		setIsValidXml(false);
+		setParsedData(null);
 
 		try {
 			const text = await navigator.clipboard.readText();
@@ -99,6 +100,7 @@ export default function DuckerWebPage() {
 			if (isValid) {
 				setIsValidXml(true);
 				setXmlData(text);
+				parseXml(text);
 			} else {
 				setIsValidXml(false);
 				setXmlError("Pasted GhXml is not valid: \n" + errorMsg);
@@ -115,17 +117,12 @@ export default function DuckerWebPage() {
 		setParsedData(null);
 	};
 
-	const handleParse = () => {
+	const parseXml = (xmlContent: string) => {
 		setError("");
 		setParsedData(null);
 
-		if (!xmlData?.trim()) {
-			setError("Please paste some GH XML first");
-			return;
-		}
-
 		try {
-			const result = buildGhJson(xmlData, { includeVisuals: false });
+			const result = buildGhJson(xmlContent, { includeVisuals: false });
 			setParsedData(result);
 		} catch (e) {
 			setError(
@@ -218,11 +215,11 @@ export default function DuckerWebPage() {
 				<div className="mb-6 rounded-lg border border-neutral-800 bg-neutral-900 p-4">
 					<p className="mb-4 text-neutral-300">
 						I saw the LinkedIn post about Ducker and figured: why wrestle with
-						installers when the duck can live in a browser? So here’s the same
+						installers when the duck can live in a browser? So here&apos;s the same
 						nifty trick—no downloads, no version headaches. Ducker is a nifty
 						little tool for Grasshopper developers to automatically extract
 						names, descriptions and icons from their plugins and place it in
-						text files. It's completely free and open source and can be useful
+						text files. It&apos;s completely free and open source and can be useful
 						e.g. if you want to create a reference document of all components
 						included in your plugin.
 					</p>
@@ -277,23 +274,14 @@ export default function DuckerWebPage() {
 					)}
 				</div>
 
-				<div className="mb-6 flex gap-4">
+				{parsedData && (
 					<button
-						onClick={handleParse}
-						disabled={!isValidXml}
-						className="rounded-lg bg-white px-6 py-2 font-semibold text-black transition-colors hover:bg-neutral-200 disabled:opacity-50"
+						onClick={handleCopyAll}
+						className="rounded-lg border border-white px-6 py-2 font-semibold text-white transition-colors hover:bg-neutral-800"
 					>
-						Parse XML
+						{isCopied ? "Copied!" : "Copy All as Markdown"}
 					</button>
-					{parsedData && (
-						<button
-							onClick={handleCopyAll}
-							className="rounded-lg border border-white px-6 py-2 font-semibold text-white transition-colors hover:bg-neutral-800"
-						>
-							{isCopied ? "Copied!" : "Copy All as Markdown"}
-						</button>
-					)}
-				</div>
+				)}
 
 				{error && <p className="mb-4 text-red-400">{error}</p>}
 
