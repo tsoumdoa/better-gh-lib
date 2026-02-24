@@ -12,6 +12,7 @@ interface ParsedComponent {
 	type: string;
 	nickName: string;
 	description?: string;
+	library?: string;
 	inputs: Record<string, { nick: string; description?: string }>;
 	outputs: Record<string, { nick: string; description?: string }>;
 }
@@ -25,6 +26,11 @@ function ComponentCard({ component }: { component: ParsedComponent }) {
 			<h3 className="mb-1 text-lg font-semibold text-white">
 				{component.nickName}
 			</h3>
+			{component.library && (
+				<p className="mb-1 text-xs font-medium text-purple-400">
+					{component.library}
+				</p>
+			)}
 			{component.type && (
 				<p className="mb-2 text-sm text-neutral-400">Type: {component.type}</p>
 			)}
@@ -137,6 +143,10 @@ export default function DuckerWebPage() {
 		const components = Object.values(parsedData.components);
 		let text = "";
 
+		if (parsedData.metadata?.libraries?.length) {
+			text += `Libraries: ${parsedData.metadata.libraries.map((l) => l.name).join(", ")}\n\n---\n\n`;
+		}
+
 		for (const comp of components) {
 			text += `## ${comp.nickName}\n`;
 			text += `Type: ${comp.type}\n`;
@@ -185,6 +195,7 @@ export default function DuckerWebPage() {
 			type: c.type,
 			nickName: c.nickName,
 			description: c.description,
+			library: c.library,
 			inputs: c.inputs,
 			outputs: c.outputs,
 		}))
@@ -214,18 +225,24 @@ export default function DuckerWebPage() {
 
 				<div className="mb-6 rounded-lg border border-neutral-800 bg-neutral-900 p-4">
 					<p className="mb-4 text-neutral-300">
-						I saw the LinkedIn post about Ducker and figured: why wrestle with
-						installers when the duck can live in a browser? So here&apos;s the same
-						nifty trick—no downloads, no version headaches. Ducker is a nifty
-						little tool for Grasshopper developers to automatically extract
-						names, descriptions and icons from their plugins and place it in
-						text files. It&apos;s completely free and open source and can be useful
-						e.g. if you want to create a reference document of all components
-						included in your plugin.
+						Saw the LinkedIn post about{" "}
+						<a
+							href="https://github.com/EmilPoulsen/Ducker"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="font-bold underline"
+						>
+							Ducker
+						</a>{" "}
+						and thought, “Cool, same duck, new pond.” Point your browser at it,
+						skip the installers, and let it spit out names, icons, and
+						descriptions from any Grasshopper plugin into tidy text files. Free,
+						open-source, and handy when you need a quick reference sheet—no
+						download drama required.
 					</p>
 					<p className="text-neutral-400">
-						Paste your GH XML below to extract component documentation. You can
-						get this by selecting components in Grasshopper and copying to
+						Paste your GH compoent below to extract component documentation. You
+						can get this by selecting components in Grasshopper and copying to
 						clipboard (Ctrl+C).
 					</p>
 				</div>
@@ -283,10 +300,24 @@ export default function DuckerWebPage() {
 					</button>
 				)}
 
+				<div className="py-2" />
 				{error && <p className="mb-4 text-red-400">{error}</p>}
 
 				{parsedData && (
 					<div>
+						{parsedData.metadata?.libraries &&
+							parsedData.metadata.libraries.length > 0 && (
+								<div className="mb-4 flex flex-wrap gap-2">
+									{parsedData.metadata.libraries.map((lib, idx) => (
+										<span
+											key={idx}
+											className="rounded-full bg-purple-900/30 px-3 py-1 text-xs font-medium text-purple-400"
+										>
+											{lib.name}
+										</span>
+									))}
+								</div>
+							)}
 						<p className="mb-4 text-neutral-400">
 							Found {components.length} component(s)
 						</p>
