@@ -56,6 +56,7 @@ export interface Component {
   id: string;           // Unique identifier (e.g., "Area_1", "Brep_2")
   type: string;         // Component type (e.g., "Area", "Brep")
   guid: string;         // Original InstanceGuid
+  library?: string;    // Library name (from Lib GUID mapping)
   description?: string;
   nickName: string;     // Display name (may have duplicates)
   inputs: Record<string, InputPort>;

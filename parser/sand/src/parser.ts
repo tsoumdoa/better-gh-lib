@@ -437,11 +437,13 @@ interface ParsedComponent {
 
 function parseComponent(
 	objectChunk: XmlChunk,
-	options?: ParseOptions
+	options?: ParseOptions,
+	libraryMap?: Map<string, string>
 ): ParsedComponent | null {
 	const items = extractItems(objectChunk);
 	const guid = items.GUID as string;
 	const name = items.Name as string;
+	const libGuid = items.Lib as string | undefined;
 
 	if (!guid || !name) {
 		return null;
@@ -456,10 +458,13 @@ function parseComponent(
 	const instanceGuid = (containerItems.InstanceGuid as string) || guid;
 	const nickName = (containerItems.NickName as string) || name;
 
+	const libraryName = libGuid && libraryMap ? libraryMap.get(libGuid) : undefined;
+
 	const component: Component = {
 		id: "", // Will be set by caller
 		type: name,
 		guid: instanceGuid,
+		library: libraryName,
 		description: containerItems.Description as string,
 		nickName: nickName,
 		inputs: {},
@@ -628,6 +633,23 @@ export function parseGrasshopper(
 	// Parse components with unique IDs
 	const objectChunks = findAllChunks(definitionObjectsChunk, "Object");
 
+	// Build library map from GHALibraries (moved before component parsing)
+	const ghaLibsChunk = clipboardChunks.find((c) => c.name === "GHALibraries");
+	const libraryMap = new Map<string, string>();
+	if (ghaLibsChunk) {
+		const libChunks = findAllChunks(ghaLibsChunk, "Library");
+		for (const lib of libChunks) {
+			const libItems = extractItems(lib);
+			const libId = libItems.Id as string;
+			const libName = libItems.Name as string;
+			const libVersion = libItems.Version as string;
+			if (libId && libName) {
+				const fullName = libVersion ? `${libName} v${libVersion}` : libName;
+				libraryMap.set(libId, fullName);
+			}
+		}
+	}
+
 	const components: Record<string, Component> = {};
 	const guidToId: Map<string, string> = new Map();
 	const nickNameCounts: Map<string, number> = new Map();
@@ -636,7 +658,7 @@ export function parseGrasshopper(
 	const parsedComponents: Array<{ parsed: ParsedComponent; id: string }> = [];
 
 	for (const objectChunk of objectChunks) {
-		const parsed = parseComponent(objectChunk, options);
+		const parsed = parseComponent(objectChunk, options, libraryMap);
 		if (!parsed) continue;
 
 		const baseNick = parsed.component.nickName || parsed.component.type;
@@ -721,14 +743,13 @@ export function parseGrasshopper(
 		metadata.documentId = docItems.DocumentID as string;
 	}
 
-	const ghaLibsChunk = clipboardChunks.find((c) => c.name === "GHALibraries");
 	if (ghaLibsChunk) {
 		const libChunks = findAllChunks(ghaLibsChunk, "Library");
 		metadata.libraries = libChunks.map((lib) => {
 			const libItems = extractItems(lib);
 			return {
 				name: libItems.Name as string,
-				version: libItems.Version as string,
+				version: "",
 				author: libItems.Author as string,
 			};
 		});
