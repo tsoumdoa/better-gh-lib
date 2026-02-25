@@ -31,21 +31,15 @@ Or hey, just do whatever you want with your fork! No pressure, just good vibes.
 ## Technologies Used
 
 - **Frontend & Backend:** Next.js (App Router)
+- **Backend & Database:** Convex (simplifies hosting with built-in database, storage, and serverless functions)
 - **Styling:** Tailwind CSS & Shadcn UI
-- **Object Storage:** Cloudflare R2 (for storing Grasshopper scripts)
-- **Reverse Proxy:** Cloudflare Worker (for handling file updates to R2)
-- **Caching:** Redis (for various caching mechanisms, via Upstash)
-- **Database:** LibSQL (SQLite) (for main data storage, via Turso)
 - **Authentication & User Management:** Clerk
 - **Data Analysis:** Posthog
 
 **Deployment:**
 
-- **Application:** Vercel
-- **R2 Storage:** Cloudflare
-- **Redis:** Upstash
-- **LibSQL (SQLite):** Turso
-- **Authentication:** Clerk
+- **Application:** Vercel (or any Next.js hosting)
+- **Backend:** Convex
 
 ## Getting Started
 
@@ -59,7 +53,7 @@ Before you begin, ensure you have the following installed:
 - **pnpm**
 - **Git**
 
-You will also need to provide the necessary API keys and environment variables, as shown in the `.env.example` file. This typically includes credentials for Clerk, Cloudflare R2, Upstash Redis, and Turso LibSQL.
+You will also need to provide the necessary API keys and environment variables, as shown in the `.env.example` file. This typically includes credentials for Clerk and Convex.
 
 ### Installation
 
@@ -81,52 +75,19 @@ You will also need to provide the necessary API keys and environment variables, 
     # Now, open .env and fill in your keys/credentials
     ```
 
-4.  **Deoloy CF worker:**
-    To complete the deployment, you need to deploy the Cloudflare worker.
-
-    ```bash
-    git clone https://github.com/tsoumdoa/hopper-worker
-    ```
-
-    Install dependencies:
+4.  **Install dependencies:**
 
     ```bash
     pnpm install
     ```
 
-    Deploy the worker:
+5.  **Setup Convex:**
 
     ```bash
-    pnpm wrangler publish
+    pnpm convex dev
     ```
 
-    This will deploy the worker to Cloudflare, you also need to generate JWT
-    token and update the env
-    accordingly.
-
-    to generate JWT private key:
-
-    ```bash
-    openssl genrsa -out private.pem 2048
-    ```
-
-    to generate public key:
-
-    ```bash
-    openssl rsa -pubout -in private_key.pem -out public_key.pem
-
-    ```
-
-- openssl rsa -pubout -in private_key.pem -out public_key.pem
-
-  ```
-
-  ```
-
-5.  **Install dependencies:**
-    ```bash
-    pnpm install
-    ```
+    This will start the Convex dev server and set up your local database and storage.
 
 ### Running Locally
 
@@ -137,8 +98,3 @@ pnpm run dev
 ```
 
 The application should now be accessible in your web browser at \(http://localhost:3000\).
-
-## TODO
-
-- [ ] add concept of collections
-- [ ] add concept of versions
