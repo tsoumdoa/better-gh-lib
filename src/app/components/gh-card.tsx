@@ -12,6 +12,7 @@ import { GhPost } from "@/types/types";
 import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { buildGhJson } from "parser/sand/src/parser";
+import type { ParsedGrasshopper } from "parser/sand/src/types";
 
 export default function GHCard(props: {
 	cardInfo: GhPost;
@@ -50,6 +51,7 @@ export default function GHCard(props: {
 		componentsCount: number;
 		uniqueCount: number;
 		ghLibs: Array<{ name: string; author?: string; version: string }>;
+		parsedData: ParsedGrasshopper | null;
 	} | null>(null);
 	const [loadingMetrics, setLoadingMetrics] = useState(false);
 
@@ -73,7 +75,7 @@ export default function GHCard(props: {
 		try {
 			const decoded = await downloadData(props.cardInfo.bucketUrl!);
 
-			const newParse = buildGhJson(decoded);
+			const newParse = buildGhJson(decoded, { includeVisuals: true });
 			const componentsCount = Object.keys(newParse.components).length;
 			const ghLibs = newParse.metadata?.libraries;
 
@@ -87,6 +89,7 @@ export default function GHCard(props: {
 				componentsCount: componentsCount,
 				uniqueCount: uniqueCount,
 				ghLibs: ghLibs ?? [],
+				parsedData: newParse,
 			});
 		} catch (error) {
 			console.error("Failed to load metrics:", error);
@@ -214,6 +217,7 @@ export default function GHCard(props: {
 				setOpen={() => setOpenMetricsDialog(false)}
 				metrics={metrics}
 				loading={loadingMetrics}
+				parsedData={metrics?.parsedData ?? null}
 			/>
 		</>
 	);
