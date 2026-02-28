@@ -42,13 +42,9 @@ export const env = createEnv({
 	 * middlewares) or client-side so we need to destruct manually.
 	 */
 	runtimeEnv: {
-		DATABASE_URL: process.env.DATABASE_URL,
-		DATABASE_AUTH_TOKEN: process.env.DATABASE_AUTH_TOKEN,
 		NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
 			process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
 		CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
-		UPSTASH_REDIS_REST_URL: process.env.UPSTASH_REDIS_REST_URL,
-		UPSTASH_REDIS_REST_TOKEN: process.env.UPSTASH_REDIS_REST_TOKEN,
 		R2_ACCESS_KEY_ID: process.env.R2_ACCESS_KEY_ID,
 		R2_SECRET_ACCESS_KEY: process.env.R2_SECRET_ACCESS_KEY,
 		R2_URL: process.env.R2_URL,
