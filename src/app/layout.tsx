@@ -25,20 +25,18 @@ export default function RootLayout({
 	const queryClient = new QueryClient();
 	const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 	return (
-		<ClerkProvider>
-			<html lang="en">
-				<body
-					className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-				>
-					<PostHogProvider>
+        <html lang="en">
+            <body
+                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            ><ClerkProvider>
+                    <PostHogProvider>
 						<QueryClientProvider client={queryClient}>
 							<ConvexProviderWithClerk client={convex} useAuth={useAuth}>
 								{children}
 							</ConvexProviderWithClerk>
 						</QueryClientProvider>
 					</PostHogProvider>
-				</body>
-			</html>
-		</ClerkProvider>
-	);
+                </ClerkProvider></body>
+        </html>
+    );
 }
