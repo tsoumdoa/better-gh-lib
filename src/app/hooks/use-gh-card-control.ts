@@ -77,6 +77,9 @@ export default function useGhCardControl(cardInfo: GhPost) {
 			return;
 		}
 
+		setEditMode(false);
+		setUpdating(true);
+
 		if (xmlChanged && isValidXml) {
 			const newBucketUrl = nanoid();
 			try {
@@ -93,18 +96,22 @@ export default function useGhCardControl(cardInfo: GhPost) {
 				const res = await Promise.allSettled([deleteRes, uploadRes, updateRes]);
 				if (res[0].status === "rejected") {
 					setXmlError("Failed to delete old XML: " + String(res[0].reason));
+					setUpdating(false);
 					return;
 				}
 				if (res[1].status === "rejected") {
 					setXmlError("Failed to upload new XML: " + String(res[1].reason));
+					setUpdating(false);
 					return;
 				}
 				if (res[2].status === "rejected") {
 					setXmlError("Failed to update post: " + String(res[2].reason));
+					setUpdating(false);
 					return;
 				}
 			} catch (error) {
 				setXmlError("Failed to update XML: " + String(error));
+				setUpdating(false);
 				return;
 			} finally {
 				setIsValidXml(false);
@@ -123,6 +130,7 @@ export default function useGhCardControl(cardInfo: GhPost) {
 				});
 			} catch (error) {
 				setXmlError("Failed to save: " + String(error));
+				setUpdating(false);
 				return;
 			}
 		}
@@ -130,7 +138,7 @@ export default function useGhCardControl(cardInfo: GhPost) {
 		setNewXmlData(undefined);
 		setIsValidXml(false);
 		setXmlError("");
-		setEditMode(false);
+		setUpdating(false);
 	};
 
 	const removeTag = (tag: string, toBeRemoved: boolean) => {

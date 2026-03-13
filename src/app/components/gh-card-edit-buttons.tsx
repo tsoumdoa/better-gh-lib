@@ -27,7 +27,7 @@ export function EditButtons(props: {
 				className={`px-2 font-bold hover:text-neutral-50`}
 				onClick={() => props.handleEdit(true)}
 			>
-				done
+				save
 			</button>
 		</div>
 	);
