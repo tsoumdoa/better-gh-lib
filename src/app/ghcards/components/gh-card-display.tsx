@@ -6,6 +6,7 @@ import { X } from "lucide-react";
 import { api as convex } from "../../../../convex/_generated/api";
 import { useQuery } from "convex/react";
 import { SortOrder } from "@/types/types";
+import useTagFilters from "../hooks/use-tag-filters";
 
 export default function GHCardDisplay(props: {
 	tagFilters?: string[];
@@ -16,13 +17,15 @@ export default function GHCardDisplay(props: {
 		sortOrder: props.sortOrder,
 	});
 
+	const { removeSearchParam } = useTagFilters();
+
 	const {
 		filteredCards,
 		showFilter,
 		handleFilter,
 		filterKeyword,
 		clearFilter,
-	} = useFilter(ghCards || []);
+	} = useFilter(ghCards || [], removeSearchParam);
 
 	return (
 		<>

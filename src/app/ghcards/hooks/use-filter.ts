@@ -10,10 +10,16 @@ const fuseOptions = {
 	ignoreCase: true,
 };
 
-export default function useFilter(ghCards: GhPost[]) {
+export default function useFilter(
+	ghCards: GhPost[],
+	onClearTagFilters?: () => void
+) {
 	const [filteredCards, setFilteredCards] = useState(ghCards);
 	const [showFilterInput, setShowFilterInput] = useState(false);
 	const filterKeyword = useRef<string>("");
+	const tagFiltersCleared = useRef(false);
+	const onClearTagFiltersRef = useRef(onClearTagFilters);
+	onClearTagFiltersRef.current = onClearTagFilters;
 	const nameFuse = new Fuse(
 		ghCards.map((card) => card.name ?? ""),
 		fuseOptions
@@ -33,6 +39,7 @@ export default function useFilter(ghCards: GhPost[]) {
 		setFilteredCards(ghCards);
 		filterKeyword.current = "";
 		setShowFilterInput(false);
+		tagFiltersCleared.current = false;
 	};
 
 	useEffect(() => {
@@ -48,7 +55,15 @@ export default function useFilter(ghCards: GhPost[]) {
 				setShowFilterInput((prev) => !prev);
 			}
 			if (e.key === "Escape") {
-				clearFilter();
+				if (showFilterInput) {
+					clearFilter();
+				} else if (onClearTagFiltersRef.current && !tagFiltersCleared.current) {
+					tagFiltersCleared.current = true;
+					onClearTagFiltersRef.current();
+				} else {
+					clearFilter();
+					tagFiltersCleared.current = false;
+				}
 			}
 			if (e.key === "Enter") {
 				setShowFilterInput(false);
@@ -58,7 +73,7 @@ export default function useFilter(ghCards: GhPost[]) {
 		return () => {
 			window.removeEventListener("keydown", handleKeyDown);
 		};
-	}, [ghCards]);
+	}, [ghCards, showFilterInput]);
 
 	const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const keyword = e.target.value.toLowerCase();
