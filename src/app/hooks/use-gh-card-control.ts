@@ -77,6 +77,7 @@ export default function useGhCardControl(cardInfo: GhPost) {
 			return;
 		}
 
+		setEditMode(false);
 		setUpdating(true);
 
 		if (xmlChanged && isValidXml) {
