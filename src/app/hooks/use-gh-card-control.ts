@@ -77,7 +77,6 @@ export default function useGhCardControl(cardInfo: GhPost) {
 			return;
 		}
 
-		setEditMode(false);
 		setUpdating(true);
 
 		if (xmlChanged && isValidXml) {
@@ -96,27 +95,32 @@ export default function useGhCardControl(cardInfo: GhPost) {
 				const res = await Promise.allSettled([deleteRes, uploadRes, updateRes]);
 				if (res[0].status === "rejected") {
 					setXmlError("Failed to delete old XML: " + String(res[0].reason));
+					setEditMode(true);
 					setUpdating(false);
 					return;
 				}
 				if (res[1].status === "rejected") {
 					setXmlError("Failed to upload new XML: " + String(res[1].reason));
+					setEditMode(true);
 					setUpdating(false);
 					return;
 				}
 				if (res[2].status === "rejected") {
 					setXmlError("Failed to update post: " + String(res[2].reason));
+					setEditMode(true);
 					setUpdating(false);
 					return;
 				}
 			} catch (error) {
 				setXmlError("Failed to update XML: " + String(error));
+				setEditMode(true);
 				setUpdating(false);
 				return;
-			} finally {
-				setIsValidXml(false);
-				setXmlError("");
 			}
+			setEditMode(false);
+			setNewXmlData(undefined);
+			setIsValidXml(false);
+			setUpdating(false);
 			return;
 		}
 
@@ -130,11 +134,13 @@ export default function useGhCardControl(cardInfo: GhPost) {
 				});
 			} catch (error) {
 				setXmlError("Failed to save: " + String(error));
+				setEditMode(true);
 				setUpdating(false);
 				return;
 			}
 		}
 
+		setEditMode(false);
 		setNewXmlData(undefined);
 		setIsValidXml(false);
 		setXmlError("");
