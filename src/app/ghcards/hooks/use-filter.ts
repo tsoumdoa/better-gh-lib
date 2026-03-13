@@ -60,10 +60,9 @@ export default function useFilter(
 				} else if (onClearTagFiltersRef.current && !tagFiltersCleared.current) {
 					tagFiltersCleared.current = true;
 					onClearTagFiltersRef.current();
-				} else {
-					clearFilter();
-					tagFiltersCleared.current = false;
-				}
+			} else {
+				clearFilter();
+			}
 			}
 			if (e.key === "Enter") {
 				setShowFilterInput(false);
