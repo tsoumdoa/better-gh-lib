@@ -102,7 +102,7 @@ function extractItems(chunk: XmlChunk): Record<string, unknown> {
 		} else if (typeName === "gh_bytearray") {
 			// Handle binary data streams (e.g., cluster content)
 			const stream = item.stream as
-				| { length?: string;[key: string]: unknown }
+				| { length?: string; [key: string]: unknown }
 				| undefined;
 			if (stream && stream["#text"]) {
 				result[name] = {
@@ -458,7 +458,8 @@ function parseComponent(
 	const instanceGuid = (containerItems.InstanceGuid as string) || guid;
 	const nickName = (containerItems.NickName as string) || name;
 
-	const libraryName = libGuid && libraryMap ? libraryMap.get(libGuid) : undefined;
+	const libraryName =
+		libGuid && libraryMap ? libraryMap.get(libGuid) : undefined;
 
 	const component: Component = {
 		id: "", // Will be set by caller

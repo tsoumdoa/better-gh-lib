@@ -191,14 +191,14 @@ export default function DuckerWebPage() {
 
 	const components: ParsedComponent[] = parsedData
 		? Object.values(parsedData.components).map((c) => ({
-			id: c.id,
-			type: c.type,
-			nickName: c.nickName,
-			description: c.description,
-			library: c.library,
-			inputs: c.inputs,
-			outputs: c.outputs,
-		}))
+				id: c.id,
+				type: c.type,
+				nickName: c.nickName,
+				description: c.description,
+				library: c.library,
+				inputs: c.inputs,
+				outputs: c.outputs,
+			}))
 		: [];
 
 	return (

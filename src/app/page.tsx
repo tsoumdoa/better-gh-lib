@@ -59,8 +59,8 @@ function LandingPageContent() {
 				<div className="mt-16 w-full rounded-lg border border-neutral-800 bg-neutral-900 p-6">
 					<h2 className="mb-2 text-2xl font-bold">New: DuckerWeb</h2>
 					<p className="mb-4 text-neutral-400">
-						Automatically extract names, descriptions and icons from your Grasshopper
-						plugins. Create reference documentation instantly.
+						Automatically extract names, descriptions and icons from your
+						Grasshopper plugins. Create reference documentation instantly.
 					</p>
 					<Link
 						href="/duckerweb"
