@@ -9,6 +9,7 @@ import SortDropDown from "./components/sort-drop-down";
 import { SortOrder, SORT_ORDERS } from "@/types/types";
 import UserTags from "./components/user-tags";
 import { FilterHint } from "./components/filter-hint";
+import { ShortcutHint } from "./components/shortcut-hint";
 
 function MainCardSkeleton() {
 	return (
@@ -85,6 +86,7 @@ export default async function Home(props: {
 					<GhCardDisplay tagFilters={sanitizedTagFilter} sortOrder={sortKey} />
 				</Suspense>
 			</div>
+			<ShortcutHint />
 		</div>
 	);
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AddGhDialog } from "./add-gh-dialog";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
@@ -15,6 +15,20 @@ export default function AddGHCard() {
 
 	const [open, setOpen] = useState(false);
 	const [adding, setAdding] = useState(false);
+
+	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key.toLowerCase() === "a") {
+				e.preventDefault();
+				setOpen((prev) => !prev);
+			}
+		};
+		window.addEventListener("keydown", handleKeyDown);
+		return () => {
+			window.removeEventListener("keydown", handleKeyDown);
+		};
+	}, []);
+
 	const handleAddClick = () => {
 		setOpen(!open);
 		params.set("tagFilterIsStale", "true");

@@ -76,6 +76,18 @@ export function AddGhDialog(props: {
 
 			setXmlData(undefined);
 			setTags([]);
+			setName("");
+			setDescription("");
+		}
+	};
+
+	const hasValues = name || description || tags.length > 0 || xmlData;
+
+	const handleEscapeKeyDown = (e: Event) => {
+		if (hasValues) {
+			e.preventDefault();
+		} else {
+			props.setOpen(false);
 		}
 	};
 
@@ -91,7 +103,7 @@ export function AddGhDialog(props: {
 
 	return (
 		<AlertDialog open={props.open}>
-			<AlertDialogContent>
+			<AlertDialogContent onEscapeKeyDown={handleEscapeKeyDown}>
 				<AlertDialogHeader>
 					<AlertDialogTitle className="text-lg">
 						{props.adding && addError.length === 0
