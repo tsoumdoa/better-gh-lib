@@ -76,6 +76,8 @@ export function AddGhDialog(props: {
 
 			setXmlData(undefined);
 			setTags([]);
+			setName("");
+			setDescription("");
 		}
 	};
 
