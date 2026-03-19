@@ -198,9 +198,6 @@ export const getUserTags = query({
 			if (identity === null) {
 				throw new Error("Not authenticated");
 			}
-			if (!identity.id) {
-				throw new Error("User identity missing id");
-			}
 			const posts = await ctx.db
 				.query("post")
 				.withIndex("by_clerkUserId", (q) =>
@@ -215,10 +212,12 @@ export const getUserTags = query({
 					return acc;
 				}, {});
 
-			const userTags: UserTag[] = Object.entries(counts).map(([tag, count]) => ({
-				tag,
-				count,
-			}));
+			const userTags: UserTag[] = Object.entries(counts).map(
+				([tag, count]) => ({
+					tag,
+					count,
+				})
+			);
 			userTags.sort((a, b) => {
 				if (a.tag < b.tag) return -1;
 				if (a.tag > b.tag) return 1;
