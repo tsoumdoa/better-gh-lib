@@ -98,3 +98,7 @@ pnpm run dev
 ```
 
 The application should now be accessible in your web browser at \(http://localhost:3000\).
+
+### TODO:
+
+- improve reliablities for deleting post (potential orphaned gh scripts or blob)
