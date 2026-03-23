@@ -18,7 +18,7 @@ export default function useGhCardControl(cardInfo: GhPost) {
 	const [deleted, setDeleted] = useState(false);
 	const [ghInfo, setGhInfo] = useState({
 		name: cardInfo.name,
-		description: cardInfo.description,
+		description: cardInfo.description ?? "",
 		tags: cardInfo.tags ?? [],
 	});
 	const [reset, setReset] = useState(false);
@@ -43,7 +43,7 @@ export default function useGhCardControl(cardInfo: GhPost) {
 		setXmlError("");
 		setGhInfo({
 			name: cardInfo.name,
-			description: cardInfo.description,
+			description: cardInfo.description ?? "",
 			tags: cardInfo.tags ?? [],
 		});
 	};
@@ -55,6 +55,7 @@ export default function useGhCardControl(cardInfo: GhPost) {
 		deleteFromBucket(cardInfo.bucketUrl!);
 		setTag("");
 		setEditMode(false);
+		setDeleted(true);
 	};
 
 	const handleEdit = async (submit: boolean) => {

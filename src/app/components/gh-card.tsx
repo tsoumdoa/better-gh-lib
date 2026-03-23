@@ -160,11 +160,7 @@ export default function GHCard(props: {
 					editMode={editMode}
 					setEditMode={() => setEditMode(!editMode)}
 					setGhInfo={setGhInfo}
-					ghInfo={{
-						name: props.cardInfo.name!,
-						description: props.cardInfo.description!,
-						tags: props.cardInfo.tags ?? [],
-					}}
+					ghInfo={ghInfo}
 					bucketId={props.cardInfo.bucketUrl ?? ""}
 					lastEdited={props.cardInfo.dateUpdated!}
 					created={props.cardInfo.dateCreated!}
