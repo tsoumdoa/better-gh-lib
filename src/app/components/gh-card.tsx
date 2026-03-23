@@ -7,7 +7,7 @@ import useGhCardControl from "../hooks/use-gh-card-control";
 import GhCardTags from "./gh-card-tags";
 import { MetricsDialog } from "./metrics-dialog";
 import { useFetchGhXml } from "../hooks/use-fetch-gh-xml";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { GhPost } from "@/types/types";
 import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
@@ -25,6 +25,9 @@ export default function GHCard(props: {
 		invalidInput,
 		setInvalidInput,
 		updating,
+		deleting,
+		deleteError,
+		setDeleteError,
 		deleted,
 		setEditMode,
 		removeTag,
@@ -52,6 +55,13 @@ export default function GHCard(props: {
 		ghLibs: Array<{ name: string; author?: string; version: string }>;
 	} | null>(null);
 	const [loadingMetrics, setLoadingMetrics] = useState(false);
+
+	useEffect(() => {
+		if (deleteError) {
+			const timer = setTimeout(() => setDeleteError(null), 1200);
+			return () => clearTimeout(timer);
+		}
+	}, [deleteError, setDeleteError]);
 
 	const { downloadData, decodedRef } = useFetchGhXml();
 
@@ -94,6 +104,71 @@ export default function GHCard(props: {
 			setLoadingMetrics(false);
 		}
 	};
+
+	if (deleting) {
+		return (
+			<div className="relative flex h-full w-full rounded-md bg-neutral-800 p-3 ring-1 ring-neutral-500">
+				<NameDescriptionAndTags
+					editMode={editMode}
+					setEditMode={() => setEditMode(!editMode)}
+					setGhInfo={setGhInfo}
+					ghInfo={{ name: "deleting...", description: "deleting...", tags: [] }}
+					isShared={false}
+					expiryDate={""}
+					bucketId={""}
+					lastEdited={""}
+					created={""}
+					addTag={addTag}
+					tag={inputTag}
+					setTag={setInputTag}
+					reset={reset}
+					setReset={setReset}
+					newXmlData={newXmlData}
+					setNewXmlData={setNewXmlData}
+					isValidXml={isValidXml}
+					xmlError={xmlError}
+					setXmlError={setXmlError}
+					handlePasteFromClipboard={handlePasteFromClipboard}
+				/>
+			</div>
+		);
+	}
+
+	if (deleteError) {
+		return (
+			<div className="relative flex h-full w-full rounded-md bg-neutral-800 p-3 ring-1 ring-neutral-500">
+				<NameDescriptionAndTags
+					editMode={editMode}
+					setEditMode={() => setEditMode(!editMode)}
+					setGhInfo={setGhInfo}
+					ghInfo={{ name: "deleted", description: "deleted", tags: [] }}
+					isShared={false}
+					expiryDate={""}
+					bucketId={""}
+					lastEdited={""}
+					created={""}
+					addTag={addTag}
+					tag={inputTag}
+					setTag={setInputTag}
+					reset={reset}
+					setReset={setReset}
+					newXmlData={newXmlData}
+					setNewXmlData={setNewXmlData}
+					isValidXml={isValidXml}
+					xmlError={xmlError}
+					setXmlError={setXmlError}
+					handlePasteFromClipboard={handlePasteFromClipboard}
+				/>
+				{deleteError && (
+					<div className="absolute inset-0 flex items-center justify-center rounded-md bg-neutral-900/80">
+						<p className="text-base font-semibold text-amber-500">
+							{deleteError}
+						</p>
+					</div>
+				)}
+			</div>
+		);
+	}
 
 	if (deleted) {
 		return (
@@ -160,11 +235,7 @@ export default function GHCard(props: {
 					editMode={editMode}
 					setEditMode={() => setEditMode(!editMode)}
 					setGhInfo={setGhInfo}
-					ghInfo={{
-						name: props.cardInfo.name!,
-						description: props.cardInfo.description!,
-						tags: props.cardInfo.tags ?? [],
-					}}
+					ghInfo={ghInfo}
 					bucketId={props.cardInfo.bucketUrl ?? ""}
 					lastEdited={props.cardInfo.dateUpdated!}
 					created={props.cardInfo.dateCreated!}

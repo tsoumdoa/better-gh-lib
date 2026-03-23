@@ -16,9 +16,11 @@ export default function useGhCardControl(cardInfo: GhPost) {
 	const [invalidInput, setInvalidInput] = useState(false);
 	const [updating, setUpdating] = useState(false);
 	const [deleted, setDeleted] = useState(false);
+	const [deleting, setDeleting] = useState(false);
+	const [deleteError, setDeleteError] = useState<string | null>(null);
 	const [ghInfo, setGhInfo] = useState({
 		name: cardInfo.name,
-		description: cardInfo.description,
+		description: cardInfo.description ?? "",
 		tags: cardInfo.tags ?? [],
 	});
 	const [reset, setReset] = useState(false);
@@ -43,18 +45,30 @@ export default function useGhCardControl(cardInfo: GhPost) {
 		setXmlError("");
 		setGhInfo({
 			name: cardInfo.name,
-			description: cardInfo.description,
+			description: cardInfo.description ?? "",
 			tags: cardInfo.tags ?? [],
 		});
 	};
 
-	const deletePost = () => {
-		deletePostConvex({
-			id: cardInfo["_id"],
-		});
-		deleteFromBucket(cardInfo.bucketUrl!);
-		setTag("");
-		setEditMode(false);
+	const deletePost = async () => {
+		setDeleting(true);
+		setDeleteError(null);
+		//TEMP for testing delete error
+		// setDeleteError("Failed to delete. Please try again.");
+		// setDeleting(false);
+		// throw new Error("Test error");
+		try {
+			await deletePostConvex({ id: cardInfo["_id"] });
+			await deleteFromBucket(cardInfo.bucketUrl!);
+			setTag("");
+			setEditMode(false);
+			setDeleted(true);
+		} catch (error) {
+			console.error("Failed to delete post:", error);
+			setDeleteError("Failed to delete. Please try again.");
+		} finally {
+			setDeleting(false);
+		}
 	};
 
 	const handleEdit = async (submit: boolean) => {
@@ -178,6 +192,10 @@ export default function useGhCardControl(cardInfo: GhPost) {
 		setUpdating,
 		deleted,
 		setDeleted,
+		deleting,
+		setDeleting,
+		deleteError,
+		setDeleteError,
 		removeTag,
 		addTag,
 		prevTags,
