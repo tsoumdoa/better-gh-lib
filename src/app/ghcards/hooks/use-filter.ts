@@ -45,6 +45,8 @@ export default function useFilter(
 	useEffect(() => {
 		if (filterKeyword.current === "") {
 			setFilteredCards(ghCards);
+		} else {
+			updateFilter(filterKeyword.current); //updateFilter when ghCards changes and use current keyword
 		}
 	}, [ghCards]);
 
