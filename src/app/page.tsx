@@ -35,7 +35,7 @@ function LandingPageContent() {
 					The quiet, ever-ready shelf for your Grasshopper ideas. Drop a script,
 					grab a link, share the magic—no clutter, no fuss.
 				</p>
-				<SignUpButton>
+				<SignUpButton mode="modal">
 					<button className="flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-all hover:bg-neutral-200 md:text-base">
 						Get Started Free
 						<ArrowRight className="h-4 w-4" />
