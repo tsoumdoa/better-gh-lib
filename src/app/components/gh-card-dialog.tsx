@@ -212,9 +212,7 @@ export function ShareDialog(props: {
 					)}
 				</div>
 				{shareLink && !isRevoked && (
-					<p className="text-xs text-neutral-400">
-						{formatExpiry(expiryDate)}
-					</p>
+					<p className="text-xs text-neutral-400">{formatExpiry(expiryDate)}</p>
 				)}
 				<AlertDialogFooter>
 					{shareLink && !isRevoked && (
