@@ -183,41 +183,39 @@ export function ShareDialog(props: {
 			<AlertDialogContent>
 				<AlertDialogHeader>
 					<AlertDialogTitle>Share</AlertDialogTitle>
+					<AlertDialogDescription>
+						{isRevoked
+							? "Share link has been revoked. You can now close this dialog."
+							: shareLink
+								? "Copy the link to share this card with others!"
+								: isGenerating
+									? "Creating share link..."
+									: "Failed to create share link. Please try again."}
+					</AlertDialogDescription>
 				</AlertDialogHeader>
-				<AlertDialogDescription>
-					<div className="flex items-center space-x-2 pb-2">
-						<Input
-							className="truncate"
-							value={shareLink ?? (isGenerating ? "Generating..." : "")}
-							readOnly
-							disabled={!shareLink || isRevoked}
-						/>
-						{!isRevoked && shareLink && (
-							<Button
-								variant="outline"
-								size="sm"
-								onClick={handleCopyClick}
-								disabled={revoking || isGenerating}
-							>
-								{copied ? "Copied!" : "Copy"}
-							</Button>
-						)}
-					</div>
-					{isRevoked ? (
-						"Share link has been revoked. You can now close this dialog."
-					) : shareLink ? (
-						<>
-							<p>Copy the link to share this card with others!</p>
-							<p className="mt-1 text-xs text-neutral-400">
-								{formatExpiry(expiryDate)}
-							</p>
-						</>
-					) : isGenerating ? (
-						"Creating share link..."
-					) : (
-						"Failed to create share link. Please try again."
+				<div className="flex items-center space-x-2 pb-2">
+					<Input
+						className="truncate"
+						value={shareLink ?? (isGenerating ? "Generating..." : "")}
+						readOnly
+						disabled={!shareLink || isRevoked}
+					/>
+					{!isRevoked && shareLink && (
+						<Button
+							variant="outline"
+							size="sm"
+							onClick={handleCopyClick}
+							disabled={revoking || isGenerating}
+						>
+							{copied ? "Copied!" : "Copy"}
+						</Button>
 					)}
-				</AlertDialogDescription>
+				</div>
+				{shareLink && !isRevoked && (
+					<p className="text-xs text-neutral-400">
+						{formatExpiry(expiryDate)}
+					</p>
+				)}
 				<AlertDialogFooter>
 					{shareLink && !isRevoked && (
 						<Button
