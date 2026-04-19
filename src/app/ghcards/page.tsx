@@ -8,7 +8,6 @@ import GhCardDisplay from "./components/gh-card-display";
 import SortDropDown from "./components/sort-drop-down";
 import { SortOrder, SORT_ORDERS } from "@/types/types";
 import UserTags from "./components/user-tags";
-import { FilterHint } from "./components/filter-hint";
 import { ShortcutHint } from "./components/shortcut-hint";
 
 function MainCardSkeleton() {
@@ -74,7 +73,6 @@ export default async function Home(props: {
 						<span>{`${username}'s Fav`}</span>
 					</div>
 					<div className="flex items-center gap-4">
-						<FilterHint />
 						<SortDropDown />
 						<AddGHCard />
 					</div>
