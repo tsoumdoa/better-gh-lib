@@ -204,12 +204,13 @@ export default function PrivacyPolicy() {
 							7. Data Storage
 						</h2>
 						<p className="pb-6 leading-relaxed">
-							Metadata associated with each script snippet is stored in LibSQL,
-							hosted by Turso. The actual script content is stored in R2 blob
-							storage, hosted by Cloudflare. We implement reasonable security
-							measures to protect your data. As site administrators, we have
-							access to this data for the purpose of operating, maintaining, and
-							supporting the Service.
+							Metadata associated with each script snippet is stored in
+							Convex, our backend platform that provides the database and
+							serverless functions for the Service. The actual script content
+							is gzip-compressed and stored in Cloudflare R2 blob storage.
+							We implement reasonable security measures to protect your data.
+							As site administrators, we have access to this data for the
+							purpose of operating, maintaining, and supporting the Service.
 						</p>
 
 						<h2 className="pb-4 text-3xl font-bold text-neutral-900">
@@ -220,13 +221,18 @@ export default function PrivacyPolicy() {
 							provide the Service, including:
 						</p>
 						<ul className="list-disc pb-6 pl-5 leading-relaxed">
-							<li className="pb-2">Clerk (for authentication)</li>
-							<li className="pb-2">Turso (for database hosting - LibSQL)</li>
+							<li className="pb-2">Clerk (for authentication and user management)</li>
 							<li className="pb-2">
-								Cloudflare R2 (for blob storage - snippet content)
+								Convex (for database, serverless functions, and real-time data
+								sync)
 							</li>
-							<li className="pb-2">Cloudflare Worker (for reverse proxy)</li>
-							<li className="pb-2">PostHog (for basic web analytics)</li>
+							<li className="pb-2">
+								Cloudflare R2 (for blob storage - script content)
+							</li>
+							<li className="pb-2">
+								PostHog (for web analytics and error tracking)
+							</li>
+							<li className="pb-2">Vercel (for application hosting and deployment)</li>
 						</ul>
 						<p className="pb-6 leading-relaxed">
 							These providers are contractually obligated to protect your

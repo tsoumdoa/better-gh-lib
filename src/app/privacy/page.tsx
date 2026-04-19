@@ -12,7 +12,7 @@ export default function PrivacyPolicy() {
 								HopperClip Privacy Policy
 							</h1>
 							<p className="mb-8 text-center text-sm text-neutral-400">
-								Effective Date: June 30, 2025
+								Effective Date: April 19, 2026
 							</p>
 							<p className="mb-6 leading-relaxed">
 								This Privacy Policy describes how Hopper Clip (&quot;Hopper
@@ -55,8 +55,8 @@ export default function PrivacyPolicy() {
 									</strong>{" "}
 									When you create an account on Hopper Clip, we collect personal
 									data provided by our authentication provider, Clerk. This
-									includes information such as your email address and a unique
-									user ID.
+									includes information such as your email address, username or
+									first name, and a unique user ID.
 								</li>
 								<li className="mb-2">
 									<strong className="font-semibold">
@@ -64,58 +64,69 @@ export default function PrivacyPolicy() {
 									</strong>
 									If you choose to log in using a third-party service like
 									Google or GitHub via Clerk, we receive only the necessary
-									information for authentication, such as your user ID and email
-									address. We do not access or store any other personal data
-									from your Google or GitHub accounts beyond what is strictly
-									required to verify your identity and create your Hopper Clip
-									account.
+									information for authentication, such as your user ID, email
+									address, and basic profile info (username or first name). We
+									do not access or store any other personal data from your
+									Google or GitHub accounts beyond what is strictly required to
+									verify your identity and create your Hopper Clip account.
 								</li>
 								<li className="mb-2">
 									<strong className="font-semibold">
 										Hopper Clip Content:
 									</strong>{" "}
 									The core functionality of Hopper Clip involves you creating
-									and managing &quot;snippets&quot; of scripts. This content,
-									including the script text and any associated metadata, is
-									stored by us as part of the Service.
+									and managing Grasshopper script snippets. This content,
+									including the Grasshopper XML script files and associated
+									metadata (name, description, tags), is stored by us as part
+									of the Service.
+								</li>
+								<li className="mb-2">
+									<strong className="font-semibold">
+										Shared Content:
+									</strong>{" "}
+									You may choose to generate time-limited share links for your
+									script snippets. When you do, a unique share token is created
+									that allows anyone with the link to access your shared script
+									content and metadata until the link expires. You may revoke
+									share links at any time.
 								</li>
 							</ul>
-							<h3 className="mb-3 text-2xl font-semibold text-neutral-800">
+							<h3 className="mb-3 text-2xl font-semibold">
 								b. Information We Collect Automatically:
 							</h3>
 							<ul className="mb-6 list-disc pl-5 leading-relaxed">
 								<li className="mb-2">
 									<strong className="font-semibold">Usage Data:</strong> We
-									collect information about how you interact with the Service,
-									such as the actions you take on the site (e.g., creating a
-									snippet, viewing a snippet, using specific features). This
-									helps us understand how the app is used and allows us to
-									improve it.
+									collect information about how you interact with the Service
+									using PostHog, our analytics provider. This includes
+									pageviews, page leave events, and specific interactions such
+									as pasting Grasshopper script content. This helps us
+									understand how the app is used and allows us to improve it.
 								</li>
 								<li className="mb-2">
 									<strong className="font-semibold">Device Information:</strong>{" "}
-									We may collect information about the device you use to access
-									Hopper Clip, including your IP address, browser type,
-									operating system, and unique device identifiers.
+									Through PostHog, we may collect information about the device
+									you use to access Hopper Clip, including your IP address,
+									browser type, operating system, screen resolution, and unique
+									device identifiers.
 								</li>
 								<li className="mb-2">
-									<strong className="font-semibold">Log Data:</strong> Like most
-									websites, our servers automatically record information that
-									your browser sends whenever you visit the Service. This
-									&quot;Effective DateLog Data&quot; may include your IP
-									address, browser type and settings, the date and time of your
-									request, and how you interacted with our Service.
+									<strong className="font-semibold">Error Tracking:</strong>{" "}
+									We automatically capture JavaScript exceptions that occur
+									while you use the Service to help us identify and fix bugs.
 								</li>
 								<li className="mb-2">
 									<strong className="font-semibold">
 										Cookies and Tracking Technologies:
 									</strong>
-									We use cookies primarily for authentication purposes, to keep
-									you logged in and ensure the secure operation of your account.
-									We also use cookies for basic web analytics (via PostHog) to
-									understand general usage patterns of the Service. We do not
-									use cookies for tracking purposes across other websites or for
-									targeted advertising.
+									We use cookies primarily for authentication purposes (via
+									Clerk), to keep you logged in and ensure the secure operation
+									of your account. We also use cookies for web analytics (via
+									PostHog) to understand general usage patterns of the Service.
+									PostHog&apos;s analytics traffic is proxied through our own
+									domain to ensure reliability. We do not use cookies for
+									tracking purposes across other websites or for targeted
+									advertising.
 								</li>
 							</ul>
 							<h2 className="mb-4 text-3xl font-bold text-neutral-300">
@@ -172,15 +183,19 @@ export default function PrivacyPolicy() {
 							<ul className="mb-6 list-disc pl-5 leading-relaxed">
 								<li className="mb-2">
 									<strong className="font-semibold">Metadata Storage:</strong>{" "}
-									Metadata associated with each snippet of script you create is
-									saved in LibSQL, hosted by Turso.
+									Metadata associated with each script snippet you create —
+									including its name, description, tags, creation and update
+									timestamps, and share link information — is stored in Convex,
+									our backend platform that provides the database and serverless
+									functions for the Service.
 								</li>
 								<li className="mb-2">
 									<strong className="font-semibold">
-										Snippet Content Storage:
+										Script Content Storage:
 									</strong>{" "}
-									The actual script content (snippets) is stored in R2 blob
-									storage, hosted by Cloudflare.
+									The actual Grasshopper XML script content is gzip-compressed
+									and stored in Cloudflare R2 blob storage. Each file is
+									isolated under your unique user ID.
 								</li>
 								<li className="mb-2">
 									<strong className="font-semibold">
@@ -193,6 +208,12 @@ export default function PrivacyPolicy() {
 									and supporting the Service. We implement reasonable security
 									measures to protect your data.
 								</li>
+								<li className="mb-2">
+									<strong className="font-semibold">Client-Side Features:</strong>{" "}
+									Some features, such as the Grasshopper script documentation
+									tool (DuckerWeb), run entirely in your browser and do not
+									transmit or store any data on our servers.
+								</li>
 							</ul>
 							<h2 className="mb-4 text-3xl font-bold text-neutral-300">
 								5. How We Share Your Information
@@ -204,11 +225,31 @@ export default function PrivacyPolicy() {
 							<ul className="mb-6 list-disc pl-5 leading-relaxed">
 								<li className="mb-2">
 									<strong className="font-semibold">Service Providers:</strong>{" "}
-									We use third-party service providers (Clerk for
-									authentication, Turso for database hosting, Cloudflare R2 for
-									blob storage, Cloudflare Worker for reverse proxy, and PostHog
-									for analytics) to help us operate and provide the Service.
-									These providers is contractually obligated to protect your
+									We use third-party service providers to help us operate and
+									provide the Service:
+									<ul className="mt-2 list-disc pl-5">
+										<li className="mb-1">
+											<strong className="font-semibold">Clerk</strong> —
+											authentication and user management
+										</li>
+										<li className="mb-1">
+											<strong className="font-semibold">Convex</strong> —
+											database, serverless functions, and real-time data sync
+										</li>
+										<li className="mb-1">
+											<strong className="font-semibold">Cloudflare R2</strong>{" "}
+											— blob storage for script content
+										</li>
+										<li className="mb-1">
+											<strong className="font-semibold">PostHog</strong> — web
+											analytics and error tracking
+										</li>
+										<li className="mb-1">
+											<strong className="font-semibold">Vercel</strong> —
+											application hosting and deployment
+										</li>
+									</ul>
+									These providers are contractually obligated to protect your
 									information and only use it for the purposes of providing
 									their services to us.
 								</li>
@@ -247,7 +288,11 @@ export default function PrivacyPolicy() {
 							</h2>
 							<p className="mb-6 leading-relaxed">
 								Hopper Clip is not intended for use by children under the age of
-								13. We do not knowingly collect
+								13. We do not knowingly collect personal information from children
+								under 13. If we learn that we have collected personal information
+								of a child under 13, we will take steps to delete such
+								information. If you believe a child under 13 has provided us with
+								personal information, please contact us.
 							</p>
 							<h2 className="mb-4 text-3xl font-bold text-neutral-300">
 								8. Your Privacy Choices and Rights
