@@ -37,8 +37,10 @@ function LandingPageContent() {
 				</p>
 				<SignUpButton mode="modal">
 					<button className="flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-all hover:bg-neutral-200 md:text-base">
-						Get Started Free
-						<ArrowRight className="h-4 w-4" />
+						<span className="flex items-center gap-2">
+							Get Started Free
+							<ArrowRight className="h-4 w-4" />
+						</span>
 					</button>
 				</SignUpButton>
 				<div className="grid w-full grid-cols-1 gap-6 pt-8 md:grid-cols-3">
