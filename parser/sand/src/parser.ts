@@ -540,7 +540,8 @@ function parseComponent(
 			description: "Input value",
 			nick: "V",
 			optional: true,
-			source: sourceGuids[0], // Use first source
+			source: sourceGuids[0],
+			guid: instanceGuid,
 		};
 	}
 
