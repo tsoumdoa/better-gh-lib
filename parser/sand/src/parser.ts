@@ -608,7 +608,7 @@ export function parseGrasshopper(
 
 	// Navigate to DefinitionObjects
 	const chunks = normalizeArray(archive.chunks?.chunk);
-	const clipboardChunk = chunks.find((c) => c.name === "Clipboard");
+	const clipboardChunk = chunks.find((c) => c.name === "Clipboard" || c.name === "Archive");
 
 	if (!clipboardChunk) {
 		return {
