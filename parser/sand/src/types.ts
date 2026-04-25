@@ -23,16 +23,18 @@ export interface PortOptions {
 export interface InputPort {
 	description?: string;
 	nick: string;
-	source?: string; // References component id
+	source?: string;
 	optional?: boolean;
-	options?: PortOptions; // Input parameter options (flatten, graft, etc.)
+	options?: PortOptions;
+	guid: string;
 }
 
 export interface OutputPort {
 	description?: string;
 	nick: string;
 	optional?: boolean;
-	options?: PortOptions; // Output parameter options (flatten, graft, etc.)
+	options?: PortOptions;
+	guid: string;
 }
 
 export interface Visuals {

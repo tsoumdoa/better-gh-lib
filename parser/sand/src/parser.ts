@@ -166,10 +166,13 @@ function parseParamChunk(
 	const nickName = items.NickName;
 	if (!nickName || typeof nickName !== "string") return null;
 
+	const guid = (items.GUID as string) || "";
+
 	const port: InputPort | OutputPort = {
 		description: items.Description as string,
 		nick: nickName,
 		optional: (items.Optional as boolean) ?? false,
+		guid,
 	};
 
 	if (type === "input") {
