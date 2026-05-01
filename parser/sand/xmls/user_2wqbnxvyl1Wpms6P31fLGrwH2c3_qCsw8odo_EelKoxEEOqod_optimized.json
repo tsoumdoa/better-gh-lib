@@ -8,17 +8,10 @@
       "description": "Contains a collection of generic surfaces",
       "nickName": "Srf",
       "inputs": {},
-      "outputs": {},
-      "visuals": {
-        "bounds": {
-          "x": 824,
-          "y": 305,
-          "width": 50,
-          "height": 20
-        },
-        "pivot": {
-          "x": 849.8335,
-          "y": 315.33334
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9"
         }
       }
     },
@@ -33,31 +26,22 @@
           "description": "Brep, mesh or planar closed curve for area computation",
           "nick": "G",
           "optional": false,
-          "source": "Srf"
+          "guid": "8f996d6f-16b6-4185-afb1-1d7dd9642f56",
+          "source": "Srf.value"
         }
       },
       "outputs": {
         "a": {
           "description": "Area of geometry",
           "nick": "A",
-          "optional": true
+          "optional": true,
+          "guid": "bcbc03c6-98af-4d43-a355-32308e7608e1"
         },
         "c": {
           "description": "Area centroid of geometry",
           "nick": "C",
-          "optional": true
-        }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 895,
-          "y": 352,
-          "width": 66,
-          "height": 44
-        },
-        "pivot": {
-          "x": 927,
-          "y": 374
+          "optional": true,
+          "guid": "558b7bf7-4590-447b-a7f0-196b4d03acc8"
         }
       }
     },
@@ -72,52 +56,47 @@
           "description": "Base surface",
           "nick": "S",
           "optional": false,
-          "source": "Srf"
+          "guid": "d36e017c-a92d-497e-88c8-e4eb86823880",
+          "source": "Srf.value"
         },
         "uv": {
           "description": "{uv} coordinate to evaluate",
           "nick": "uv",
           "optional": false,
-          "source": "4996710a-b78e-4ad4-96aa-c6d1d83ce2fb"
+          "guid": "72e87fe8-0da9-485d-9d42-02297198a12a",
+          "source": "Srf CP.uvp"
         }
       },
       "outputs": {
         "p": {
           "description": "Point at {uv}",
           "nick": "P",
-          "optional": false
+          "optional": false,
+          "guid": "5967f5b4-c5e8-4a32-87ce-3ea80a8962ec"
         },
         "n": {
           "description": "Normal at {uv}",
           "nick": "N",
-          "optional": false
+          "optional": false,
+          "guid": "ce93b76d-e426-42bf-a7c8-0718a96ab99a"
         },
         "u": {
           "description": "U direction at {uv}",
           "nick": "U",
-          "optional": false
+          "optional": false,
+          "guid": "13ae8ff9-5b77-447f-b01f-744898a868c3"
         },
         "v": {
           "description": "V direction at {uv}",
           "nick": "V",
-          "optional": false
+          "optional": false,
+          "guid": "3467f7f6-e72a-4b09-8668-9bacc1bc3ba3"
         },
         "f": {
           "description": "Frame at {uv}",
           "nick": "F",
-          "optional": false
-        }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 1102,
-          "y": 288,
-          "width": 71,
-          "height": 104
-        },
-        "pivot": {
-          "x": 1138,
-          "y": 340
+          "optional": false,
+          "guid": "20827a8c-83ae-4a7c-b7f0-e1a9d13a70bf"
         }
       }
     },
@@ -132,42 +111,35 @@
           "description": "Sample point",
           "nick": "P",
           "optional": false,
-          "source": "558b7bf7-4590-447b-a7f0-196b4d03acc8"
+          "guid": "b9f7950d-c370-41c7-a0e6-28d3f91d316b",
+          "source": "Area.c"
         },
         "s": {
           "description": "Base surface",
           "nick": "S",
           "optional": false,
-          "source": "Srf"
+          "guid": "97538235-68b2-49f8-a8e4-31891b25189a",
+          "source": "Srf.value"
         }
       },
       "outputs": {
         "p": {
           "description": "Closest point",
           "nick": "P",
-          "optional": false
+          "optional": false,
+          "guid": "fcda2e5e-439e-431f-8ea1-08e5ff8cd677"
         },
         "uvp": {
           "description": "{uv} coordinates of closest point",
           "nick": "uvP",
-          "optional": false
+          "optional": false,
+          "guid": "4996710a-b78e-4ad4-96aa-c6d1d83ce2fb"
         },
         "d": {
           "description": "Distance between sample point and surface",
           "nick": "D",
-          "optional": false
-        }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 998,
-          "y": 333,
-          "width": 75,
-          "height": 64
-        },
-        "pivot": {
-          "x": 1028,
-          "y": 365
+          "optional": false,
+          "guid": "43144173-4824-42eb-ab7f-f5b601f9e08d"
         }
       }
     },
@@ -178,9 +150,11 @@
       "description": "A group of Grasshopper objects",
       "nickName": "Group",
       "inputs": {},
-      "outputs": {},
-      "visuals": {
-        "color": "150;255;255;255"
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "5493eb71-1c24-4364-b077-14808540269b"
+        }
       },
       "members": [
         "Srf",
@@ -192,24 +166,34 @@
   },
   "wires": [
     {
-      "from": "Srf",
-      "to": "Area.g"
+      "from": "Srf.value",
+      "to": "Area.g",
+      "sourceComponentGuid": "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9",
+      "targetPortGuid": "8f996d6f-16b6-4185-afb1-1d7dd9642f56"
     },
     {
-      "from": "Srf",
-      "to": "EvalSrf.s"
+      "from": "Srf.value",
+      "to": "EvalSrf.s",
+      "sourceComponentGuid": "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9",
+      "targetPortGuid": "d36e017c-a92d-497e-88c8-e4eb86823880"
     },
     {
-      "from": "4996710a-b78e-4ad4-96aa-c6d1d83ce2fb",
-      "to": "EvalSrf.uv"
+      "from": "Srf CP.uvp",
+      "to": "EvalSrf.uv",
+      "sourceComponentGuid": "4996710a-b78e-4ad4-96aa-c6d1d83ce2fb",
+      "targetPortGuid": "72e87fe8-0da9-485d-9d42-02297198a12a"
     },
     {
-      "from": "558b7bf7-4590-447b-a7f0-196b4d03acc8",
-      "to": "Srf CP.p"
+      "from": "Area.c",
+      "to": "Srf CP.p",
+      "sourceComponentGuid": "558b7bf7-4590-447b-a7f0-196b4d03acc8",
+      "targetPortGuid": "b9f7950d-c370-41c7-a0e6-28d3f91d316b"
     },
     {
-      "from": "Srf",
-      "to": "Srf CP.s"
+      "from": "Srf.value",
+      "to": "Srf CP.s",
+      "sourceComponentGuid": "7cc69cbd-1bc4-4bd6-8fb1-7ac429c196e9",
+      "targetPortGuid": "97538235-68b2-49f8-a8e4-31891b25189a"
     }
   ],
   "metadata": {
@@ -217,7 +201,7 @@
     "libraries": [
       {
         "name": "Grasshopper",
-        "version": "8.17.25066.7001",
+        "version": "",
         "author": "Robert McNeel & Associates"
       }
     ]

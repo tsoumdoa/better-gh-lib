@@ -11,28 +11,14 @@
         "out": {
           "description": "The execution information, as output and error streams",
           "nick": "out",
-          "optional": false
+          "optional": false,
+          "guid": "c7f5ed17-d480-45fd-9d3e-3633b525a034"
         }
       },
       "script": {
         "language": "csharp",
         "code": "using Grasshopper.Kernel;\r\nusing Rhino.Collections;\r\nusing Rhino.DocObjects;\r\nusing System;\r\nusing System.Collections.Generic;\r\nusing System.Drawing;\r\n\r\npublic class Script_Instance : GH_ScriptInstance\r\n{\r\n    private void RunScript()\r\n    {\r\n        // Get the current active document\r\n        var doc = Rhino.RhinoDoc.ActiveDoc;\r\n\r\n        // Get layers in the current doc\r\n        var layers = doc.Layers;\r\n\r\n        // Randomize all layer colors\r\n        var random = new Random();\r\n        for (int i = 0; i < layers.Count; i++)\r\n        {\r\n            var newColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));\r\n            layers[i].Color = newColor;\r\n        }\r\n\r\n\r\n       \r\n    }\r\n}",
         "title": "dangerouslyRandomizeColor"
-      },
-      "visuals": {
-        "bounds": {
-          "x": 212,
-          "y": 36,
-          "width": 57,
-          "height": 200
-        },
-        "pivot": {
-          "x": 226,
-          "y": 136
-        }
-      },
-      "state": {
-        "locked": true
       }
     }
   },
@@ -42,7 +28,7 @@
     "libraries": [
       {
         "name": "Grasshopper",
-        "version": "8.17.25066.7001",
+        "version": "",
         "author": "Robert McNeel & Associates"
       }
     ]

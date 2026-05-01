@@ -166,7 +166,7 @@ function parseParamChunk(
 	const nickName = items.NickName;
 	if (!nickName || typeof nickName !== "string") return null;
 
-	const guid = (items.GUID as string) || "";
+	const guid = (items.InstanceGuid as string) || "";
 
 	const port: InputPort | OutputPort = {
 		description: items.Description as string,
@@ -176,10 +176,12 @@ function parseParamChunk(
 	};
 
 	if (type === "input") {
-		// Source is an indexed item (Source_0, Source_1, etc.)
 		const sources = extractIndexedItems(paramChunk, "Source");
 		if (sources.length > 0) {
 			(port as InputPort).source = sources[0];
+			if (sources.length > 1) {
+				(port as InputPort).sources = sources;
+			}
 		}
 	}
 
@@ -345,6 +347,39 @@ function parseComponentValue(
 			min: containerItems.Minimum as number,
 			max: containerItems.Maximum as number,
 			current: containerItems.Value as number,
+		};
+	}
+
+	// Parse Toggle (Boolean Toggle)
+	if (type.includes("toggle")) {
+		const toggleValue = containerItems.ToggleValue;
+		if (toggleValue !== undefined) {
+			return {
+				type: "toggle",
+				value: toggleValue === true,
+			};
+		}
+	}
+
+	// Parse Swatch (Colour Swatch)
+	if (type.includes("swatch")) {
+		const swatchColor = containerItems.SwatchColor;
+		if (swatchColor !== undefined) {
+			return {
+				type: "swatch",
+				color: swatchColor as string,
+			};
+		}
+	}
+
+	// Parse Button
+	if (type.includes("button")) {
+		const normalExpr = containerItems.ExpressionNormal as string;
+		const pressedExpr = containerItems.ExpressionPressed as string;
+		return {
+			type: "button",
+			normalExpression: normalExpr,
+			pressedExpression: pressedExpr,
 		};
 	}
 
@@ -545,6 +580,16 @@ function parseComponent(
 		};
 	}
 
+	// Value-type components (Panel, Slider, Number, etc.) have no param_output chunks
+	// but other components source their output via the component's InstanceGuid.
+	// Add a synthetic output so wires resolve to a proper handle ID.
+	if (Object.keys(component.outputs).length === 0) {
+		component.outputs["value"] = {
+			nick: "V",
+			guid: instanceGuid,
+		};
+	}
+
 	// Parse script if present
 	const script = parseScript(containerChunk, name);
 	if (script) {
@@ -657,6 +702,7 @@ export function parseGrasshopper(
 
 	const components: Record<string, Component> = {};
 	const guidToId: Map<string, string> = new Map();
+	const outputPortGuidToHandle: Map<string, string> = new Map();
 	const nickNameCounts: Map<string, number> = new Map();
 
 	// First pass: generate unique IDs and build GUID mapping
@@ -686,6 +732,14 @@ export function parseGrasshopper(
 			}
 		}
 
+		// Map output port GUIDs → full handle ID ("${componentId}.${portKey}")
+		// so input.source referencing an output port resolves to the correct handle
+		for (const [portKey, outputPort] of Object.entries(parsed.component.outputs)) {
+			if (outputPort.guid) {
+				outputPortGuidToHandle.set(outputPort.guid, `${uniqueId}.${portKey}`);
+			}
+		}
+
 		parsedComponents.push({ parsed, id: uniqueId });
 	}
 
@@ -695,22 +749,35 @@ export function parseGrasshopper(
 	for (const { id: compId, parsed } of parsedComponents) {
 		const component = parsed.component;
 		for (const [inputName, input] of Object.entries(component.inputs)) {
-			if (input.source) {
-				const sourceComponentId = guidToId.get(input.source);
+			const allSources = input.sources ?? (input.source ? [input.source] : []);
 
-				if (sourceComponentId) {
+			for (const src of allSources) {
+				const resolvedFrom =
+					outputPortGuidToHandle.get(src) ??
+					guidToId.get(src);
+
+				if (resolvedFrom) {
 					wires.push({
-						from: sourceComponentId,
+						from: resolvedFrom,
 						to: `${compId}.${inputName}`,
+						sourceComponentGuid: src,
+						targetPortGuid: input.guid,
 					});
-					// Update the input source to reference the component ID instead of GUID
-					input.source = sourceComponentId;
 				} else {
 					wires.push({
-						from: input.source,
+						from: src,
 						to: `${compId}.${inputName}`,
+						sourceComponentGuid: src,
+						targetPortGuid: input.guid,
 					});
 				}
+			}
+
+			if (input.source) {
+				const resolvedFrom =
+					outputPortGuidToHandle.get(input.source) ??
+					guidToId.get(input.source);
+				if (resolvedFrom) input.source = resolvedFrom;
 			}
 		}
 	}

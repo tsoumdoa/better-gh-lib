@@ -8,17 +8,10 @@
       "description": "Contains a collection of generic curves",
       "nickName": "Crv",
       "inputs": {},
-      "outputs": {},
-      "visuals": {
-        "bounds": {
-          "x": 1115,
-          "y": 590,
-          "width": 50,
-          "height": 20
-        },
-        "pivot": {
-          "x": 1140.3226,
-          "y": 600.29395
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "1d6217a3-3d5c-45f6-bac5-441c742698f3"
         }
       }
     },
@@ -33,26 +26,16 @@
           "description": "Curve for mid-point.",
           "nick": "C",
           "optional": false,
-          "source": "Crv"
+          "guid": "7e75b165-9b72-4053-b391-3b9d5cc5cb0f",
+          "source": "Crv.value"
         }
       },
       "outputs": {
         "m": {
           "description": "Point in the middle of the curve",
           "nick": "M",
-          "optional": false
-        }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 1187,
-          "y": 622,
-          "width": 68,
-          "height": 53
-        },
-        "pivot": {
-          "x": 1218,
-          "y": 649
+          "optional": false,
+          "guid": "af54ded6-6ace-4fd3-9a60-9a0f28d7f482"
         }
       }
     },
@@ -67,37 +50,29 @@
           "description": "List of sortable keys",
           "nick": "K",
           "optional": false,
-          "source": "Crv"
+          "guid": "8786a6c5-6a48-4217-bbe5-5eb53e9b7c26",
+          "source": "Crv.value"
         },
         "a": {
           "description": "Optional list of values to sort synchronously",
           "nick": "A",
           "optional": true,
-          "source": "80f2a282-5182-4437-9ee3-601e75a9b1b4"
+          "guid": "714a40b5-8170-4495-a09b-4cf2c6831ecc",
+          "source": "pDecon.z"
         }
       },
       "outputs": {
         "k": {
           "description": "Sorted keys",
           "nick": "K",
-          "optional": false
+          "optional": false,
+          "guid": "deb559f5-a8e0-4c28-99c0-d9bffadd62f5"
         },
         "a": {
           "description": "Synchronous values in A",
           "nick": "A",
-          "optional": false
-        }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 1371,
-          "y": 588,
-          "width": 65,
-          "height": 44
-        },
-        "pivot": {
-          "x": 1402,
-          "y": 610
+          "optional": false,
+          "guid": "81417df4-adc6-491f-9540-5c676856812d"
         }
       }
     },
@@ -112,36 +87,28 @@
           "description": "Input point",
           "nick": "P",
           "optional": false,
-          "source": "af54ded6-6ace-4fd3-9a60-9a0f28d7f482"
+          "guid": "6c2ef317-0c4c-418c-a9bc-76367a5c6071",
+          "source": "MidPt.m"
         }
       },
       "outputs": {
         "x": {
           "description": "Point {x} component",
           "nick": "X",
-          "optional": false
+          "optional": false,
+          "guid": "e02f9069-e9c8-40be-a43c-564915a5eecd"
         },
         "y": {
           "description": "Point {y} component",
           "nick": "Y",
-          "optional": false
+          "optional": false,
+          "guid": "bb088fd7-8051-4973-9b66-04f726a121ba"
         },
         "z": {
           "description": "Point {z} component",
           "nick": "Z",
-          "optional": false
-        }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 1272,
-          "y": 616,
-          "width": 64,
-          "height": 64
-        },
-        "pivot": {
-          "x": 1302,
-          "y": 648
+          "optional": false,
+          "guid": "80f2a282-5182-4437-9ee3-601e75a9b1b4"
         }
       }
     },
@@ -152,9 +119,11 @@
       "description": "A group of Grasshopper objects",
       "nickName": "Group",
       "inputs": {},
-      "outputs": {},
-      "visuals": {
-        "color": "150;255;255;255"
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "d2658477-1b3b-4513-90aa-e3e81d8ad229"
+        }
       },
       "members": [
         "Crv",
@@ -166,20 +135,28 @@
   },
   "wires": [
     {
-      "from": "Crv",
-      "to": "MidPt.c"
+      "from": "Crv.value",
+      "to": "MidPt.c",
+      "sourceComponentGuid": "1d6217a3-3d5c-45f6-bac5-441c742698f3",
+      "targetPortGuid": "7e75b165-9b72-4053-b391-3b9d5cc5cb0f"
     },
     {
-      "from": "Crv",
-      "to": "Sort.k"
+      "from": "Crv.value",
+      "to": "Sort.k",
+      "sourceComponentGuid": "1d6217a3-3d5c-45f6-bac5-441c742698f3",
+      "targetPortGuid": "8786a6c5-6a48-4217-bbe5-5eb53e9b7c26"
     },
     {
-      "from": "80f2a282-5182-4437-9ee3-601e75a9b1b4",
-      "to": "Sort.a"
+      "from": "pDecon.z",
+      "to": "Sort.a",
+      "sourceComponentGuid": "80f2a282-5182-4437-9ee3-601e75a9b1b4",
+      "targetPortGuid": "714a40b5-8170-4495-a09b-4cf2c6831ecc"
     },
     {
-      "from": "af54ded6-6ace-4fd3-9a60-9a0f28d7f482",
-      "to": "pDecon.p"
+      "from": "MidPt.m",
+      "to": "pDecon.p",
+      "sourceComponentGuid": "af54ded6-6ace-4fd3-9a60-9a0f28d7f482",
+      "targetPortGuid": "6c2ef317-0c4c-418c-a9bc-76367a5c6071"
     }
   ],
   "metadata": {
@@ -187,7 +164,7 @@
     "libraries": [
       {
         "name": "Grasshopper",
-        "version": "8.17.25066.7001",
+        "version": "",
         "author": "Robert McNeel & Associates"
       }
     ]

@@ -5,37 +5,29 @@
       "id": "ptIsoE",
       "type": "Iso Edges",
       "guid": "970803eb-b195-4352-b9ca-45b3c4d156f5",
+      "library": "PTComponentLibrary v2021.4.1.0",
       "description": "Extract iso-edges on surface from linear edges",
       "nickName": "ptIsoE",
       "inputs": {
         "l": {
           "description": "Lines to extract their iso",
           "nick": "L",
-          "optional": false
+          "optional": false,
+          "guid": "8998365f-38e7-4a13-99e2-349b9c463cac"
         },
         "s": {
           "description": "Surface",
           "nick": "S",
-          "optional": false
+          "optional": false,
+          "guid": "887597aa-fe84-44ba-b58f-a192c776088a"
         }
       },
       "outputs": {
         "c": {
           "description": "Iso curve segments",
           "nick": "C",
-          "optional": false
-        }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 518,
-          "y": 239,
-          "width": 56,
-          "height": 48
-        },
-        "pivot": {
-          "x": 544,
-          "y": 263
+          "optional": false,
+          "guid": "43640f23-fc16-4fbc-a15e-a65e396ec861"
         }
       }
     },
@@ -49,31 +41,22 @@
         "g": {
           "description": "Geometry to deform",
           "nick": "G",
-          "optional": false
+          "optional": false,
+          "guid": "a4e5bb28-3503-4d15-be4e-7cd3f3aa1015"
         },
         "b": {
           "description": "Bending arc segment",
           "nick": "B",
-          "optional": false
+          "optional": false,
+          "guid": "e09037fd-2d6f-47d3-984e-d5913fee75a0"
         }
       },
       "outputs": {
         "g": {
           "description": "Deformed geometry",
           "nick": "G",
-          "optional": false
-        }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 382,
-          "y": 156,
-          "width": 57,
-          "height": 44
-        },
-        "pivot": {
-          "x": 409,
-          "y": 178
+          "optional": false,
+          "guid": "76e35598-4e0c-40f4-a916-02ccc5c42774"
         }
       }
     },
@@ -81,42 +64,35 @@
       "id": "Sdca",
       "type": "Sdca Regression",
       "guid": "1c48bcee-c477-47f4-8e87-ede70ae1a575",
+      "library": "LunchBoxML v2024.2.11.0",
       "description": "The Sdca trainer is used to train a regression model using the stochastic dual coordinate ascent method.",
       "nickName": "Sdca",
       "inputs": {
         "l1 regularization": {
           "description": "The L1 regularization weight.",
           "nick": "L1 Regularization",
-          "optional": false
+          "optional": false,
+          "guid": "b22f50d3-87d6-4bf5-aa60-2c55401c4822"
         },
         "l2 regularization": {
           "description": "The L2 regularization weight.",
           "nick": "L2 Regularization",
-          "optional": false
+          "optional": false,
+          "guid": "04ad184b-6211-429a-ac6e-885970b5e654"
         },
         "iterations": {
           "description": "The maximum number of passes to perform over the data.",
           "nick": "Iterations",
-          "optional": false
+          "optional": false,
+          "guid": "f5c1473d-1663-4d21-973a-413d28a664af"
         }
       },
       "outputs": {
         "trainer type": {
           "description": "The trainer used for machine learning problems.",
           "nick": "Trainer Type",
-          "optional": false
-        }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 464,
-          "y": 124,
-          "width": 185,
-          "height": 64
-        },
-        "pivot": {
-          "x": 567,
-          "y": 156
+          "optional": false,
+          "guid": "ea3507a9-b662-4dc4-a821-b325ee0759d1"
         }
       }
     },
@@ -127,9 +103,11 @@
       "description": "A group of Grasshopper objects",
       "nickName": "whatAmI",
       "inputs": {},
-      "outputs": {},
-      "visuals": {
-        "color": "150;170;135;255"
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "420fb7fd-eff0-4827-be1c-24717ecd7109"
+        }
       },
       "members": [
         "ptIsoE",
@@ -144,16 +122,16 @@
     "libraries": [
       {
         "name": "Grasshopper",
-        "version": "8.27.26019.16022",
+        "version": "",
         "author": "Robert McNeel & Associates"
       },
       {
         "name": "LunchBoxML",
-        "version": "2024.2.11.0"
+        "version": ""
       },
       {
         "name": "PTComponentLibrary",
-        "version": "2021.4.1.0"
+        "version": ""
       }
     ]
   }

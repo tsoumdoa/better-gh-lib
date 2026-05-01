@@ -5,6 +5,7 @@
       "id": ".01ChildCutter",
       "type": "Hops",
       "guid": "0c35f6a1-079c-463c-870f-97158525a1f9",
+      "library": "Hops v0.16.23",
       "description": "Solve an external definition using Rhino Compute",
       "nickName": ".01ChildCutter",
       "inputs": {
@@ -12,12 +13,14 @@
           "description": "child",
           "nick": "child",
           "optional": false,
+          "guid": "ee75fe63-994f-45a9-b262-ebf2e1409d1f",
           "source": "f5bcbe4a-9481-4774-b5b9-b43b6c288e0a"
         },
         "cutters": {
           "description": "cutters",
           "nick": "cutters",
           "optional": false,
+          "guid": "adda4a6c-127e-47f6-a5e0-7e827441e24c",
           "source": "a61e2035-336b-493b-bb48-21861575510f"
         }
       },
@@ -25,23 +28,9 @@
         "content": {
           "description": "Contains a collection of generic data",
           "nick": "Content",
-          "optional": false
+          "optional": false,
+          "guid": "c1bc66ac-940c-4811-81cd-d11e33a17e99"
         }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 5588,
-          "y": 1933,
-          "width": 123,
-          "height": 107
-        },
-        "pivot": {
-          "x": 5645,
-          "y": 1987
-        }
-      },
-      "state": {
-        "hidden": true
       }
     },
     "Partition": {
@@ -55,36 +44,24 @@
           "description": "List to partition",
           "nick": "L",
           "optional": false,
-          "source": "c1bc66ac-940c-4811-81cd-d11e33a17e99"
+          "guid": "d1f1b78b-f95f-4574-829d-db7d78805bb5",
+          "source": ".01ChildCutter.content"
         },
         "s": {
           "description": "Size of partitions",
           "nick": "S",
           "optional": false,
-          "source": "83ea1506-17c0-480c-a9cd-be9c4b606d79"
+          "guid": "5d99363e-0b87-4c86-a765-c8a1aa007f20",
+          "source": "TStat.l"
         }
       },
       "outputs": {
         "c": {
           "description": "List chunks",
           "nick": "C",
-          "optional": false
+          "optional": false,
+          "guid": "4ad876e5-2893-4618-9151-94ee58ded32b"
         }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 5745,
-          "y": 1986,
-          "width": 64,
-          "height": 70
-        },
-        "pivot": {
-          "x": 5775,
-          "y": 2021
-        }
-      },
-      "state": {
-        "hidden": true
       }
     },
     "Group": {
@@ -98,30 +75,17 @@
           "description": "Geometry to group",
           "nick": "G",
           "optional": false,
-          "source": "Path Mapper"
+          "guid": "cf3f9e22-353a-47e3-83be-7d5654b2bb2b",
+          "source": "Path Mapper.value"
         }
       },
       "outputs": {
         "g": {
           "description": "Grouped objects",
           "nick": "G",
-          "optional": false
+          "optional": false,
+          "guid": "44b0f181-75fd-451f-975e-b267388e180f"
         }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 5980,
-          "y": 2001,
-          "width": 67,
-          "height": 54
-        },
-        "pivot": {
-          "x": 6012,
-          "y": 2028
-        }
-      },
-      "state": {
-        "hidden": true
       },
       "members": []
     },
@@ -136,35 +100,23 @@
           "description": "Data tree to flatten",
           "nick": "T",
           "optional": false,
-          "source": "44b0f181-75fd-451f-975e-b267388e180f"
+          "guid": "c90c0722-ead6-4a21-8545-643aae29c6c4",
+          "source": "Group.g"
         },
         "d": {
           "description": "Number of outermost branches to merge",
           "nick": "D",
-          "optional": false
+          "optional": false,
+          "guid": "1b894f1e-9cfd-44cd-aa05-fac769e68fcb"
         }
       },
       "outputs": {
         "t": {
           "description": "Trimmed data tree",
           "nick": "T",
-          "optional": false
+          "optional": false,
+          "guid": "53c32eb3-5d9f-41a3-a3e1-4dc5a1b21bb7"
         }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 6058,
-          "y": 2007,
-          "width": 65,
-          "height": 44
-        },
-        "pivot": {
-          "x": 6090,
-          "y": 2029
-        }
-      },
-      "state": {
-        "hidden": true
       }
     },
     "Path Mapper": {
@@ -178,16 +130,14 @@
           "description": "Input value",
           "nick": "V",
           "optional": true,
-          "source": "4ad876e5-2893-4618-9151-94ee58ded32b"
+          "source": "Partition.c",
+          "guid": "d03c5214-d019-4550-ba1f-40f61cd401b7"
         }
       },
-      "outputs": {},
-      "visuals": {
-        "bounds": {
-          "x": 5833.2524,
-          "y": 2006.8865,
-          "width": 125,
-          "height": 40
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "d03c5214-d019-4550-ba1f-40f61cd401b7"
         }
       }
     },
@@ -202,6 +152,7 @@
           "description": "Data Tree to analyze",
           "nick": "T",
           "optional": false,
+          "guid": "1c96a0ad-fe2f-493b-b607-209f929d286e",
           "source": "56f936fc-b71e-47fd-84e1-a93174c5ea2b"
         }
       },
@@ -209,33 +160,21 @@
         "p": {
           "description": "All the paths of the tree",
           "nick": "P",
-          "optional": false
+          "optional": false,
+          "guid": "fe264566-f5fe-489b-a62f-da09189990da"
         },
         "l": {
           "description": "The length of each branch in the tree",
           "nick": "L",
-          "optional": false
+          "optional": false,
+          "guid": "83ea1506-17c0-480c-a9cd-be9c4b606d79"
         },
         "c": {
           "description": "Number of paths and branches in the tree",
           "nick": "C",
-          "optional": false
+          "optional": false,
+          "guid": "7842c82e-43d0-4008-b864-44b2438a355d"
         }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 5621,
-          "y": 2084,
-          "width": 64,
-          "height": 64
-        },
-        "pivot": {
-          "x": 5651,
-          "y": 2116
-        }
-      },
-      "state": {
-        "hidden": true
       }
     },
     "Group_2": {
@@ -245,9 +184,11 @@
       "description": "A group of Grasshopper objects",
       "nickName": "Group",
       "inputs": {},
-      "outputs": {},
-      "visuals": {
-        "color": "150;255;255;82"
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "e3824912-1b44-4637-b7a4-9726014c1546"
+        }
       },
       "members": [
         ".01ChildCutter",
@@ -262,35 +203,51 @@
   "wires": [
     {
       "from": "f5bcbe4a-9481-4774-b5b9-b43b6c288e0a",
-      "to": ".01ChildCutter.child"
+      "to": ".01ChildCutter.child",
+      "sourceComponentGuid": "f5bcbe4a-9481-4774-b5b9-b43b6c288e0a",
+      "targetPortGuid": "ee75fe63-994f-45a9-b262-ebf2e1409d1f"
     },
     {
       "from": "a61e2035-336b-493b-bb48-21861575510f",
-      "to": ".01ChildCutter.cutters"
+      "to": ".01ChildCutter.cutters",
+      "sourceComponentGuid": "a61e2035-336b-493b-bb48-21861575510f",
+      "targetPortGuid": "adda4a6c-127e-47f6-a5e0-7e827441e24c"
     },
     {
-      "from": "c1bc66ac-940c-4811-81cd-d11e33a17e99",
-      "to": "Partition.l"
+      "from": ".01ChildCutter.content",
+      "to": "Partition.l",
+      "sourceComponentGuid": "c1bc66ac-940c-4811-81cd-d11e33a17e99",
+      "targetPortGuid": "d1f1b78b-f95f-4574-829d-db7d78805bb5"
     },
     {
-      "from": "83ea1506-17c0-480c-a9cd-be9c4b606d79",
-      "to": "Partition.s"
+      "from": "TStat.l",
+      "to": "Partition.s",
+      "sourceComponentGuid": "83ea1506-17c0-480c-a9cd-be9c4b606d79",
+      "targetPortGuid": "5d99363e-0b87-4c86-a765-c8a1aa007f20"
     },
     {
-      "from": "Path Mapper",
-      "to": "Group.g"
+      "from": "Path Mapper.value",
+      "to": "Group.g",
+      "sourceComponentGuid": "d03c5214-d019-4550-ba1f-40f61cd401b7",
+      "targetPortGuid": "cf3f9e22-353a-47e3-83be-7d5654b2bb2b"
     },
     {
-      "from": "44b0f181-75fd-451f-975e-b267388e180f",
-      "to": "Trim.t"
+      "from": "Group.g",
+      "to": "Trim.t",
+      "sourceComponentGuid": "44b0f181-75fd-451f-975e-b267388e180f",
+      "targetPortGuid": "c90c0722-ead6-4a21-8545-643aae29c6c4"
     },
     {
-      "from": "4ad876e5-2893-4618-9151-94ee58ded32b",
-      "to": "Path Mapper.value"
+      "from": "Partition.c",
+      "to": "Path Mapper.value",
+      "sourceComponentGuid": "4ad876e5-2893-4618-9151-94ee58ded32b",
+      "targetPortGuid": "d03c5214-d019-4550-ba1f-40f61cd401b7"
     },
     {
       "from": "56f936fc-b71e-47fd-84e1-a93174c5ea2b",
-      "to": "TStat.t"
+      "to": "TStat.t",
+      "sourceComponentGuid": "56f936fc-b71e-47fd-84e1-a93174c5ea2b",
+      "targetPortGuid": "1c96a0ad-fe2f-493b-b607-209f929d286e"
     }
   ],
   "metadata": {
@@ -298,12 +255,12 @@
     "libraries": [
       {
         "name": "Grasshopper",
-        "version": "8.17.25066.7001",
+        "version": "",
         "author": "Robert McNeel & Associates"
       },
       {
         "name": "Hops",
-        "version": "0.16.23",
+        "version": "",
         "author": "Robert McNeel & Associates"
       }
     ]

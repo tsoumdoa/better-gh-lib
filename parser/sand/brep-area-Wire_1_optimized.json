@@ -12,6 +12,7 @@
           "description": "Brep, mesh or planar closed curve for area computation",
           "nick": "G",
           "optional": false,
+          "guid": "",
           "source": "Brep"
         }
       },
@@ -19,12 +20,14 @@
         "a": {
           "description": "Area of geometry",
           "nick": "A",
-          "optional": true
+          "optional": true,
+          "guid": ""
         },
         "c": {
           "description": "Area centroid of geometry",
           "nick": "C",
-          "optional": true
+          "optional": true,
+          "guid": ""
         }
       }
     },
@@ -49,12 +52,7 @@
     "libraries": [
       {
         "name": "Grasshopper",
-        "version": "8.26.25349.19002",
-        "author": "Robert McNeel & Associates"
-      },
-      {
-        "name": "Grasshopper",
-        "version": "8.26.25349.19002",
+        "version": "",
         "author": "Robert McNeel & Associates"
       }
     ]
