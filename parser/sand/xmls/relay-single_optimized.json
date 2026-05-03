@@ -12,20 +12,14 @@
           "description": "Input value",
           "nick": "V",
           "optional": true,
-          "source": "7100986d-a381-44a7-a723-933eb8b98fd3"
+          "source": "7100986d-a381-44a7-a723-933eb8b98fd3",
+          "guid": "f51d7cfb-c27f-4610-ab5f-2d27a00ebd30"
         }
       },
-      "outputs": {},
-      "visuals": {
-        "bounds": {
-          "x": 128,
-          "y": 138,
-          "width": 50,
-          "height": 20
-        },
-        "pivot": {
-          "x": 153,
-          "y": 148
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "f51d7cfb-c27f-4610-ab5f-2d27a00ebd30"
         }
       }
     }
@@ -33,7 +27,9 @@
   "wires": [
     {
       "from": "7100986d-a381-44a7-a723-933eb8b98fd3",
-      "to": "Pln.value"
+      "to": "Pln.value",
+      "sourceComponentGuid": "7100986d-a381-44a7-a723-933eb8b98fd3",
+      "targetPortGuid": "f51d7cfb-c27f-4610-ab5f-2d27a00ebd30"
     }
   ],
   "metadata": {
@@ -41,7 +37,7 @@
     "libraries": [
       {
         "name": "Grasshopper",
-        "version": "8.19.25132.1002",
+        "version": "",
         "author": "Robert McNeel & Associates"
       }
     ]

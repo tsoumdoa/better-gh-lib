@@ -8,22 +8,15 @@
       "description": "A panel for custom notes and text values",
       "nickName": "Panel",
       "inputs": {},
-      "outputs": {},
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "fbb386c0-7f2a-474b-b0a2-18df7a0ff03f"
+        }
+      },
       "value": {
         "type": "panel",
         "text": "fa"
-      },
-      "visuals": {
-        "bounds": {
-          "x": 487,
-          "y": 143,
-          "width": 160,
-          "height": 100
-        },
-        "pivot": {
-          "x": 487.99176,
-          "y": 143.4917
-        }
       }
     }
   },
@@ -33,7 +26,7 @@
     "libraries": [
       {
         "name": "Grasshopper",
-        "version": "8.15.25019.13002",
+        "version": "",
         "author": "Robert McNeel & Associates"
       }
     ]

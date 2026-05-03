@@ -8,17 +8,10 @@
       "description": "Contains a collection of text fragments",
       "nickName": "Txt",
       "inputs": {},
-      "outputs": {},
-      "visuals": {
-        "bounds": {
-          "x": 1222,
-          "y": 593,
-          "width": 50,
-          "height": 20
-        },
-        "pivot": {
-          "x": 1247.9573,
-          "y": 603.58435
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "a6300f0a-18bc-4ccf-8108-8ed80f944ca2"
         }
       }
     },
@@ -33,20 +26,14 @@
           "description": "Input value",
           "nick": "V",
           "optional": true,
-          "source": "Txt"
+          "source": "Txt.value",
+          "guid": "411d643a-a343-4890-bd83-1d1393bb8379"
         }
       },
-      "outputs": {},
-      "visuals": {
-        "bounds": {
-          "x": 1422,
-          "y": 632,
-          "width": 50,
-          "height": 20
-        },
-        "pivot": {
-          "x": 1447.9573,
-          "y": 642.58435
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "411d643a-a343-4890-bd83-1d1393bb8379"
         }
       }
     },
@@ -57,9 +44,11 @@
       "description": "A group of Grasshopper objects",
       "nickName": "Group",
       "inputs": {},
-      "outputs": {},
-      "visuals": {
-        "color": "150;170;135;255"
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "8cb402ab-34f4-4473-8225-bf6f3ee262cf"
+        }
       },
       "members": [
         "Txt",
@@ -69,8 +58,10 @@
   },
   "wires": [
     {
-      "from": "Txt",
-      "to": "Txt_2.value"
+      "from": "Txt.value",
+      "to": "Txt_2.value",
+      "sourceComponentGuid": "a6300f0a-18bc-4ccf-8108-8ed80f944ca2",
+      "targetPortGuid": "411d643a-a343-4890-bd83-1d1393bb8379"
     }
   ],
   "metadata": {
@@ -78,7 +69,7 @@
     "libraries": [
       {
         "name": "Grasshopper",
-        "version": "8.27.26019.16022",
+        "version": "",
         "author": "Robert McNeel & Associates"
       }
     ]

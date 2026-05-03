@@ -2,6 +2,8 @@ export interface Wire {
 	from: string;
 	to: string;
 	style?: WireStyle; // Only included with --visuals flag
+	sourceComponentGuid?: string;
+	targetPortGuid?: string;
 }
 
 export type WireStyle = "normal" | "faint" | "hidden";
@@ -24,6 +26,7 @@ export interface InputPort {
 	description?: string;
 	nick: string;
 	source?: string;
+	sources?: string[];
 	optional?: boolean;
 	options?: PortOptions;
 	guid: string;
@@ -86,7 +89,7 @@ export interface Component {
 }
 
 export interface ComponentValue {
-	type: "slider" | "panel" | "valueList" | "number" | "text";
+	type: "slider" | "panel" | "valueList" | "number" | "text" | "toggle" | "swatch" | "button";
 	// Slider specific
 	min?: number;
 	max?: number;
@@ -102,6 +105,13 @@ export interface ComponentValue {
 		selected: boolean;
 	}>;
 	selectedIndex?: number;
+	// Toggle specific
+	value?: boolean;
+	// Swatch specific
+	color?: string;
+	// Button specific
+	normalExpression?: string;
+	pressedExpression?: string;
 }
 
 export interface ParsedGrasshopper {

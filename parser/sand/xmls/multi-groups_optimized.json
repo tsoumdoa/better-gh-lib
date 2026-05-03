@@ -1,0 +1,133 @@
+{
+  "version": "0.2.2",
+  "components": {
+    "Group": {
+      "id": "Group",
+      "type": "Group",
+      "guid": "02f91e17-2002-4964-9437-67dff1a1e270",
+      "description": "A group of Grasshopper objects",
+      "nickName": "Group",
+      "inputs": {},
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "02f91e17-2002-4964-9437-67dff1a1e270"
+        }
+      },
+      "members": [
+        "Panel",
+        "Area",
+        "Group_2",
+        "Linetype",
+        "Group_3"
+      ]
+    },
+    "Panel": {
+      "id": "Panel",
+      "type": "Panel",
+      "guid": "e3e89320-2800-4cdb-8238-d48b5ba094b3",
+      "description": "A panel for custom notes and text values",
+      "nickName": "Panel",
+      "inputs": {},
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "e3e89320-2800-4cdb-8238-d48b5ba094b3"
+        }
+      },
+      "value": {
+        "type": "panel",
+        "text": "Double click to edit panel content…"
+      }
+    },
+    "Area": {
+      "id": "Area",
+      "type": "Area",
+      "guid": "774156f5-7faa-4178-9d6d-d31289d251b5",
+      "description": "Solve area properties for breps, meshes and planar closed curves.",
+      "nickName": "Area",
+      "inputs": {
+        "g": {
+          "description": "Brep, mesh or planar closed curve for area computation",
+          "nick": "G",
+          "optional": false,
+          "guid": "294abc28-673e-4a7e-bb49-5f9b7517d039"
+        }
+      },
+      "outputs": {
+        "a": {
+          "description": "Area of geometry",
+          "nick": "A",
+          "optional": true,
+          "guid": "351e05d7-0423-4235-b8ef-601d33448917"
+        },
+        "c": {
+          "description": "Area centroid of geometry",
+          "nick": "C",
+          "optional": true,
+          "guid": "75afeb39-03c2-412d-9be4-a8653f2e232a"
+        }
+      }
+    },
+    "Group_2": {
+      "id": "Group_2",
+      "type": "Group",
+      "guid": "a1bff6ff-e122-4d58-b675-a255d44205b6",
+      "description": "A group of Grasshopper objects",
+      "nickName": "Group",
+      "inputs": {},
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "a1bff6ff-e122-4d58-b675-a255d44205b6"
+        }
+      },
+      "members": [
+        "Panel",
+        "Area"
+      ]
+    },
+    "Linetype": {
+      "id": "Linetype",
+      "type": "Model Linetype",
+      "guid": "5fb0704e-1d8f-4919-8700-a93615ee2821",
+      "description": "Contains a collection of model linetypes",
+      "nickName": "Linetype",
+      "inputs": {},
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "5fb0704e-1d8f-4919-8700-a93615ee2821"
+        }
+      }
+    },
+    "Group_3": {
+      "id": "Group_3",
+      "type": "Group",
+      "guid": "81a1d073-605d-42e1-84ea-f89483f7a14e",
+      "description": "A group of Grasshopper objects",
+      "nickName": "Group",
+      "inputs": {},
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "81a1d073-605d-42e1-84ea-f89483f7a14e"
+        }
+      },
+      "members": [
+        "Linetype"
+      ]
+    }
+  },
+  "wires": [],
+  "metadata": {
+    "documentId": "5af41b60-69e3-4254-9e13-589a38e559e7",
+    "libraries": [
+      {
+        "name": "Grasshopper",
+        "version": "",
+        "author": "Robert McNeel & Associates"
+      }
+    ]
+  }
+}

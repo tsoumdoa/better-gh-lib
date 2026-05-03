@@ -6,12 +6,11 @@ import { NameDescriptionAndTags } from "./gh-card-body";
 import useGhCardControl from "../hooks/use-gh-card-control";
 import GhCardTags from "./gh-card-tags";
 import { MetricsDialog } from "./metrics-dialog";
-import { useFetchGhXml } from "../hooks/use-fetch-gh-xml";
+import { useScriptMetrics } from "../hooks/use-script-metrics";
 import { useState, useEffect } from "react";
 import { GhPost } from "@/types/types";
 import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
-import { buildGhJson } from "parser/sand/src/parser";
 
 export default function GHCard(props: {
 	cardInfo: GhPost;
@@ -48,13 +47,7 @@ export default function GHCard(props: {
 
 	const [openSharedDialog, setOpenSharedDialog] = useState(false);
 	const [openMetricsDialog, setOpenMetricsDialog] = useState(false);
-	const [metrics, setMetrics] = useState<{
-		GhVersion: string;
-		componentsCount: number;
-		uniqueCount: number;
-		ghLibs: Array<{ name: string; author?: string; version: string }>;
-	} | null>(null);
-	const [loadingMetrics, setLoadingMetrics] = useState(false);
+	const { metrics, nodes, edges, loading: loadingMetrics, loadMetrics } = useScriptMetrics();
 
 	useEffect(() => {
 		if (deleteError) {
@@ -62,8 +55,6 @@ export default function GHCard(props: {
 			return () => clearTimeout(timer);
 		}
 	}, [deleteError, setDeleteError]);
-
-	const { downloadData, decodedRef } = useFetchGhXml();
 
 	// Query for active shares to show "Shared" badge
 	const activeShares = useQuery(api.ghCard.getActiveSharesForPost, {
@@ -77,32 +68,8 @@ export default function GHCard(props: {
 
 	const handleCardClick = async () => {
 		if (editMode) return;
-		setLoadingMetrics(true);
 		setOpenMetricsDialog(true);
-
-		try {
-			const decoded = await downloadData(props.cardInfo.bucketUrl!);
-
-			const newParse = buildGhJson(decoded);
-			const componentsCount = Object.keys(newParse.components).length;
-			const ghLibs = newParse.metadata?.libraries;
-
-			const guidSet = new Set<string>();
-			for (const comp of Object.values(newParse.components)) {
-				guidSet.add(comp.guid);
-			}
-			const uniqueCount = guidSet.size;
-			setMetrics({
-				GhVersion: newParse.version,
-				componentsCount: componentsCount,
-				uniqueCount: uniqueCount,
-				ghLibs: ghLibs ?? [],
-			});
-		} catch (error) {
-			console.error("Failed to load metrics:", error);
-		} finally {
-			setLoadingMetrics(false);
-		}
+		await loadMetrics(props.cardInfo.bucketUrl!);
 	};
 
 	if (deleting) {
@@ -282,8 +249,10 @@ export default function GHCard(props: {
 			</div>
 			<MetricsDialog
 				open={openMetricsDialog}
-				setOpen={() => setOpenMetricsDialog(false)}
+				setOpen={setOpenMetricsDialog}
 				metrics={metrics}
+				nodes={nodes}
+				edges={edges}
 				loading={loadingMetrics}
 			/>
 		</>

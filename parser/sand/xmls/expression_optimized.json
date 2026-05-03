@@ -11,34 +11,25 @@
         "x": {
           "description": "'x' value used to evaluate ''",
           "nick": "x",
-          "optional": true
+          "optional": true,
+          "guid": "855880ca-8a2d-4ca4-b3b1-0fec07e30467"
         },
         "y": {
           "description": "'y' value used to evaluate ''",
           "nick": "y",
-          "optional": true
+          "optional": true,
+          "guid": "8fece0ce-86fd-4c3a-9cac-7fa625a1a5aa"
         }
       },
       "outputs": {
         "r": {
           "description": "Result of expression",
           "nick": "R",
-          "optional": false
+          "optional": false,
+          "guid": "29d772fc-9323-4943-a115-1c33afacc07a"
         }
       },
-      "expression": "Format(\"{0}, {1}\", x, y)",
-      "visuals": {
-        "bounds": {
-          "x": 342,
-          "y": 201,
-          "width": 220,
-          "height": 44
-        },
-        "pivot": {
-          "x": 451,
-          "y": 223
-        }
-      }
+      "expression": "Format(\"{0}, {1}\", x, y)"
     }
   },
   "wires": [],
@@ -47,7 +38,7 @@
     "libraries": [
       {
         "name": "Grasshopper",
-        "version": "8.26.25349.19002",
+        "version": "",
         "author": "Robert McNeel & Associates"
       }
     ]

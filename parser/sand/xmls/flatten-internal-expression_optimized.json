@@ -8,9 +8,11 @@
       "description": "A group of Grasshopper objects",
       "nickName": "Group",
       "inputs": {},
-      "outputs": {},
-      "visuals": {
-        "color": "150;170;135;255"
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "6474c9d1-f864-4e12-9fc2-143d2274c5a0"
+        }
       },
       "members": [
         "Srf",
@@ -28,17 +30,10 @@
       "description": "Contains a collection of generic surfaces",
       "nickName": "Srf",
       "inputs": {},
-      "outputs": {},
-      "visuals": {
-        "bounds": {
-          "x": 139,
-          "y": 856,
-          "width": 69,
-          "height": 20
-        },
-        "pivot": {
-          "x": 183.70828,
-          "y": 866.85254
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "e995ec7a-7203-4f73-ba50-d86ae1387233"
         }
       }
     },
@@ -53,31 +48,22 @@
           "description": "Brep, mesh or planar closed curve for area computation",
           "nick": "G",
           "optional": false,
-          "source": "Srf"
+          "guid": "fd49c6c8-83d7-43c0-87f5-73f76df0aed1",
+          "source": "Srf.value"
         }
       },
       "outputs": {
         "a": {
           "description": "Area of geometry",
           "nick": "A",
-          "optional": true
+          "optional": true,
+          "guid": "215b7b7e-ad23-4c37-afae-9035e25fd59f"
         },
         "c": {
           "description": "Area centroid of geometry",
           "nick": "C",
-          "optional": true
-        }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 233,
-          "y": 902,
-          "width": 57,
-          "height": 44
-        },
-        "pivot": {
-          "x": 260,
-          "y": 924
+          "optional": true,
+          "guid": "75bce79b-a5fb-40ad-a1a5-2326373a0614"
         }
       }
     },
@@ -92,7 +78,8 @@
           "description": "Base surface",
           "nick": "S",
           "optional": false,
-          "source": "Srf",
+          "guid": "cf3677ef-e4e4-4995-9148-0fc25d6ba2c8",
+          "source": "Srf.value",
           "options": {
             "mapping": "graft",
             "simplify": true
@@ -102,46 +89,40 @@
           "description": "{uv} coordinate to evaluate",
           "nick": "uv",
           "optional": false,
-          "source": "b3a2442b-3c47-464d-8dc3-25a960ff8e43"
+          "guid": "a41d66cb-0630-43e3-84df-6dce5a88906c",
+          "source": "Srf CP.uvp"
         }
       },
       "outputs": {
         "p": {
           "description": "Point at {uv}",
           "nick": "P",
-          "optional": false
+          "optional": false,
+          "guid": "abb68490-3383-49d2-adfc-5ff3158cc31c"
         },
         "n": {
           "description": "Normal at {uv}",
           "nick": "N",
-          "optional": false
+          "optional": false,
+          "guid": "f0ebca52-ecc8-4b8a-8cdd-2c4a9b514dd0"
         },
         "u": {
           "description": "U direction at {uv}",
           "nick": "U",
-          "optional": false
+          "optional": false,
+          "guid": "891e7e4b-a0b8-435b-8fae-660c5b7cf2d9"
         },
         "v": {
           "description": "V direction at {uv}",
           "nick": "V",
-          "optional": false
+          "optional": false,
+          "guid": "fe6ac738-f845-4c5a-a7a4-2b3dc2890c74"
         },
         "f": {
           "description": "Frame at {uv}",
           "nick": "F",
-          "optional": false
-        }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 404,
-          "y": 838,
-          "width": 97,
-          "height": 104
-        },
-        "pivot": {
-          "x": 471,
-          "y": 890
+          "optional": false,
+          "guid": "3ff7e5a5-7af7-4a8c-929c-1e42bf943766"
         }
       }
     },
@@ -156,42 +137,35 @@
           "description": "Sample point",
           "nick": "P",
           "optional": false,
-          "source": "75bce79b-a5fb-40ad-a1a5-2326373a0614"
+          "guid": "8f1125ae-688f-441d-a126-98405193b349",
+          "source": "Area.c"
         },
         "s": {
           "description": "Base surface",
           "nick": "S",
           "optional": false,
-          "source": "Srf"
+          "guid": "3ef4f7f8-2676-4a11-9dd1-4587571be7c9",
+          "source": "Srf.value"
         }
       },
       "outputs": {
         "p": {
           "description": "Closest point",
           "nick": "P",
-          "optional": false
+          "optional": false,
+          "guid": "89bf423f-aaa8-437d-b006-595a6977b4bf"
         },
         "uvp": {
           "description": "{uv} coordinates of closest point",
           "nick": "uvP",
-          "optional": false
+          "optional": false,
+          "guid": "b3a2442b-3c47-464d-8dc3-25a960ff8e43"
         },
         "d": {
           "description": "Distance between sample point and surface",
           "nick": "D",
-          "optional": false
-        }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 335,
-          "y": 883,
-          "width": 66,
-          "height": 64
-        },
-        "pivot": {
-          "x": 361,
-          "y": 915
+          "optional": false,
+          "guid": "a94d667b-f5c1-44b5-9c32-c4d573f3cc74"
         }
       }
     },
@@ -202,9 +176,11 @@
       "description": "A group of Grasshopper objects",
       "nickName": "Group",
       "inputs": {},
-      "outputs": {},
-      "visuals": {
-        "color": "150;255;255;255"
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "d8079aca-ca0f-4eb9-8073-e810bca9a355"
+        }
       },
       "members": [
         "Srf",
@@ -224,49 +200,55 @@
           "description": "Input value",
           "nick": "V",
           "optional": true,
-          "source": "215b7b7e-ad23-4c37-afae-9035e25fd59f"
+          "source": "Area.a",
+          "guid": "3351e93b-9500-4b97-9109-3eec86791653"
         }
       },
-      "outputs": {},
-      "internalExpression": "x/2",
-      "visuals": {
-        "bounds": {
-          "x": 359,
-          "y": 1003,
-          "width": 69,
-          "height": 20
-        },
-        "pivot": {
-          "x": 403.13715,
-          "y": 1013.39056
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "3351e93b-9500-4b97-9109-3eec86791653"
         }
-      }
+      },
+      "internalExpression": "x/2"
     }
   },
   "wires": [
     {
-      "from": "Srf",
-      "to": "Area.g"
+      "from": "Srf.value",
+      "to": "Area.g",
+      "sourceComponentGuid": "e995ec7a-7203-4f73-ba50-d86ae1387233",
+      "targetPortGuid": "fd49c6c8-83d7-43c0-87f5-73f76df0aed1"
     },
     {
-      "from": "Srf",
-      "to": "EvalSrf.s"
+      "from": "Srf.value",
+      "to": "EvalSrf.s",
+      "sourceComponentGuid": "e995ec7a-7203-4f73-ba50-d86ae1387233",
+      "targetPortGuid": "cf3677ef-e4e4-4995-9148-0fc25d6ba2c8"
     },
     {
-      "from": "b3a2442b-3c47-464d-8dc3-25a960ff8e43",
-      "to": "EvalSrf.uv"
+      "from": "Srf CP.uvp",
+      "to": "EvalSrf.uv",
+      "sourceComponentGuid": "b3a2442b-3c47-464d-8dc3-25a960ff8e43",
+      "targetPortGuid": "a41d66cb-0630-43e3-84df-6dce5a88906c"
     },
     {
-      "from": "75bce79b-a5fb-40ad-a1a5-2326373a0614",
-      "to": "Srf CP.p"
+      "from": "Area.c",
+      "to": "Srf CP.p",
+      "sourceComponentGuid": "75bce79b-a5fb-40ad-a1a5-2326373a0614",
+      "targetPortGuid": "8f1125ae-688f-441d-a126-98405193b349"
     },
     {
-      "from": "Srf",
-      "to": "Srf CP.s"
+      "from": "Srf.value",
+      "to": "Srf CP.s",
+      "sourceComponentGuid": "e995ec7a-7203-4f73-ba50-d86ae1387233",
+      "targetPortGuid": "3ef4f7f8-2676-4a11-9dd1-4587571be7c9"
     },
     {
-      "from": "215b7b7e-ad23-4c37-afae-9035e25fd59f",
-      "to": "Num.value"
+      "from": "Area.a",
+      "to": "Num.value",
+      "sourceComponentGuid": "215b7b7e-ad23-4c37-afae-9035e25fd59f",
+      "targetPortGuid": "3351e93b-9500-4b97-9109-3eec86791653"
     }
   ],
   "metadata": {
@@ -274,7 +256,7 @@
     "libraries": [
       {
         "name": "Grasshopper",
-        "version": "8.27.26019.16022",
+        "version": "",
         "author": "Robert McNeel & Associates"
       }
     ]

@@ -8,17 +8,10 @@
       "description": "Contains a collection of Breps (Boundary REPresentations)",
       "nickName": "Brep",
       "inputs": {},
-      "outputs": {},
-      "visuals": {
-        "bounds": {
-          "x": 445,
-          "y": 351,
-          "width": 50,
-          "height": 20
-        },
-        "pivot": {
-          "x": 470.7053,
-          "y": 361.23895
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "e8fb9e7f-caee-40a2-a57f-4e4472ec0664"
         }
       }
     },
@@ -33,31 +26,22 @@
           "description": "Brep, mesh or planar closed curve for area computation",
           "nick": "G",
           "optional": false,
-          "source": "Brep"
+          "guid": "9e7ff88b-6020-40a8-baa9-98380038bd17",
+          "source": "Brep.value"
         }
       },
       "outputs": {
         "a": {
           "description": "Area of geometry",
           "nick": "A",
-          "optional": true
+          "optional": true,
+          "guid": "bba969c5-ec1b-4287-8cec-ad80ec856b38"
         },
         "c": {
           "description": "Area centroid of geometry",
           "nick": "C",
-          "optional": true
-        }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 606,
-          "y": 332,
-          "width": 57,
-          "height": 44
-        },
-        "pivot": {
-          "x": 633,
-          "y": 354
+          "optional": true,
+          "guid": "aacdc5a0-362e-4346-96ab-b5e2778b98a2"
         }
       }
     },
@@ -72,20 +56,14 @@
           "description": "Input value",
           "nick": "V",
           "optional": true,
-          "source": "0fa0dd03-ebab-4bf9-84bd-a62cee6a2371"
+          "source": "Area_2.c",
+          "guid": "1e1706e2-2a61-40f2-a7ea-1475f1b878d9"
         }
       },
-      "outputs": {},
-      "visuals": {
-        "bounds": {
-          "x": 747,
-          "y": 351,
-          "width": 50,
-          "height": 20
-        },
-        "pivot": {
-          "x": 772.83246,
-          "y": 361.23895
+      "outputs": {
+        "value": {
+          "nick": "V",
+          "guid": "1e1706e2-2a61-40f2-a7ea-1475f1b878d9"
         }
       }
     },
@@ -100,47 +78,44 @@
           "description": "Brep, mesh or planar closed curve for area computation",
           "nick": "G",
           "optional": false,
-          "source": "Brep"
+          "guid": "e25e9511-f027-4acb-9ef5-fccb5db960ec",
+          "source": "Brep.value"
         }
       },
       "outputs": {
         "a": {
           "description": "Area of geometry",
           "nick": "A",
-          "optional": true
+          "optional": true,
+          "guid": "f04b60cb-a6a1-4211-a90f-824db542a57c"
         },
         "c": {
           "description": "Area centroid of geometry",
           "nick": "C",
-          "optional": true
-        }
-      },
-      "visuals": {
-        "bounds": {
-          "x": 616,
-          "y": 386,
-          "width": 57,
-          "height": 44
-        },
-        "pivot": {
-          "x": 643,
-          "y": 408
+          "optional": true,
+          "guid": "0fa0dd03-ebab-4bf9-84bd-a62cee6a2371"
         }
       }
     }
   },
   "wires": [
     {
-      "from": "Brep",
-      "to": "Area.g"
+      "from": "Brep.value",
+      "to": "Area.g",
+      "sourceComponentGuid": "e8fb9e7f-caee-40a2-a57f-4e4472ec0664",
+      "targetPortGuid": "9e7ff88b-6020-40a8-baa9-98380038bd17"
     },
     {
-      "from": "0fa0dd03-ebab-4bf9-84bd-a62cee6a2371",
-      "to": "Pt.value"
+      "from": "Area_2.c",
+      "to": "Pt.value",
+      "sourceComponentGuid": "0fa0dd03-ebab-4bf9-84bd-a62cee6a2371",
+      "targetPortGuid": "1e1706e2-2a61-40f2-a7ea-1475f1b878d9"
     },
     {
-      "from": "Brep",
-      "to": "Area_2.g"
+      "from": "Brep.value",
+      "to": "Area_2.g",
+      "sourceComponentGuid": "e8fb9e7f-caee-40a2-a57f-4e4472ec0664",
+      "targetPortGuid": "e25e9511-f027-4acb-9ef5-fccb5db960ec"
     }
   ],
   "metadata": {
@@ -148,7 +123,7 @@
     "libraries": [
       {
         "name": "Grasshopper",
-        "version": "8.26.25349.19002",
+        "version": "",
         "author": "Robert McNeel & Associates"
       }
     ]
