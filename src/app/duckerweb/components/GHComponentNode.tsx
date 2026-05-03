@@ -1,5 +1,5 @@
 import { Handle, Position } from "@xyflow/react";
-import type { GHNodeProps } from "../types/type";
+import type { GHNodeProps, Port } from "../types/type";
 import { HANDLE_SIZE } from "./constants";
 const SIDE_PADDING_X = 8;
 const LABEL_GAP = 4;
