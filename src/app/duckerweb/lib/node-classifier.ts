@@ -12,16 +12,19 @@ export function getComponentNodeType(component: Component): GHNodeType {
 	const type = component.type.toLowerCase();
 	if (type.includes("panel")) return "panel";
 
-	if (
-		type.includes("number") ||
-		type.includes("boolean") ||
-		type.includes("integer") ||
-		type.includes("text") ||
-		type.includes("colour") ||
-		type.includes("point") ||
-		type.includes("vector") ||
-		type.includes("domain")
-	) {
+	const valueTypes = new Set([
+		"number",
+		"boolean",
+		"integer",
+		"text",
+		"colour",
+		"color",
+		"point",
+		"vector",
+		"domain",
+	]);
+
+	if (valueTypes.has(type)) {
 		return "value";
 	}
 
