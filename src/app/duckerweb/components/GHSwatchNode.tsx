@@ -1,5 +1,5 @@
-import { Handle, Position } from "@xyflow/react";
 import type { GHSwatchNodeProps } from "../types/type";
+import { GHHandle } from "./Handle";
 
 function semicolonRgbaToCss(input: string): string {
 	const parts = input.split(";").map(Number);
@@ -14,7 +14,7 @@ function semicolonRgbaToCss(input: string): string {
 	return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
-export function GHSwatchNode({ data /* selected */ }: GHSwatchNodeProps) {
+export function GHSwatchNode({ data }: GHSwatchNodeProps) {
 	const bg = data.color ? semicolonRgbaToCss(data.color) : "#ddd";
 	return (
 		<div
@@ -28,14 +28,12 @@ export function GHSwatchNode({ data /* selected */ }: GHSwatchNodeProps) {
 				{data.label ?? "Swatch"}
 			</div>
 
-			<Handle
+			<GHHandle
+				variant="compact"
+				position="right"
 				type="source"
-				position={Position.Right}
 				id={data.outputs[0]?.id}
-				className="!right-[-0px] !h-[9px] !w-[9px] !rounded-full !border !border-[#777] !bg-[#aaa]"
-				style={{
-					clipPath: "inset(0 0 0 50%)",
-				}}
+				className="!right-[-0px]"
 			/>
 		</div>
 	);

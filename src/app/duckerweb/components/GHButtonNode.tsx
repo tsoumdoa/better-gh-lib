@@ -1,5 +1,5 @@
-import { Handle, Position } from "@xyflow/react";
 import type { GHButtonNodeProps } from "../types/type";
+import { GHHandle } from "./Handle";
 
 export function GHButtonNode({ data, selected }: GHButtonNodeProps) {
 	return (
@@ -13,14 +13,11 @@ export function GHButtonNode({ data, selected }: GHButtonNodeProps) {
 
 			<div className="flex h-full flex-1 items-center justify-center border border-none" />
 
-			<Handle
+			<GHHandle
+				variant="compact"
+				position="right"
 				type="source"
-				position={Position.Right}
 				id={data.outputs[0]?.id}
-				className="!h-[9px] !w-[9px] !rounded-full !border !border-[#777] !bg-[#aaa]"
-				style={{
-					clipPath: "inset(0 0 0 50%)",
-				}}
 			/>
 		</div>
 	);
