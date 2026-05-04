@@ -1,6 +1,6 @@
 import type { Node, Edge, Position } from "@xyflow/react";
 
-export type GHNodeType = "value" | "panel" | "component" | "slider" | "valueList" | "toggle" | "swatch" | "button" | "group";
+export type GHNodeType = "value" | "panel" | "component" | "slider" | "valueList" | "toggle" | "swatch" | "button" | "group" | "relay";
 
 export type GHNodeData = {
 	label: string;

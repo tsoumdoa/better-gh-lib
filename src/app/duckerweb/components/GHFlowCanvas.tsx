@@ -19,6 +19,7 @@ import { GHToggleNode } from "./GHToggleNode";
 import { GHSwatchNode } from "./GHSwatchNode";
 import { GHButtonNode } from "./GHButtonNode";
 import { GHGroupNode } from "./GHGroupNode";
+import { GHRelayNode } from "./GHRelayNode";
 import { GHEdge } from "./GHEdge";
 import type { GHFlowCanvasProps } from "../types/type";
 
@@ -32,6 +33,7 @@ const nodeTypes: NodeTypes = {
 	swatch: GHSwatchNode as NodeTypes[string],
 	button: GHButtonNode as NodeTypes[string],
 	group: GHGroupNode as NodeTypes[string],
+	relay: GHRelayNode as NodeTypes[string],
 };
 
 const edgeTypes: EdgeTypes = {

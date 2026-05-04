@@ -12,6 +12,8 @@ export function getComponentNodeType(component: Component): GHNodeType {
 	const type = component.type.toLowerCase();
 	if (type.includes("panel")) return "panel";
 
+	if (component.description?.startsWith("Contains a collection of")) return "relay";
+
 	const valueTypes = new Set([
 		"number",
 		"boolean",
