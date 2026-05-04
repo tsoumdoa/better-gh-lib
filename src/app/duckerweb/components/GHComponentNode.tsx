@@ -1,6 +1,6 @@
-import { Handle, Position } from "@xyflow/react";
 import type { GHNodeProps, Port } from "../types/type";
 import { HANDLE_SIZE } from "./constants";
+import { GHHandle } from "./Handle";
 const SIDE_PADDING_X = 8;
 const LABEL_GAP = 4;
 const APPROX_CHAR_WIDTH = 5.5;
@@ -96,20 +96,11 @@ export function GHComponentNode({ data, selected }: GHNodeProps) {
 						transform: "translateY(-50%)",
 					}}
 				>
-					<Handle
+					<GHHandle
+						variant="detailed"
+						position="left"
 						type="target"
-						position={Position.Left}
 						id={input.id}
-						className="pointer-events-auto relative! top-auto! left-auto! translate-x-0! translate-y-0!"
-						style={{
-							width: HANDLE_SIZE,
-							height: HANDLE_SIZE,
-							flexShrink: 0,
-							borderRadius: "50%",
-							border: "2.5px solid #777",
-							background: "#fff",
-							transform: "translateX(-50%)",
-						}}
 					/>
 
 					<span className="ml-1 min-w-0 text-left text-[10px] whitespace-nowrap text-[#222]">
@@ -132,20 +123,11 @@ export function GHComponentNode({ data, selected }: GHNodeProps) {
 						{output.label}
 					</span>
 
-					<Handle
+					<GHHandle
+						variant="detailed"
+						position="right"
 						type="source"
-						position={Position.Right}
 						id={output.id}
-						className="pointer-events-auto relative! top-auto! right-auto! translate-x-0! translate-y-0!"
-						style={{
-							width: HANDLE_SIZE,
-							height: HANDLE_SIZE,
-							flexShrink: 0,
-							borderRadius: "80%",
-							border: "2.5px solid #777",
-							background: "#fff",
-							transform: "translateX(50%)",
-						}}
 					/>
 				</div>
 			))}

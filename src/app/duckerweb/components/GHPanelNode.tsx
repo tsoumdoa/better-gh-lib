@@ -1,6 +1,6 @@
-import { Handle, Position } from "@xyflow/react";
 import type { GHNodeProps } from "../types/type";
-import { HANDLE_SIZE } from "./constants";
+import { GHHandle } from "./Handle";
+import { HandlePosition } from "./HandlePosition";
 
 export function GHPanelNode({ data, selected }: GHNodeProps) {
 	const inputs = data.inputs ?? [];
@@ -23,47 +23,23 @@ export function GHPanelNode({ data, selected }: GHNodeProps) {
 				)}
 			</div>
 
-			<div
-				className="pointer-events-none absolute left-0 flex items-center"
-				style={{ top: "50%", transform: "translateY(-50%)" }}
-			>
-				<Handle
+			<HandlePosition position="left">
+				<GHHandle
+					variant="detailed"
+					position="left"
 					type="target"
-					position={Position.Left}
 					id={inputs[0]?.id}
-					className="pointer-events-auto relative! top-auto! left-auto! translate-x-0! translate-y-0!"
-					style={{
-						width: HANDLE_SIZE,
-						height: HANDLE_SIZE,
-						flexShrink: 0,
-						borderRadius: "50%",
-						border: "2.5px solid #777",
-						background: "#fff",
-						transform: "translateX(-50%)",
-					}}
 				/>
-			</div>
+			</HandlePosition>
 
-			<div
-				className="pointer-events-none absolute right-0 flex items-center justify-end"
-				style={{ top: "50%", transform: "translateY(-50%)" }}
-			>
-				<Handle
+			<HandlePosition position="right">
+				<GHHandle
+					variant="detailed"
+					position="right"
 					type="source"
-					position={Position.Right}
 					id={outputs[0]?.id}
-					className="pointer-events-auto relative! top-auto! right-auto! translate-x-0! translate-y-0!"
-					style={{
-						width: HANDLE_SIZE,
-						height: HANDLE_SIZE,
-						flexShrink: 0,
-						borderRadius: "80%",
-						border: "2.5px solid #777",
-						background: "#fff",
-						transform: "translateX(50%)",
-					}}
 				/>
-			</div>
+			</HandlePosition>
 		</div>
 	);
 }

@@ -1,5 +1,5 @@
-import { Handle, Position } from "@xyflow/react";
 import type { GHToggleNodeProps } from "../types/type";
+import { GHHandle } from "./Handle";
 
 export function GHToggleNode({ data, selected }: GHToggleNodeProps) {
 	return (
@@ -17,14 +17,11 @@ export function GHToggleNode({ data, selected }: GHToggleNodeProps) {
 				</span>
 			</div>
 
-			<Handle
+			<GHHandle
+				variant="compact"
+				position="right"
 				type="source"
-				position={Position.Right}
 				id={data.outputs[0]?.id}
-				className="!h-[9px] !w-[9px] !rounded-full !border !border-[#777] !bg-[#aaa]"
-				style={{
-					clipPath: "inset(0 0 0 50%)",
-				}}
 			/>
 		</div>
 	);
