@@ -542,27 +542,31 @@ function parseComponent(
 
 	// Also check for param_input and param_output chunks directly in container
 	// (some components like Evaluate Surface use this format)
+	const seenInputKeys = new Set<string>();
 	const paramInputs = findAllChunks(containerChunk, "param_input");
 	for (const paramChunk of paramInputs) {
 		const param = parseParamChunk(paramChunk, "input");
 		if (param && param.nick) {
-			const key = String(param.nick).toLowerCase();
-			// Only add if not already present from ParameterData
-			if (!component.inputs[key]) {
-				component.inputs[key] = param;
+			let key = String(param.nick).toLowerCase();
+			if (seenInputKeys.has(key)) {
+				key = `${key}_${paramChunk.index ?? seenInputKeys.size}`;
 			}
+			seenInputKeys.add(key);
+			component.inputs[key] = param;
 		}
 	}
 
+	const seenOutputKeys = new Set<string>();
 	const paramOutputs = findAllChunks(containerChunk, "param_output");
 	for (const paramChunk of paramOutputs) {
 		const param = parseParamChunk(paramChunk, "output");
 		if (param && param.nick) {
-			const key = String(param.nick).toLowerCase();
-			// Only add if not already present from ParameterData
-			if (!component.outputs[key]) {
-				component.outputs[key] = param;
+			let key = String(param.nick).toLowerCase();
+			if (seenOutputKeys.has(key)) {
+				key = `${key}_${paramChunk.index ?? seenOutputKeys.size}`;
 			}
+			seenOutputKeys.add(key);
+			component.outputs[key] = param;
 		}
 	}
 
