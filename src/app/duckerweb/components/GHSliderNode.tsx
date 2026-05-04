@@ -30,7 +30,10 @@ export function GHSliderNode({ data, selected }: GHSliderNodeProps) {
 				type="source"
 				position={Position.Right}
 				id={data.outputs[0]?.id}
-				className="!right-[-9px] !h-[9px] !w-[9px] !rounded-full !border !border-[#777] !bg-[#aaa]"
+				className="!h-[9px] !w-[9px] !rounded-full !border !border-[#777] !bg-[#aaa]"
+				style={{
+					clipPath: "inset(0 0 0 50%)",
+				}}
 			/>
 		</div>
 	);

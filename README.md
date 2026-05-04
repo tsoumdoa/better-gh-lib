@@ -101,4 +101,5 @@ The application should now be accessible in your web browser at \(http://localho
 
 ### TODO:
 
-- improve reliablities for deleting post (potential orphaned gh scripts or blob)
+-- when param has same name, it doesnt parse corrcectly
+-- item out with ++ doesnt work too
