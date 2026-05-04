@@ -1,4 +1,5 @@
 import type { Node, Edge, Position } from "@xyflow/react";
+import type { ReactNode } from "react";
 
 export type GHNodeType = "value" | "panel" | "component" | "slider" | "valueList" | "toggle" | "swatch" | "button" | "group" | "relay";
 
@@ -57,9 +58,9 @@ export type GHNodeProps = {
 		outputs: Port[];
 		accentColor?: string;
 		selected?: boolean;
-		inputWidth?: number;       // <-- specific to GHComponentNode
-		outputWidth?: number;      // <-- specific to GHComponentNode
-		value?: string;            // <-- for value nodes (number, panel, etc.)
+		inputWidth?: number;
+		outputWidth?: number;
+		value?: string;
 		height?: number;
 	};
 	selected?: boolean;
@@ -159,4 +160,22 @@ export type GHEdgeProps = {
 	sourcePosition: Position;
 	targetPosition: Position;
 	selected?: boolean;
+};
+
+export type HandleVariant = "detailed" | "compact";
+export type HandleSide = "left" | "right";
+export type HandlePortType = "source" | "target";
+
+export type GHHandleProps = {
+	variant: HandleVariant;
+	position: HandleSide;
+	type: HandlePortType;
+	id?: string;
+	className?: string;
+};
+
+export type GHHandlePositionProps = {
+	position: HandleSide;
+	children: ReactNode;
+	className?: string;
 };

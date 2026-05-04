@@ -1,12 +1,6 @@
-import type { ReactNode } from "react";
+import type { GHHandlePositionProps } from "../types/type";
 
-interface HandlePositionProps {
-	position: "left" | "right";
-	children: ReactNode;
-	className?: string;
-}
-
-export function HandlePosition({ position, children, className = "" }: HandlePositionProps) {
+export function HandlePosition({ position, children, className = "" }: GHHandlePositionProps) {
 	const isLeft = position === "left";
 
 	return (
