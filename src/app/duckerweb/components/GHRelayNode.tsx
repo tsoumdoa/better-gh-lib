@@ -20,7 +20,7 @@ export function GHRelayNode({ data, selected }: GHNodeProps) {
 					variant="detailed"
 					position="left"
 					type="target"
-					id="relay-in"
+					id={data.inputs[0]?.id}
 				/>
 			</HandlePosition>
 
@@ -29,7 +29,7 @@ export function GHRelayNode({ data, selected }: GHNodeProps) {
 					variant="detailed"
 					position="right"
 					type="source"
-					id="relay-out"
+					id={data.outputs[0]?.id}
 				/>
 			</HandlePosition>
 		</div>
