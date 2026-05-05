@@ -36,6 +36,7 @@ export function handleGroup(
 				? { width: bounds.width, height: bounds.height }
 				: undefined,
 		data: nodeData,
+		zIndex: 0,
 	} as GHNode;
 }
 

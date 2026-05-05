@@ -12,7 +12,12 @@ export function GHGroupNode({ data }: GHGroupNodeProps) {
 	}
 
 	return (
-		<div className="relative h-full w-full rounded-lg">
+		<div
+			className="relative h-full w-full rounded-lg"
+			style={{
+				zIndex: 1,
+			}}
+		>
 			{data.label !== "Group" && (
 				<span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[9px] font-semibold whitespace-nowrap text-neutral-800">
 					{data.label}

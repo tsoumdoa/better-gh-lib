@@ -52,5 +52,6 @@ export function handleComponent(
 		type: nodeType,
 		position,
 		data: nodeData,
+		zIndex: 10,
 	} as GHNode;
 }

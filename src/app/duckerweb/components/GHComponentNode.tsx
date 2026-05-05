@@ -112,7 +112,7 @@ export function GHComponentNode({ data, selected }: GHNodeProps) {
 			{outputs.map((output, index) => (
 				<div
 					key={output.id}
-					className="pointer-events-none absolute right-0 flex items-center justify-end"
+					className="pointer-events-none absolute right-0 flex items-center justify-end text-center"
 					style={{
 						top: getPortTop(index, outputs.length),
 						width: outputWidth,

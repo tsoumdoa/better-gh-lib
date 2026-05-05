@@ -121,3 +121,27 @@
 		@apply bg-background text-foreground;
 	}
 }
+
+@layer components {
+	.gh-canvas-container {
+		@apply w-full;
+		height: 600px;
+	}
+
+	.react-flow__node.group,
+	.react-flow__node.group>div {
+		padding: 0 !important;
+		border: 1px solid #bbb !important;
+		box-shadow: none !important;
+		background: transparent !important;
+	}
+
+	.react-flow__edges {
+		position: relative;
+		z-index: 5;
+	}
+
+	.react-flow__nodes {
+		position: relative;
+	}
+}
