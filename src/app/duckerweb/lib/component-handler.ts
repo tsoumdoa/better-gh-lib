@@ -47,6 +47,10 @@ export function handleComponent(
 		nodeData.color = component.value.color;
 	}
 
+	if (component.script) {
+		nodeData.script = component.script;
+	}
+
 	return {
 		id: component.id,
 		type: nodeType,
