@@ -38,8 +38,10 @@ export function GHHandle({
 				height: HANDLE_SIZE,
 				flexShrink: 0,
 				borderRadius,
-				border: "2.5px solid #777",
+				border: "2.2px solid #333",
 				background: "#fff",
+				clipPath:
+					Position.Left === position ? "inset(0 50% 0 0)" : "inset(0 0 0 50%)",
 				transform,
 			}}
 		/>

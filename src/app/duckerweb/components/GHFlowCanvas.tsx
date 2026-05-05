@@ -49,8 +49,7 @@ export function GHFlowCanvas({ nodes, edges }: GHFlowCanvasProps) {
 	);
 
 	return (
-		<div className="h-[600px] w-full bg-[#ccc9c0]">
-			<style>{`.react-flow__node.group, .react-flow__node.group > div { padding: 0 !important; border: 1px solid #bbb !important; box-shadow: none !important; background: transparent !important; }`}</style>
+		<div className="gh-canvas-container">
 			<ReactFlow
 				nodes={nodes}
 				edges={edges}
@@ -66,10 +65,10 @@ export function GHFlowCanvas({ nodes, edges }: GHFlowCanvasProps) {
 			>
 				<Background
 					variant={BackgroundVariant.Lines}
-					gap={40}
+					gap={50}
 					size={1}
+					bgColor="#cbc9c8"
 					color="#bbb8af"
-					style={{ backgroundColor: "#ccc9c0" }}
 				/>
 				<Controls />
 			</ReactFlow>
