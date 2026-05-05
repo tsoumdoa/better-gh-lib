@@ -13,6 +13,7 @@ import "@xyflow/react/dist/style.css";
 
 import { GHPanelNode } from "./GHPanelNode";
 import { GHComponentNode } from "./GHComponentNode";
+import { GHScriptNode } from "./GHScriptNode";
 import { GHSliderNode } from "./GHSliderNode";
 import { GHValueListNode } from "./GHValueListNode";
 import { GHToggleNode } from "./GHToggleNode";
@@ -27,6 +28,7 @@ const nodeTypes: NodeTypes = {
 	panel: GHPanelNode as NodeTypes[string],
 	value: GHPanelNode as NodeTypes[string],
 	component: GHComponentNode as NodeTypes[string],
+	script: GHScriptNode as NodeTypes[string],
 	slider: GHSliderNode as NodeTypes[string],
 	valueList: GHValueListNode as NodeTypes[string],
 	toggle: GHToggleNode as NodeTypes[string],

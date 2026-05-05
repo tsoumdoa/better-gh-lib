@@ -1,7 +1,7 @@
 import type { Node, Edge, Position } from "@xyflow/react";
 import type { ReactNode } from "react";
 
-export type GHNodeType = "value" | "panel" | "component" | "slider" | "valueList" | "toggle" | "swatch" | "button" | "group" | "relay";
+export type GHNodeType = "value" | "panel" | "component" | "script" | "slider" | "valueList" | "toggle" | "swatch" | "button" | "group" | "relay";
 
 export type GHNodeData = {
 	label: string;
@@ -50,6 +50,12 @@ export type GHFlowCanvasProps = {
 
 export type FlowNode = Node<GHNodeData>;
 
+export type ScriptData = {
+	language?: string;
+	code: string;
+	title?: string;
+};
+
 export type GHNodeProps = {
 	data: {
 		label: string;
@@ -62,6 +68,7 @@ export type GHNodeProps = {
 		outputWidth?: number;
 		value?: string;
 		height?: number;
+		script?: ScriptData;
 	};
 	selected?: boolean;
 };
