@@ -4,21 +4,22 @@
     "C#": {
       "id": "C#",
       "type": "C# Script",
-      "guid": "4d24da1c-6a89-4a43-96e7-369a280d8c61",
+      "typeGuid": "b6ba1144-02d6-4a2d-b53c-ec62e290eeb7",
+      "instanceGuid": "4d24da1c-6a89-4a43-96e7-369a280d8c61",
       "nickName": "C#",
       "inputs": {
         "x": {
           "description": "No conversion",
           "nick": "x",
           "optional": true,
-          "guid": "6ce93bd5-881c-4959-a771-83d703e8c8e8",
+          "instanceGuid": "6ce93bd5-881c-4959-a771-83d703e8c8e8",
           "source": "5a8743f0-83e4-4e17-becf-05bca54d0601"
         },
         "y": {
           "description": "No conversion",
           "nick": "y",
           "optional": true,
-          "guid": "355d7cf1-b08f-48bb-8359-fe9dce6491ec"
+          "instanceGuid": "355d7cf1-b08f-48bb-8359-fe9dce6491ec"
         }
       },
       "outputs": {
@@ -26,13 +27,13 @@
           "description": "Standard output and error contents collected during script run",
           "nick": "out",
           "optional": false,
-          "guid": "2850bd9a-619b-4450-9b50-6e96c8a81a38"
+          "instanceGuid": "2850bd9a-619b-4450-9b50-6e96c8a81a38"
         },
         "a": {
           "description": "No conversion",
           "nick": "a",
           "optional": false,
-          "guid": "820b8f14-d113-4a29-9411-bf15b91744be"
+          "instanceGuid": "820b8f14-d113-4a29-9411-bf15b91744be"
         }
       },
       "script": {

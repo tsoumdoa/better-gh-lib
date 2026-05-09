@@ -4,7 +4,8 @@
     "Cluster": {
       "id": "Cluster",
       "type": "Cluster",
-      "guid": "dc49083d-1af0-40f8-896d-81e3774609fc",
+      "typeGuid": "f31d8d7a-7536-4ac8-9c96-fde6ecda4d0a",
+      "instanceGuid": "dc49083d-1af0-40f8-896d-81e3774609fc",
       "description": "Contains a cluster of Grasshopper components",
       "nickName": "Cluster",
       "inputs": {
@@ -12,7 +13,7 @@
           "description": "Base curve",
           "nick": "C",
           "optional": true,
-          "guid": "7ceab4f4-4e3e-4307-916a-1005ea0916ac"
+          "instanceGuid": "7ceab4f4-4e3e-4307-916a-1005ea0916ac"
         }
       },
       "outputs": {
@@ -20,7 +21,7 @@
           "description": "Resulting Pipe",
           "nick": "P",
           "optional": false,
-          "guid": "fce0e3c4-87d5-4c7a-842e-95c08a921e86"
+          "instanceGuid": "fce0e3c4-87d5-4c7a-842e-95c08a921e86"
         }
       },
       "cluster": {

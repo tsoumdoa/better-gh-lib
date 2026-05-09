@@ -4,7 +4,8 @@
     "dangerouslyRandomizeColor": {
       "id": "dangerouslyRandomizeColor",
       "type": "C# Script",
-      "guid": "71b7b0fc-9229-49e0-b395-19ed6bc207d1",
+      "typeGuid": "b6ba1144-02d6-4a2d-b53c-ec62e290eeb7",
+      "instanceGuid": "71b7b0fc-9229-49e0-b395-19ed6bc207d1",
       "nickName": "dangerouslyRandomizeColor",
       "inputs": {},
       "outputs": {
@@ -12,7 +13,7 @@
           "description": "The execution information, as output and error streams",
           "nick": "out",
           "optional": false,
-          "guid": "c7f5ed17-d480-45fd-9d3e-3633b525a034"
+          "instanceGuid": "c7f5ed17-d480-45fd-9d3e-3633b525a034"
         }
       },
       "script": {
